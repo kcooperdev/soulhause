@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design source bundle (Claude Design handoff — local reference only)
+/design-src/
