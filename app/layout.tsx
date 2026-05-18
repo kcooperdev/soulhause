@@ -6,6 +6,7 @@ import {
   JetBrains_Mono,
 } from "next/font/google";
 import "./globals.css";
+import Interactive from "./interactive";
 
 const display = Bricolage_Grotesque({
   variable: "--font-display",
@@ -35,11 +36,11 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "SoulHause — Building Tech That Builds People",
   description:
-    "SoulHause launches with Block Party Vol. I in August 2026. Every ticket funds a free tech workshop. Follow on Luma for date + venue.",
+    "SoulHause launches with Hause of Soul in August 2026. Every ticket funds a free tech workshop. Follow on Luma for date + venue.",
   openGraph: {
     title: "SoulHause — Building Tech That Builds People",
     description:
-      "Block Party Vol. I drops August 2026. Follow on Luma for date + venue.",
+      "Hause of Soul drops August 2026. Follow on Luma for date + venue.",
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SoulHause — Building Tech That Builds People",
     description:
-      "Block Party Vol. I drops August 2026. Follow on Luma for date + venue.",
+      "Hause of Soul drops August 2026. Follow on Luma for date + venue.",
   },
 };
 
@@ -62,7 +63,10 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Interactive />
+      </body>
     </html>
   );
 }

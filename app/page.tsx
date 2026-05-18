@@ -1,11 +1,146 @@
+import Interactive from "./interactive";
+
 const LUMA_URL = "https://luma.com/soulhause";
+
+function EqBars() {
+  return (
+    <div className="eq" aria-hidden="true">
+      {Array.from({ length: 12 }).map((_, i) => (
+        <span
+          key={i}
+          className="eq-bar"
+          style={{
+            animationDelay: `${(i * 0.13) % 1.1}s`,
+            animationDuration: `${0.9 + (i % 4) * 0.18}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function VinylDisc() {
+  return (
+    <div className="vinyl" aria-hidden="true">
+      <div className="vinyl-disc">
+        <span className="vinyl-ring r1" />
+        <span className="vinyl-ring r2" />
+        <span className="vinyl-ring r3" />
+        <span className="vinyl-ring r4" />
+        <div className="vinyl-label">
+          <span className="vinyl-label-top">Hause of Soul</span>
+          <span className="vinyl-label-mid">★</span>
+          <span className="vinyl-label-bot">33⅓ · Aug ’26</span>
+        </div>
+        <span className="vinyl-hole" />
+      </div>
+    </div>
+  );
+}
+
+function TicketStub() {
+  return (
+    <div className="ticket" aria-hidden="true">
+      <span className="ticket-perf" />
+      <div className="ticket-body">
+        <span className="ticket-lbl">★ Admit One</span>
+        <span className="ticket-num">01</span>
+        <span className="ticket-foot">Inaugural · Est. 2026</span>
+      </div>
+    </div>
+  );
+}
+
+function CircuitArt() {
+  return (
+    <div className="circuit" aria-hidden="true">
+      <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" className="circuit-svg">
+        <defs>
+          <pattern id="dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="rgba(245,239,229,.25)" />
+          </pattern>
+        </defs>
+        <rect width="200" height="200" fill="url(#dots)" />
+        <path d="M16 30 H80 V70 H120 V44 H184" stroke="rgba(245,239,229,.55)" strokeWidth="1.5" fill="none" />
+        <path d="M16 120 H50 V160 H110" stroke="rgba(255,122,58,.75)" strokeWidth="1.5" fill="none" />
+        <path d="M180 100 H140 V140 H100" stroke="rgba(245,239,229,.4)" strokeWidth="1.5" fill="none" />
+        <circle cx="80" cy="70" r="3.5" fill="var(--orange)" />
+        <circle cx="120" cy="44" r="3.5" fill="var(--cream)" />
+        <circle cx="50" cy="160" r="3.5" fill="var(--cream)" />
+        <circle cx="140" cy="140" r="3.5" fill="var(--orange)" />
+      </svg>
+      <span className="circuit-badge">★ Workshop #01</span>
+    </div>
+  );
+}
+
+function ReceiptCard() {
+  return (
+    <div className="receipt" aria-hidden="true">
+      <div className="receipt-head">
+        <span>★ Workshop Fund</span>
+        <span>#01</span>
+      </div>
+      <div className="receipt-row"><span>1 × Workshop seat</span><span>FREE</span></div>
+      <div className="receipt-row"><span>1 × Soldering kit</span><span>FREE</span></div>
+      <div className="receipt-row"><span>1 × Mentor hour</span><span>FREE</span></div>
+      <div className="receipt-rule" />
+      <div className="receipt-row total"><span>TOTAL</span><span>$0.00</span></div>
+      <div className="receipt-foot">★ Paid by ticket holders</div>
+    </div>
+  );
+}
+
+function OpenStamp() {
+  return (
+    <div className="stamp-art" aria-hidden="true">
+      <div className="stamp-art-mark">
+        <span className="stamp-art-star">★</span>
+        <span className="stamp-art-word">OPEN</span>
+        <span className="stamp-art-star">★</span>
+      </div>
+      <span className="stamp-art-sub">No gate. No code.</span>
+    </div>
+  );
+}
+
+function StoryCover() {
+  return (
+    <div className="cover" aria-hidden="true">
+      <div className="cover-top">
+        <span>SoulHause Press</span>
+        <span>Vol. I · 2026</span>
+      </div>
+      <div className="cover-mark">
+        Soul<em>·</em><br />Hause<span className="cover-period">.</span>
+      </div>
+      <div className="cover-rule" />
+      <div className="cover-foot">
+        <span>★ The Inaugural</span>
+        <span>Issue No. 01</span>
+      </div>
+      <span className="cover-bars">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <span key={i} />
+        ))}
+      </span>
+    </div>
+  );
+}
 
 function Logo({ size = 22, color = "currentColor" }: { size?: number; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <circle cx="16" cy="16" r="15" stroke={color} strokeWidth="1.5" />
-      <path d="M9 22 L16 9 L23 22 Z" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
-      <circle cx="16" cy="18" r="2" fill={color} />
+      {/* vinyl disc */}
+      <circle cx="13" cy="19" r="10.5" stroke={color} strokeWidth="1.5" />
+      {/* spindle */}
+      <circle cx="13" cy="19" r="1.2" fill={color} />
+      {/* tonearm pivot */}
+      <circle cx="27" cy="5" r="2.2" stroke={color} strokeWidth="1" />
+      {/* tonearm */}
+      <line x1="25.5" y1="6.5" x2="18.5" y2="13.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      {/* orange needle — soul touching the groove */}
+      <circle cx="18" cy="14" r="2.8" fill="#FF7A3A" />
     </svg>
   );
 }
@@ -22,7 +157,6 @@ function Nav() {
           <a href="#events">The Launch</a>
           <a href="#fund">Workshop Fund</a>
           <a href="#story">Our Story</a>
-          <a href="#gallery">Community</a>
         </div>
         <a href={LUMA_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">
           Follow on Luma <span className="arrow">→</span>
@@ -50,7 +184,7 @@ function Hero() {
             That Builds <em>People.</em>
           </h1>
           <p className="hero-sub">
-            SoulHause launches this August with Block Party Vol. I — and every ticket sold
+            SoulHause launches this August with Hause of Soul — and every ticket sold
             funds a free tech workshop. One night to kick off a movement, wherever you are.
           </p>
           <div className="hero-ctas">
@@ -83,14 +217,15 @@ function Hero() {
             <span className="dot" /> Date drops on Luma
           </div>
 
-          <div className="hc-card hc-1">
-            <div className="hc-placeholder">The venue</div>
+          <div className="hc-card hc-1 hc-art hc-art-blue">
+            <EqBars />
+            <span className="hc-art-corner">★ Live · Aug 2026</span>
           </div>
-          <div className="hc-card hc-2">
-            <div className="hc-placeholder">Soundcheck / setup</div>
+          <div className="hc-card hc-2 hc-art hc-art-cream">
+            <VinylDisc />
           </div>
-          <div className="hc-card hc-3">
-            <div className="hc-placeholder">Founder portrait</div>
+          <div className="hc-card hc-3 hc-art hc-art-sun">
+            <TicketStub />
           </div>
         </div>
       </div>
@@ -222,7 +357,7 @@ function Events() {
 
           <div>
             <h3 className="ev-title">
-              Block Party <em>Vol.&nbsp;I</em>
+              Hause of <em>Soul.</em>
             </h3>
             <p className="ev-desc" style={{ marginTop: 20 }}>
               Our launch night. Food, music, a soldering demo bench, a mentorship corner,
@@ -312,9 +447,15 @@ function Fund() {
 
           <div className="fund-collage">
             <div className="sticker">Workshop <b>#01</b> · Soldering 101</div>
-            <div className="fc-card fc-1">Workshop in session</div>
-            <div className="fc-card fc-2">Mentor + student</div>
-            <div className="fc-card fc-3">Finished project</div>
+            <div className="fc-card fc-1 fc-art fc-art-blue">
+              <CircuitArt />
+            </div>
+            <div className="fc-card fc-2 fc-art fc-art-cream">
+              <ReceiptCard />
+            </div>
+            <div className="fc-card fc-3 fc-art fc-art-ink">
+              <OpenStamp />
+            </div>
           </div>
         </div>
       </div>
@@ -327,10 +468,10 @@ function Story() {
     <section className="story sec-pad" id="story">
       <div className="wrap">
         <div className="story-grid">
-          <div className="story-portrait">
+          <div className="story-portrait story-cover">
             <div className="frame" />
-            <span className="corner">Founder · Est. 2026</span>
-            Warm portrait of founder
+            <span className="corner">Founded</span>
+            <StoryCover />
           </div>
           <div>
             <span className="eyebrow">Our Story</span>
@@ -350,54 +491,7 @@ function Story() {
               &ldquo;We&apos;re not waiting for permission. We&apos;re building it ourselves,
               with our own people, in our own places.&rdquo;
             </div>
-            <div className="story-sig">
-              <div className="avatar" />
-              <div>
-                <div style={{ color: "var(--ink)", fontWeight: 500 }}>The SoulHause team</div>
-                <div>Founders · Est. 2026</div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Gallery() {
-  const items: { id: string; cs: number; rs: number; cap: string }[] = [
-    { id: "g1", cs: 2, rs: 2, cap: "Build day" },
-    { id: "g2", cs: 1, rs: 2, cap: "Soundcheck" },
-    { id: "g3", cs: 1, rs: 1, cap: "Soldering kit prep" },
-    { id: "g4", cs: 1, rs: 1, cap: "Mentor lineup" },
-    { id: "g5", cs: 1, rs: 2, cap: "Workshop sketch" },
-    { id: "g6", cs: 2, rs: 1, cap: "Volunteer brief" },
-    { id: "g7", cs: 1, rs: 1, cap: "Poster draft" },
-    { id: "g8", cs: 1, rs: 1, cap: "Lighting test" },
-    { id: "g9", cs: 2, rs: 1, cap: "Day-of run-of-show" },
-  ];
-  return (
-    <section className="gallery sec-pad" id="gallery">
-      <div className="wrap">
-        <div className="gallery-head">
-          <div>
-            <span className="eyebrow">Community · Behind the build</span>
-            <h2 className="h-display sec-title">Faces of the&nbsp;Hause.</h2>
-          </div>
-          <a className="btn btn-ghost" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-            Follow on Luma <span className="arrow">→</span>
-          </a>
-        </div>
-        <div className="gallery-grid">
-          {items.map((it) => (
-            <div
-              key={it.id}
-              className="gal"
-              style={{ gridColumn: `span ${it.cs}`, gridRow: `span ${it.rs}` }}
-            >
-              {it.cap}
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -497,9 +591,9 @@ export default function Home() {
       <Events />
       <Fund />
       <Story />
-      <Gallery />
       <CTA />
       <Footer />
+      <Interactive />
     </>
   );
 }
