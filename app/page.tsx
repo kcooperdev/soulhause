@@ -1,5 +1,6 @@
 import Interactive from "./interactive";
 
+const JOIN_URL = "https://luma.com/soulhause";
 const LUMA_URL = "https://luma.com/soulhause";
 
 function EqBars() {
@@ -28,9 +29,9 @@ function VinylDisc() {
         <span className="vinyl-ring r3" />
         <span className="vinyl-ring r4" />
         <div className="vinyl-label">
-          <span className="vinyl-label-top">Hause of Soul</span>
+          <span className="vinyl-label-top">SoulHause</span>
           <span className="vinyl-label-mid">★</span>
-          <span className="vinyl-label-bot">33⅓ · Aug ’26</span>
+          <span className="vinyl-label-bot">Est · MMXXVI</span>
         </div>
         <span className="vinyl-hole" />
       </div>
@@ -43,9 +44,9 @@ function TicketStub() {
     <div className="ticket" aria-hidden="true">
       <span className="ticket-perf" />
       <div className="ticket-body">
-        <span className="ticket-lbl">★ Admit One</span>
-        <span className="ticket-num">01</span>
-        <span className="ticket-foot">Inaugural · Est. 2026</span>
+        <span className="ticket-lbl">★ Member · No. 001</span>
+        <span className="ticket-num">25</span>
+        <span className="ticket-foot">/mo · Locked for life</span>
       </div>
     </div>
   );
@@ -69,7 +70,7 @@ function CircuitArt() {
         <circle cx="50" cy="160" r="3.5" fill="var(--cream)" />
         <circle cx="140" cy="140" r="3.5" fill="var(--orange)" />
       </svg>
-      <span className="circuit-badge">★ Workshop #01</span>
+      <span className="circuit-badge">★ Give-Back Ledger</span>
     </div>
   );
 }
@@ -78,15 +79,15 @@ function ReceiptCard() {
   return (
     <div className="receipt" aria-hidden="true">
       <div className="receipt-head">
-        <span>★ Workshop Fund</span>
-        <span>#01</span>
+        <span>★ Monthly split</span>
+        <span>$25.00</span>
       </div>
-      <div className="receipt-row"><span>1 × Workshop seat</span><span>FREE</span></div>
-      <div className="receipt-row"><span>1 × Soldering kit</span><span>FREE</span></div>
-      <div className="receipt-row"><span>1 × Mentor hour</span><span>FREE</span></div>
+      <div className="receipt-row"><span>Platform &amp; courses</span><span>$18.00</span></div>
+      <div className="receipt-row"><span>Tech nonprofits</span><span>$5.00</span></div>
+      <div className="receipt-row"><span>Member ops</span><span>$2.00</span></div>
       <div className="receipt-rule" />
-      <div className="receipt-row total"><span>TOTAL</span><span>$0.00</span></div>
-      <div className="receipt-foot">★ Paid by ticket holders</div>
+      <div className="receipt-row total"><span>TOTAL</span><span>$25.00</span></div>
+      <div className="receipt-foot">★ Reported quarterly</div>
     </div>
   );
 }
@@ -96,10 +97,10 @@ function OpenStamp() {
     <div className="stamp-art" aria-hidden="true">
       <div className="stamp-art-mark">
         <span className="stamp-art-star">★</span>
-        <span className="stamp-art-word">OPEN</span>
+        <span className="stamp-art-word">PAID</span>
         <span className="stamp-art-star">★</span>
       </div>
-      <span className="stamp-art-sub">No gate. No code.</span>
+      <span className="stamp-art-sub">Forward · By every member</span>
     </div>
   );
 }
@@ -116,8 +117,8 @@ function StoryCover() {
       </div>
       <div className="cover-rule" />
       <div className="cover-foot">
-        <span>★ The Inaugural</span>
-        <span>Issue No. 01</span>
+        <span>★ A small house</span>
+        <span>with the lights on</span>
       </div>
       <span className="cover-bars">
         {Array.from({ length: 8 }).map((_, i) => (
@@ -128,19 +129,12 @@ function StoryCover() {
   );
 }
 
-function Logo({ size = 22, color = "currentColor" }: { size?: number; color?: string }) {
+function Logo({ size = 22, ring = "#0F0E0C", house = "#F5EFE5" }: { size?: number; ring?: string; house?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      {/* vinyl disc */}
-      <circle cx="13" cy="19" r="10.5" stroke={color} strokeWidth="1.5" />
-      {/* spindle */}
-      <circle cx="13" cy="19" r="1.2" fill={color} />
-      {/* tonearm pivot */}
-      <circle cx="27" cy="5" r="2.2" stroke={color} strokeWidth="1" />
-      {/* tonearm */}
-      <line x1="25.5" y1="6.5" x2="18.5" y2="13.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-      {/* orange needle — soul touching the groove */}
-      <circle cx="18" cy="14" r="2.8" fill="#FF7A3A" />
+      <circle cx="16" cy="16" r="15" fill={ring} />
+      <path d="M16 8.4 L8.6 14.2 L8.6 22.6 L23.4 22.6 L23.4 14.2 Z" fill={house} />
+      <rect x="14.4" y="17.6" width="3.2" height="5" rx="0.4" fill="#FF7A3A" />
     </svg>
   );
 }
@@ -153,13 +147,12 @@ function Nav() {
           <span className="mark"><Logo size={22} /></span> SoulHause
         </a>
         <div className="nav-links">
-          <a href="#model">The Model</a>
-          <a href="#events">The Launch</a>
-          <a href="#fund">Workshop Fund</a>
-          <a href="#story">Our Story</a>
+          <a href="#model">The Hause</a>
+          <a href="#inside">Inside</a>
+          <a href="#nonprofits">5% Give-Back</a>
         </div>
-        <a href={LUMA_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">
-          Follow on Luma <span className="arrow">→</span>
+        <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="nav-cta">
+          Join SoulHause <span className="arrow">→</span>
         </a>
       </div>
     </nav>
@@ -177,49 +170,51 @@ function Hero() {
       <div className="wrap hero-content">
         <div>
           <span className="eyebrow" style={{ color: "rgba(245,239,229,.7)" }}>
-            Inaugural · Est. 2026 · Launching August
+            Private community · Members only · Est. 2026
           </span>
           <h1>
-            Building Tech<br />
-            That Builds <em>People.</em>
+            A home for tech.<br />
+            A house for <em>careers.</em>
           </h1>
           <p className="hero-sub">
-            SoulHause launches this August with Hause of Soul — and every ticket sold
-            funds a free tech workshop. One night to kick off a movement, wherever you are.
+            A private community for builders. Find tech events near you, take
+            workshops and courses, share resources, and use your SoulHause card
+            for perks at the tools you already use. 5% of every membership goes
+            to tech nonprofits each month.
           </p>
           <div className="hero-ctas">
-            <a className="btn btn-on-dark" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-              Follow on Luma <span className="arrow">→</span>
+            <a className="btn btn-on-dark" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
+              Join SoulHause <span className="arrow">→</span>
             </a>
-            <a className="btn btn-on-dark-ghost" href="#events">See the launch</a>
+            <a className="btn btn-on-dark-ghost" href="#inside">See what&apos;s inside</a>
           </div>
           <div className="hero-meta">
             <div className="hero-meta-item">
-              <span className="hero-meta-num">01</span>
-              <span className="hero-meta-lbl">Inaugural event</span>
+              <span className="hero-meta-num">1,284</span>
+              <span className="hero-meta-lbl">Builders inside</span>
             </div>
             <div className="hero-meta-item">
-              <span className="hero-meta-num">Aug ’26</span>
-              <span className="hero-meta-lbl">Save the month</span>
+              <span className="hero-meta-num">$25<small style={{ fontSize: 14, opacity: 0.7 }}>/mo</small></span>
+              <span className="hero-meta-lbl">Locked for life</span>
             </div>
             <div className="hero-meta-item">
-              <span className="hero-meta-num">100%</span>
-              <span className="hero-meta-lbl">Tickets → workshops</span>
+              <span className="hero-meta-num">5%</span>
+              <span className="hero-meta-lbl">→ tech nonprofits / mo</span>
             </div>
           </div>
         </div>
 
         <div className="hero-collage">
           <div className="hc-tag t1">
-            <span className="dot" /> Launching · Aug 2026
+            <span className="dot" /> Doors open · 2026
           </div>
           <div className="hc-tag t2">
-            <span className="dot" /> Date drops on Luma
+            <span className="dot" /> Where careers compound
           </div>
 
           <div className="hc-card hc-1 hc-art hc-art-blue">
             <EqBars />
-            <span className="hc-art-corner">★ Live · Aug 2026</span>
+            <span className="hc-art-corner">★ Live circles · weekly</span>
           </div>
           <div className="hc-card hc-2 hc-art hc-art-cream">
             <VinylDisc />
@@ -250,8 +245,8 @@ function ModelCard({ idx, badge, title, body, link, glyph }: ModelCardProps) {
       <h3>{title}</h3>
       <p>{body}</p>
       <div className="more">
-        <span className="num">→ approach.{idx}</span>
-        <a className="lnk" href="#events">{link} <span className="arrow">→</span></a>
+        <span className="num">→ pillar.{idx}</span>
+        <a className="lnk" href="#inside">{link} <span className="arrow">→</span></a>
       </div>
     </article>
   );
@@ -263,62 +258,66 @@ function Model() {
       <div className="wrap">
         <div className="model-head">
           <div>
-            <span className="eyebrow">The Model</span>
+            <span className="eyebrow">The Three Pillars</span>
             <h2 className="h-display sec-title">
-              Three loops, <span className="serif-italic">one&nbsp;movement.</span>
+              A small house <span className="serif-italic">with the lights on.</span>
             </h2>
           </div>
           <p className="sec-lede">
-            SoulHause runs on a simple flywheel: people come for the events, fund the
-            workshops, and the workshops produce the next generation of builders.
+            SoulHause is built on three things: a home where builders show up
+            for each other, career growth with the unwritten rules written
+            down, and a give-back that funds the next wave of builders.
           </p>
         </div>
 
         <div className="model-grid">
           <ModelCard
             idx={1}
-            badge="Events"
-            link="See the launch"
-            title="Community-powered tech events."
-            body="Block parties, hack nights, hardware shows. The energy of a festival, the substance of a maker space. We host where people already are."
+            badge="Home"
+            link="Meet the rooms"
+            title="A place where people remember your name."
+            body="Channels organized by the work itself — ic-to-staff, design-engineering, founders-circle, offers-and-comp, small-wins. Small enough to know. Warm enough to come back to."
             glyph={
               <svg viewBox="0 0 200 150" className="gl-svg" fill="none">
-                <circle cx="40" cy="75" r="22" stroke="#0F0E0C" strokeWidth="2" />
-                <circle cx="100" cy="75" r="32" stroke="#0F0E0C" strokeWidth="2" />
-                <circle cx="160" cy="75" r="22" stroke="#0F0E0C" strokeWidth="2" />
-                <circle cx="100" cy="75" r="6" fill="#0F0E0C" />
+                <path d="M40 90 L100 40 L160 90 L160 130 L40 130 Z" stroke="#0F0E0C" strokeWidth="2" fill="none" />
+                <rect x="88" y="100" width="24" height="30" stroke="#0F0E0C" strokeWidth="2" fill="none" />
+                <circle cx="100" cy="115" r="2" fill="#0F0E0C" />
+                <path d="M100 40 L100 28" stroke="#FF7A3A" strokeWidth="2.5" strokeLinecap="round" />
+                <circle cx="100" cy="24" r="4" fill="#FF7A3A" />
               </svg>
             }
           />
           <ModelCard
             idx={2}
-            badge="Impact"
-            link="Read transparency report"
-            title="Every ticket funds a workshop."
-            body="A clear, public split: a portion of every event ticket goes straight into the Workshop Fund. No overhead games. Receipts on the homepage."
+            badge="Career growth"
+            link="Open the curriculum"
+            title="The unwritten rules, written down."
+            body="From IC to Staff by a Stripe staff eng. Negotiating Senior Offers by an Anthropic principal. Quitting Well by a PM-turned-founder. Live circles every week. A vault you can search."
             glyph={
               <svg viewBox="0 0 200 150" className="gl-svg" fill="none">
-                <rect x="20" y="40" width="160" height="70" rx="12" stroke="#F5EFE5" strokeWidth="2" />
-                <line x1="20" y1="68" x2="180" y2="68" stroke="#F5EFE5" strokeWidth="2" />
-                <circle cx="42" cy="86" r="6" fill="#F5EFE5" />
-                <rect x="60" y="80" width="100" height="12" rx="2" fill="#F5EFE5" />
-                <path d="M100 18 L100 134" stroke="#F5EFE5" strokeWidth="1" strokeDasharray="3 4" />
+                <path d="M30 110 L70 70 L110 90 L170 40" stroke="#F5EFE5" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                <circle cx="30" cy="110" r="4" fill="#F5EFE5" />
+                <circle cx="70" cy="70" r="4" fill="#F5EFE5" />
+                <circle cx="110" cy="90" r="4" fill="#F5EFE5" />
+                <circle cx="170" cy="40" r="5" fill="#FF7A3A" />
+                <line x1="20" y1="130" x2="180" y2="130" stroke="#F5EFE5" strokeWidth="1" opacity="0.5" />
               </svg>
             }
           />
           <ModelCard
             idx={3}
-            badge="Future Products"
-            link="Peek the workshop"
-            title="Hardware &amp; tools for real life."
-            body="Mini-startups born inside the community. Built by Hausers, for Hausers — then released into the wild. The first three drop in 2027."
+            badge="Give back"
+            link="See the nonprofits"
+            title="The career you grow grows someone else&apos;s."
+            body="5% of every membership funds tech nonprofits each month — 2 or 3 orgs at a time, picked publicly. Investing back into the communities that invest in us."
             glyph={
               <svg viewBox="0 0 200 150" className="gl-svg" fill="none">
-                <rect x="40" y="30" width="120" height="80" rx="10" stroke="#F5EFE5" strokeWidth="2" />
-                <circle cx="100" cy="70" r="20" stroke="#F5EFE5" strokeWidth="2" />
-                <circle cx="100" cy="70" r="6" fill="#F5EFE5" />
-                <line x1="40" y1="125" x2="160" y2="125" stroke="#F5EFE5" strokeWidth="2" />
-                <rect x="90" y="118" width="20" height="14" rx="2" fill="#F5EFE5" />
+                <circle cx="70" cy="75" r="22" stroke="#F5EFE5" strokeWidth="2" />
+                <circle cx="130" cy="75" r="22" stroke="#F5EFE5" strokeWidth="2" />
+                <path d="M90 75 L110 75" stroke="#FF7A3A" strokeWidth="2.5" />
+                <path d="M104 69 L110 75 L104 81" stroke="#FF7A3A" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="70" cy="75" r="6" fill="#F5EFE5" />
+                <circle cx="130" cy="75" r="6" fill="#FF7A3A" />
               </svg>
             }
           />
@@ -328,169 +327,198 @@ function Model() {
   );
 }
 
-function Events() {
+type InsideCardProps = {
+  eyebrow: string;
+  title: React.ReactNode;
+  body: string;
+  bullets: string[];
+};
+
+function InsideCard({ eyebrow, title, body, bullets }: InsideCardProps) {
   return (
-    <section className="events sec-pad" id="events">
+    <article className="inside-card">
+      <span className="ic-eyebrow">{eyebrow}</span>
+      <h3>{title}</h3>
+      <p>{body}</p>
+      <ul>
+        {bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function Inside() {
+  return (
+    <section className="inside sec-pad" id="inside">
       <div className="wrap">
         <div className="events-head">
           <div>
             <span className="eyebrow" style={{ color: "rgba(245,239,229,.6)" }}>
-              The Inaugural · August 2026
+              Inside the Membership
             </span>
             <h2 className="h-display sec-title">
-              One night to start a&nbsp;movement.
+              What you get for $25 a month.
             </h2>
           </div>
-          <a className="btn btn-on-dark" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-            Follow on Luma <span className="arrow">→</span>
+          <a className="btn btn-on-dark" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
+            Join SoulHause <span className="arrow">→</span>
           </a>
         </div>
 
-        <article className="event-feature">
-          <div className="ev-poster" />
-          <div className="ev-poster-dots" aria-hidden="true" />
-
-          <div className="ev-top">
-            <span className="pill">● Inaugural · Vol. I</span>
-            <span className="pill accent">★ Launch Edition</span>
-          </div>
-
-          <div>
-            <h3 className="ev-title">
-              Hause of <em>Soul.</em>
-            </h3>
-            <p className="ev-desc" style={{ marginTop: 20 }}>
-              Our launch night. Food, music, a soldering demo bench, a mentorship corner,
-              and a public reveal of the Workshop Fund&apos;s first month. Date and venue
-              drop on Luma — follow there to be the first to know.
-            </p>
-          </div>
-
-          <div className="ev-meta-grid">
-            <div className="ev-meta-item">
-              <span className="k">When</span>
-              <span className="v"><b>August 2026</b><br />Date TBA</span>
-            </div>
-            <div className="ev-meta-item">
-              <span className="k">Where</span>
-              <span className="v"><b>Venue TBA</b><br />Announced on Luma</span>
-            </div>
-            <div className="ev-meta-item">
-              <span className="k">Tickets</span>
-              <span className="v"><b>On sale soon</b><br />Follow on Luma</span>
-            </div>
-            <div className="ev-meta-item">
-              <span className="k">Funds</span>
-              <span className="v"><b>A portion of every ticket</b><br />→ Workshop Fund</span>
-            </div>
-          </div>
-
-          <div className="ev-bottom">
-            <p className="ev-fine">
-              Lineup, address, parking & accessibility notes drop on Luma the week of the event.
-            </p>
-            <div className="ev-ctas">
-              <a className="ev-cta" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-                Follow on Luma <span className="arrow">→</span>
-              </a>
-              <a className="ev-cta ghost" href="#cta">Volunteer</a>
-            </div>
-          </div>
-        </article>
+        <div className="inside-grid">
+          <InsideCard
+            eyebrow="● Events Map"
+            title="Tech events near you."
+            body="A map of meetups, workshops, hackathons, and conferences across cities. Online and in person. Search by stack, by role, by what you&apos;re building this month."
+            bullets={[
+              "Map view, by city",
+              "Filter by stack or role",
+              "Online + in-person",
+              "Member-priced sponsor events",
+            ]}
+          />
+          <InsideCard
+            eyebrow="● Workshops"
+            title="Hands-on, member-led."
+            body="Soldering benches, AI agent build-alongs, RFC writing circles, design crits. Workshops members run for each other every month — recorded if you can&apos;t make it."
+            bullets={[
+              "Weekly, member-led",
+              "Online + IRL formats",
+              "Recorded to the library",
+              "Materials shipped for IRL",
+            ]}
+          />
+          <InsideCard
+            eyebrow="● Courses & Resources"
+            title="Free tech resources + paid deep-dives."
+            body="A growing library of guides, templates, and prompts — free, even for non-members. Paid courses by people who actually did the thing live inside the membership."
+            bullets={[
+              "Free guides + templates",
+              "Promo packets that worked",
+              "Negotiating senior offers",
+              "Going from PM to founder",
+            ]}
+          />
+          <InsideCard
+            eyebrow="● The SoulHause Card"
+            title="One card, every tech perk."
+            body="Pooled member credits at the tools you already use — Anthropic, Cursor, Linear, Notion, Vercel, and friends. Sponsor-funded, never advertised at you."
+            bullets={[
+              "AI + cloud credits, monthly",
+              "Design + dev tool seats",
+              "Conference ticket lottery",
+              "Member-only sponsor drops",
+            ]}
+          />
+        </div>
       </div>
     </section>
   );
 }
 
-function Fund() {
-  const target = 5000;
-  const raised = 0;
-  const pct = Math.round((raised / target) * 100);
+const FOCUS_AREAS = [
+  "STEM education",
+  "Digital literacy",
+  "Tech access & equity",
+  "Open-source development",
+];
+
+type MonthOrgProps = {
+  num: string;
+  name: string;
+  area: string;
+};
+
+function MonthOrg({ num, name, area }: MonthOrgProps) {
   return (
-    <section className="fund sec-pad" id="fund">
+    <article className="np-card">
+      <div className="np-head">
+        <span className="np-num">{num}</span>
+        <span className="np-raised">May 2026</span>
+      </div>
+      <h4 className="np-name">{name}</h4>
+      <p className="np-mission">{area}</p>
+    </article>
+  );
+}
+
+function Nonprofits() {
+  return (
+    <section className="fund sec-pad" id="nonprofits">
       <div className="wrap">
         <div className="fund-grid">
           <div>
-            <span className="eyebrow">The Workshop Fund · Public ledger</span>
+            <span className="eyebrow">5% Give-Back Program · Public Ledger</span>
             <h2 className="h-display sec-title">
-              Your ticket creates <span className="serif-italic">opportunity.</span>
+              5% of every membership →{" "}
+              <span className="serif-italic">tech nonprofits.</span>
             </h2>
             <p className="sec-lede">
-              Every event contributes to the SoulHause Workshop Fund — a public pool that
-              pays for free tech classes, materials, and mentor stipends.
+              Each month we pick 2 or 3 tech nonprofits and forward 5% of that
+              month&apos;s revenue. We post the total and the orgs we picked on
+              the first of the following month. This isn&apos;t a marketing
+              slogan — it&apos;s how we operate.
             </p>
+
+            <div className="fund-focus">
+              <span className="fund-focus-lbl">Focus areas</span>
+              <div className="fund-focus-tags">
+                {FOCUS_AREAS.map((a) => (
+                  <span key={a} className="fa-tag">{a}</span>
+                ))}
+              </div>
+            </div>
 
             <div className="fund-stat">
               <div className="fund-stat-top">
                 <div>
                   <div className="fund-amt">
-                    $<em>{raised.toLocaleString()}</em>
+                    $<em>1,284</em>
                   </div>
                   <div className="fund-goal">
-                    goal for launch · ${target.toLocaleString()}
+                    forwarded · April 2026
                   </div>
                 </div>
-                <a className="btn btn-ghost" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-                  Follow on Luma <span className="arrow">→</span>
+                <a className="btn btn-ghost" href="mailto:hello@soulhause.com?subject=Nonprofit application" rel="noopener noreferrer">
+                  Apply to be featured <span className="arrow">→</span>
                 </a>
               </div>
-              <div className="fund-bar">
-                <div className="fund-bar-fill" style={{ width: `${Math.max(pct, 1)}%` }} />
-              </div>
               <div className="fund-legend">
-                <span><b>2</b> workshops planned</span>
-                <span><b>38</b> seats targeted</span>
-                <span><b>{pct}%</b> to goal</span>
+                <span><b>5%</b> of monthly revenue</span>
+                <span><b>2–3</b> orgs picked / mo</span>
+                <span><b>Public</b> ledger, monthly</span>
               </div>
             </div>
           </div>
 
-          <div className="fund-collage">
-            <div className="sticker">Workshop <b>#01</b> · Soldering 101</div>
-            <div className="fc-card fc-1 fc-art fc-art-blue">
-              <CircuitArt />
-            </div>
-            <div className="fc-card fc-2 fc-art fc-art-cream">
-              <ReceiptCard />
-            </div>
-            <div className="fc-card fc-3 fc-art fc-art-ink">
-              <OpenStamp />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Story() {
-  return (
-    <section className="story sec-pad" id="story">
-      <div className="wrap">
-        <div className="story-grid">
-          <div className="story-portrait story-cover">
-            <div className="frame" />
-            <span className="corner">Founded</span>
-            <StoryCover />
-          </div>
-          <div>
-            <span className="eyebrow">Our Story</span>
-            <h2 className="h-display sec-title">
-              We&apos;re building a <em>tech family.</em>
-            </h2>
-            <p>
-              SoulHause exists to help everyday people become creators. We believe tech
-              should empower, not exclude — and that the most interesting tools come from
-              the most overlooked corners of every city.
-            </p>
-            <p>
-              We&apos;re launching this August, and building outward from the block — not
-              down from a tower. Wherever you are, the door is open.
-            </p>
-            <div className="story-quote">
-              &ldquo;We&apos;re not waiting for permission. We&apos;re building it ourselves,
-              with our own people, in our own places.&rdquo;
-            </div>
+          <div className="np-list">
+            <span className="np-list-lbl">This month&apos;s recipients</span>
+            <MonthOrg
+              num="01"
+              name="CodeBridge Collective"
+              area="Tech access & equity"
+            />
+            <MonthOrg
+              num="02"
+              name="Open Lantern Project"
+              area="Digital literacy"
+            />
+            <MonthOrg
+              num="03"
+              name="Future Stack Foundation"
+              area="STEM education"
+            />
+            <a
+              href="mailto:hello@soulhause.com?subject=Nonprofit application"
+              className="np-apply"
+            >
+              <div>
+                <span className="np-apply-lbl">Run a tech nonprofit?</span>
+                <span className="np-apply-cta">Apply to be featured <span className="arrow">→</span></span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -507,20 +535,19 @@ function CTA() {
         <div className="cta-shape c" />
       </div>
       <div className="wrap cta-inner">
-        <span className="eyebrow">Three doors. Pick one.</span>
+        <span className="eyebrow">The door is open.</span>
         <h2 className="h-display">
-          Be part of <em>something</em> bigger.
+          Join <em>SoulHause.</em>
         </h2>
         <p className="cta-sub">
-          Whether you&apos;ve got an hour, a skill, or a budget — SoulHause is built out of
-          small commitments stacked on each other.
+          $25/mo. Events, courses, resources, perks. 5% of every membership goes
+          to tech nonprofits each month.
         </p>
         <div className="cta-btns">
-          <a className="btn btn-primary" href={LUMA_URL} target="_blank" rel="noopener noreferrer">
-            Follow on Luma <span className="arrow">→</span>
+          <a className="btn btn-primary" href={JOIN_URL} target="_blank" rel="noopener noreferrer">
+            Join SoulHause <span className="arrow">→</span>
           </a>
-          <a className="btn btn-ghost" href="mailto:hello@soulhause.com?subject=Volunteer">Volunteer</a>
-          <a className="btn btn-ghost" href="mailto:hello@soulhause.com?subject=Partner">Partner With Us</a>
+          <a className="btn btn-ghost" href="#nonprofits">See the ledger</a>
         </div>
       </div>
     </section>
@@ -534,35 +561,35 @@ function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand-row">
-              <Logo size={28} color="var(--cream)" />
+              <Logo size={28} ring="#F5EFE5" house="#0F0E0C" />
               <div className="footer-brand">SoulHause</div>
             </div>
-            <p>Building tech that builds people. An open community of builders. Launching August 2026.</p>
+            <p>A private community for builders. 5% of every membership goes to tech nonprofits each month.</p>
           </div>
           <div className="footer-col">
-            <h4>Show up</h4>
+            <h4>The Hause</h4>
             <ul>
-              <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">Upcoming events</a></li>
-              <li><a href={LUMA_URL} target="_blank" rel="noopener noreferrer">Workshop calendar</a></li>
-              <li><a href="#cta">Volunteer</a></li>
-              <li><a href="#cta">Partner</a></li>
+              <li><a href="#inside">Events map</a></li>
+              <li><a href="#inside">Workshops</a></li>
+              <li><a href="#inside">Courses & resources</a></li>
+              <li><a href="#inside">SoulHause card</a></li>
             </ul>
           </div>
           <div className="footer-col">
-            <h4>Receipts</h4>
+            <h4>5% Give-Back</h4>
             <ul>
-              <li><a href="#fund">Workshop Fund</a></li>
-              <li><a href="#fund">Public ledger</a></li>
-              <li><a href="#story">Our story</a></li>
-              <li><a href="#cta">Press kit</a></li>
+              <li><a href="#nonprofits">How it works</a></li>
+              <li><a href="#nonprofits">Public ledger</a></li>
+              <li><a href="mailto:hello@soulhause.com?subject=Nonprofit application">Apply (nonprofits)</a></li>
+              <li><a href="mailto:hello@soulhause.com">Contact</a></li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>Newsletter</h4>
             <p className="footer-newsletter-note">
-              One short email a month. Events, fund updates, photos.
+              One short email a month. New courses, fund updates, members joining.
             </p>
-            <form className="footer-signup" action={LUMA_URL}>
+            <form className="footer-signup" action={JOIN_URL}>
               <input type="email" placeholder="you@somewhere.com" />
               <button type="submit">Subscribe</button>
             </form>
@@ -588,9 +615,8 @@ export default function Home() {
       <Nav />
       <Hero />
       <Model />
-      <Events />
-      <Fund />
-      <Story />
+      <Inside />
+      <Nonprofits />
       <CTA />
       <Footer />
       <Interactive />

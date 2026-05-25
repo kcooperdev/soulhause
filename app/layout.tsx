@@ -34,22 +34,22 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SoulHause — Building Tech That Builds People",
+  title: "SoulHause — A home for tech. A house for careers.",
   description:
-    "SoulHause launches with Hause of Soul in August 2026. Every ticket funds a free tech workshop. Follow on Luma for date + venue.",
+    "A small, paid community for engineers, designers, and founders. Channels, courses, weekly circles, the vault — and a portion of every membership funds tech nonprofits building first careers.",
   openGraph: {
-    title: "SoulHause — Building Tech That Builds People",
+    title: "SoulHause — A home for tech. A house for careers.",
     description:
-      "Hause of Soul drops August 2026. Follow on Luma for date + venue.",
+      "A private community for builders. A portion of every membership funds tech nonprofits.",
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause — Building Tech That Builds People",
+    title: "SoulHause — A home for tech. A house for careers.",
     description:
-      "Hause of Soul drops August 2026. Follow on Luma for date + venue.",
+      "A private community for builders. A portion of every membership funds tech nonprofits.",
   },
 };
 
