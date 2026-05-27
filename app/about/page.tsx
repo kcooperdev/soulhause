@@ -55,8 +55,8 @@ export default function About() {
               <p className="text-muted" style={{ fontSize: 17 }}>
                 Most tech communities feel either too transactional or too
                 quiet. SoulHause is built to feel like a warm, modern space —
-                one where you can ask the dumb question, meet the right
-                people, and ship the thing you&apos;ve been putting off.
+                somewhere you can learn out loud, meet the right people, and
+                ship the thing you&apos;ve been putting off.
               </p>
               <p className="text-muted" style={{ fontSize: 17, marginTop: 14 }}>
                 We bring together events, cohorts, and a real resource library
