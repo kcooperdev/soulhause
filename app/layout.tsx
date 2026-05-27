@@ -34,30 +34,28 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SoulHause — A home for tech. A house for careers.",
+  title: "SoulHause — A home for tech, creativity & community.",
   description:
-    "A small, paid community for engineers, designers, and founders. Channels, courses, weekly circles, the vault — and a portion of every membership funds tech nonprofits building first careers.",
+    "A modern, members-first community for builders. Events, cohorts, and a resource library — designed for creators and technologists.",
   openGraph: {
-    title: "SoulHause — A home for tech. A house for careers.",
+    title: "SoulHause — A home for tech, creativity & community.",
     description:
-      "A private community for builders. A portion of every membership funds tech nonprofits.",
+      "A members-first community for builders. Events, cohorts, and a resource library.",
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause — A home for tech. A house for careers.",
+    title: "SoulHause — A home for tech, creativity & community.",
     description:
-      "A private community for builders. A portion of every membership funds tech nonprofits.",
+      "A members-first community for builders. Events, cohorts, and a resource library.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
