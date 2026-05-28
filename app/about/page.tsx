@@ -137,7 +137,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join SoulHause <span className="arrow">→</span>
+              Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
           </div>
         </div>

@@ -27,7 +27,7 @@ function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join SoulHause <span className="arrow">→</span>
+              Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
             <Link className="btn btn-ghost" href="/what-we-offer">
               See what&apos;s inside
@@ -197,7 +197,7 @@ function MembershipPreview() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Free <span className="arrow">→</span>
+              Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
           </article>
 
@@ -230,7 +230,7 @@ function MembershipPreview() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join Pro <span className="arrow">→</span>
+              Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
           </article>
         </div>
@@ -255,10 +255,11 @@ function CTA() {
             <br />2026
           </Stamp>
           <h2>
-            Ready to <em>walk in?</em>
+            Launching <em>Fall 2026.</em>
           </h2>
           <p>
-            Free to join. Upgrade to Pro any time. The door is open.
+            The platform isn&apos;t fully built yet. Join the waitlist and
+            we&apos;ll let you know the moment the doors open.
           </p>
           <a
             className="btn btn-on-dark"
@@ -266,7 +267,7 @@ function CTA() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Join SoulHause <span className="arrow">→</span>
+            Coming Soon · Fall 2026 <span className="arrow">→</span>
           </a>
         </div>
       </div>

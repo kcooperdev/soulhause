@@ -41,7 +41,7 @@ export function Nav() {
           rel="noopener noreferrer"
           className="nav-cta"
         >
-          Join <span className="arrow">→</span>
+          Coming Fall 2026
         </a>
       </div>
     </nav>

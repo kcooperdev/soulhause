@@ -50,7 +50,7 @@ export default function Membership() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Join Free <span className="arrow">→</span>
+                Coming Soon · Fall 2026 <span className="arrow">→</span>
               </a>
             </article>
 
@@ -87,7 +87,7 @@ export default function Membership() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Join Pro <span className="arrow">→</span>
+                Coming Soon · Fall 2026 <span className="arrow">→</span>
               </a>
             </article>
           </div>
@@ -138,10 +138,11 @@ export default function Membership() {
               </p>
             </article>
             <article className="about-card">
-              <h3>Where do I sign up?</h3>
+              <h3>When can I sign up?</h3>
               <p>
-                All sign-ups happen on the external SoulHause platform — use
-                any &ldquo;Join SoulHause&rdquo; button on this site.
+                SoulHause is launching Fall 2026. Use any &ldquo;Coming
+                Soon&rdquo; button to join the waitlist — you&apos;ll be the
+                first to hear when the doors open.
               </p>
             </article>
           </div>
@@ -152,31 +153,23 @@ export default function Membership() {
         <div className="wrap">
           <div className="cta-strip">
             <Stamp variant="sand">
-              ★<br />Pick<br />a tier
+              ★<br />Fall<br />2026
             </Stamp>
             <h2>
-              Pick your tier. <em>Walk in.</em>
+              SoulHause is launching <em>Fall 2026.</em>
             </h2>
             <p>
-              Both tiers link to the same SoulHause platform — choose Free or
-              Pro at sign-up.
+              The platform isn&apos;t fully built yet. Join the waitlist and
+              we&apos;ll let you know the moment the doors open.
             </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap", position: "relative" }}>
+            <div style={{ display: "flex", justifyContent: "center", position: "relative" }}>
               <a
                 className="btn btn-on-dark"
                 href={JOIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Join Free <span className="arrow">→</span>
-              </a>
-              <a
-                className="btn btn-sky"
-                href={JOIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Join Pro · $25/mo
+                Coming Soon · Fall 2026 <span className="arrow">→</span>
               </a>
             </div>
           </div>
