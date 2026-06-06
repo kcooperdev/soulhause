@@ -2,38 +2,33 @@ import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { MemberCard, Ticket, Stamp } from "./components/Motifs";
-import { JOIN_URL } from "./components/constants";
+import { JOIN_URL, GTM_HEAD, GTM_END } from "./components/constants";
 
 function Hero() {
   return (
     <header className="hero">
-      <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KCKRKCGM');</script>
-<!-- End Google Tag Manager -->
+      {GTM_HEAD}
       <div className="hero-inner">
         <div>
           <span className="eyebrow">★ The door is open</span>
           <h1 className="h-display">
-            A home for tech,<br />
-            creativity <em>&amp;</em><br />
+            A home for tech,
+            <br />
+            creativity <em>&amp;</em>
+            <br />
             community.
           </h1>
           <p className="hero-sub">
             Learn, build, and grow through events, cohorts, and resources
-            designed for modern creators and technologists. Free to join.
-            Pro when you&apos;re ready.
+            designed for modern creators and technologists. Free to join. Pro
+            when you&apos;re ready.
           </p>
           <div className="hero-ctas">
             <a
               className="btn btn-primary"
               href={JOIN_URL}
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
             <Link className="btn btn-ghost" href="/what-we-offer">
@@ -75,7 +70,6 @@ function WhatItIs() {
             </p>
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -98,10 +92,8 @@ function Highlight({ num, cat, title, body, href }: HighlightProps) {
       </div>
       <h3>{title}</h3>
       <p>{body}</p>
-      <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCKRKCGM"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+      {GTM_END}
+
       <Link href={href} className="numbered-cta">
         Learn more <span className="arrow">→</span>
       </Link>
@@ -190,8 +182,8 @@ function MembershipPreview() {
             </div>
             <h3>Free</h3>
             <p className="tier-blurb">
-              A free way in. Browse public channels, RSVP to free online
-              events, and sample the resource library.
+              A free way in. Browse public channels, RSVP to free online events,
+              and sample the resource library.
             </p>
             <div className="tier-price">
               $0<small>/forever</small>
@@ -206,8 +198,7 @@ function MembershipPreview() {
               className="btn btn-ghost tier-cta"
               href={JOIN_URL}
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
           </article>
@@ -226,8 +217,14 @@ function MembershipPreview() {
               $25<small>/month</small>
             </div>
             <ul className="tier-features">
-              <li>Tech perks — pooled AI credits + software discounts (Anthropic, Cursor, Linear, Notion, Vercel)</li>
-              <li>Pro-only channels (founder-only, offers + comp, design crits, AI lab)</li>
+              <li>
+                Tech perks — pooled AI credits + software discounts (Anthropic,
+                Cursor, Linear, Notion, Vercel)
+              </li>
+              <li>
+                Pro-only channels (founder-only, offers + comp, design crits, AI
+                lab)
+              </li>
               <li>All workshops included (live + recorded)</li>
               <li>Cohort access — 4–6 week project cycles</li>
               <li>In-person events at member pricing + Pro-only nights</li>
@@ -239,8 +236,7 @@ function MembershipPreview() {
               className="btn btn-on-dark tier-cta"
               href={JOIN_URL}
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               Coming Soon · Fall 2026 <span className="arrow">→</span>
             </a>
           </article>
@@ -262,8 +258,10 @@ function CTA() {
       <div className="wrap">
         <div className="cta-strip">
           <Stamp variant="sand">
-            ★<br />Open
-            <br />2026
+            ★<br />
+            Open
+            <br />
+            2026
           </Stamp>
           <h2>
             Launching <em>Fall 2026.</em>
@@ -276,8 +274,7 @@ function CTA() {
             className="btn btn-on-dark"
             href={JOIN_URL}
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Coming Soon · Fall 2026 <span className="arrow">→</span>
           </a>
         </div>
