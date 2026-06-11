@@ -2,12 +2,11 @@ import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { MemberCard, Ticket, Stamp } from "./components/Motifs";
-import { JOIN_URL, GTM_HEAD, GTM_END } from "./components/constants";
+import { JOIN_URL } from "./components/constants";
 
 function Hero() {
   return (
     <header className="hero">
-      {GTM_HEAD}
       <div className="hero-inner">
         <div>
           <span className="eyebrow">★ The door is open</span>
@@ -92,7 +91,6 @@ function Highlight({ num, cat, title, body, href }: HighlightProps) {
       </div>
       <h3>{title}</h3>
       <p>{body}</p>
-      {GTM_END}
 
       <Link href={href} className="numbered-cta">
         Learn more <span className="arrow">→</span>
