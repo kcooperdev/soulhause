@@ -8,30 +8,25 @@ import { JOIN_URL } from "./components/constants";
 function Hero() {
   return (
     <header className="hero-dark dot-grid-dark">
-      {/* Parallax watermarks — positioned within viewport, overflow: visible on .hero-dark lets them render */}
-      <span data-parallax="-0.15" className="hero-sun hero-sun-1">
-        <SunMark size={580} opacity={0.11} color="#4F9080" />
+      <span data-parallax="-0.22" style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
+        <SunMark size={480} opacity={0.04} color="#4F9080" />
       </span>
-      <span data-parallax="0.1" className="hero-sun hero-sun-2">
-        <SunMark size={400} opacity={0.08} color="#F5C432" />
+      <span data-parallax="0.12" style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
+        <SunMark size={320} opacity={0.03} color="#F5C432" />
       </span>
-
       <div className="hero-dark-inner">
-        <p className="hero-eyebrow" data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties}>
-          Washington D.C. · Maryland · Virginia
-        </p>
-        <h1 data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
-          Where the DMV&apos;s<br />
-          builders come to<br />
-          <em>connect &amp; grow.</em>
+        <h1 data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
+          Build tools.<br />
+          Build community.<br />
+          Build <em>for good.</em>
         </h1>
-        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "140ms" } as CSSProperties}>
-          SoulHause is a community of 1,100+ members across DC, Maryland, and
-          Virginia — events, tools, and real relationships for those doing the work.
+        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+          SoulHause is a developer platform bringing together tools, infrastructure,
+          and AI systems for civic tech, small businesses, and local builders.
         </p>
-        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "220ms" } as CSSProperties}>
+        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
-            Join the Community <span className="arrow">→</span>
+            Join Community <span className="arrow">→</span>
           </a>
           <a href="#events" className="btn btn-dark-ghost">
             Our Events
@@ -43,70 +38,76 @@ function Hero() {
 }
 
 /* ─── What We Build ─────────────────────────────────────────────────── */
-const PILLARS = [
-  {
-    num: "01",
-    cat: "Developer Platform",
-    heading: "Build faster with the right tools.",
-    desc: "SDKs, APIs, hosting, and automation built for modern developers shipping real products.",
-    features: ["SDKs & APIs", "Serverless hosting", "Automation pipelines", "Dev-first CLI tools"],
-  },
-  {
-    num: "02",
-    cat: "Civic & Business Tools",
-    heading: "Built for people, not corporations.",
-    desc: "Scheduling, payments, CRM, and event management for small businesses and community organizations.",
-    features: ["Scheduling & bookings", "Payments & invoicing", "Lightweight CRM", "Event management"],
-  },
-  {
-    num: "03",
-    cat: "Community Network",
-    heading: "Real community — not just a Slack group.",
-    desc: "Profiles, projects, skill matching, and shared resources. A complete community infrastructure.",
-    features: ["Builder profiles", "Public projects", "Skill-based matching", "Community resources"],
-  },
-];
-
 function WhatWeBuild() {
   return (
     <section className="sec">
       <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
-            <p className="sec-overline">§ 01 — What we build</p>
-            <h2 className="h-section" style={{ marginTop: 12 }}>
+            <div className="sec-head-meta">
+              <span>§ 01</span>
+              <span>What we build</span>
+            </div>
+            <h2 className="h-section" style={{ marginTop: 16 }}>
               One platform.<br /><em>Three pillars.</em>
             </h2>
           </div>
           <div>
             <p className="lede">
               SoulHause gives builders a complete ecosystem — developer tools,
-              business infrastructure, and a real community — in one place.
+              community infrastructure, and business tools — all in one place.
             </p>
           </div>
         </div>
 
-        <div className="pillars-editorial">
-          {PILLARS.map((p, i) => (
-            <div
-              key={p.num}
-              className="pillar-row"
-              data-reveal
-              style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}
-            >
-              <span className="pillar-row-num">{p.num}</span>
-              <div className="pillar-row-body">
-                <span className="pillar-row-cat">{p.cat}</span>
-                <h3 className="pillar-row-heading">{p.heading}</h3>
-                <p className="pillar-row-desc">{p.desc}</p>
-              </div>
-              <ul className="pillar-row-features">
-                {p.features.map((f) => (
-                  <li key={f}>{f}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="pillars-grid">
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties}>
+            <span className="pillar-icon">🛠️</span>
+            <span className="pillar-cat">§ 01 · Developer Platform</span>
+            <h3>Build faster with the right tools.</h3>
+            <p>
+              SDKs, APIs, hosting, and automation built for modern
+              developers shipping real products.
+            </p>
+            <ul>
+              <li>SDKs &amp; APIs</li>
+              <li>Serverless hosting</li>
+              <li>Automation pipelines</li>
+              <li>Dev-first CLI tools</li>
+            </ul>
+          </div>
+
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
+            <span className="pillar-icon">🏙️</span>
+            <span className="pillar-cat">§ 02 · Civic &amp; Business Tools</span>
+            <h3>Tools built for people, not corporations.</h3>
+            <p>
+              Scheduling, payments, CRM, and event management designed
+              for small businesses and community organizations.
+            </p>
+            <ul>
+              <li>Scheduling &amp; bookings</li>
+              <li>Payments &amp; invoicing</li>
+              <li>Lightweight CRM</li>
+              <li>Event management</li>
+            </ul>
+          </div>
+
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
+            <span className="pillar-icon">🤝</span>
+            <span className="pillar-cat">§ 03 · Builders Network</span>
+            <h3>Connect with builders doing the work.</h3>
+            <p>
+              A real community — not just a Slack group. Profiles,
+              projects, matching, and shared resources.
+            </p>
+            <ul>
+              <li>Builder profiles</li>
+              <li>Public projects</li>
+              <li>Skill-based matching</li>
+              <li>Community resources</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -118,79 +119,83 @@ const EVENT_FORMATS = [
   {
     emoji: "🎤",
     tag: "Soul Sessions",
-    type: "Talks",
-    body: "Live conversations where founders, creators, and technologists share the real journey — mistakes, pivots, breakthroughs. One guest, one mic, one story.",
-    bullets: ["One guest · one mic", "Vulnerability over performance", "Lessons you can apply immediately", "Intimate, cinematic atmosphere"],
-    accent: "#4F9080",
+    tagline: "Talks",
+    heading: "Stories that teach.",
+    body: "Live conversations where founders, creators, and technologists share the real journey — the mistakes, pivots, breakthroughs, and mindset behind the work. One guest, one mic, one story.",
+    bullets: ["One guest · one mic · one story", "Vulnerability over performance", "Lessons people can apply immediately", "Intimate, cinematic atmosphere"],
+    delay: "0ms",
   },
   {
     emoji: "🧪",
     tag: "Soul Labs",
-    type: "Workshops",
-    body: "Hands-on sessions where people come to build, not just listen. AI, software, branding, analytics — every session you walk out with a new capability.",
-    bullets: ["Real tools, real output", "Beginner-friendly, high-value", "Led by engineers & practitioners", "Built for the DMV ecosystem"],
-    accent: "#F5C432",
+    tagline: "Workshops",
+    heading: "Skills that create opportunity.",
+    body: "Hands-on workshops where people come to build, not just listen. AI, software, branding, analytics, product development — every session is designed so you walk out with a new capability.",
+    bullets: ["Real tools, real demos, real output", "Beginner-friendly but high-value", "Led by engineers and practitioners", "Built for the DMV's tech ecosystem"],
+    delay: "100ms",
   },
   {
     emoji: "🔗",
     tag: "Hause Link",
-    type: "Mixers",
-    body: "Tech-forward mixers where DMV builders, creatives, founders, and technologists meet each other. Curated energy designed for collaboration — not small talk.",
-    bullets: ["Tech-leaning, future-focused", "Curated conversations", "Creatives, engineers & founders", "Your entry point into SoulHause"],
-    accent: "#E8703A",
+    tagline: "Mixers",
+    heading: "Connections that become collaborations.",
+    body: "Tech-forward mixers where the DMV's builders, creatives, founders, and technologists meet each other. Curated energy designed for collaboration — not small talk.",
+    bullets: ["Tech-leaning, future-focused energy", "Curated conversations, not chaos", "Creatives, engineers & founders", "The entry point into SoulHause"],
+    delay: "200ms",
   },
 ];
 
 function Events() {
   return (
-    <section className="sec events-dark" id="events">
-      <span data-parallax="-0.08" className="events-sun">
-        <SunMark size={500} opacity={0.07} color="#4F9080" />
-      </span>
-      <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
+    <section className="sec" style={{ paddingTop: 0 }} id="events">
+      <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
-            <p className="sec-overline" style={{ color: "rgba(245,240,230,0.45)" }}>§ 02 — The event ecosystem</p>
-            <h2 className="h-section" style={{ color: "var(--sand)", marginTop: 12 }}>
-              Three formats.<br /><em>One community.</em>
+            <div className="sec-head-meta">
+              <span>§ 02</span>
+              <span>The event ecosystem</span>
+            </div>
+            <h2 className="h-section" style={{ marginTop: 16 }}>
+              Three ways<br />to <em>show up.</em>
             </h2>
           </div>
           <div>
-            <p className="lede" style={{ color: "rgba(245,240,230,0.65)" }}>
+            <p className="lede">
               Every SoulHause event is intentional. Whether you&apos;re here to learn,
               build, or connect — there&apos;s a format designed for you.
             </p>
           </div>
         </div>
 
-        <div className="event-rows">
-          {EVENT_FORMATS.map((fmt, i) => (
+        <div className="event-formats-grid">
+          {EVENT_FORMATS.map((fmt) => (
             <div
               key={fmt.tag}
-              className="event-row"
+              className="event-format-card"
               data-reveal
-              style={{ "--reveal-delay": `${i * 90}ms`, "--accent": fmt.accent } as CSSProperties}
+              style={{ "--reveal-delay": fmt.delay } as CSSProperties}
             >
-              <div className="event-row-left">
-                <span className="event-row-emoji">{fmt.emoji}</span>
+              <div className="event-format-top">
+                <span className="event-format-emoji">{fmt.emoji}</span>
                 <div>
-                  <span className="event-row-name">{fmt.tag}</span>
-                  <span className="event-row-type"> · {fmt.type}</span>
+                  <span className="event-format-tag">{fmt.tag}</span>
+                  <span className="event-format-tagline"> · {fmt.tagline}</span>
                 </div>
               </div>
-              <p className="event-row-body">{fmt.body}</p>
-              <div className="event-row-bullets">
+              <h3 className="event-format-heading">{fmt.heading}</h3>
+              <p className="event-format-body">{fmt.body}</p>
+              <ul className="event-format-list">
                 {fmt.bullets.map((b) => (
-                  <span key={b} className="event-row-bullet">{b}</span>
+                  <li key={b}>{b}</li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
 
-        <div className="event-next" data-reveal style={{ "--reveal-delay": "60ms" } as CSSProperties}>
+        <div className="event-next" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
           <div className="event-next-left">
-            <span className="event-next-label">Next Event · Hause Link Mixer</span>
+            <span className="event-next-label">Next Event</span>
             <h3 className="event-next-title">Hause of Soul</h3>
             <div className="event-next-meta">
               <span>📍 Baltimore, MD</span>
@@ -198,7 +203,7 @@ function Events() {
               <span>🍹 Happy Hour</span>
             </div>
           </div>
-          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
+          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
             RSVP Now <span className="arrow">→</span>
           </a>
         </div>
@@ -210,10 +215,10 @@ function Events() {
 /* ─── Community ──────────────────────────────────────────────────────── */
 function Community() {
   return (
-    <section className="sec" id="community">
+    <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="sec-head-meta" style={{ marginBottom: 48 }}>
-          <span>§ 03</span>
+          <span>§ 04</span>
           <span>The community</span>
         </div>
         <div className="community-split">
@@ -266,14 +271,14 @@ function Community() {
 /* ─── CTA ────────────────────────────────────────────────────────────── */
 function CTA() {
   return (
-    <section className="sec cta-dark">
+    <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="cta-v2" data-reveal>
           <span data-parallax="-0.1" style={{ position: "absolute", left: -60, bottom: -60, pointerEvents: "none" }}>
-            <SunMark size={320} opacity={0.1} color="#F5C432" />
+            <SunMark size={300} opacity={0.07} color="#F5C432" />
           </span>
           <span data-parallax="0.08" style={{ position: "absolute", right: -40, top: -40, pointerEvents: "none" }}>
-            <SunMark size={200} opacity={0.08} color="#E8703A" />
+            <SunMark size={180} opacity={0.05} color="#E8703A" />
           </span>
           <h2>
             Build with SoulHause.<br />
