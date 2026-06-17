@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  Fredoka,
   Bricolage_Grotesque,
   Inter_Tight,
   Instrument_Serif,
@@ -8,6 +9,12 @@ import {
 import Script from "next/script";
 import "./globals.css";
 import Interactive from "./interactive";
+
+const retro = Fredoka({
+  variable: "--font-retro",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
 
 const display = Bricolage_Grotesque({
   variable: "--font-display",
@@ -60,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
+      className={`${retro.variable} ${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
     >
       <body>
         <noscript>

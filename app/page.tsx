@@ -2,11 +2,15 @@ import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { MemberCard, Ticket, Stamp } from "./components/Motifs";
+import { SunMark } from "./components/SunMark";
 import { JOIN_URL } from "./components/constants";
 
 function Hero() {
   return (
-    <header className="hero">
+    <header className="hero dot-grid" style={{ position: "relative", overflow: "hidden" }}>
+      <span style={{ position: "absolute", top: -80, right: -80, pointerEvents: "none" }}>
+        <SunMark size={420} opacity={0.05} color="#4F9080" />
+      </span>
       <div className="hero-inner">
         <div>
           <span className="eyebrow">★ The door is open</span>
@@ -254,7 +258,13 @@ function CTA() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <div className="cta-strip">
+        <div className="cta-strip" style={{ position: "relative", overflow: "hidden" }}>
+          <span style={{ position: "absolute", left: -60, bottom: -60, pointerEvents: "none" }}>
+            <SunMark size={320} opacity={0.08} color="#F5C432" />
+          </span>
+          <span style={{ position: "absolute", right: -40, top: -40, pointerEvents: "none" }}>
+            <SunMark size={200} opacity={0.06} color="#E8703A" />
+          </span>
           <Stamp variant="sand">
             ★<br />
             Open
