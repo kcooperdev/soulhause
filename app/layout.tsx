@@ -42,22 +42,22 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SoulHause — A home for tech, creativity & community.",
+  title: "SoulHause — Events, community & tools for DMV builders.",
   description:
-    "A modern, members-first community for builders. Events, cohorts, and a resource library — designed for creators and technologists.",
+    "SoulHause is an ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across DC, Maryland, and Virginia.",
   openGraph: {
-    title: "SoulHause — A home for tech, creativity & community.",
+    title: "SoulHause — Events, community & tools for DMV builders.",
     description:
-      "A members-first community for builders. Events, cohorts, and a resource library.",
+      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across the DMV.",
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause — A home for tech, creativity & community.",
+    title: "SoulHause — Events, community & tools for DMV builders.",
     description:
-      "A members-first community for builders. Events, cohorts, and a resource library.",
+      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across the DMV.",
   },
 };
 

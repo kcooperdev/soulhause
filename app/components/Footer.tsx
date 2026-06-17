@@ -13,7 +13,7 @@ export function Footer() {
             </span>
           </div>
           <p className="footer-tagline" style={{ maxWidth: 400, margin: "0 auto" }}>
-            A community-powered developer platform for civic tech, small businesses, and local builders across the DMV.
+            An ecosystem of events, community, and tools for builders across DC, Maryland, and Virginia.
           </p>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
             <Link href="/about" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>About</Link>

@@ -21,8 +21,8 @@ function Hero() {
           Build <em>for good.</em>
         </h1>
         <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-          SoulHause is a developer platform bringing together tools, infrastructure,
-          and AI systems for civic tech, small businesses, and local builders.
+          SoulHause is an ecosystem — events, a builder community, and tools
+          built for civic tech, small businesses, and local creators across the DMV.
         </p>
         <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
