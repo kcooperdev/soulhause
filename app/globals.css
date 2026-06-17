@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --sand: #ECE3D0;
-  --sand-deep: #DDCFB1;
-  --paper: #F5EDD7;
+  --sand: #F0EAD8;
+  --sand-deep: #E0D4BE;
+  --paper: #F7F2E4;
   --paper-deep: #EDE3C8;
-  --oxblood: #6B1E20;
-  --oxblood-deep: #4D1416;
-  --oxblood-soft: #872527;
-  --sky: #2E5BFF;
-  --sky-deep: #1A3FCC;
-  --sky-soft: #4F77FF;
+  --oxblood: #4A8B78;
+  --oxblood-deep: #3A7062;
+  --oxblood-soft: #5B9E8C;
+  --sky: #E8903A;
+  --sky-deep: #C87028;
+  --sky-soft: #EEA85A;
   --ink: #111111;
   --ink-soft: #2B2A28;
   --line: rgba(17, 17, 17, 0.18);
@@ -199,7 +199,7 @@ p { margin: 0; line-height: 1.6; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(236, 227, 208, 0.86);
+  background: rgba(240, 234, 216, 0.86);
   backdrop-filter: saturate(140%) blur(14px);
   -webkit-backdrop-filter: saturate(140%) blur(14px);
   border-bottom: 1px solid var(--line);
@@ -354,7 +354,7 @@ p { margin: 0; line-height: 1.6; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 24px 56px rgba(107, 30, 32, 0.30);
+  box-shadow: 0 24px 56px rgba(74, 139, 120, 0.30);
   overflow: hidden;
   transform: rotate(-1.4deg);
 }
@@ -372,7 +372,7 @@ p { margin: 0; line-height: 1.6; }
   right: -60px; bottom: -60px;
   width: 180px; height: 180px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46, 91, 255, 0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 144, 58, 0.30) 0%, transparent 70%);
   pointer-events: none;
 }
 .mc-top {
@@ -429,7 +429,7 @@ p { margin: 0; line-height: 1.6; }
   line-height: 1.25;
   text-transform: uppercase;
   transform: rotate(-10deg);
-  box-shadow: 0 8px 18px rgba(46, 91, 255, 0.32);
+  box-shadow: 0 8px 18px rgba(232, 144, 58, 0.32);
   font-weight: 600;
 }
 
@@ -592,7 +592,7 @@ p { margin: 0; line-height: 1.6; }
   background: var(--oxblood);
   color: var(--sand);
   border-color: var(--oxblood-deep);
-  box-shadow: 0 16px 48px rgba(107, 30, 32, 0.22);
+  box-shadow: 0 16px 48px rgba(74, 139, 120, 0.22);
 }
 .tier.pro::before {
   content: "";
@@ -602,7 +602,7 @@ p { margin: 0; line-height: 1.6; }
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46, 91, 255, 0.30) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 144, 58, 0.25) 0%, transparent 70%);
   pointer-events: none;
 }
 .tier-head {
@@ -788,7 +788,7 @@ p { margin: 0; line-height: 1.6; }
   width: 420px;
   height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(46, 91, 255, 0.32) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 144, 58, 0.28) 0%, transparent 70%);
   top: -180px;
   right: -140px;
   pointer-events: none;
@@ -1049,7 +1049,7 @@ footer a:hover { opacity: 1; }
 .cursor-dot { width: 6px; height: 6px; background: var(--sky); }
 .cursor-ring {
   width: 32px; height: 32px;
-  border: 1.5px solid rgba(107, 30, 32, 0.5);
+  border: 1.5px solid rgba(74, 139, 120, 0.5);
   transition: width 200ms ease, height 200ms ease, border-color 200ms ease;
 }
 .cursor-ring-hot {

@@ -9,7 +9,7 @@ export function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-brand">
-              <Logo size={32} variant="dark" />
+              <Logo size={32} />
               <span>SoulHause</span>
             </div>
             <p className="footer-tagline">
