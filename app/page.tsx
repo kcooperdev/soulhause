@@ -28,7 +28,7 @@ function Hero() {
               href={JOIN_URL}
               target="_blank"
               rel="noopener noreferrer">
-              Coming Soon · Fall 2026 <span className="arrow">→</span>
+              Coming Soon · September 2026 <span className="arrow">→</span>
             </a>
             <Link className="btn btn-ghost" href="/what-we-offer">
               See what&apos;s inside
@@ -197,7 +197,7 @@ function MembershipPreview() {
               href={JOIN_URL}
               target="_blank"
               rel="noopener noreferrer">
-              Coming Soon · Fall 2026 <span className="arrow">→</span>
+              Coming Soon · September 2026 <span className="arrow">→</span>
             </a>
           </article>
 
@@ -235,7 +235,7 @@ function MembershipPreview() {
               href={JOIN_URL}
               target="_blank"
               rel="noopener noreferrer">
-              Coming Soon · Fall 2026 <span className="arrow">→</span>
+              Coming Soon · September 2026 <span className="arrow">→</span>
             </a>
           </article>
         </div>
@@ -262,7 +262,7 @@ function CTA() {
             2026
           </Stamp>
           <h2>
-            Launching <em>Fall 2026.</em>
+            Launching <em>September 2026.</em>
           </h2>
           <p>
             The platform isn&apos;t fully built yet. Join the waitlist and
@@ -273,7 +273,7 @@ function CTA() {
             href={JOIN_URL}
             target="_blank"
             rel="noopener noreferrer">
-            Coming Soon · Fall 2026 <span className="arrow">→</span>
+            Coming Soon · September 2026 <span className="arrow">→</span>
           </a>
         </div>
       </div>

@@ -41,7 +41,7 @@ export function Nav() {
           rel="noopener noreferrer"
           className="nav-cta"
         >
-          Coming Fall 2026
+          Coming September 2026
         </a>
       </div>
     </nav>

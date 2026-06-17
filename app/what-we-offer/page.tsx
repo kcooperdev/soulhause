@@ -41,7 +41,7 @@ function Feature({ num, cat, title, body, bullets, icon, reverse, stamp }: Featu
           target="_blank"
           rel="noopener noreferrer"
         >
-          Coming Soon · Fall 2026 <span className="arrow">→</span>
+          Coming Soon · September 2026 <span className="arrow">→</span>
         </a>
       </div>
       <div className="feature-visual" style={{ color: "var(--oxblood)" }}>
@@ -159,7 +159,7 @@ export default function WhatWeOffer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Coming Soon · Fall 2026 <span className="arrow">→</span>
+              Coming Soon · September 2026 <span className="arrow">→</span>
             </a>
           </div>
         </div>

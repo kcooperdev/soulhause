@@ -50,7 +50,7 @@ export default function Membership() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Coming Soon · Fall 2026 <span className="arrow">→</span>
+                Coming Soon · September 2026 <span className="arrow">→</span>
               </a>
             </article>
 
@@ -87,7 +87,7 @@ export default function Membership() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Coming Soon · Fall 2026 <span className="arrow">→</span>
+                Coming Soon · September 2026 <span className="arrow">→</span>
               </a>
             </article>
           </div>
@@ -140,7 +140,7 @@ export default function Membership() {
             <article className="about-card">
               <h3>When can I sign up?</h3>
               <p>
-                SoulHause is launching Fall 2026. Use any &ldquo;Coming
+                SoulHause is launching September 2026. Use any &ldquo;Coming
                 Soon&rdquo; button to join the waitlist — you&apos;ll be the
                 first to hear when the doors open.
               </p>
@@ -156,7 +156,7 @@ export default function Membership() {
               ★<br />Fall<br />2026
             </Stamp>
             <h2>
-              SoulHause is launching <em>Fall 2026.</em>
+              SoulHause is launching <em>September 2026.</em>
             </h2>
             <p>
               The platform isn&apos;t fully built yet. Join the waitlist and
@@ -169,7 +169,7 @@ export default function Membership() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Coming Soon · Fall 2026 <span className="arrow">→</span>
+                Coming Soon · September 2026 <span className="arrow">→</span>
               </a>
             </div>
           </div>
