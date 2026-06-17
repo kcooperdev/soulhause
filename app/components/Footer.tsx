@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Logo } from "./Logo";
 import { JOIN_URL, CONTACT_EMAIL } from "./constants";
 
 export function Footer() {
@@ -8,8 +7,10 @@ export function Footer() {
       <div className="wrap">
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 16, paddingBottom: 32, borderBottom: "1px solid rgba(245, 240, 230, 0.18)" }}>
           <div className="footer-brand" style={{ justifyContent: "center" }}>
-            <Logo size={32} />
-            <span>SoulHause</span>
+            <span className="footer-wordmark">
+              <span style={{ color: "var(--sand)" }}>Soul</span>
+              <span style={{ color: "var(--sky)" }}>Hause</span>
+            </span>
           </div>
           <p className="footer-tagline" style={{ maxWidth: 400, margin: "0 auto" }}>
             A community-powered developer platform for civic tech, small businesses, and local builders across the DMV.

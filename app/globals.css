@@ -219,23 +219,20 @@ p { margin: 0; line-height: 1.6; }
 .nav-inner {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
 }
 @media (min-width: 768px) {
-  .nav-inner { padding: 18px 40px; }
+  .nav-inner { padding: 20px 40px; }
 }
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.015em;
+  gap: 12px;
+  text-decoration: none;
 }
 .nav-logo em {
   font-family: var(--font-serif);
@@ -243,19 +240,19 @@ p { margin: 0; line-height: 1.6; }
   font-weight: 400;
   color: var(--oxblood);
 }
-.nav-links { display: none; gap: 26px; }
+.nav-links { display: none; gap: 4px; }
 @media (min-width: 940px) {
   .nav-links { display: flex; }
 }
 .nav-links a {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--ink);
   opacity: 0.65;
-  transition: opacity 160ms ease, color 160ms ease;
-  position: relative;
+  transition: opacity 160ms ease;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 .nav-links a:hover { opacity: 1; }
 .nav-links a.active { opacity: 1; color: var(--oxblood); }
@@ -263,14 +260,16 @@ p { margin: 0; line-height: 1.6; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 18px;
+  padding: 11px 22px;
   background: var(--oxblood);
   color: var(--sand);
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   transition: background 160ms ease, transform 160ms ease;
+  white-space: nowrap;
 }
 .nav-cta:hover { background: var(--oxblood-deep); transform: translateY(-1px); }
 
@@ -997,6 +996,13 @@ footer a:hover { opacity: 1; }
 @media (min-width: 768px) {
   .footer-brand { font-size: 22px; margin-bottom: 14px; }
 }
+.footer-wordmark {
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
 .footer-tagline {
   color: rgba(245, 240, 230, 0.72);
   font-size: 14px;
@@ -1113,9 +1119,10 @@ footer a:hover { opacity: 1; }
 /* ─── Nav logo wordmark ──────────────────────────────────────────────── */
 .nav-logo-text {
   font-family: var(--font-retro), var(--font-display), system-ui;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 .nav-logo-soul  { color: var(--ink); }
 .nav-logo-hause { color: var(--sky); }
@@ -1127,7 +1134,7 @@ footer a:hover { opacity: 1; }
   align-items: center;
   gap: 5px;
   font-family: var(--font-retro), var(--font-display), system-ui;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
   text-transform: none;
@@ -1137,7 +1144,8 @@ footer a:hover { opacity: 1; }
   cursor: pointer;
   background: none;
   border: none;
-  padding: 6px 4px;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 .nav-menu-trigger:hover { opacity: 1; }
 .nav-chevron {

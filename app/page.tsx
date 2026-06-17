@@ -27,7 +27,7 @@ function Hero() {
         </p>
         <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
-            Get Started <span className="arrow">→</span>
+            Join Community <span className="arrow">→</span>
           </a>
           <Link href="#platform" className="btn btn-dark-ghost">
             Explore the Platform
@@ -78,8 +78,6 @@ function WhatWeBuild() {
             </ul>
           </div>
 
-          <div className="pillar">
-          </div>
           <div className="pillar" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
             <span className="pillar-icon">🏙️</span>
             <span className="pillar-cat">§ 02 · Civic &amp; Business Tools</span>

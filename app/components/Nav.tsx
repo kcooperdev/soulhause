@@ -111,14 +111,14 @@ export function Nav() {
     <nav className="nav" style={{ position: "relative" }}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo">
-          <Logo size={32} />
+          <Logo size={44} />
           <span className="nav-logo-text">
             <span className="nav-logo-soul">Soul</span>
             <span className="nav-logo-hause">Hause</span>
           </span>
         </Link>
 
-        <div className="nav-links" style={{ gap: 6 }}>
+        <div className="nav-links" style={{ gap: 4 }}>
           {NAV_MENUS.map((menu) => (
             <DropdownGroup key={menu.label} menu={menu} />
           ))}
@@ -131,7 +131,7 @@ export function Nav() {
             rel="noopener noreferrer"
             className="nav-cta"
           >
-            Get Started
+            Join Community
           </a>
           <button
             className="nav-hamburger"
@@ -170,7 +170,7 @@ export function Nav() {
             className="btn btn-primary"
             style={{ width: "100%", justifyContent: "center" }}
           >
-            Get Started →
+            Join Community →
           </a>
         </div>
       </div>
