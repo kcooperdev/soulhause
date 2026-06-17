@@ -46,6 +46,15 @@ const NAV_MENUS = [
 function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const show = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const hide = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
 
   useEffect(() => {
     function onPointerDown(e: MouseEvent) {
@@ -54,15 +63,18 @@ function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
       }
     }
     document.addEventListener("mousedown", onPointerDown);
-    return () => document.removeEventListener("mousedown", onPointerDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
   }, []);
 
   return (
     <div
       ref={ref}
       className="nav-menu-group"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={show}
+      onMouseLeave={hide}
     >
       <button
         className="nav-menu-trigger"
@@ -73,18 +85,20 @@ function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
         <span className={`nav-chevron${open ? " open" : ""}`}>▾</span>
       </button>
       <div className={`nav-dropdown-panel${open ? " open" : ""}`} role="menu">
-        {menu.items.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className="nav-dropdown-item"
-            role="menuitem"
-            onClick={() => setOpen(false)}
-          >
-            <span className="nav-dropdown-label">{item.label}</span>
-            <span className="nav-dropdown-desc">{item.desc}</span>
-          </Link>
-        ))}
+        <div className="nav-dropdown-inner">
+          <div className="nav-dropdown-header">{menu.label}</div>
+          {menu.items.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="nav-dropdown-item"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+            >
+              <span className="nav-dropdown-label">{item.label}</span>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
