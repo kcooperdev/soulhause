@@ -26,8 +26,6 @@ const NAV_MENUS = [
     label: "About",
     items: [
       { label: "Mission", desc: "Why we're building SoulHause", href: "/about" },
-      { label: "Story", desc: "How it started and where we're going", href: "/about" },
-      { label: "Contact", desc: "Get in touch with the team", href: "/contact" },
     ],
   },
 ];
