@@ -6,55 +6,23 @@ export function Footer() {
   return (
     <footer>
       <div className="wrap">
-        <div className="footer-grid">
-          <div>
-            <div className="footer-brand">
-              <Logo size={32} />
-              <span>SoulHause</span>
-            </div>
-            <p className="footer-tagline">
-              A community-powered developer platform for civic tech,
-              small businesses, and local builders.
-            </p>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 16, paddingBottom: 32, borderBottom: "1px solid rgba(245, 240, 230, 0.18)" }}>
+          <div className="footer-brand" style={{ justifyContent: "center" }}>
+            <Logo size={32} />
+            <span>SoulHause</span>
           </div>
-
-          <div className="footer-col">
-            <h4>Events</h4>
-            <ul>
-              <li><a href="#">Grassroots Tech Events</a></li>
-              <li><a href="#">Workshops</a></li>
-              <li><a href="#">Tech After Dark</a></li>
-              <li><a href="#">Civic Tech Sprints</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>Platform</h4>
-            <ul>
-              <li><a href="#">Developer Tools</a></li>
-              <li><a href="#">Small Business Tools</a></li>
-              <li><a href="#">Civic Tech Tools</a></li>
-              <li><a href="#">AI Assistants</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>Community</h4>
-            <ul>
-              <li><a href="#">Builder Profiles</a></li>
-              <li><a href="#">Projects</a></li>
-              <li><a href="#">Resources</a></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
+          <p className="footer-tagline" style={{ maxWidth: 400, margin: "0 auto" }}>
+            A community-powered developer platform for civic tech, small businesses, and local builders across the DMV.
+          </p>
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
+            <Link href="/about" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>About</Link>
+            <Link href="/contact" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>Contact</Link>
+            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>Join</a>
+            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>{CONTACT_EMAIL}</a>
           </div>
         </div>
-
-        <div className="footer-bottom">
+        <div className="footer-bottom" style={{ justifyContent: "center" }}>
           <span>© {new Date().getFullYear()} SoulHause · Launching September 2026</span>
-          <span>
-            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "inherit" }}>{CONTACT_EMAIL}</a>
-          </span>
         </div>
       </div>
     </footer>
