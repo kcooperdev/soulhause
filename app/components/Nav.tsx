@@ -15,14 +15,6 @@ const NAV_MENUS = [
     ],
   },
   {
-    label: "Community",
-    items: [
-      { label: "Members", desc: "1,100+ builders across DC, MD & VA", href: "#community" },
-      { label: "Resources", desc: "Guides, templates, and tools", href: "#" },
-      { label: "Discussions", desc: "Talk shop with other builders", href: "#" },
-    ],
-  },
-  {
     label: "About",
     items: [
       { label: "Mission", desc: "Why we're building SoulHause", href: "/about" },
@@ -109,6 +101,14 @@ export function Nav() {
           {NAV_MENUS.map((menu) => (
             <DropdownGroup key={menu.label} menu={menu} />
           ))}
+          <a
+            href="https://soulhausebuilders.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-menu-trigger"
+          >
+            Builders
+          </a>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -149,6 +149,18 @@ export function Nav() {
             ))}
           </div>
         ))}
+        <div className="nav-mobile-section">
+          <div className="nav-mobile-label">Builders</div>
+          <a
+            href="https://soulhausebuilders.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-mobile-link"
+            onClick={() => setMobileOpen(false)}
+          >
+            SoulHause Builders →
+          </a>
+        </div>
         <div style={{ paddingTop: 16, borderTop: "1px solid var(--line)" }}>
           <a
             href={JOIN_URL}
