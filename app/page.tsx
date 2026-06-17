@@ -16,20 +16,16 @@ function Hero() {
         <SunMark size={320} opacity={0.03} color="#F5C432" />
       </span>
       <div className="hero-dark-inner">
-        <div className="hero-badge" data-reveal>
-          <span className="hero-badge-dot" />
-          Community-Powered Developer Platform · Launching September 2026
-        </div>
-        <h1 data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+        <h1 data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
           Build tools.<br />
           Build community.<br />
           Build <em>for good.</em>
         </h1>
-        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "160ms" } as CSSProperties}>
+        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
           SoulHause is a developer platform bringing together tools, infrastructure,
           and AI systems for civic tech, small businesses, and local builders.
         </p>
-        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "240ms" } as CSSProperties}>
+        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
             Get Started <span className="arrow">→</span>
           </a>
@@ -188,41 +184,6 @@ function ProductHighlights() {
 
 /* ─── Events ─────────────────────────────────────────────────────────── */
 function Events() {
-  const events = [
-    {
-      month: "Sep",
-      day: "12",
-      type: "Mixer",
-      title: "Grassroots Tech Mixer Vol. 8",
-      location: "Baltimore, MD",
-      href: "#",
-    },
-    {
-      month: "Sep",
-      day: "19",
-      type: "Workshop",
-      title: "Build Your First AI Agent",
-      location: "Virtual",
-      href: "#",
-    },
-    {
-      month: "Sep",
-      day: "26",
-      type: "Networking",
-      title: "Tech After Dark Vol. 3",
-      location: "Baltimore, MD",
-      href: "#",
-    },
-    {
-      month: "Oct",
-      day: "04",
-      type: "Sprint",
-      title: "Civic Tech Sprint: Open Data",
-      location: "Washington, DC",
-      href: "#",
-    },
-  ];
-
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
@@ -230,7 +191,7 @@ function Events() {
           <div>
             <div className="sec-head-meta">
               <span>§ 03</span>
-              <span>Events</span>
+              <span>Next event</span>
             </div>
             <h2 className="h-section" style={{ marginTop: 16 }}>
               Show up.<br /><em>Build together.</em>
@@ -238,77 +199,85 @@ function Events() {
           </div>
           <div>
             <p className="lede">
-              Mixers, workshops, civic sprints, and Tech After Dark — events
-              designed for builders who want to learn, connect, and ship.
+              SoulHause events bring the DMV community together — good
+              people, good vibes, and real conversations about building.
             </p>
           </div>
         </div>
 
-        <div className="events-grid">
-          {events.map((e, i) => (
-            <div key={e.title} className="event-card" data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
-              <div className="event-date-badge">
-                <span className="event-date-month">{e.month}</span>
-                <span className="event-date-day">{e.day}</span>
-              </div>
-              <span className="event-type">{e.type}</span>
-              <h4>{e.title}</h4>
-              <p className="event-meta">📍 {e.location}</p>
-              <a href={e.href} className="event-rsvp">RSVP <span className="arrow">→</span></a>
+        <div className="event-feature" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
+          <div className="event-feature-date">
+            <div className="event-date-badge" style={{ width: "fit-content" }}>
+              <span className="event-date-month">Sep</span>
+              <span className="event-date-day">22</span>
             </div>
-          ))}
+            <span className="event-type" style={{ marginTop: 10, display: "block" }}>Happy Hour</span>
+          </div>
+          <div className="event-feature-body">
+            <h3 className="event-feature-title">Hause of Soul</h3>
+            <p className="event-feature-sub">
+              An evening for the DMV community to link up, unwind, and connect
+              with other builders, creatives, and tech folks in the area.
+              No agenda — just good energy and real conversation.
+            </p>
+            <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 16, marginBottom: 24 }}>
+              <span className="event-meta">📍 Baltimore, MD</span>
+              <span className="event-meta">📅 September 22, 2026</span>
+              <span className="event-meta">🍹 Happy Hour</span>
+            </div>
+            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              RSVP Now <span className="arrow">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ─── Builders Community ─────────────────────────────────────────────── */
-function BuildersCommunity() {
+/* ─── Community ──────────────────────────────────────────────────────── */
+function Community() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="sec-head-meta" style={{ marginBottom: 48 }}>
           <span>§ 04</span>
-          <span>Builders community</span>
+          <span>The community</span>
         </div>
         <div className="community-split">
           <div data-reveal>
             <h2 className="h-section" style={{ marginBottom: 20 }}>
-              A network of<br />builders <em>doing the work.</em>
+              1,100+ members<br />across <em>the DMV.</em>
             </h2>
             <p className="lede" style={{ marginBottom: 28 }}>
-              Not just a directory — a living community where builders
-              post projects, share resources, and find collaborators.
-              From solo devs to founding teams.
+              SoulHause has been building community across DC, Maryland, and Virginia
+              since day one — tech professionals, creatives, entrepreneurs, and local
+              builders who show up and stay connected.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
               {[
-                "Public builder profiles with skills &amp; projects",
-                "Open-source and commercial project showcases",
-                "Skill-based matching for collaborations",
-                "Curated resource library — guides, templates, APIs",
+                "In-person events across Baltimore, DC, and the DMV",
+                "Online community for members between events",
+                "Workshops, mixers, and happy hours",
+                "A space for builders at every stage",
               ].map((item) => (
                 <div key={item} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <span style={{ color: "var(--oxblood)", fontWeight: 700, flexShrink: 0, marginTop: 1 }}>—</span>
-                  <span
-                    style={{ fontSize: 15, color: "var(--ink-soft)", lineHeight: 1.5 }}
-                    dangerouslySetInnerHTML={{ __html: item }}
-                  />
+                  <span style={{ fontSize: 15, color: "var(--ink-soft)", lineHeight: 1.5 }}>{item}</span>
                 </div>
               ))}
             </div>
             <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Join the Community <span className="arrow">→</span>
+              Join SoulHause <span className="arrow">→</span>
             </a>
           </div>
 
           <div className="community-stats" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
             {[
-              { num: "200+", lbl: "Builders" },
-              { num: "15+", lbl: "Events Hosted" },
-              { num: "50+", lbl: "Projects Shipped" },
-              { num: "12", lbl: "Cities" },
+              { num: "1,100+", lbl: "Members" },
+              { num: "3", lbl: "States — DC, MD, VA" },
+              { num: "20+", lbl: "Events Hosted" },
+              { num: "2024", lbl: "Founded" },
             ].map((s) => (
               <div key={s.lbl} className="community-stat">
                 <div className="community-stat-num">{s.num}</div>
@@ -365,7 +334,7 @@ export default function Home() {
       <WhatWeBuild />
       <ProductHighlights />
       <Events />
-      <BuildersCommunity />
+      <Community />
       <CTA />
       <Footer />
     </>
