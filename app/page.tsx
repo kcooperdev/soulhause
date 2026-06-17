@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
@@ -8,27 +9,27 @@ import { JOIN_URL } from "./components/constants";
 function Hero() {
   return (
     <header className="hero-dark dot-grid-dark">
-      <span style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
+      <span data-parallax="-0.22" style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
         <SunMark size={480} opacity={0.04} color="#4F9080" />
       </span>
-      <span style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
+      <span data-parallax="0.12" style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
         <SunMark size={320} opacity={0.03} color="#F5C432" />
       </span>
       <div className="hero-dark-inner">
-        <div className="hero-badge">
+        <div className="hero-badge" data-reveal>
           <span className="hero-badge-dot" />
           Community-Powered Developer Platform · Launching September 2026
         </div>
-        <h1>
+        <h1 data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
           Build tools.<br />
           Build community.<br />
           Build <em>for good.</em>
         </h1>
-        <p className="hero-dark-sub">
+        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "160ms" } as CSSProperties}>
           SoulHause is a developer platform bringing together tools, infrastructure,
           and AI systems for civic tech, small businesses, and local builders.
         </p>
-        <div className="hero-dark-ctas">
+        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "240ms" } as CSSProperties}>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
             Get Started <span className="arrow">→</span>
           </a>
@@ -46,7 +47,7 @@ function WhatWeBuild() {
   return (
     <section className="sec">
       <div className="wrap">
-        <div className="sec-head">
+        <div className="sec-head" data-reveal>
           <div>
             <div className="sec-head-meta">
               <span>§ 01</span>
@@ -65,7 +66,7 @@ function WhatWeBuild() {
         </div>
 
         <div className="pillars-grid">
-          <div className="pillar">
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties}>
             <span className="pillar-icon">🛠️</span>
             <span className="pillar-cat">§ 01 · Developer Platform</span>
             <h3>Build faster with the right tools.</h3>
@@ -82,6 +83,8 @@ function WhatWeBuild() {
           </div>
 
           <div className="pillar">
+          </div>
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
             <span className="pillar-icon">🏙️</span>
             <span className="pillar-cat">§ 02 · Civic &amp; Business Tools</span>
             <h3>Tools built for people, not corporations.</h3>
@@ -97,7 +100,7 @@ function WhatWeBuild() {
             </ul>
           </div>
 
-          <div className="pillar">
+          <div className="pillar" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
             <span className="pillar-icon">🤝</span>
             <span className="pillar-cat">§ 03 · Builders Network</span>
             <h3>Connect with builders doing the work.</h3>
@@ -150,7 +153,7 @@ function ProductHighlights() {
   return (
     <section className="sec" style={{ paddingTop: 0, background: "var(--sand)" }}>
       <div className="wrap">
-        <div className="sec-head">
+        <div className="sec-head" data-reveal>
           <div>
             <div className="sec-head-meta">
               <span>§ 02</span>
@@ -169,8 +172,8 @@ function ProductHighlights() {
         </div>
 
         <div className="product-grid" id="platform">
-          {products.map((p) => (
-            <div key={p.title} className="product-card">
+          {products.map((p, i) => (
+            <div key={p.title} className="product-card" data-reveal style={{ "--reveal-delay": `${i * 100}ms` } as CSSProperties}>
               <span className="product-icon">{p.icon}</span>
               <div className="product-title">{p.title}</div>
               <p className="product-desc">{p.desc}</p>
@@ -223,7 +226,7 @@ function Events() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <div className="sec-head">
+        <div className="sec-head" data-reveal>
           <div>
             <div className="sec-head-meta">
               <span>§ 03</span>
@@ -242,8 +245,8 @@ function Events() {
         </div>
 
         <div className="events-grid">
-          {events.map((e) => (
-            <div key={e.title} className="event-card">
+          {events.map((e, i) => (
+            <div key={e.title} className="event-card" data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as CSSProperties}>
               <div className="event-date-badge">
                 <span className="event-date-month">{e.month}</span>
                 <span className="event-date-day">{e.day}</span>
@@ -270,7 +273,7 @@ function BuildersCommunity() {
           <span>Builders community</span>
         </div>
         <div className="community-split">
-          <div>
+          <div data-reveal>
             <h2 className="h-section" style={{ marginBottom: 20 }}>
               A network of<br />builders <em>doing the work.</em>
             </h2>
@@ -300,7 +303,7 @@ function BuildersCommunity() {
             </a>
           </div>
 
-          <div className="community-stats">
+          <div className="community-stats" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
             {[
               { num: "200+", lbl: "Builders" },
               { num: "15+", lbl: "Events Hosted" },
@@ -324,11 +327,11 @@ function CTA() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <div className="cta-v2">
-          <span style={{ position: "absolute", left: -60, bottom: -60, pointerEvents: "none" }}>
+        <div className="cta-v2" data-reveal>
+          <span data-parallax="-0.1" style={{ position: "absolute", left: -60, bottom: -60, pointerEvents: "none" }}>
             <SunMark size={300} opacity={0.07} color="#F5C432" />
           </span>
-          <span style={{ position: "absolute", right: -40, top: -40, pointerEvents: "none" }}>
+          <span data-parallax="0.08" style={{ position: "absolute", right: -40, top: -40, pointerEvents: "none" }}>
             <SunMark size={180} opacity={0.05} color="#E8703A" />
           </span>
           <h2>

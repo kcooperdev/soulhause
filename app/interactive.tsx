@@ -2,10 +2,63 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/* ─── Scroll reveal ─────────────────────────────────────────────────── */
+function useScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    if (!els.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
+/* ─── Parallax ──────────────────────────────────────────────────────── */
+function useParallax() {
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>("[data-parallax]");
+    if (!els.length) return;
+
+    let ticking = false;
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        els.forEach((el) => {
+          const speed = parseFloat(el.dataset.parallax ?? "0");
+          el.style.transform = `translateY(${y * speed}px)`;
+        });
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+}
+
+/* ─── Custom cursor ─────────────────────────────────────────────────── */
 export default function Interactive() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const [hasFinePointer, setHasFinePointer] = useState(false);
+
+  useScrollReveal();
+  useParallax();
 
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
