@@ -9,28 +9,17 @@ const NAV_MENUS = [
   {
     label: "Events",
     items: [
-      { label: "Grassroots Tech Events", desc: "Local community-driven meetups", href: "#" },
-      { label: "Workshops", desc: "Hands-on skill-building sessions", href: "#" },
-      { label: "Tech After Dark", desc: "Evening networking for builders", href: "#" },
-      { label: "Civic Tech Sprints", desc: "Hackathons for community impact", href: "#" },
+      { label: "Soul Sessions", desc: "Live storytelling from founders & creators", href: "#events" },
+      { label: "Soul Labs", desc: "Hands-on workshops for builders", href: "#events" },
+      { label: "Hause Link", desc: "Tech-forward mixers across the DMV", href: "#events" },
     ],
   },
   {
     label: "Community",
     items: [
-      { label: "Builder Profiles", desc: "Meet the people building the future", href: "#" },
-      { label: "Projects", desc: "See what's being built right now", href: "#" },
+      { label: "Members", desc: "1,100+ builders across DC, MD & VA", href: "#community" },
       { label: "Resources", desc: "Guides, templates, and tools", href: "#" },
       { label: "Discussions", desc: "Talk shop with other builders", href: "#" },
-    ],
-  },
-  {
-    label: "Platform",
-    items: [
-      { label: "Developer Tools", desc: "SDKs, APIs, and automation", href: "#" },
-      { label: "Small Business Tools", desc: "Scheduling, payments, and CRM", href: "#" },
-      { label: "Civic Tech Tools", desc: "Infrastructure for community impact", href: "#" },
-      { label: "AI Assistants", desc: "Intelligent automation for builders", href: "#" },
     ],
   },
   {

@@ -1,5 +1,4 @@
 import type { CSSProperties } from "react";
-import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { SunMark } from "./components/SunMark";
@@ -29,9 +28,9 @@ function Hero() {
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
             Join Community <span className="arrow">→</span>
           </a>
-          <Link href="#platform" className="btn btn-dark-ghost">
-            Explore the Platform
-          </Link>
+          <a href="#events" className="btn btn-dark-ghost">
+            Our Events
+          </a>
         </div>
       </div>
     </header>
@@ -115,118 +114,98 @@ function WhatWeBuild() {
   );
 }
 
-/* ─── Product Highlights ─────────────────────────────────────────────── */
-function ProductHighlights() {
-  const products = [
-    {
-      icon: "🤖",
-      title: "AI Event Planner",
-      desc: "Describe your event and get a complete plan — agendas, speaker briefs, venue specs, and promotion copy — in minutes.",
-      cta: "Coming Soon",
-    },
-    {
-      icon: "📊",
-      title: "Sponsorship Deck Generator",
-      desc: "Turn your event data and community metrics into a polished, conversion-ready sponsorship deck automatically.",
-      cta: "Coming Soon",
-    },
-    {
-      icon: "🏗️",
-      title: "Micro-Event Architect",
-      desc: "Plan, run, and recap small high-impact community events with zero overhead. Built for grassroots organizers.",
-      cta: "Coming Soon",
-    },
-    {
-      icon: "📈",
-      title: "Community Dashboard",
-      desc: "Track builder activity, event metrics, and community growth across all your SoulHause properties in one view.",
-      cta: "Coming Soon",
-    },
-  ];
+/* ─── Events ─────────────────────────────────────────────────────────── */
+const EVENT_FORMATS = [
+  {
+    emoji: "🎤",
+    tag: "Soul Sessions",
+    tagline: "Talks",
+    heading: "Stories that teach.",
+    body: "Live conversations where founders, creators, and technologists share the real journey — the mistakes, pivots, breakthroughs, and mindset behind the work. One guest, one mic, one story.",
+    bullets: ["One guest · one mic · one story", "Vulnerability over performance", "Lessons people can apply immediately", "Intimate, cinematic atmosphere"],
+    delay: "0ms",
+  },
+  {
+    emoji: "🧪",
+    tag: "Soul Labs",
+    tagline: "Workshops",
+    heading: "Skills that create opportunity.",
+    body: "Hands-on workshops where people come to build, not just listen. AI, software, branding, analytics, product development — every session is designed so you walk out with a new capability.",
+    bullets: ["Real tools, real demos, real output", "Beginner-friendly but high-value", "Led by engineers and practitioners", "Built for the DMV's tech ecosystem"],
+    delay: "100ms",
+  },
+  {
+    emoji: "🔗",
+    tag: "Hause Link",
+    tagline: "Mixers",
+    heading: "Connections that become collaborations.",
+    body: "Tech-forward mixers where the DMV's builders, creatives, founders, and technologists meet each other. Curated energy designed for collaboration — not small talk.",
+    bullets: ["Tech-leaning, future-focused energy", "Curated conversations, not chaos", "Creatives, engineers & founders", "The entry point into SoulHause"],
+    delay: "200ms",
+  },
+];
 
+function Events() {
   return (
-    <section className="sec" style={{ paddingTop: 0, background: "var(--sand)" }}>
+    <section className="sec" style={{ paddingTop: 0 }} id="events">
       <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
             <div className="sec-head-meta">
               <span>§ 02</span>
-              <span>Product highlights</span>
+              <span>The event ecosystem</span>
             </div>
             <h2 className="h-section" style={{ marginTop: 16 }}>
-              AI-powered tools<br />for <em>community builders.</em>
+              Three ways<br />to <em>show up.</em>
             </h2>
           </div>
           <div>
             <p className="lede">
-              Four flagship products launching with the platform.
-              Built with AI at the core, designed for real workflows.
+              Every SoulHause event is intentional. Whether you&apos;re here to learn,
+              build, or connect — there&apos;s a format designed for you.
             </p>
           </div>
         </div>
 
-        <div className="product-grid" id="platform">
-          {products.map((p, i) => (
-            <div key={p.title} className="product-card" data-reveal style={{ "--reveal-delay": `${i * 100}ms` } as CSSProperties}>
-              <span className="product-icon">{p.icon}</span>
-              <div className="product-title">{p.title}</div>
-              <p className="product-desc">{p.desc}</p>
-              <span className="product-cta">{p.cta} <span className="arrow">→</span></span>
+        <div className="event-formats-grid">
+          {EVENT_FORMATS.map((fmt) => (
+            <div
+              key={fmt.tag}
+              className="event-format-card"
+              data-reveal
+              style={{ "--reveal-delay": fmt.delay } as CSSProperties}
+            >
+              <div className="event-format-top">
+                <span className="event-format-emoji">{fmt.emoji}</span>
+                <div>
+                  <span className="event-format-tag">{fmt.tag}</span>
+                  <span className="event-format-tagline"> · {fmt.tagline}</span>
+                </div>
+              </div>
+              <h3 className="event-format-heading">{fmt.heading}</h3>
+              <p className="event-format-body">{fmt.body}</p>
+              <ul className="event-format-list">
+                {fmt.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ─── Events ─────────────────────────────────────────────────────────── */
-function Events() {
-  return (
-    <section className="sec" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="sec-head" data-reveal>
-          <div>
-            <div className="sec-head-meta">
-              <span>§ 03</span>
-              <span>Next event</span>
+        <div className="event-next" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+          <div className="event-next-left">
+            <span className="event-next-label">Next Event</span>
+            <h3 className="event-next-title">Hause of Soul</h3>
+            <div className="event-next-meta">
+              <span>📍 Baltimore, MD</span>
+              <span>📅 September 22, 2026</span>
+              <span>🍹 Happy Hour</span>
             </div>
-            <h2 className="h-section" style={{ marginTop: 16 }}>
-              Show up.<br /><em>Build together.</em>
-            </h2>
           </div>
-          <div>
-            <p className="lede">
-              SoulHause events bring the DMV community together — good
-              people, good vibes, and real conversations about building.
-            </p>
-          </div>
-        </div>
-
-        <div className="event-feature" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
-          <div className="event-feature-date">
-            <div className="event-date-badge" style={{ width: "fit-content" }}>
-              <span className="event-date-month">Sep</span>
-              <span className="event-date-day">22</span>
-            </div>
-            <span className="event-type" style={{ marginTop: 10, display: "block" }}>Happy Hour</span>
-          </div>
-          <div className="event-feature-body">
-            <h3 className="event-feature-title">Hause of Soul</h3>
-            <p className="event-feature-sub">
-              An evening for the DMV community to link up, unwind, and connect
-              with other builders, creatives, and tech folks in the area.
-              No agenda — just good energy and real conversation.
-            </p>
-            <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginTop: 16, marginBottom: 24 }}>
-              <span className="event-meta">📍 Baltimore, MD</span>
-              <span className="event-meta">📅 September 22, 2026</span>
-              <span className="event-meta">🍹 Happy Hour</span>
-            </div>
-            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              RSVP Now <span className="arrow">→</span>
-            </a>
-          </div>
+          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            RSVP Now <span className="arrow">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -306,16 +285,16 @@ function CTA() {
             Build for <em>your community.</em>
           </h2>
           <p>
-            The platform launches September 2026. Get early access, join the
-            builders community, and help shape what we build next.
+            1,100+ members across DC, Maryland, and Virginia. Join the community
+            and be part of what we&apos;re building next.
           </p>
           <div className="cta-v2-btns">
             <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
               Join the Community <span className="arrow">→</span>
             </a>
-            <Link href="#platform" className="btn btn-dark-ghost">
-              Explore the Platform
-            </Link>
+            <a href="#events" className="btn btn-dark-ghost">
+              See Our Events
+            </a>
           </div>
         </div>
       </div>
@@ -330,7 +309,6 @@ export default function Home() {
       <Nav />
       <Hero />
       <WhatWeBuild />
-      <ProductHighlights />
       <Events />
       <Community />
       <CTA />
