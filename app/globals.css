@@ -138,10 +138,23 @@ p { margin: 0; line-height: 1.6; }
 }
 
 .lede {
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
   font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 500;
   line-height: 1.55;
   color: var(--on-dark-muted);
   max-width: 640px;
+}
+
+/* Display labels — Fredoka, not mono */
+.type-label,
+.sec-head-meta,
+.pillar-cat {
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .text-muted { color: var(--muted); }
@@ -172,10 +185,6 @@ p { margin: 0; line-height: 1.6; }
   .sec-head { grid-template-columns: 0.5fr 0.5fr; gap: 64px; margin-bottom: 64px; }
 }
 .sec-head-meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--on-dark-subtle);
   border-top: 1px solid var(--border-dark-strong);
   padding-top: 10px;
@@ -238,7 +247,9 @@ p { margin: 0; line-height: 1.6; }
   margin-top: 1px;
 }
 .feature-list-text {
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
   font-size: 15px;
+  font-weight: 500;
   color: var(--on-dark-muted);
   line-height: 1.5;
 }
@@ -1233,11 +1244,12 @@ footer a:hover { opacity: 1; }
   border: 1px solid rgba(79, 144, 128, 0.2);
 }
 .nav-dropdown-header {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.22em;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(245, 240, 230, 0.38);
+  color: rgba(245, 240, 230, 0.45);
   padding: 8px 12px 6px;
 }
 .nav-dropdown-item {
@@ -1370,7 +1382,9 @@ footer a:hover { opacity: 1; }
   color: var(--sky-soft);
 }
 .hero-dark-sub {
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
   font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 500;
   color: var(--on-dark-muted);
   max-width: 560px;
   line-height: 1.55;
@@ -1415,24 +1429,24 @@ footer a:hover { opacity: 1; }
 }
 .pillar-icon { font-size: 32px; display: block; margin-bottom: 18px; }
 .pillar-cat {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--sky-soft);
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .pillar h3 {
-  font-size: clamp(19px, 2.2vw, 24px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
   color: var(--on-dark);
 }
 .pillar p {
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
+  font-weight: 500;
   color: var(--on-dark-muted);
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.6;
   margin-bottom: 20px;
 }
@@ -1448,7 +1462,9 @@ footer a:hover { opacity: 1; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13.5px;
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   color: rgba(245, 240, 230, 0.75);
 }
 .pillar ul li::before {
@@ -1658,24 +1674,29 @@ footer a:hover { opacity: 1; }
 .event-format-emoji { font-size: 28px; line-height: 1; }
 .event-format-tag {
   font-family: var(--font-retro), var(--font-display), system-ui;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--on-dark);
 }
 .event-format-tagline {
+  font-family: var(--font-retro), var(--font-display), system-ui;
   font-size: 13px;
+  font-weight: 600;
   color: var(--on-dark-subtle);
 }
 .event-format-heading {
-  font-size: clamp(18px, 2.2vw, 22px);
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: clamp(20px, 2.2vw, 24px);
   font-weight: 700;
   color: var(--on-dark);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
   margin: 0;
 }
 .event-format-body {
-  font-size: 14px;
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--on-dark-muted);
   line-height: 1.65;
   margin: 0;
@@ -1692,7 +1713,9 @@ footer a:hover { opacity: 1; }
   margin-top: auto;
 }
 .event-format-list li {
-  font-size: 13px;
+  font-family: var(--font-body), -apple-system, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   color: rgba(245, 240, 230, 0.7);
   padding-left: 18px;
   position: relative;
@@ -1718,9 +1741,10 @@ footer a:hover { opacity: 1; }
   flex-wrap: wrap;
 }
 .event-next-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--sky-soft);
   display: block;
@@ -1776,9 +1800,10 @@ footer a:hover { opacity: 1; }
   margin-bottom: 4px;
 }
 .community-stat-lbl {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
+  font-family: var(--font-retro), var(--font-display), system-ui;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--on-dark-subtle);
 }
