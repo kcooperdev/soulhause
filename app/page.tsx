@@ -9,10 +9,10 @@ function Hero() {
   return (
     <header className="hero-dark dot-grid-dark">
       <span data-parallax="-0.22" style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
-        <SunMark size={480} opacity={0.1} color="#4F9080" />
+        <SunMark size={480} opacity={0.06} color="#5A9A88" />
       </span>
       <span data-parallax="0.12" style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
-        <SunMark size={320} opacity={0.08} color="#F5C432" />
+        <SunMark size={320} opacity={0.05} color="#E2B93B" />
       </span>
       <div className="hero-dark-inner">
         <h1 data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
