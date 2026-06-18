@@ -234,8 +234,8 @@ function Community() {
             {[
               { num: "1,100+", lbl: "Members" },
               { num: "3", lbl: "States — DC, MD, VA" },
-              { num: "20+", lbl: "Events Hosted" },
-              { num: "2024", lbl: "Founded" },
+              { num: "10+", lbl: "Events Hosted" },
+              { num: "2025", lbl: "Founded" },
             ].map((s) => (
               <div key={s.lbl} className="community-stat">
                 <div className="community-stat-num">{s.num}</div>
