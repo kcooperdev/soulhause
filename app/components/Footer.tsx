@@ -9,7 +9,7 @@ export function Footer() {
           <div className="footer-brand" style={{ justifyContent: "center" }}>
             <span className="footer-wordmark">
               <span style={{ color: "var(--sand)" }}>Soul</span>
-              <span style={{ color: "var(--sky)" }}>Hause</span>
+              <span style={{ color: "var(--sky-soft)" }}>Hause</span>
             </span>
           </div>
           <p className="footer-tagline" style={{ maxWidth: 400, margin: "0 auto" }}>

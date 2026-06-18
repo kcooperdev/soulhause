@@ -161,7 +161,7 @@ export function Nav() {
             SoulHause Builders →
           </a>
         </div>
-        <div style={{ paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+        <div style={{ paddingTop: 16, borderTop: "1px solid var(--border-dark)" }}>
           <a
             href={JOIN_URL}
             target="_blank"

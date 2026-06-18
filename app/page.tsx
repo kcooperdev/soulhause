@@ -9,10 +9,10 @@ function Hero() {
   return (
     <header className="hero-dark dot-grid-dark">
       <span data-parallax="-0.22" style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
-        <SunMark size={480} opacity={0.04} color="#4F9080" />
+        <SunMark size={480} opacity={0.1} color="#4F9080" />
       </span>
       <span data-parallax="0.12" style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
-        <SunMark size={320} opacity={0.03} color="#F5C432" />
+        <SunMark size={320} opacity={0.08} color="#F5C432" />
       </span>
       <div className="hero-dark-inner">
         <h1 data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
@@ -147,7 +147,7 @@ const EVENT_FORMATS = [
 
 function Events() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }} id="events">
+    <section className="sec sec-alt" style={{ paddingTop: 0 }} id="events">
       <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
@@ -231,16 +231,16 @@ function Community() {
               since day one — tech professionals, creatives, entrepreneurs, and local
               builders who show up and stay connected.
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 32 }}>
+            <div className="feature-list">
               {[
                 "In-person events across Baltimore, DC, and the DMV",
                 "Online community for members between events",
                 "Workshops, mixers, and happy hours",
                 "A space for builders at every stage",
               ].map((item) => (
-                <div key={item} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                  <span style={{ color: "var(--oxblood)", fontWeight: 700, flexShrink: 0, marginTop: 1 }}>—</span>
-                  <span style={{ fontSize: 15, color: "var(--ink-soft)", lineHeight: 1.5 }}>{item}</span>
+                <div key={item} className="feature-list-item">
+                  <span className="feature-list-dash">—</span>
+                  <span className="feature-list-text">{item}</span>
                 </div>
               ))}
             </div>
