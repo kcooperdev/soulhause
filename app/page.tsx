@@ -44,11 +44,7 @@ function WhatWeBuild() {
       <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
-            <div className="sec-head-meta">
-              <span>§ 01</span>
-              <span>What we build</span>
-            </div>
-            <h2 className="h-section" style={{ marginTop: 16 }}>
+            <h2 className="h-section">
               One platform.<br /><em>Three pillars.</em>
             </h2>
           </div>
@@ -62,8 +58,7 @@ function WhatWeBuild() {
 
         <div className="pillars-grid">
           <div className="pillar" data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties}>
-            <span className="pillar-icon">🛠️</span>
-            <span className="pillar-cat">§ 01 · Developer Platform</span>
+            <span className="pillar-cat">Developer Platform</span>
             <h3>Build faster with the right tools.</h3>
             <p>
               SDKs, APIs, hosting, and automation built for modern
@@ -78,8 +73,7 @@ function WhatWeBuild() {
           </div>
 
           <div className="pillar" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
-            <span className="pillar-icon">🏙️</span>
-            <span className="pillar-cat">§ 02 · Civic &amp; Business Tools</span>
+            <span className="pillar-cat">Civic &amp; Business Tools</span>
             <h3>Tools built for people, not corporations.</h3>
             <p>
               Scheduling, payments, CRM, and event management designed
@@ -94,8 +88,7 @@ function WhatWeBuild() {
           </div>
 
           <div className="pillar" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
-            <span className="pillar-icon">🤝</span>
-            <span className="pillar-cat">§ 03 · Builders Network</span>
+            <span className="pillar-cat">Builders Network</span>
             <h3>Connect with builders doing the work.</h3>
             <p>
               A real community — not just a Slack group. Profiles,
@@ -117,7 +110,6 @@ function WhatWeBuild() {
 /* ─── Events ─────────────────────────────────────────────────────────── */
 const EVENT_FORMATS = [
   {
-    emoji: "🎤",
     tag: "Soul Sessions",
     tagline: "Talks",
     heading: "Stories that teach.",
@@ -126,7 +118,6 @@ const EVENT_FORMATS = [
     delay: "0ms",
   },
   {
-    emoji: "🧪",
     tag: "Soul Labs",
     tagline: "Workshops",
     heading: "Skills that create opportunity.",
@@ -135,7 +126,6 @@ const EVENT_FORMATS = [
     delay: "100ms",
   },
   {
-    emoji: "🔗",
     tag: "Hause Link",
     tagline: "Mixers",
     heading: "Connections that become collaborations.",
@@ -151,11 +141,7 @@ function Events() {
       <div className="wrap">
         <div className="sec-head" data-reveal>
           <div>
-            <div className="sec-head-meta">
-              <span>§ 02</span>
-              <span>The event ecosystem</span>
-            </div>
-            <h2 className="h-section" style={{ marginTop: 16 }}>
+            <h2 className="h-section">
               Three ways<br />to <em>show up.</em>
             </h2>
           </div>
@@ -176,7 +162,6 @@ function Events() {
               style={{ "--reveal-delay": fmt.delay } as CSSProperties}
             >
               <div className="event-format-top">
-                <span className="event-format-emoji">{fmt.emoji}</span>
                 <div>
                   <span className="event-format-tag">{fmt.tag}</span>
                   <span className="event-format-tagline"> · {fmt.tagline}</span>
@@ -198,9 +183,9 @@ function Events() {
             <span className="event-next-label">Next Event</span>
             <h3 className="event-next-title">Hause of Soul</h3>
             <div className="event-next-meta">
-              <span>📍 Baltimore, MD</span>
-              <span>📅 September 22, 2026</span>
-              <span>🍹 Happy Hour</span>
+              <span>Baltimore, MD</span>
+              <span>September 22, 2026</span>
+              <span>Happy Hour</span>
             </div>
           </div>
           <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
@@ -217,10 +202,6 @@ function Community() {
   return (
     <section className="sec" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <div className="sec-head-meta" style={{ marginBottom: 48 }}>
-          <span>§ 04</span>
-          <span>The community</span>
-        </div>
         <div className="community-split">
           <div data-reveal>
             <h2 className="h-section" style={{ marginBottom: 20 }}>

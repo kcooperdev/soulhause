@@ -1449,7 +1449,6 @@ footer a:hover { opacity: 1; }
   .pillar { border-bottom: none; border-right: 1px solid var(--border-dark); }
   .pillar:last-child { border-right: none; }
 }
-.pillar-icon { display: none; }
 .pillar-cat {
   color: var(--gold);
   display: block;
@@ -1696,10 +1695,9 @@ footer a:hover { opacity: 1; }
 }
 .event-format-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 }
-.event-format-emoji { display: none; }
 .event-format-tag {
   font-family: var(--font-retro), var(--font-display), system-ui;
   font-size: 16px;

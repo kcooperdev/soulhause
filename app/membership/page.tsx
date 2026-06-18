@@ -10,7 +10,6 @@ export default function Membership() {
 
       <section className="page-hero">
         <div className="wrap">
-          <span className="eyebrow">§ Index · Membership</span>
           <h1>
             Two ways in. <em>Both open today.</em>
           </h1>
@@ -26,7 +25,6 @@ export default function Membership() {
           <div className="grid-2">
             <article className="tier">
               <div className="tier-head">
-                <span>★ Tier · 01</span>
                 <span>Free Community</span>
               </div>
               <h3>Free</h3>
@@ -56,7 +54,6 @@ export default function Membership() {
 
             <article className="tier pro">
               <div className="tier-head">
-                <span>★ Tier · 02</span>
                 <span>SoulHause Pro</span>
               </div>
               <h3>Pro</h3>
@@ -98,11 +95,7 @@ export default function Membership() {
         <div className="wrap" style={{ maxWidth: 820 }}>
           <div className="sec-head">
             <div>
-              <div className="sec-head-meta">
-                <span>§ FAQ</span>
-                <span>Quick answers</span>
-              </div>
-              <h2 className="h-section" style={{ marginTop: 16 }}>
+              <h2 className="h-section">
                 Common <em>questions.</em>
               </h2>
             </div>

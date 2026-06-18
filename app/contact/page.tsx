@@ -9,7 +9,6 @@ export default function Contact() {
 
       <section className="page-hero">
         <div className="wrap">
-          <span className="eyebrow">§ Index · Contact</span>
           <h1>
             Say <em>hello.</em>
           </h1>
@@ -85,15 +84,15 @@ export default function Contact() {
 
             <aside className="contact-info">
               <div className="contact-item">
-                <h4>§ Email</h4>
+                <h4>Email</h4>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </div>
               <div className="contact-item">
-                <h4>§ Press &amp; partnerships</h4>
+                <h4>Press &amp; partnerships</h4>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </div>
               <div className="contact-item">
-                <h4>§ Follow along</h4>
+                <h4>Follow along</h4>
                 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
                   <a
                     href="#"
@@ -126,7 +125,7 @@ export default function Contact() {
                 </div>
               </div>
               <div className="contact-item">
-                <h4>§ Response time</h4>
+                <h4>Response time</h4>
                 <p className="text-muted" style={{ fontSize: 15 }}>
                   We aim to reply within 1–2 business days.
                 </p>

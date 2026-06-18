@@ -29,7 +29,6 @@ export default function About() {
 
       <section className="page-hero">
         <div className="wrap">
-          <span className="eyebrow">§ Index · About</span>
           <h1>
             A small house. <em>Lights on.</em>
           </h1>
@@ -45,10 +44,6 @@ export default function About() {
         <div className="wrap">
           <div className="about-grid">
             <div>
-              <div className="sec-head-meta" style={{ marginBottom: 18 }}>
-                <span>§ 01</span>
-                <span>Our Mission</span>
-              </div>
               <h2 className="h-section" style={{ marginBottom: 18 }}>
                 Make tech and creativity <em>feel like home.</em>
               </h2>
@@ -66,10 +61,6 @@ export default function About() {
             </div>
 
             <div>
-              <div className="sec-head-meta" style={{ marginBottom: 18 }}>
-                <span>§ 02</span>
-                <span>Our Story</span>
-              </div>
               <h2 className="h-section" style={{ marginBottom: 18 }}>
                 Started by builders, <em>for builders.</em>
               </h2>
@@ -92,11 +83,7 @@ export default function About() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <div className="sec-head-meta">
-                <span>§ 03</span>
-                <span>What we stand for</span>
-              </div>
-              <h2 className="h-section" style={{ marginTop: 16 }}>
+              <h2 className="h-section">
                 Values that <em>shape this place.</em>
               </h2>
             </div>
@@ -109,12 +96,8 @@ export default function About() {
           </div>
 
           <div className="values">
-            {VALUES.map((v, i) => (
+            {VALUES.map((v) => (
               <article key={v.title} className="about-card">
-                <div className="sec-head-meta" style={{ marginBottom: 14 }}>
-                  <span>§ {String(i + 1).padStart(2, "0")}</span>
-                  <span>Value</span>
-                </div>
                 <h3>{v.title}</h3>
                 <p>{v.body}</p>
               </article>

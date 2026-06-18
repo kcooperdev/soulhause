@@ -10,7 +10,6 @@ import {
 } from "../components/Icons";
 
 type FeatureProps = {
-  num: string;
   cat: string;
   title: React.ReactNode;
   body: string;
@@ -20,14 +19,11 @@ type FeatureProps = {
   stamp?: string;
 };
 
-function Feature({ num, cat, title, body, bullets, icon, reverse, stamp }: FeatureProps) {
+function Feature({ cat, title, body, bullets, icon, reverse, stamp }: FeatureProps) {
   return (
     <article className={`feature${reverse ? " reverse" : ""}`}>
       <div>
-        <div className="feature-meta">
-          <span><strong>§ {num}</strong></span>
-          <span>{cat}</span>
-        </div>
+        <span className="pillar-cat">{cat}</span>
         <h2>{title}</h2>
         <p>{body}</p>
         <ul>
@@ -63,7 +59,6 @@ export default function WhatWeOffer() {
 
       <section className="page-hero">
         <div className="wrap">
-          <span className="eyebrow">§ Index · What We Offer</span>
           <h1>
             Everything you need to learn, <em>build,</em> and ship.
           </h1>
@@ -78,7 +73,6 @@ export default function WhatWeOffer() {
       <section className="sec">
         <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <Feature
-            num="01"
             cat="Events"
             title={<>Events that <em>bring builders</em> together.</>}
             body="From casual mixers to hands-on workshops and virtual sessions, our events are designed to spark connections and skill-building moments."
@@ -93,7 +87,6 @@ export default function WhatWeOffer() {
           />
 
           <Feature
-            num="02"
             cat="Cohorts"
             title={<>Guided cycles, <em>built with people.</em></>}
             body="Cohorts are 4–6 week structured cycles where you build a real project alongside a small group. End the cycle by demoing what you made."
@@ -109,7 +102,6 @@ export default function WhatWeOffer() {
           />
 
           <Feature
-            num="03"
             cat="Resource Library"
             title={<>A growing library of <em>practical</em> resources.</>}
             body="Templates, guides, AI tools, and project roadmaps — curated for SoulHause members and updated continuously."
@@ -124,7 +116,6 @@ export default function WhatWeOffer() {
           />
 
           <Feature
-            num="04"
             cat="Community"
             title={<>A community that <em>actually shows up.</em></>}
             body="Channels organized by interest, accountability pods, and a supportive environment where progress is celebrated and questions are welcome."
