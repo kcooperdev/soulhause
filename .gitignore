@@ -33,8 +33,8 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# vercel
-.vercel
+# vercel / local deploy config
+.vercel/
 
 # typescript
 *.tsbuildinfo
@@ -42,3 +42,22 @@ next-env.d.ts
 
 # design source bundle (Claude Design handoff — local reference only)
 /design-src/
+
+# local reference assets and scratch files (do not publish)
+/public/baltimore-harbor.png
+/public/*-reference.*
+/public/*-draft.*
+/public/scratch/
+
+# default Next.js starter assets (unused on this site)
+/public/file.svg
+/public/globe.svg
+/public/next.svg
+/public/vercel.svg
+/public/window.svg
+
+# empty scaffold dirs
+/components/
+
+# editor / agent local state
+.cursor/
