@@ -77,8 +77,6 @@ export const FOUNDER = {
   name: "Khalif Cooper",
   role: "Founder & CEO",
   credentials: "Software engineer · community builder · speaker",
-  pullQuote:
-    "I was looking for my people. SoulHause is what I built when I couldn't find them.",
   highlights: [
     "Self-taught software engineer",
     "Taught others to code",

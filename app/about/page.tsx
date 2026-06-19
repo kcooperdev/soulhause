@@ -97,10 +97,6 @@ export default function About() {
               {FOUNDER.role}, SoulHause · {FOUNDER.credentials}
             </p>
 
-            <blockquote className="founder-quote">
-              <p>{FOUNDER.pullQuote}</p>
-            </blockquote>
-
             {FOUNDER_STORY.map((paragraph) => (
               <p key={paragraph.slice(0, 28)} className="about-copy">
                 {paragraph}
