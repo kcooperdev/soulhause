@@ -13,7 +13,7 @@ const NAV_MENUS = [
     items: [
       { label: "Soul Sessions", href: pathwayHref("pathway-1") },
       { label: "Soul Labs", href: pathwayHref("pathway-2") },
-      { label: "Hause Link", href: pathwayHref("pathway-3") },
+      { label: "Soul Tech", href: pathwayHref("pathway-3") },
       { label: "All events", href: "/#pathways" },
     ],
   },
@@ -21,6 +21,7 @@ const NAV_MENUS = [
     label: "About",
     items: [
       { label: "Mission", href: "/about" },
+      { label: "Founder", href: "/about#founder" },
       { label: "Membership", href: "/membership" },
       { label: "Contact", href: "/contact" },
     ],

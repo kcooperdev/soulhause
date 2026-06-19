@@ -90,19 +90,19 @@ export default function WhatWeOffer() {
             Events today. <em>Platform tomorrow.</em>
           </>
         }
-        lede="Soul Sessions, Soul Labs, and Hause Link are live now. Developer tools, cohorts, and the full resource library launch with membership in September 2026."
+        lede="Soul Sessions, Soul Labs, and Soul Tech are live now. Developer tools, cohorts, and the full resource library launch with membership in September 2026."
       />
 
       <section className="sec">
         <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <Feature
             cat="Live now"
-            title={<>Soul Sessions, Labs, and Link</>}
+            title={<>Soul Sessions, Labs, and Tech</>}
             body="Talks, workshops, and mixers for builders who want to learn, ship, and connect. This is the heart of SoulHause today."
             bullets={[
               "Soul Sessions: stories from people doing the work",
               "Soul Labs: hands-on workshops with real output",
-              "Hause Link: mixers where collaborations start",
+              "Soul Tech: mixers where collaborations start",
               "RSVP on Luma and show up in person or online",
             ]}
             icon={<EventsIcon />}

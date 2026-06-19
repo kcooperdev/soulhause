@@ -109,7 +109,7 @@ const EVENT_FORMATS = [
     delay: "120ms",
   },
   {
-    tag: "Hause Link",
+    tag: "Soul Tech",
     format: "Mixers",
     heading: "Connections that become collaborations.",
     body: "Tech-forward mixers for builders, creatives, and founders. Curated energy, not small talk.",
@@ -156,7 +156,7 @@ function Events() {
             Three ways to <em>show up</em>
           </h2>
           <p className="lede lede-center">
-            Soul Sessions, Soul Labs, and Hause Link. Talks, workshops, and
+            Soul Sessions, Soul Labs, and Soul Tech. Talks, workshops, and
             mixers for builders who want to learn, ship, and connect.
           </p>
         </div>

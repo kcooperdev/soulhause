@@ -30,7 +30,7 @@ export const PATHWAY_PICKER = [
   },
   {
     id: "pathway-3",
-    label: "Hause Link",
+    label: "Soul Tech",
     format: "Mixers",
     tagline: "Where collaborations start",
     tone: "green",
@@ -40,7 +40,7 @@ export const PATHWAY_PICKER = [
 export const STACK_LAYERS = [
   {
     label: "Events",
-    sub: "Sessions, Labs, Link",
+    sub: "Sessions, Labs, Tech",
     tone: "gold",
     href: "#pathways",
   },
@@ -70,5 +70,23 @@ export const JOIN_GATE = {
     "RSVP or sign up on Luma",
     "Get event updates and community invites",
     "Show up to your first session, lab, or mixer",
+  ],
+} as const;
+
+export const FOUNDER = {
+  name: "Khalif Cooper",
+  role: "Founder & CEO",
+  credentials: "Software engineer · community builder · speaker",
+  pullQuote:
+    "I was looking for my people. SoulHause is what I built when I couldn't find them.",
+  highlights: [
+    "Self-taught software engineer",
+    "Taught others to code",
+    "Hosts talks and workshops",
+  ],
+  story: [
+    "This journey has been full circle for me. I've always been a problem solver: someone who learns by doing, builds by trying, and figures things out along the way. I started as a theatre kid who also wanted to be a chef. That mix of creativity, curiosity, and discipline still shapes how I build today.",
+    "My mother has always believed in me, and that belief kept me showing up. I taught myself to code, then taught others, gave talks, and kept following the work that made me feel alive. I never planned to start a tech company. I just wanted to find people who loved building, helping others, and solving problems the way I do.",
+    "That search became SoulHause: a tech company and a home for builders. Today we're {MEMBER_COUNT} strong, running real events, and building the platform behind it all. I finally feel like I'm exactly where I'm supposed to be, and the door is open for you.",
   ],
 } as const;
