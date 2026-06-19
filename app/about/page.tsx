@@ -52,7 +52,7 @@ export default function About() {
       <section className="sec">
         <div className="wrap">
           <div className="about-intro">
-            <h2 className="h-section path-signature-head" style={{ marginBottom: 18, fontSize: "clamp(28px, 3.5vw, 44px)" }}>
+            <h2 className="h-section path-signature-head about-intro-head">
               Make tech and creativity <em>feel like home.</em>
             </h2>
             <p className="about-copy">

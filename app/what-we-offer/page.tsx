@@ -2,7 +2,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import { JOIN_URL } from "../components/constants";
+import { JOIN_URL, MEMBERSHIP_LAUNCH } from "../components/constants";
 import {
   EventsIcon,
   CohortIcon,
@@ -90,7 +90,7 @@ export default function WhatWeOffer() {
             Events today. <em>Platform tomorrow.</em>
           </>
         }
-        lede="Soul Sessions, Soul Labs, and Soul Tech are live now. Developer tools, cohorts, and the full resource library launch with membership in September 2026."
+        lede={`Soul Sessions, Soul Labs, and Soul Tech are live now. Developer tools, cohorts, and the full resource library launch with membership in ${MEMBERSHIP_LAUNCH}.`}
       />
 
       <section className="sec">
@@ -123,7 +123,7 @@ export default function WhatWeOffer() {
               "Members get first access at launch",
             ]}
             icon={<CohortIcon />}
-            stamp={"Sept\n2026"}
+            stamp={"Dec\n2026"}
           />
 
           <Feature

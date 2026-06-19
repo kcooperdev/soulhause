@@ -13,6 +13,8 @@ export const NEXT_EVENT = {
   rsvpUrl: JOIN_URL,
 } as const;
 
+export const MEMBERSHIP_LAUNCH = "December 2026";
+
 export const PATHWAY_PICKER = [
   {
     id: "pathway-1",
