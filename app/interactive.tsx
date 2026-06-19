@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 /* ─── Reduced motion ─────────────────────────────────────────────────── */
 function useReducedMotion() {
@@ -17,9 +18,17 @@ function useReducedMotion() {
 
 /* ─── Scroll reveal ─────────────────────────────────────────────────── */
 function useScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
     if (!els.length) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      els.forEach((el) => el.classList.add("in"));
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -33,12 +42,17 @@ function useScrollReveal() {
       { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
-    els.forEach((el) => observer.observe(el));
+    els.forEach((el) => {
+      el.classList.remove("in");
+      observer.observe(el);
+    });
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 }
 
 function useParallax() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-parallax]");
     if (!els.length) return;
@@ -72,8 +86,11 @@ function useParallax() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      els.forEach((el) => {
+        el.style.transform = "";
+      });
     };
-  }, []);
+  }, [pathname]);
 }
 
 /* ─── Custom cursor ─────────────────────────────────────────────────── */

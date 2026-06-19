@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 
 type Props = {
@@ -10,16 +10,18 @@ type Props = {
 
 export function BrandLink({ variant = "nav" }: Props) {
   const pathname = usePathname();
-  const router = useRouter();
 
   const goHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+
     e.preventDefault();
-    if (pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "auto"
+      : "smooth";
+    window.scrollTo({ top: 0, behavior });
+    if (window.location.hash) {
       window.history.replaceState(null, "", "/");
-      return;
     }
-    router.push("/");
   };
 
   if (variant === "footer") {
