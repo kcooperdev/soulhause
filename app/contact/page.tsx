@@ -1,5 +1,6 @@
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
+import { PageHero } from "../components/PageHero";
 import { CONTACT_EMAIL } from "../components/constants";
 
 export default function Contact() {
@@ -7,17 +8,14 @@ export default function Contact() {
     <>
       <Nav />
 
-      <section className="page-hero">
-        <div className="wrap">
-          <h1>
+      <PageHero
+        title={
+          <>
             Say <em>hello.</em>
-          </h1>
-          <p className="lede">
-            Questions, partnerships, press, or just want to say hi? Drop us a
-            note — we read every message.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        lede="Questions, partnerships, press, or just want to say hi? Drop us a note. We read every message."
+      />
 
       <section className="sec">
         <div className="wrap">
@@ -93,36 +91,9 @@ export default function Contact() {
               </div>
               <div className="contact-item">
                 <h4>Follow along</h4>
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
-                  <a
-                    href="#"
-                    className="btn btn-ghost"
-                    style={{ padding: "8px 14px", fontSize: 13 }}
-                  >
-                    Instagram
-                  </a>
-                  <a
-                    href="#"
-                    className="btn btn-ghost"
-                    style={{ padding: "8px 14px", fontSize: 13 }}
-                  >
-                    YouTube
-                  </a>
-                  <a
-                    href="#"
-                    className="btn btn-ghost"
-                    style={{ padding: "8px 14px", fontSize: 13 }}
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="#"
-                    className="btn btn-ghost"
-                    style={{ padding: "8px 14px", fontSize: 13 }}
-                  >
-                    X / Twitter
-                  </a>
-                </div>
+                <p className="text-muted" style={{ fontSize: 15 }}>
+                  Social channels are coming soon. Join on Luma for event updates in the meantime.
+                </p>
               </div>
               <div className="contact-item">
                 <h4>Response time</h4>

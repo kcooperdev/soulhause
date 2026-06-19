@@ -1,246 +1,247 @@
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { SunMark } from "./components/SunMark";
-import { JOIN_URL } from "./components/constants";
+import { SeeEventsButton } from "./components/ExplorePathwaysButton";
+import { PathwayPicker, PathwayStickyNav, PathwayHashScroll } from "./components/PathwayNav";
+import { PathwayTabs } from "./components/PathwayTabs";
+import {
+  JOIN_URL,
+  MEMBER_COUNT,
+  EVENTS_HOSTED,
+  FOUNDED_YEAR,
+  NEXT_EVENT,
+  STACK_LAYERS,
+} from "./components/constants";
 
 /* ─── Hero ──────────────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <header className="hero-dark dot-grid-dark">
-      <span data-parallax="-0.22" style={{ position: "absolute", top: -60, right: -80, pointerEvents: "none" }}>
-        <SunMark size={480} opacity={0.1} color="#4F9080" />
-      </span>
-      <span data-parallax="0.12" style={{ position: "absolute", bottom: -100, left: -60, pointerEvents: "none" }}>
-        <SunMark size={320} opacity={0.08} color="#F5C432" />
-      </span>
-      <div className="hero-dark-inner">
-        <h1 data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
-          Build tools.<br />
-          Build community.<br />
-          Build <em>for good.</em>
-        </h1>
-        <p className="hero-dark-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-          SoulHause is an ecosystem — events, a builder community, and tools
-          built for civic tech, small businesses, and local creators across the DMV.
-        </p>
-        <div className="hero-dark-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
-          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
-            Join Community <span className="arrow">→</span>
-          </a>
-          <a href="#events" className="btn btn-dark-ghost">
-            Our Events
-          </a>
+    <header className="hero-cool path-signature-block">
+      <div className="hero-cool-bg" aria-hidden="true">
+        <div className="hero-cool-grid" />
+        <span className="hero-watermark" data-parallax="-0.05">
+          SoulHause
+        </span>
+        <svg className="hero-pathways path-signature-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" data-parallax="0.07">
+          <path className="hero-path hero-path--1" d="M 40 120 C 180 80, 320 200, 400 420" />
+          <path className="hero-path hero-path--2" d="M 760 100 C 620 140, 480 220, 400 420" />
+          <path className="hero-path hero-path--3" d="M 400 40 C 400 180, 400 280, 400 420" />
+          <circle className="hero-node hero-node--1" cx="40" cy="120" r="6" />
+          <circle className="hero-node hero-node--2" cx="760" cy="100" r="6" />
+          <circle className="hero-node hero-node--3" cx="400" cy="40" r="6" />
+          <circle className="hero-node hero-node--hub" cx="400" cy="420" r="10" />
+        </svg>
+        <span className="hero-orb hero-orb--1" data-parallax="0.18" />
+        <span className="hero-orb hero-orb--2" data-parallax="-0.12" />
+        <span className="hero-orb hero-orb--3" data-parallax="0.1" />
+      </div>
+
+      <div className="hero-cool-inner wrap">
+        <div className="hero-cool-main">
+          <h1 className="hero-cool-title" data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
+            <span className="hero-cool-line">Builder community</span>
+            <span className="hero-cool-line hero-cool-line--ghost">built around</span>
+            <span className="hero-cool-line hero-cool-line--accent">
+              the work<span className="path-signature-dot">.</span>
+            </span>
+          </h1>
+
+          <p className="hero-cool-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+            A builder community for talks, workshops, and mixers.{" "}
+            {MEMBER_COUNT} members learning, shipping, and showing up together.
+          </p>
+
+          <p className="hero-cool-next" data-reveal style={{ "--reveal-delay": "160ms" } as CSSProperties}>
+            Next up:{" "}
+            <a href="#next-event" className="hero-cool-next-link">
+              {NEXT_EVENT.title}
+            </a>
+            <span className="hero-cool-next-meta"> · {NEXT_EVENT.date}</span>
+          </p>
+
+          <div className="hero-cool-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
+            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              Join Community <span className="arrow">→</span>
+            </a>
+            <SeeEventsButton />
+          </div>
         </div>
+
+        <aside className="hero-cool-stack" aria-label="Community highlights">
+          {[
+            { num: MEMBER_COUNT, lbl: "Members", delay: "160ms" },
+            { num: EVENTS_HOSTED, lbl: "Events", delay: "220ms" },
+            { num: FOUNDED_YEAR, lbl: "Founded", delay: "280ms" },
+          ].map((stat) => (
+            <div
+              key={stat.lbl}
+              className="hero-stat-card"
+              data-reveal
+              style={{ "--reveal-delay": stat.delay } as CSSProperties}
+            >
+              <span className="hero-stat-num">{stat.num}</span>
+              <span className="hero-stat-lbl">{stat.lbl}</span>
+            </div>
+          ))}
+        </aside>
       </div>
     </header>
   );
 }
 
-/* ─── What We Build ─────────────────────────────────────────────────── */
-function WhatWeBuild() {
-  return (
-    <section className="sec">
-      <div className="wrap">
-        <div className="sec-head" data-reveal>
-          <div>
-            <h2 className="h-section">
-              One platform.<br /><em>Three pillars.</em>
-            </h2>
-          </div>
-          <div>
-            <p className="lede">
-              SoulHause gives builders a complete ecosystem — developer tools,
-              community infrastructure, and business tools — all in one place.
-            </p>
-          </div>
-        </div>
-
-        <div className="pillars-grid">
-          <div className="pillar" data-reveal style={{ "--reveal-delay": "0ms" } as CSSProperties}>
-            <span className="pillar-cat">Developer Platform</span>
-            <h3>Build faster with the right tools.</h3>
-            <p>
-              SDKs, APIs, hosting, and automation built for modern
-              developers shipping real products.
-            </p>
-            <ul>
-              <li>SDKs &amp; APIs</li>
-              <li>Serverless hosting</li>
-              <li>Automation pipelines</li>
-              <li>Dev-first CLI tools</li>
-            </ul>
-          </div>
-
-          <div className="pillar" data-reveal style={{ "--reveal-delay": "100ms" } as CSSProperties}>
-            <span className="pillar-cat">Civic &amp; Business Tools</span>
-            <h3>Tools built for people, not corporations.</h3>
-            <p>
-              Scheduling, payments, CRM, and event management designed
-              for small businesses and community organizations.
-            </p>
-            <ul>
-              <li>Scheduling &amp; bookings</li>
-              <li>Payments &amp; invoicing</li>
-              <li>Lightweight CRM</li>
-              <li>Event management</li>
-            </ul>
-          </div>
-
-          <div className="pillar" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
-            <span className="pillar-cat">Builders Network</span>
-            <h3>Connect with builders doing the work.</h3>
-            <p>
-              A real community — not just a Slack group. Profiles,
-              projects, matching, and shared resources.
-            </p>
-            <ul>
-              <li>Builder profiles</li>
-              <li>Public projects</li>
-              <li>Skill-based matching</li>
-              <li>Community resources</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Events ─────────────────────────────────────────────────────────── */
+/* ─── Events / Pathways ─────────────────────────────────────────────── */
 const EVENT_FORMATS = [
   {
     tag: "Soul Sessions",
-    tagline: "Talks",
+    format: "Talks",
     heading: "Stories that teach.",
-    body: "Live conversations where founders, creators, and technologists share the real journey — the mistakes, pivots, breakthroughs, and mindset behind the work. One guest, one mic, one story.",
-    bullets: ["One guest · one mic · one story", "Vulnerability over performance", "Lessons people can apply immediately", "Intimate, cinematic atmosphere"],
+    body: "Founders and technologists share the real journey: mistakes, pivots, and breakthroughs.",
+    bullets: ["One guest, one story", "Vulnerability over performance", "Lessons you can use right away"],
     delay: "0ms",
   },
   {
     tag: "Soul Labs",
-    tagline: "Workshops",
-    heading: "Skills that create opportunity.",
-    body: "Hands-on workshops where people come to build, not just listen. AI, software, branding, analytics, product development — every session is designed so you walk out with a new capability.",
-    bullets: ["Real tools, real demos, real output", "Beginner-friendly but high-value", "Led by engineers and practitioners", "Built for the DMV's tech ecosystem"],
-    delay: "100ms",
+    format: "Workshops",
+    heading: "Skills that stick.",
+    body: "Hands-on sessions where you build, not just listen. AI, software, branding, and more.",
+    bullets: ["Real tools and real output", "Beginner-friendly, high-value", "Led by practitioners"],
+    delay: "120ms",
   },
   {
     tag: "Hause Link",
-    tagline: "Mixers",
+    format: "Mixers",
     heading: "Connections that become collaborations.",
-    body: "Tech-forward mixers where the DMV's builders, creatives, founders, and technologists meet each other. Curated energy designed for collaboration — not small talk.",
-    bullets: ["Tech-leaning, future-focused energy", "Curated conversations, not chaos", "Creatives, engineers & founders", "The entry point into SoulHause"],
-    delay: "200ms",
+    body: "Tech-forward mixers for builders, creatives, and founders. Curated energy, not small talk.",
+    bullets: ["Future-focused crowd", "Curated conversations", "Your entry point to SoulHause"],
+    delay: "240ms",
   },
 ];
 
+function NextEvent() {
+  return (
+    <div id="next-event" className="event-next" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+      <div className="event-next-left">
+        <span className="event-next-label">Next Event</span>
+        <h3 className="event-next-title">{NEXT_EVENT.title}</h3>
+        <div className="event-next-meta">
+          <span>{NEXT_EVENT.date}</span>
+          <span>{NEXT_EVENT.format}</span>
+          <span>{NEXT_EVENT.location}</span>
+        </div>
+      </div>
+      <a
+        href={NEXT_EVENT.rsvpUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn btn-primary"
+      >
+        RSVP Now <span className="arrow">→</span>
+      </a>
+    </div>
+  );
+}
+
 function Events() {
   return (
-    <section className="sec sec-alt" style={{ paddingTop: 0 }} id="events">
-      <div className="wrap">
-        <div className="sec-head" data-reveal>
-          <div>
-            <h2 className="h-section">
-              Three ways<br />to <em>show up.</em>
-            </h2>
-          </div>
-          <div>
-            <p className="lede">
-              Every SoulHause event is intentional. Whether you&apos;re here to learn,
-              build, or connect — there&apos;s a format designed for you.
-            </p>
-          </div>
+    <section className="sec sec-events path-signature-block" id="pathways">
+      <div className="events-parallax" aria-hidden="true">
+        <span className="events-parallax-block events-parallax-block--1" data-parallax="0.16" />
+        <span className="events-parallax-block events-parallax-block--2" data-parallax="-0.12" />
+      </div>
+
+      <div className="wrap events-showcase">
+        <div className="sec-head-center" data-reveal>
+          <h2 className="h-section path-signature-head">
+            Three ways to <em>show up</em>
+          </h2>
+          <p className="lede lede-center">
+            Soul Sessions, Soul Labs, and Hause Link. Talks, workshops, and
+            mixers for builders who want to learn, ship, and connect.
+          </p>
         </div>
 
-        <div className="event-formats-grid">
-          {EVENT_FORMATS.map((fmt) => (
-            <div
+        <PathwayTabs
+          tabs={EVENT_FORMATS.map((fmt, i) => ({
+            id: `pathway-${i + 1}`,
+            label: fmt.tag,
+            tone: i + 1,
+          }))}
+        />
+
+        <div className="events-showcase-list">
+          {EVENT_FORMATS.map((fmt, i) => (
+            <article
               key={fmt.tag}
-              className="event-format-card"
+              id={`pathway-${i + 1}`}
+              className={`event-showcase event-showcase--${i + 1}`}
               data-reveal
               style={{ "--reveal-delay": fmt.delay } as CSSProperties}
             >
-              <div className="event-format-top">
-                <div>
-                  <span className="event-format-tag">{fmt.tag}</span>
-                  <span className="event-format-tagline"> · {fmt.tagline}</span>
+              <div className="event-showcase-lead">
+                <span className="event-showcase-num">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="event-showcase-tags">
+                  <span className="event-showcase-type">{fmt.format}</span>
+                  <span className="event-showcase-name">{fmt.tag}</span>
                 </div>
               </div>
-              <h3 className="event-format-heading">{fmt.heading}</h3>
-              <p className="event-format-body">{fmt.body}</p>
-              <ul className="event-format-list">
-                {fmt.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </div>
+
+              <div className="event-showcase-body">
+                <h3 className="event-showcase-heading">{fmt.heading}</h3>
+                <p className="event-showcase-desc">{fmt.body}</p>
+                <ul className="event-showcase-points">
+                  {fmt.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
           ))}
         </div>
 
-        <div className="event-next" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
-          <div className="event-next-left">
-            <span className="event-next-label">Next Event</span>
-            <h3 className="event-next-title">Hause of Soul</h3>
-            <div className="event-next-meta">
-              <span>Baltimore, MD</span>
-              <span>September 22, 2026</span>
-              <span>Happy Hour</span>
-            </div>
-          </div>
-          <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            RSVP Now <span className="arrow">→</span>
-          </a>
-        </div>
+        <NextEvent />
       </div>
     </section>
   );
 }
 
-/* ─── Community ──────────────────────────────────────────────────────── */
-function Community() {
+/* ─── How it works ──────────────────────────────────────────────────── */
+function HowItWorks() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="community-split">
-          <div data-reveal>
-            <h2 className="h-section" style={{ marginBottom: 20 }}>
-              1,100+ members<br />across <em>the DMV.</em>
-            </h2>
-            <p className="lede" style={{ marginBottom: 28 }}>
-              SoulHause has been building community across DC, Maryland, and Virginia
-              since day one — tech professionals, creatives, entrepreneurs, and local
-              builders who show up and stay connected.
-            </p>
-            <div className="feature-list">
-              {[
-                "In-person events across Baltimore, DC, and the DMV",
-                "Online community for members between events",
-                "Workshops, mixers, and happy hours",
-                "A space for builders at every stage",
-              ].map((item) => (
-                <div key={item} className="feature-list-item">
-                  <span className="feature-list-dash">—</span>
-                  <span className="feature-list-text">{item}</span>
-                </div>
-              ))}
-            </div>
-            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Join SoulHause <span className="arrow">→</span>
-            </a>
-          </div>
+    <section className="sec sec-stack">
+      <div className="wrap stack-layout">
+        <div className="stack-copy" data-reveal>
+          <h2 className="h-section path-signature-head">
+            How SoulHause <em>works</em>
+          </h2>
+          <p className="lede">
+            Show up to events. Meet builders. Use shared tools as we grow.
+          </p>
+          <p className="how-body">
+            Talks, workshops, and mixers in one community, not another Slack.
+            Platform tools for developers and small businesses are on the way.
+            Members get first access.
+          </p>
+          <Link href="/what-we-offer" className="btn btn-ghost">
+            What we&apos;re building
+          </Link>
+        </div>
 
-          <div className="community-stats" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-            {[
-              { num: "1,100+", lbl: "Members" },
-              { num: "3", lbl: "States — DC, MD, VA" },
-              { num: "10+", lbl: "Events Hosted" },
-              { num: "2025", lbl: "Founded" },
-            ].map((s) => (
-              <div key={s.lbl} className="community-stat">
-                <div className="community-stat-num">{s.num}</div>
-                <div className="community-stat-lbl">{s.lbl}</div>
-              </div>
+        <div className="stack-visual" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
+          <div className="stack-diagram" data-parallax="0.08">
+            {STACK_LAYERS.map((layer, i) => (
+              <Link
+                key={layer.label}
+                href={layer.href}
+                className={`stack-layer stack-layer--link stack-layer--${layer.tone}`}
+                style={{ "--stack-index": i } as CSSProperties}
+              >
+                <span className="stack-layer-label">{layer.label}</span>
+                <span className="stack-layer-sub">{layer.sub}</span>
+                <span className="stack-layer-arrow" aria-hidden="true">→</span>
+              </Link>
             ))}
           </div>
         </div>
@@ -249,32 +250,24 @@ function Community() {
   );
 }
 
-/* ─── CTA ────────────────────────────────────────────────────────────── */
+/* ─── CTA ───────────────────────────────────────────────────────────── */
 function CTA() {
   return (
-    <section className="sec" style={{ paddingTop: 0 }}>
+    <section className="sec sec-cta-dark">
       <div className="wrap">
-        <div className="cta-v2" data-reveal>
-          <span data-parallax="-0.1" style={{ position: "absolute", left: -60, bottom: -60, pointerEvents: "none" }}>
-            <SunMark size={300} opacity={0.07} color="#F5C432" />
-          </span>
-          <span data-parallax="0.08" style={{ position: "absolute", right: -40, top: -40, pointerEvents: "none" }}>
-            <SunMark size={180} opacity={0.05} color="#E8703A" />
-          </span>
-          <h2>
-            Build with SoulHause.<br />
-            Build for <em>your community.</em>
+        <div className="cta-dark" data-reveal>
+          <h2 className="cta-dark-title path-signature-head">
+            Ready to show up?
           </h2>
-          <p>
-            1,100+ members across DC, Maryland, and Virginia. Join the community
-            and be part of what we&apos;re building next.
+          <p className="cta-dark-sub">
+            Join {MEMBER_COUNT} builders at talks, workshops, and mixers.
           </p>
-          <div className="cta-v2-btns">
-            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold">
+          <div className="cta-dark-btns">
+            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               Join the Community <span className="arrow">→</span>
             </a>
-            <a href="#events" className="btn btn-dark-ghost">
-              See Our Events
+            <a href="#next-event" className="btn btn-on-dark-ghost">
+              RSVP for {NEXT_EVENT.title}
             </a>
           </div>
         </div>
@@ -288,12 +281,14 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <PathwayHashScroll />
+      <PathwayStickyNav />
       <Hero />
-      <WhatWeBuild />
       <Events />
-      <Community />
+      <HowItWorks />
       <CTA />
       <Footer />
+      <PathwayPicker />
     </>
   );
 }

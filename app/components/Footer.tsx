@@ -1,29 +1,29 @@
 import Link from "next/link";
+import { BrandLink } from "./BrandLink";
 import { JOIN_URL, CONTACT_EMAIL } from "./constants";
+import { pathwayHref } from "./pathway-nav";
 
 export function Footer() {
   return (
     <footer>
       <div className="wrap">
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 16, paddingBottom: 32, borderBottom: "1px solid rgba(245, 240, 230, 0.18)" }}>
-          <div className="footer-brand" style={{ justifyContent: "center" }}>
-            <span className="footer-wordmark">
-              <span style={{ color: "var(--sand)" }}>Soul</span>
-              <span style={{ color: "var(--sky-soft)" }}>Hause</span>
-            </span>
-          </div>
-          <p className="footer-tagline" style={{ maxWidth: 400, margin: "0 auto" }}>
-            An ecosystem of events, community, and tools for builders across DC, Maryland, and Virginia.
+        <div className="footer-main">
+          <BrandLink variant="footer" />
+          <p className="footer-tagline">
+            An ecosystem of events, community, and tools for builders everywhere.
           </p>
-          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center" }}>
-            <Link href="/about" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>About</Link>
-            <Link href="/contact" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>Contact</Link>
-            <a href={JOIN_URL} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>Join</a>
-            <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: "rgba(245,240,230,0.7)", fontSize: 14 }}>{CONTACT_EMAIL}</a>
-          </div>
+          <nav className="footer-links" aria-label="Footer">
+            <Link href={pathwayHref("pathways")}>Pathways</Link>
+            <Link href="/what-we-offer">Platform</Link>
+            <Link href="/about">About</Link>
+            <Link href="/membership">Membership</Link>
+            <Link href="/contact">Contact</Link>
+            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer">Join</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </nav>
         </div>
-        <div className="footer-bottom" style={{ justifyContent: "center" }}>
-          <span>© {new Date().getFullYear()} SoulHause · Launching September 2026</span>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} SoulHause. Launching September 2026</span>
         </div>
       </div>
     </footer>

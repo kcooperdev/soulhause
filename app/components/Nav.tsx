@@ -2,27 +2,77 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Logo } from "./Logo";
+import { usePathname, useRouter } from "next/navigation";
+import { BrandLink } from "./BrandLink";
 import { JOIN_URL } from "./constants";
+import { navigateToPathway, pathwayHref } from "./pathway-nav";
 
 const NAV_MENUS = [
   {
-    label: "Events",
+    label: "Pathways",
     items: [
-      { label: "Soul Sessions", desc: "Live storytelling from founders & creators", href: "#events" },
-      { label: "Soul Labs", desc: "Hands-on workshops for builders", href: "#events" },
-      { label: "Hause Link", desc: "Tech-forward mixers across the DMV", href: "#events" },
+      { label: "Soul Sessions", href: pathwayHref("pathway-1") },
+      { label: "Soul Labs", href: pathwayHref("pathway-2") },
+      { label: "Hause Link", href: pathwayHref("pathway-3") },
+      { label: "All events", href: "/#pathways" },
     ],
   },
   {
     label: "About",
     items: [
-      { label: "Mission", desc: "Why we're building SoulHause", href: "/about" },
+      { label: "Mission", href: "/about" },
+      { label: "Membership", href: "/membership" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
 
-function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
+function NavLink({
+  href,
+  label,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  onNavigate?: () => void;
+}) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    onNavigate?.();
+
+    const match = href.match(/^\/#(.+)$/);
+    if (!match) return;
+
+    e.preventDefault();
+    const id = match[1];
+    if (id === "pathways") {
+      if (pathname === "/") {
+        navigateToPathway("pathways", pathname, () => router.push(href));
+      } else {
+        router.push(href);
+      }
+      return;
+    }
+
+    navigateToPathway(id, pathname, (target) => router.push(target));
+  };
+
+  return (
+    <Link href={href} className="nav-dropdown-item" role="menuitem" onClick={handleClick}>
+      <span className="nav-dropdown-label">{label}</span>
+    </Link>
+  );
+}
+
+function DropdownGroup({
+  menu,
+  onNavigate,
+}: {
+  menu: (typeof NAV_MENUS)[0];
+  onNavigate?: () => void;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -56,26 +106,25 @@ function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
       onMouseLeave={hide}
     >
       <button
-        className="nav-menu-trigger"
+        className={`nav-menu-trigger${open ? " open" : ""}`}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
       >
         {menu.label}
-        <span className={`nav-chevron${open ? " open" : ""}`}>▾</span>
       </button>
       <div className={`nav-dropdown-panel${open ? " open" : ""}`} role="menu">
         <div className="nav-dropdown-inner">
           <div className="nav-dropdown-header">{menu.label}</div>
           {menu.items.map((item) => (
-            <Link
+            <NavLink
               key={item.label}
               href={item.href}
-              className="nav-dropdown-item"
-              role="menuitem"
-              onClick={() => setOpen(false)}
-            >
-              <span className="nav-dropdown-label">{item.label}</span>
-            </Link>
+              label={item.label}
+              onNavigate={() => {
+                setOpen(false);
+                onNavigate?.();
+              }}
+            />
           ))}
         </div>
       </div>
@@ -85,22 +134,29 @@ function DropdownGroup({ menu }: { menu: (typeof NAV_MENUS)[0] }) {
 
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleMobilePath = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const match = href.match(/^\/#(.+)$/);
+    if (!match) return;
+    e.preventDefault();
+    setMobileOpen(false);
+    navigateToPathway(match[1], pathname, (target) => router.push(target));
+  };
 
   return (
-    <nav className="nav" style={{ position: "relative" }}>
+    <nav className="nav">
       <div className="nav-inner">
-        <Link href="/" className="nav-logo">
-          <Logo size={44} />
-          <span className="nav-logo-text">
-            <span className="nav-logo-soul">Soul</span>
-            <span className="nav-logo-hause">Hause</span>
-          </span>
-        </Link>
+        <BrandLink />
 
-        <div className="nav-links" style={{ gap: 4 }}>
+        <div className="nav-links">
           {NAV_MENUS.map((menu) => (
             <DropdownGroup key={menu.label} menu={menu} />
           ))}
+          <Link href="/what-we-offer" className="nav-menu-trigger">
+            Platform
+          </Link>
           <a
             href="https://soulhausebuilders.com"
             target="_blank"
@@ -114,6 +170,7 @@ export function Nav() {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <a
             href={JOIN_URL}
+            data-join-gate
             target="_blank"
             rel="noopener noreferrer"
             className="nav-cta"
@@ -142,7 +199,13 @@ export function Nav() {
                 key={item.label}
                 href={item.href}
                 className="nav-mobile-link"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => {
+                  if (item.href.startsWith("/#")) {
+                    handleMobilePath(e, item.href);
+                  } else {
+                    setMobileOpen(false);
+                  }
+                }}
               >
                 {item.label}
               </Link>
@@ -150,7 +213,9 @@ export function Nav() {
           </div>
         ))}
         <div className="nav-mobile-section">
-          <div className="nav-mobile-label">Builders</div>
+          <Link href="/what-we-offer" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
+            Platform
+          </Link>
           <a
             href="https://soulhausebuilders.com"
             target="_blank"
@@ -161,9 +226,10 @@ export function Nav() {
             SoulHause Builders →
           </a>
         </div>
-        <div style={{ paddingTop: 16, borderTop: "1px solid var(--border-dark)" }}>
+        <div style={{ paddingTop: 16, borderTop: "1px solid var(--line)" }}>
           <a
             href={JOIN_URL}
+            data-join-gate
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary"

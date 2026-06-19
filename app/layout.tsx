@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Fredoka,
   Bricolage_Grotesque,
@@ -9,6 +9,7 @@ import {
 import Script from "next/script";
 import "./globals.css";
 import Interactive from "./interactive";
+import { JoinGate } from "./components/JoinGate";
 
 const retro = Fredoka({
   variable: "--font-retro",
@@ -41,23 +42,29 @@ const mono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "SoulHause — Events, community & tools for DMV builders.",
+  title: "SoulHause | Events, community and tools for builders.",
   description:
-    "SoulHause is an ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across DC, Maryland, and Virginia.",
+    "SoulHause is an ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
+  metadataBase: new URL("https://soulhause.com"),
   openGraph: {
-    title: "SoulHause — Events, community & tools for DMV builders.",
+    title: "SoulHause | Events, community and tools for builders.",
     description:
-      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across the DMV.",
+      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause — Events, community & tools for DMV builders.",
+    title: "SoulHause | Events, community and tools for builders.",
     description:
-      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators across the DMV.",
+      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
   },
 };
 
@@ -70,15 +77,18 @@ export default function RootLayout({
       className={`${retro.variable} ${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
     >
       <body>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KCKRKCGM"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {children}
+        <div className="site-shell">
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-KCKRKCGM"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+          {children}
+        </div>
+        <JoinGate />
         <Interactive />
         <Script
           id="gtm"

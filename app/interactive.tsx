@@ -2,6 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/* ─── Reduced motion ─────────────────────────────────────────────────── */
+function useReducedMotion() {
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      document.documentElement.classList.toggle("reduce-motion", mq.matches);
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+}
+
 /* ─── Scroll reveal ─────────────────────────────────────────────────── */
 function useScrollReveal() {
   useEffect(() => {
@@ -25,29 +38,41 @@ function useScrollReveal() {
   }, []);
 }
 
-/* ─── Parallax ──────────────────────────────────────────────────────── */
 function useParallax() {
   useEffect(() => {
     const els = document.querySelectorAll<HTMLElement>("[data-parallax]");
     if (!els.length) return;
 
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
     let ticking = false;
+
+    const update = () => {
+      els.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallax ?? "0");
+        const rect = el.getBoundingClientRect();
+        const centerOffset = rect.top + rect.height * 0.5 - window.innerHeight * 0.5;
+        el.style.transform = `translate3d(0, ${centerOffset * speed}px, 0)`;
+      });
+    };
 
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const y = window.scrollY;
-        els.forEach((el) => {
-          const speed = parseFloat(el.dataset.parallax ?? "0");
-          el.style.transform = `translateY(${y * speed}px)`;
-        });
+        update();
         ticking = false;
       });
     };
 
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 }
 
@@ -57,12 +82,14 @@ export default function Interactive() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [hasFinePointer, setHasFinePointer] = useState(false);
 
+  useReducedMotion();
   useScrollReveal();
   useParallax();
 
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setHasFinePointer(mq.matches);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setHasFinePointer(mq.matches && !reduced.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);

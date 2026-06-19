@@ -1,20 +1,21 @@
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
-import { Stamp } from "../components/Motifs";
-import { JOIN_URL } from "../components/constants";
+import { PageHero } from "../components/PageHero";
+import { PageCta } from "../components/PageCta";
+import { MEMBER_COUNT } from "../components/constants";
 
 const VALUES = [
   {
     title: "Build, don't just talk.",
-    body: "Cohorts, workshops, and pitch nights push members to make something real — not stay in chat forever.",
+    body: "Workshops, cohorts, and pitch nights push members to make something real, not stay in chat forever.",
   },
   {
     title: "Show up for each other.",
-    body: "Community is a verb. We celebrate wins, give feedback, and answer questions — actually.",
+    body: "Community is a verb. We celebrate wins, give feedback, and answer questions, actually.",
   },
   {
     title: "Quality over noise.",
-    body: "Curated resources, focused channels, and conversations that actually move you forward.",
+    body: "Curated resources, focused channels, and conversations that move you forward.",
   },
   {
     title: "Open door, high standards.",
@@ -27,51 +28,47 @@ export default function About() {
     <>
       <Nav />
 
-      <section className="page-hero">
-        <div className="wrap">
-          <h1>
+      <PageHero
+        title={
+          <>
             A small house. <em>Lights on.</em>
-          </h1>
-          <p className="lede">
-            SoulHause is a modern, creative, tech-forward community where
-            people learn, build, and grow through events, cohorts, and shared
-            resources.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        lede="SoulHause is a builder community for talks, workshops, and mixers. Events are live today. Platform tools are on the way."
+      />
 
       <section className="sec">
         <div className="wrap">
           <div className="about-grid">
             <div>
-              <h2 className="h-section" style={{ marginBottom: 18 }}>
+              <h2 className="h-section path-signature-head" style={{ marginBottom: 18, fontSize: "clamp(28px, 3.5vw, 44px)" }}>
                 Make tech and creativity <em>feel like home.</em>
               </h2>
-              <p className="text-muted" style={{ fontSize: 17 }}>
-                Most tech communities feel either too transactional or too
-                quiet. SoulHause is built to feel like a warm, modern space —
-                somewhere you can learn out loud, meet the right people, and
-                ship the thing you&apos;ve been putting off.
+              <p className="about-copy">
+                Most tech communities feel either too transactional or too quiet.
+                SoulHause is built to feel like a warm, modern space where you
+                can learn out loud, meet the right people, and ship the thing
+                you&apos;ve been putting off.
               </p>
-              <p className="text-muted" style={{ fontSize: 17, marginTop: 14 }}>
-                We bring together events, cohorts, and a real resource library
-                so that whether you&apos;re curious for the first time or ten
-                years deep, there&apos;s always a next step for you.
+              <p className="about-copy">
+                We bring together events, cohorts, and a growing resource library
+                so that whether you&apos;re curious for the first time or ten years
+                deep, there&apos;s always a next step for you.
               </p>
             </div>
 
             <div>
-              <h2 className="h-section" style={{ marginBottom: 18 }}>
+              <h2 className="h-section path-signature-head" style={{ marginBottom: 18, fontSize: "clamp(28px, 3.5vw, 44px)" }}>
                 Started by builders, <em>for builders.</em>
               </h2>
-              <p className="text-muted" style={{ fontSize: 17 }}>
-                SoulHause started from a simple observation: people learn
-                faster, build better, and stay more consistent when they&apos;re
-                in a real community — not just another Slack or Discord.
+              <p className="about-copy">
+                SoulHause started from a simple observation: people learn faster,
+                build better, and stay more consistent when they&apos;re in a real
+                community, not just another Slack or Discord.
               </p>
-              <p className="text-muted" style={{ fontSize: 17, marginTop: 14 }}>
-                We wanted to combine the energy of a great IRL meetup with the
-                support of a well-run online community and the structure of a
+              <p className="about-copy">
+                We wanted to combine the energy of a great in-person meetup with
+                the support of a well-run online community and the structure of a
                 guided program. SoulHause is that home.
               </p>
             </div>
@@ -79,18 +76,18 @@ export default function About() {
         </div>
       </section>
 
-      <section className="sec" style={{ paddingTop: 0 }}>
+      <section className="sec sec-alt">
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 className="h-section">
+              <h2 className="h-section path-signature-head">
                 Values that <em>shape this place.</em>
               </h2>
             </div>
             <div>
               <p className="lede">
-                Four ideas guide everything from how we run events to how
-                channels feel inside.
+                Four ideas guide everything from how we run events to how channels
+                feel inside.
               </p>
             </div>
           </div>
@@ -106,25 +103,12 @@ export default function About() {
         </div>
       </section>
 
-      <section className="sec" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="cta-strip">
-            <Stamp variant="sand">
-              ★<br />Come<br />build
-            </Stamp>
-            <h2>Come <em>build with us.</em></h2>
-            <p>Join the SoulHause community — the door is open.</p>
-            <a
-              className="btn btn-on-dark"
-              href={JOIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Coming Soon · September 2026 <span className="arrow">→</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageCta
+        title="Ready to show up?"
+        sub={`Join ${MEMBER_COUNT} builders at talks, workshops, and mixers.`}
+        secondaryHref="/#pathways"
+        secondaryLabel="See events"
+      />
 
       <Footer />
     </>
