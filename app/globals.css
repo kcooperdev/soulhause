@@ -1053,145 +1053,6 @@ p { margin: 0; line-height: 1.6; }
   margin-bottom: 24px;
   font-size: clamp(28px, 3.5vw, 44px);
 }
-.founder-block {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 40px;
-  align-items: center;
-}
-@media (min-width: 880px) {
-  .founder-block {
-    grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
-    gap: 64px;
-  }
-}
-.founder-photo {
-  justify-self: center;
-  width: min(100%, 340px);
-}
-.founder-photo-img {
-  width: 100%;
-  height: auto;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  display: block;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.founder-eyebrow {
-  font-family: var(--font-retro), var(--font-display), system-ui;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--house-green);
-  margin: 0 0 12px;
-}
-.founder-title {
-  font-size: clamp(28px, 3.5vw, 44px);
-  margin-bottom: 8px;
-}
-.founder-role {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 24px;
-}
-.founder-copy .about-copy + .about-copy {
-  margin-top: 16px;
-}
-.founder-highlights {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.founder-highlights li {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink-soft);
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.45;
-}
-.founder-highlights li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 8px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--sun-orange);
-}
-.founder-quote {
-  margin: 0 0 24px;
-  padding: 20px 22px;
-  background: var(--paper);
-  border-radius: 0 12px 12px 0;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--sun-gold);
-}
-.founder-quote p {
-  margin: 0;
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: clamp(17px, 1.6vw, 19px);
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-.founder-proof {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 28px 0 24px;
-  padding: 18px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-.founder-proof-stat {
-  text-align: center;
-}
-.founder-proof-num {
-  display: block;
-  font-family: var(--font-retro), var(--font-display), system-ui;
-  font-size: clamp(22px, 3vw, 28px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.founder-proof-lbl {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.founder-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-@media (max-width: 639px) {
-  .founder-ctas {
-    flex-direction: column;
-  }
-  .founder-ctas .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-#founder {
-  scroll-margin-top: calc(var(--nav-height, 72px) + 16px);
-}
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -3049,6 +2910,11 @@ footer a:hover { opacity: 1; color: var(--house-green-dark); }
   opacity: 1;
   pointer-events: auto;
 }
+@media (min-width: 768px) {
+  .pathway-sticky {
+    display: none;
+  }
+}
 .pathway-sticky-inner {
   display: flex;
   gap: 8px;
@@ -3451,8 +3317,7 @@ footer a:hover { opacity: 1; color: var(--house-green-dark); }
   }
 
   .about-intro .h-section,
-  .about-intro-head,
-  .founder-title {
+  .about-intro-head {
     margin-bottom: 24px !important;
   }
 
@@ -3625,41 +3490,6 @@ footer a:hover { opacity: 1; color: var(--house-green-dark); }
     gap: 48px;
   }
 
-  .founder-block {
-    gap: 56px;
-  }
-
-  .founder-role {
-    margin-bottom: 32px;
-    line-height: 1.5;
-  }
-
-  .founder-copy .about-copy + .about-copy {
-    margin-top: 22px;
-  }
-
-  .founder-proof {
-    margin: 36px 0 32px;
-    padding: 24px 18px;
-    gap: 18px;
-  }
-
-  .founder-ctas {
-    gap: 16px;
-  }
-
-  .founder-ctas .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 16px 24px;
-    min-height: 52px;
-  }
-
-  .founder-highlights {
-    margin-top: 24px;
-    gap: 12px;
-  }
-
   .values {
     gap: 16px;
   }
@@ -3827,10 +3657,6 @@ footer a:hover { opacity: 1; color: var(--house-green-dark); }
 
   .sec[id] {
     scroll-margin-top: calc(var(--nav-height, 72px) + 56px);
-  }
-
-  #founder {
-    scroll-margin-top: calc(var(--nav-height, 72px) + 20px);
   }
 }
 

@@ -1,16 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import {
-  EVENTS_HOSTED,
-  FOUNDED_YEAR,
-  FOUNDER,
-  JOIN_URL,
-  MEMBER_COUNT,
-} from "../components/constants";
+import { MEMBER_COUNT } from "../components/constants";
 
 const VALUES = [
   {
@@ -30,10 +22,6 @@ const VALUES = [
     body: "Anyone curious is welcome. We pair that openness with care for the experience inside.",
   },
 ];
-
-const FOUNDER_STORY = FOUNDER.story.map((paragraph) =>
-  paragraph.replace("{MEMBER_COUNT}", MEMBER_COUNT)
-);
 
 export default function About() {
   return (
@@ -70,73 +58,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="sec sec-alt" id="founder">
-        <div className="wrap founder-block">
-          <div className="founder-photo">
-            <Image
-              src="/founder.jpeg"
-              alt={`${FOUNDER.name}, ${FOUNDER.role} of SoulHause`}
-              width={480}
-              height={480}
-              className="founder-photo-img"
-              priority
-            />
-            <ul className="founder-highlights">
-              {FOUNDER.highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="founder-copy">
-            <p className="founder-eyebrow">Meet the founder</p>
-            <h2 className="h-section path-signature-head founder-title">
-              {FOUNDER.name}
-            </h2>
-            <p className="founder-role">
-              {FOUNDER.role}, SoulHause · {FOUNDER.credentials}
-            </p>
-
-            {FOUNDER_STORY.map((paragraph) => (
-              <p key={paragraph.slice(0, 28)} className="about-copy">
-                {paragraph}
-              </p>
-            ))}
-
-            <div className="founder-proof">
-              <div className="founder-proof-stat">
-                <span className="founder-proof-num">{MEMBER_COUNT}</span>
-                <span className="founder-proof-lbl">Members</span>
-              </div>
-              <div className="founder-proof-stat">
-                <span className="founder-proof-num">{EVENTS_HOSTED}</span>
-                <span className="founder-proof-lbl">Events</span>
-              </div>
-              <div className="founder-proof-stat">
-                <span className="founder-proof-num">{FOUNDED_YEAR}</span>
-                <span className="founder-proof-lbl">Founded</span>
-              </div>
-            </div>
-
-            <div className="founder-ctas">
-              <a
-                href={JOIN_URL}
-                data-join-gate
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-              >
-                Join the community <span className="arrow">→</span>
-              </a>
-              <Link href="/#pathways" className="btn btn-ghost">
-                See events
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="sec">
+      <section className="sec sec-alt">
         <div className="wrap">
           <div className="sec-head">
             <div>

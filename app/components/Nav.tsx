@@ -21,7 +21,6 @@ const NAV_MENUS = [
     label: "About",
     items: [
       { label: "Mission", href: "/about" },
-      { label: "Founder", href: "/about#founder" },
       { label: "Membership", href: "/membership" },
       { label: "Contact", href: "/contact" },
     ],
