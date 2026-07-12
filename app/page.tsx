@@ -11,6 +11,7 @@ import {
   EVENTS_HOSTED,
   FOUNDED_YEAR,
   NEXT_EVENT,
+  PATHWAY_PICKER,
   STACK_LAYERS,
 } from "./components/constants";
 
@@ -91,32 +92,34 @@ function Hero() {
 }
 
 /* ─── Events / Pathways ─────────────────────────────────────────────── */
-const EVENT_FORMATS = [
+const PATHWAY_SHOWCASE = [
   {
-    tag: "Soul Sessions",
-    format: "Talks",
     heading: "Stories that teach.",
     body: "Founders and technologists share the real journey: mistakes, pivots, and breakthroughs.",
     bullets: ["One guest, one story", "Vulnerability over performance", "Lessons you can use right away"],
     delay: "0ms",
   },
   {
-    tag: "Soul Labs",
-    format: "Workshops",
     heading: "Skills that stick.",
     body: "Hands-on sessions where you build, not just listen. AI, software, branding, and more.",
     bullets: ["Real tools and real output", "Beginner-friendly, high-value", "Led by practitioners"],
     delay: "120ms",
   },
   {
-    tag: "Soul Tech",
-    format: "Mixers",
-    heading: "Connections that become collaborations.",
-    body: "Tech-forward mixers for builders, creatives, and founders. Curated energy, not small talk.",
+    heading: "SoulHause's signature tech happy hour.",
+    body: "The room where builders, creatives, and founders actually meet. Curated energy, not small talk.",
     bullets: ["Future-focused crowd", "Curated conversations", "Your entry point to SoulHause"],
     delay: "240ms",
   },
-];
+] as const;
+
+const EVENT_FORMATS = PATHWAY_PICKER.map((pathway, index) => ({
+  id: pathway.id,
+  tag: pathway.label,
+  shortTag: pathway.shortLabel,
+  format: pathway.format,
+  ...PATHWAY_SHOWCASE[index],
+}));
 
 function NextEvent() {
   return (
@@ -156,15 +159,15 @@ function Events() {
             Three ways to <em>show up</em>
           </h2>
           <p className="lede lede-center">
-            Soul Sessions, Soul Labs, and Soul Tech. Talks, workshops, and
-            mixers for builders who want to learn, ship, and connect.
+            Soul Sessions, Soul Labs, and {PATHWAY_PICKER[2].label}. Talks, workshops, and
+            tech happy hours for builders who want to learn, ship, and connect.
           </p>
         </div>
 
         <PathwayTabs
           tabs={EVENT_FORMATS.map((fmt, i) => ({
-            id: `pathway-${i + 1}`,
-            label: fmt.tag,
+            id: fmt.id,
+            label: fmt.shortTag,
             tone: i + 1,
           }))}
         />
@@ -172,11 +175,9 @@ function Events() {
         <div className="events-showcase-list">
           {EVENT_FORMATS.map((fmt, i) => (
             <article
-              key={fmt.tag}
-              id={`pathway-${i + 1}`}
+              key={fmt.id}
+              id={fmt.id}
               className={`event-showcase event-showcase--${i + 1}`}
-              data-reveal
-              style={{ "--reveal-delay": fmt.delay } as CSSProperties}
             >
               <div className="event-showcase-lead">
                 <span className="event-showcase-num">

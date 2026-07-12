@@ -2,7 +2,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import { JOIN_URL, MEMBERSHIP_LAUNCH } from "../components/constants";
+import { JOIN_URL, MEMBERSHIP_COMING_SOON, PATHWAY_PICKER } from "../components/constants";
 import {
   EventsIcon,
   CohortIcon,
@@ -90,19 +90,19 @@ export default function WhatWeOffer() {
             Events today. <em>Platform tomorrow.</em>
           </>
         }
-        lede={`Soul Sessions, Soul Labs, and Soul Tech are live now. Developer tools, cohorts, and the full resource library launch with membership in ${MEMBERSHIP_LAUNCH}.`}
+        lede={`Soul Sessions, Soul Labs, and ${PATHWAY_PICKER[2].label} are live now. Developer tools, cohorts, and the full resource library arrive with membership · ${MEMBERSHIP_COMING_SOON}.`}
       />
 
       <section className="sec">
         <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <Feature
             cat="Live now"
-            title={<>Soul Sessions, Labs, and Tech</>}
-            body="Talks, workshops, and mixers for builders who want to learn, ship, and connect. This is the heart of SoulHause today."
+            title={<>Soul Sessions, Labs, and Hause of Soul</>}
+            body="Talks, workshops, and tech happy hours for builders who want to learn, ship, and connect. This is the heart of SoulHause today."
             bullets={[
               "Soul Sessions: stories from people doing the work",
               "Soul Labs: hands-on workshops with real output",
-              "Soul Tech: mixers where collaborations start",
+              `${PATHWAY_PICKER[2].label}: SoulHause's signature tech happy hour`,
               "RSVP on Luma and show up in person or online",
             ]}
             icon={<EventsIcon />}

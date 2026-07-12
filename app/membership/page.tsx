@@ -2,7 +2,7 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import { JOIN_URL, MEMBERSHIP_LAUNCH, NEXT_EVENT } from "../components/constants";
+import { JOIN_URL, MEMBERSHIP_COMING_SOON, MEMBERSHIP_LAUNCH } from "../components/constants";
 
 export default function Membership() {
   return (
@@ -12,10 +12,10 @@ export default function Membership() {
       <PageHero
         title={
           <>
-            Two ways in. <em>Both opening soon.</em>
+            Two ways in. <em>Membership coming soon.</em>
           </>
         }
-        lede={`Hause of Soul is September 2026. Full membership opens ${MEMBERSHIP_LAUNCH} with Pro perks, cohorts, and the complete platform.`}
+        lede={`Events are live now. Membership ${MEMBERSHIP_COMING_SOON} with Pro perks, cohorts, and the complete platform.`}
       />
 
       <section className="sec">
@@ -131,7 +131,7 @@ export default function Membership() {
             <article className="about-card">
               <h3>When can I sign up?</h3>
               <p>
-                Full membership launches {MEMBERSHIP_LAUNCH}. Join the waitlist and
+                Membership is coming soon in {MEMBERSHIP_LAUNCH}. Join the waitlist and
                 you&apos;ll be first to hear when the doors open.
               </p>
             </article>
@@ -140,8 +140,8 @@ export default function Membership() {
       </section>
 
       <PageCta
-        title={`Membership opens ${MEMBERSHIP_LAUNCH}`}
-        sub="The platform is still growing. Join the waitlist and we'll let you know the moment membership opens."
+        title={`Membership · ${MEMBERSHIP_COMING_SOON}`}
+        sub="The platform is still growing. Join the waitlist and we'll let you know when membership opens."
         primaryLabel="Join waitlist"
         secondaryHref="/#pathways"
         secondaryLabel="See events"

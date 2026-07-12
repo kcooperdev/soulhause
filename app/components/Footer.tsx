@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BrandLink } from "./BrandLink";
-import { JOIN_URL, CONTACT_EMAIL, MEMBERSHIP_LAUNCH, NEXT_EVENT } from "./constants";
+import { JOIN_URL, CONTACT_EMAIL, MEMBERSHIP_COMING_SOON, NEXT_EVENT } from "./constants";
 import { pathwayHref } from "./pathway-nav";
 
 export function Footer() {
@@ -26,7 +26,7 @@ export function Footer() {
         </div>
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} SoulHause. {NEXT_EVENT.title} · {NEXT_EVENT.date}. Membership · {MEMBERSHIP_LAUNCH}.
+            © {new Date().getFullYear()} SoulHause. {NEXT_EVENT.title} · {NEXT_EVENT.date}. Membership · {MEMBERSHIP_COMING_SOON}.
           </span>
         </div>
       </div>

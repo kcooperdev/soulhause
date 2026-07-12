@@ -45,6 +45,11 @@ function useScrollReveal() {
     els.forEach((el) => {
       el.classList.remove("in");
       observer.observe(el);
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 40) {
+        el.classList.add("in");
+        observer.unobserve(el);
+      }
     });
     return () => observer.disconnect();
   }, [pathname]);

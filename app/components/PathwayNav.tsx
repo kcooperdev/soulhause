@@ -152,7 +152,7 @@ export function PathwayStickyNav() {
             aria-current={active === item.id ? "true" : undefined}
             onClick={() => goToPathway(item.id)}
           >
-            {item.label}
+            {item.shortLabel}
           </button>
         ))}
       </div>

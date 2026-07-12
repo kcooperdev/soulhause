@@ -4,16 +4,17 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BrandLink } from "./BrandLink";
-import { JOIN_URL } from "./constants";
+import { JOIN_URL, PATHWAY_PICKER } from "./constants";
 import { navigateToPathway, pathwayHref } from "./pathway-nav";
 
 const NAV_MENUS = [
   {
     label: "Pathways",
     items: [
-      { label: "Soul Sessions", href: pathwayHref("pathway-1") },
-      { label: "Soul Labs", href: pathwayHref("pathway-2") },
-      { label: "Soul Tech", href: pathwayHref("pathway-3") },
+      ...PATHWAY_PICKER.map((pathway) => ({
+        label: pathway.shortLabel,
+        href: pathwayHref(pathway.id),
+      })),
       { label: "All events", href: "/#pathways" },
     ],
   },
