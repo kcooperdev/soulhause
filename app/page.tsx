@@ -7,16 +7,28 @@ import { PathwayPicker, PathwayStickyNav, PathwayHashScroll } from "./components
 import { PathwayTabs } from "./components/PathwayTabs";
 import {
   JOIN_URL,
-  MEMBER_COUNT,
-  EVENTS_HOSTED,
-  FOUNDED_YEAR,
+  FLAGSHIP_PRODUCT,
+  SOUL_BUILDERS_PRODUCT,
   NEXT_EVENT,
   PATHWAY_PICKER,
+  PATHWAY_OFFERS,
   STACK_LAYERS,
+  PATHWAYS_VS_BUILDERS,
+  PATHWAYS_SUMMARY,
+  PRIMARY_CTA,
+  NEXT_EVENT_OFFER,
+  PROOF_STATS,
+  FUNNEL_STEPS,
+  SITE_TAGLINE,
 } from "./components/constants";
-
-/* ─── Hero ──────────────────────────────────────────────────────────── */
 function Hero() {
+  const pathwayRail = PATHWAY_PICKER.map((pathway, index) => ({
+    num: String(index + 1).padStart(2, "0"),
+    label: pathway.shortLabel,
+    tone: pathway.tone,
+    href: `#${pathway.id}`,
+  }));
+
   return (
     <header className="hero-cool path-signature-block">
       <div className="hero-cool-bg" aria-hidden="true">
@@ -24,6 +36,9 @@ function Hero() {
         <span className="hero-watermark" data-parallax="-0.05">
           SoulHause
         </span>
+        <span className="hero-orb hero-orb--1" />
+        <span className="hero-orb hero-orb--2" />
+        <span className="hero-orb hero-orb--3" />
         <svg className="hero-pathways path-signature-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" data-parallax="0.07">
           <path className="hero-path hero-path--1" d="M 40 120 C 180 80, 320 200, 400 420" />
           <path className="hero-path hero-path--2" d="M 760 100 C 620 140, 480 220, 400 420" />
@@ -33,56 +48,55 @@ function Hero() {
           <circle className="hero-node hero-node--3" cx="400" cy="40" r="6" />
           <circle className="hero-node hero-node--hub" cx="400" cy="420" r="10" />
         </svg>
-        <span className="hero-orb hero-orb--1" data-parallax="0.18" />
-        <span className="hero-orb hero-orb--2" data-parallax="-0.12" />
-        <span className="hero-orb hero-orb--3" data-parallax="0.1" />
       </div>
 
       <div className="hero-cool-inner wrap">
         <div className="hero-cool-main">
-          <h1 className="hero-cool-title" data-reveal style={{ "--reveal-delay": "40ms" } as CSSProperties}>
-            <span className="hero-cool-line">Builder community</span>
-            <span className="hero-cool-line hero-cool-line--ghost">built around</span>
-            <span className="hero-cool-line hero-cool-line--accent">
-              the work<span className="path-signature-dot">.</span>
-            </span>
+          <span className="hero-cool-badge">
+            <span className="hero-cool-badge-dot" />
+            {NEXT_EVENT_OFFER.eyebrow}
+          </span>
+
+          <h1 className="hero-cool-title">
+            <span className="hero-cool-line">{NEXT_EVENT.shortTitle}</span>
+            <span className="hero-cool-line hero-cool-line--accent">{NEXT_EVENT.format}</span>
           </h1>
 
-          <p className="hero-cool-sub" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
-            A builder community for talks, workshops, and mixers.{" "}
-            {MEMBER_COUNT} members learning, shipping, and showing up together.
+          <p className="hero-cool-sub">
+            {NEXT_EVENT_OFFER.lede}
+          </p>
+          <p className="hero-cool-sub">
+            {NEXT_EVENT_OFFER.detail}
+          </p>
+          <p className="hero-cool-next">
+            {NEXT_EVENT.date}
+          </p>
+          <p className="hero-cool-brand">
+            SoulHause. {SITE_TAGLINE}
           </p>
 
-          <p className="hero-cool-next" data-reveal style={{ "--reveal-delay": "160ms" } as CSSProperties}>
-            Next up:{" "}
-            <a href="#next-event" className="hero-cool-next-link">
-              {NEXT_EVENT.title}
-            </a>
-            <span className="hero-cool-next-meta"> · {NEXT_EVENT.date}</span>
-          </p>
-
-          <div className="hero-cool-ctas" data-reveal style={{ "--reveal-delay": "200ms" } as CSSProperties}>
-            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Join Community <span className="arrow">→</span>
+          <div className="hero-cool-ctas">
+            <a href={NEXT_EVENT.rsvpUrl} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              {PRIMARY_CTA} <span className="arrow">→</span>
             </a>
             <SeeEventsButton />
           </div>
+
+          <div className="hero-cool-rail">
+            {pathwayRail.map((item) => (
+              <a key={item.num} href={item.href} className={`hero-rail-item hero-rail-item--${item.tone}`}>
+                <span className="hero-rail-num">{item.num}</span>
+                <span className="hero-rail-label">{item.label}</span>
+              </a>
+            ))}
+          </div>
         </div>
 
-        <aside className="hero-cool-stack" aria-label="Community highlights">
-          {[
-            { num: MEMBER_COUNT, lbl: "Members", delay: "160ms" },
-            { num: EVENTS_HOSTED, lbl: "Events", delay: "220ms" },
-            { num: FOUNDED_YEAR, lbl: "Founded", delay: "280ms" },
-          ].map((stat) => (
-            <div
-              key={stat.lbl}
-              className="hero-stat-card"
-              data-reveal
-              style={{ "--reveal-delay": stat.delay } as CSSProperties}
-            >
-              <span className="hero-stat-num">{stat.num}</span>
-              <span className="hero-stat-lbl">{stat.lbl}</span>
+        <aside className="hero-cool-stack" aria-label="Proof">
+          {PROOF_STATS.map((stat) => (
+            <div key={stat.label} className="hero-stat-card">
+              <span className="hero-stat-num">{stat.value}</span>
+              <span className="hero-stat-lbl">{stat.label}</span>
             </div>
           ))}
         </aside>
@@ -91,55 +105,81 @@ function Hero() {
   );
 }
 
-/* ─── Events / Pathways ─────────────────────────────────────────────── */
-const PATHWAY_SHOWCASE = [
-  {
-    heading: "Stories that teach.",
-    body: "Founders and technologists share the real journey: mistakes, pivots, and breakthroughs.",
-    bullets: ["One guest, one story", "Vulnerability over performance", "Lessons you can use right away"],
-    delay: "0ms",
-  },
-  {
-    heading: "Skills that stick.",
-    body: "Hands-on sessions where you build, not just listen. AI, software, branding, and more.",
-    bullets: ["Real tools and real output", "Beginner-friendly, high-value", "Led by practitioners"],
-    delay: "120ms",
-  },
-  {
-    heading: "SoulHause's signature tech happy hour.",
-    body: "The room where builders, creatives, and founders actually meet. Curated energy, not small talk.",
-    bullets: ["Future-focused crowd", "Curated conversations", "Your entry point to SoulHause"],
-    delay: "240ms",
-  },
-] as const;
+/* ─── Flagship product ──────────────────────────────────────────────── */
+function FlagshipProduct() {
+  return (
+    <section className="sec sec-alt" id="flagship">
+      <div className="wrap flagship-block">
+        <div className="flagship-copy">
+          <p className="flagship-eyebrow">Citywide moment</p>
+          <h2 className="h-section path-signature-head">
+            {FLAGSHIP_PRODUCT.name}
+          </h2>
+          <p className="product-parent-line">A SoulHause product · {FLAGSHIP_PRODUCT.location}</p>
+          <p className="lede">{FLAGSHIP_PRODUCT.summary}</p>
+          <p className="how-body">
+            {FLAGSHIP_PRODUCT.description} Start with pathways. BTW is where the community
+            shows up at scale.
+          </p>
+          <div className="flagship-ctas">
+            <SeeEventsButton />
+            <a
+              href={FLAGSHIP_PRODUCT.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost"
+            >
+              Explore Baltimore Tech Week <span className="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="flagship-card">
+          <span className="flagship-card-badge">{FLAGSHIP_PRODUCT.badge}</span>
+          <h3 className="flagship-card-title">{FLAGSHIP_PRODUCT.name}</h3>
+          <p className="flagship-card-tagline">{FLAGSHIP_PRODUCT.tagline}</p>
+          <ul className="flagship-card-list">
+            {FLAGSHIP_PRODUCT.highlights.slice(0, 3).map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const EVENT_FORMATS = PATHWAY_PICKER.map((pathway, index) => ({
   id: pathway.id,
   tag: pathway.label,
   shortTag: pathway.shortLabel,
   format: pathway.format,
-  ...PATHWAY_SHOWCASE[index],
+  heading: PATHWAY_OFFERS[index].heading,
+  body: PATHWAY_OFFERS[index].body,
+  bullets: PATHWAY_OFFERS[index].bullets,
 }));
 
 function NextEvent() {
   return (
-    <div id="next-event" className="event-next" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
-      <div className="event-next-left">
-        <span className="event-next-label">Next Event</span>
+    <div id="next-event" className="event-offer" data-reveal style={{ "--reveal-delay": "80ms" } as CSSProperties}>
+      <div className="event-offer-main">
+        <span className="event-next-label">Next up</span>
         <h3 className="event-next-title">{NEXT_EVENT.title}</h3>
+        <p className="event-offer-who">{NEXT_EVENT_OFFER.lede}</p>
+        <p className="event-offer-who">{NEXT_EVENT_OFFER.detail}</p>
         <div className="event-next-meta">
           <span>{NEXT_EVENT.date}</span>
           <span>{NEXT_EVENT.format}</span>
-          <span>{NEXT_EVENT.location}</span>
         </div>
       </div>
       <a
         href={NEXT_EVENT.rsvpUrl}
+        data-join-gate
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-primary"
       >
-        RSVP Now <span className="arrow">→</span>
+        {PRIMARY_CTA} <span className="arrow">→</span>
       </a>
     </div>
   );
@@ -155,12 +195,12 @@ function Events() {
 
       <div className="wrap events-showcase">
         <div className="sec-head-center" data-reveal>
+          <p className="flagship-eyebrow" style={{ justifyContent: "center" }}>RSVP on Luma</p>
           <h2 className="h-section path-signature-head">
             Three ways to <em>show up</em>
           </h2>
           <p className="lede lede-center">
-            Soul Sessions, Soul Labs, and {PATHWAY_PICKER[2].label}. Talks, workshops, and
-            tech happy hours for builders who want to learn, ship, and connect.
+            {PATHWAYS_SUMMARY}
           </p>
         </div>
 
@@ -215,35 +255,69 @@ function HowItWorks() {
       <div className="wrap stack-layout">
         <div className="stack-copy" data-reveal>
           <h2 className="h-section path-signature-head">
-            How SoulHause <em>works</em>
+            Three steps to <em>get in</em>
           </h2>
           <p className="lede">
-            Show up to events. Meet builders. Use shared tools as we grow.
+            Pick an event on Luma, show up in person, come back for the next one.
           </p>
+          <div className="funnel-steps">
+            {FUNNEL_STEPS.map((item) => (
+              <article key={item.step} className="funnel-step">
+                <span className="funnel-step-num">{item.step}</span>
+                <div>
+                  <h3 className="funnel-step-title">{item.title}</h3>
+                  <p className="funnel-step-body">{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
           <p className="how-body">
-            Talks, workshops, and mixers in one community, not another Slack.
-            Platform tools for developers and small businesses are on the way.
-            Members get first access.
+            {PATHWAYS_VS_BUILDERS}
           </p>
-          <Link href="/what-we-offer" className="btn btn-ghost">
-            What we&apos;re building
-          </Link>
+          <div className="flagship-ctas">
+            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              {PRIMARY_CTA} <span className="arrow">→</span>
+            </a>
+            <a href="#next-event" className="btn btn-ghost">
+              Next event
+            </a>
+          </div>
         </div>
 
         <div className="stack-visual" data-reveal style={{ "--reveal-delay": "120ms" } as CSSProperties}>
           <div className="stack-diagram" data-parallax="0.08">
-            {STACK_LAYERS.map((layer, i) => (
-              <Link
-                key={layer.label}
-                href={layer.href}
-                className={`stack-layer stack-layer--link stack-layer--${layer.tone}`}
-                style={{ "--stack-index": i } as CSSProperties}
-              >
-                <span className="stack-layer-label">{layer.label}</span>
-                <span className="stack-layer-sub">{layer.sub}</span>
-                <span className="stack-layer-arrow" aria-hidden="true">→</span>
-              </Link>
-            ))}
+            {STACK_LAYERS.map((layer, i) => {
+              const className = `stack-layer stack-layer--link stack-layer--${layer.tone}`;
+              const style = { "--stack-index": i } as CSSProperties;
+              const content = (
+                <>
+                  <span className="stack-layer-label">{layer.label}</span>
+                  <span className="stack-layer-sub">{layer.sub}</span>
+                  <span className="stack-layer-arrow" aria-hidden="true">→</span>
+                </>
+              );
+
+              if (layer.href.startsWith("http")) {
+                return (
+                  <a
+                    key={layer.label}
+                    href={layer.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                    style={style}
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <Link key={layer.label} href={layer.href} className={className} style={style}>
+                  {content}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -258,17 +332,17 @@ function CTA() {
       <div className="wrap">
         <div className="cta-dark" data-reveal>
           <h2 className="cta-dark-title path-signature-head">
-            Ready to show up?
+            Come through the door
           </h2>
           <p className="cta-dark-sub">
-            Join {MEMBER_COUNT} builders at talks, workshops, and mixers.
+            {NEXT_EVENT.shortTitle} · {NEXT_EVENT.date}. Pick your event and RSVP on Luma.
           </p>
           <div className="cta-dark-btns">
-            <a href={JOIN_URL} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              Join the Community <span className="arrow">→</span>
+            <a href={NEXT_EVENT.rsvpUrl} data-join-gate target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              {PRIMARY_CTA} <span className="arrow">→</span>
             </a>
-            <a href="#next-event" className="btn btn-on-dark-ghost">
-              RSVP for {NEXT_EVENT.title}
+            <a href="#pathways" className="btn btn-on-dark-ghost">
+              See events
             </a>
           </div>
         </div>
@@ -286,6 +360,7 @@ export default function Home() {
       <PathwayStickyNav />
       <Hero />
       <Events />
+      <FlagshipProduct />
       <HowItWorks />
       <CTA />
       <Footer />

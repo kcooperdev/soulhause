@@ -1,4 +1,4 @@
-import { JOIN_URL } from "./constants";
+import { JOIN_URL, PRIMARY_CTA } from "./constants";
 
 type PageCtaProps = {
   title: React.ReactNode;
@@ -11,7 +11,7 @@ type PageCtaProps = {
 export function PageCta({
   title,
   sub,
-  primaryLabel = "Join the Community",
+  primaryLabel = PRIMARY_CTA,
   secondaryHref,
   secondaryLabel,
 }: PageCtaProps) {

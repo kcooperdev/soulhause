@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import {
-  Fredoka,
   Bricolage_Grotesque,
   Inter_Tight,
   Instrument_Serif,
@@ -10,12 +9,7 @@ import Script from "next/script";
 import "./globals.css";
 import Interactive from "./interactive";
 import { JoinGate } from "./components/JoinGate";
-
-const retro = Fredoka({
-  variable: "--font-retro",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-});
+import { MEMBER_COUNT } from "./components/constants";
 
 const display = Bricolage_Grotesque({
   variable: "--font-display",
@@ -48,23 +42,23 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "SoulHause | Events, community and tools for builders.",
+  title: "SoulHause | Hause of Soul · Sept 17 · Builder events",
   description:
-    "SoulHause is an ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
+    `RSVP to Hause of Soul: Tech Happy Hour · Sept 17. Join ${MEMBER_COUNT} builders at Soul Sessions, Soul Workshops, and happy hours.`,
   metadataBase: new URL("https://soulhause.com"),
   openGraph: {
-    title: "SoulHause | Events, community and tools for builders.",
+    title: "SoulHause | Hause of Soul · Sept 17 · Builder events",
     description:
-      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
+      `RSVP to Hause of Soul · Sept 17. ${MEMBER_COUNT} builders on Luma. Talks, workshops, and tech happy hours.`,
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause | Events, community and tools for builders.",
+    title: "SoulHause | Hause of Soul · Sept 17 · Builder events",
     description:
-      "An ecosystem of events, builder community, and tools for civic tech, small businesses, and local creators.",
+      `RSVP to Hause of Soul · Sept 17. ${MEMBER_COUNT} builders on Luma. Talks, workshops, and tech happy hours.`,
   },
 };
 
@@ -74,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${retro.variable} ${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
     >
       <body>
         <div className="site-shell">

@@ -38,7 +38,7 @@ export function Ticket() {
       </div>
       <div className="ticket-divide">
         <div className="ticket-lbl">★ Weekly events</div>
-        <div className="ticket-lbl">★ Live cohorts</div>
+        <div className="ticket-lbl">★ Build together</div>
       </div>
     </div>
   );

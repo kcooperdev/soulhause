@@ -4,10 +4,17 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BrandLink } from "./BrandLink";
-import { JOIN_URL, PATHWAY_PICKER } from "./constants";
+import { JOIN_URL, FLAGSHIP_PRODUCT, PATHWAY_PICKER, SOUL_BUILDERS_PRODUCT, PRIMARY_CTA } from "./constants";
 import { navigateToPathway, pathwayHref } from "./pathway-nav";
 
 const NAV_MENUS = [
+  {
+    label: "Products",
+    items: [
+      { label: FLAGSHIP_PRODUCT.name, href: FLAGSHIP_PRODUCT.href, external: true },
+      { label: SOUL_BUILDERS_PRODUCT.name, href: SOUL_BUILDERS_PRODUCT.href, external: true },
+    ],
+  },
   {
     label: "Pathways",
     items: [
@@ -22,8 +29,6 @@ const NAV_MENUS = [
     label: "About",
     items: [
       { label: "Mission", href: "/about" },
-      { label: "Membership", href: "/membership" },
-      { label: "Contact", href: "/contact" },
     ],
   },
 ];
@@ -31,10 +36,12 @@ const NAV_MENUS = [
 function NavLink({
   href,
   label,
+  external,
   onNavigate,
 }: {
   href: string;
   label: string;
+  external?: boolean;
   onNavigate?: () => void;
 }) {
   const pathname = usePathname();
@@ -42,6 +49,8 @@ function NavLink({
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     onNavigate?.();
+
+    if (external || href.startsWith("mailto:")) return;
 
     const match = href.match(/^\/#(.+)$/);
     if (!match) return;
@@ -60,8 +69,18 @@ function NavLink({
     navigateToPathway(id, pathname, (target) => router.push(target));
   };
 
+  const linkProps = external
+    ? { target: "_blank" as const, rel: "noopener noreferrer" }
+    : {};
+
   return (
-    <Link href={href} className="nav-dropdown-item" role="menuitem" onClick={handleClick}>
+    <Link
+      href={href}
+      className="nav-dropdown-item"
+      role="menuitem"
+      onClick={handleClick}
+      {...linkProps}
+    >
       <span className="nav-dropdown-label">{label}</span>
     </Link>
   );
@@ -121,6 +140,7 @@ function DropdownGroup({
               key={item.label}
               href={item.href}
               label={item.label}
+              external={"external" in item ? item.external : undefined}
               onNavigate={() => {
                 setOpen(false);
                 onNavigate?.();
@@ -155,17 +175,9 @@ export function Nav() {
           {NAV_MENUS.map((menu) => (
             <DropdownGroup key={menu.label} menu={menu} />
           ))}
-          <Link href="/what-we-offer" className="nav-menu-trigger">
-            Platform
+          <Link href="/what-we-offer" className="nav-top-link">
+            Explore
           </Link>
-          <a
-            href="https://soulhausebuilders.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-menu-trigger"
-          >
-            Builders
-          </a>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -176,7 +188,7 @@ export function Nav() {
             rel="noopener noreferrer"
             className="nav-cta"
           >
-            Join Community
+            {PRIMARY_CTA}
           </a>
           <button
             className="nav-hamburger"
@@ -214,18 +226,28 @@ export function Nav() {
           </div>
         ))}
         <div className="nav-mobile-section">
-          <Link href="/what-we-offer" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
-            Platform
-          </Link>
+          <div className="nav-mobile-label">Products</div>
           <a
-            href="https://soulhausebuilders.com"
+            href={FLAGSHIP_PRODUCT.href}
             target="_blank"
             rel="noopener noreferrer"
             className="nav-mobile-link"
             onClick={() => setMobileOpen(false)}
           >
-            SoulHause Builders →
+            {FLAGSHIP_PRODUCT.name} →
           </a>
+          <a
+            href={SOUL_BUILDERS_PRODUCT.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-mobile-link"
+            onClick={() => setMobileOpen(false)}
+          >
+            {SOUL_BUILDERS_PRODUCT.name} →
+          </a>
+          <Link href="/what-we-offer" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
+            Explore
+          </Link>
         </div>
         <div style={{ paddingTop: 16, borderTop: "1px solid var(--line)" }}>
           <a
@@ -236,7 +258,7 @@ export function Nav() {
             className="btn btn-primary"
             style={{ width: "100%", justifyContent: "center" }}
           >
-            Join Community →
+            {PRIMARY_CTA} →
           </a>
         </div>
       </div>

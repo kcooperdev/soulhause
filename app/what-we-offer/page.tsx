@@ -1,15 +1,24 @@
+import type { Metadata } from "next";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import { JOIN_URL, MEMBERSHIP_COMING_SOON, PATHWAY_PICKER } from "../components/constants";
 import {
-  EventsIcon,
-  CohortIcon,
-  ResourcesIcon,
-  CommunityIcon,
-} from "../components/Icons";
-import { Stamp } from "../components/Motifs";
+  JOIN_URL,
+  FLAGSHIP_PRODUCT,
+  MEMBER_COUNT,
+  PATHWAY_PICKER,
+  SOUL_BUILDERS_PRODUCT,
+  PATHWAYS_SUMMARY,
+  PATHWAYS_VS_BUILDERS,
+  PRIMARY_CTA,
+} from "../components/constants";
+import { EventsIcon, CommunityIcon } from "../components/Icons";
+
+export const metadata: Metadata = {
+  title: "SoulHause Events | Talks, workshops, and happy hours",
+  description: `Soul Sessions, Soul Workshops, Hause of Soul, Baltimore Tech Week, and Soul Builders. RSVP on Luma. Join ${MEMBER_COUNT} builders.`,
+};
 
 type FeatureProps = {
   cat: string;
@@ -18,7 +27,7 @@ type FeatureProps = {
   bullets: string[];
   icon: React.ReactNode;
   reverse?: boolean;
-  stamp?: string;
+  badge?: string;
   ctaHref?: string;
   ctaLabel?: string;
 };
@@ -30,11 +39,12 @@ function Feature({
   bullets,
   icon,
   reverse,
-  stamp,
+  badge,
   ctaHref = JOIN_URL,
-  ctaLabel = "Join waitlist",
+  ctaLabel = PRIMARY_CTA,
 }: FeatureProps) {
   const isExternal = ctaHref.startsWith("http");
+  const isJoin = ctaHref === JOIN_URL;
 
   return (
     <article className={`feature${reverse ? " reverse" : ""}`}>
@@ -50,9 +60,9 @@ function Feature({
         <a
           className="btn btn-primary"
           href={ctaHref}
+          {...(isJoin ? { "data-join-gate": true } : {})}
           {...(isExternal
             ? {
-                "data-join-gate": true,
                 target: "_blank",
                 rel: "noopener noreferrer",
               }
@@ -63,17 +73,7 @@ function Feature({
       </div>
       <div className="feature-visual" style={{ color: "var(--house-green)" }}>
         <div className="feature-icon">{icon}</div>
-        {stamp ? (
-          <Stamp variant="sand">
-            ★<br />
-            {stamp.split("\n").map((line, i) => (
-              <span key={line}>
-                {i > 0 ? <br /> : null}
-                {line}
-              </span>
-            ))}
-          </Stamp>
-        ) : null}
+        {badge ? <span className="feature-badge">{badge}</span> : null}
       </div>
     </article>
   );
@@ -87,80 +87,64 @@ export default function WhatWeOffer() {
       <PageHero
         title={
           <>
-            Events today. <em>Platform tomorrow.</em>
+            What&apos;s <em>live now.</em>
           </>
         }
-        lede={`Soul Sessions, Soul Labs, and ${PATHWAY_PICKER[2].label} are live now. Developer tools, cohorts, and the full resource library arrive with membership · ${MEMBERSHIP_COMING_SOON}.`}
+        lede={PATHWAYS_SUMMARY}
       />
 
       <section className="sec">
         <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <Feature
-            cat="Live now"
-            title={<>Soul Sessions, Labs, and Hause of Soul</>}
-            body="Talks, workshops, and tech happy hours for builders who want to learn, ship, and connect. This is the heart of SoulHause today."
+            cat="RSVP on Luma"
+            title={<>Soul Sessions, Workshops, and Hause of Soul</>}
+            body={PATHWAYS_SUMMARY}
             bullets={[
               "Soul Sessions: stories from people doing the work",
-              "Soul Labs: hands-on workshops with real output",
+              "Soul Workshops: hands-on sessions with real output",
               `${PATHWAY_PICKER[2].label}: SoulHause's signature tech happy hour`,
-              "RSVP on Luma and show up in person or online",
+              "RSVP on Luma. No membership required.",
             ]}
             icon={<EventsIcon />}
-            stamp={"Live\nnow"}
-            ctaHref="/#pathways"
-            ctaLabel="See events"
+            badge="Live now"
+            ctaHref={JOIN_URL}
+            ctaLabel={PRIMARY_CTA}
           />
 
           <Feature
-            cat="Coming soon"
-            title={<>Developer platform</>}
-            body="SDKs, APIs, hosting, and automation for developers shipping real products. Civic and business tools for scheduling, payments, and CRM."
+            cat="Built from SoulHause"
+            title={<>{FLAGSHIP_PRODUCT.name}</>}
             reverse
-            bullets={[
-              "SDKs, APIs, and serverless hosting",
-              "Scheduling, payments, and lightweight CRM",
-              "Builder profiles and skill-based matching",
-              "Members get first access at launch",
-            ]}
-            icon={<CohortIcon />}
-            stamp={"Dec\n2026"}
+            body={FLAGSHIP_PRODUCT.summary}
+            bullets={[...FLAGSHIP_PRODUCT.highlights]}
+            icon={<EventsIcon />}
+            badge="SoulHause product"
+            ctaHref={FLAGSHIP_PRODUCT.href}
+            ctaLabel="Explore the week"
           />
 
           <Feature
-            cat="Coming soon"
-            title={<>Cohorts and resource library</>}
-            body="Guided 4–6 week project cycles, templates, guides, and roadmaps curated for SoulHause members and updated continuously."
+            cat="SoulHause product"
+            title={<>{SOUL_BUILDERS_PRODUCT.name}</>}
+            body={`${SOUL_BUILDERS_PRODUCT.description} ${PATHWAYS_VS_BUILDERS}`}
             bullets={[
-              "Small groups with weekly check-ins",
-              "Build real, shippable projects",
-              "Demo day at the end of every cycle",
-              "200+ guides, templates, and roadmaps",
-            ]}
-            icon={<ResourcesIcon />}
-            stamp={"Members\nfirst"}
-          />
-
-          <Feature
-            cat="Growing now"
-            title={<>A community that shows up</>}
-            body="Channels organized by interest, accountability pods, and a supportive environment where progress is celebrated and questions are welcome."
-            reverse
-            bullets={[
-              "Channels by topic, skill, and project",
-              "Accountability groups to keep you moving",
-              "Supportive, low-noise environment",
-              "Direct access to other members",
+              "For builders who create online and want to build together",
+              "Share projects and find collaborators in the ecosystem",
+              "Meet people shipping real work, not just networking",
+              "At soulbuilders.io, part of SoulHause.com",
             ]}
             icon={<CommunityIcon />}
-            stamp={"1,100+\nmembers"}
+            badge="Build together"
+            ctaHref={SOUL_BUILDERS_PRODUCT.href}
+            ctaLabel="Join Soul Builders"
           />
         </div>
       </section>
 
       <PageCta
-        title="Want in before launch?"
-        sub="Join the waitlist for membership, or RSVP to an event and show up today."
-        primaryLabel="Join waitlist"
+        title="Come through the door"
+        sub={`Join ${MEMBER_COUNT} builders on Luma. RSVP to a pathway and show up in person.`}
+        primaryLabel={PRIMARY_CTA}
         secondaryHref="/#pathways"
         secondaryLabel="See events"
       />

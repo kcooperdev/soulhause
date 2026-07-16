@@ -47,11 +47,11 @@ export function JoinGate() {
         >
           ×
         </button>
-        <p className="join-gate-eyebrow">Before you go</p>
+        <p className="join-gate-eyebrow">60 seconds on Luma</p>
         <h2 id="join-gate-title" className="join-gate-title">
           {JOIN_GATE.headline}
         </h2>
-        <p className="join-gate-sub">Here&apos;s what happens next:</p>
+        <p className="join-gate-sub">{JOIN_GATE.sub}</p>
         <ol className="join-gate-steps">
           {JOIN_GATE.steps.map((step) => (
             <li key={step}>{step}</li>
@@ -65,7 +65,7 @@ export function JoinGate() {
             className="btn btn-primary"
             onClick={() => setOpen(false)}
           >
-            Continue to join <span className="arrow">→</span>
+            Continue on Luma <span className="arrow">→</span>
           </a>
           <button type="button" className="btn btn-ghost" onClick={() => setOpen(false)}>
             Not now
