@@ -1410,55 +1410,50 @@ footer a:hover {
   position: absolute;
   top: 100%;
   left: 0;
-  padding-top: 8px; /* transparent bridge — no gap for cursor to cross */
+  padding-top: 6px;
   background: transparent;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-4px);
   transition: opacity 160ms ease, transform 160ms ease;
   z-index: 200;
-  min-width: 210px;
+  width: max-content;
+  min-width: 0;
 }
 .nav-dropdown-panel.open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
-/* The visible card sits inside the panel so the padding-top acts as a bridge */
 .nav-dropdown-panel::before {
   display: none;
 }
 .nav-dropdown-inner {
   background: var(--ink);
-  border-radius: 12px;
-  padding: 6px;
-  box-shadow: 0 8px 28px rgba(29, 53, 48, 0.28), 0 2px 6px rgba(29, 53, 48, 0.12);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: 0 6px 20px rgba(29, 53, 48, 0.22), 0 2px 4px rgba(29, 53, 48, 0.1);
   border: 1px solid var(--house-green-border);
 }
 .nav-dropdown-header {
-  font-family: var(--font-display), system-ui;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(244, 240, 232, 0.45);
-  padding: 8px 12px 6px;
+  display: none;
 }
 .nav-dropdown-item {
   display: block;
-  padding: 9px 12px;
-  border-radius: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
   text-decoration: none;
   transition: background 120ms ease;
 }
 .nav-dropdown-item:hover { background: rgba(80, 128, 112, 0.22); }
 .nav-dropdown-label {
   display: block;
-  font-family: var(--font-display), system-ui;
-  font-size: 16px;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: var(--type-body-sm);
   font-weight: 600;
   color: var(--sand);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 .nav-dropdown-desc {
   display: block;

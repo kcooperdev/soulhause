@@ -73,6 +73,21 @@ function NavLink({
     ? { target: "_blank" as const, rel: "noopener noreferrer" }
     : {};
 
+  if (external || href.startsWith("http")) {
+    return (
+      <a
+        href={href}
+        className="nav-dropdown-item"
+        role="menuitem"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => onNavigate?.()}
+      >
+        <span className="nav-dropdown-label">{label}</span>
+      </a>
+    );
+  }
+
   return (
     <Link
       href={href}

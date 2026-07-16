@@ -145,9 +145,12 @@ export const FLAGSHIP_PRODUCT = {
   ],
 } as const;
 
+export const SOUL_BUILDERS_LINKEDIN =
+  "https://www.linkedin.com/groups/30920002/" as const;
+
 export const SOUL_BUILDERS_PRODUCT = {
   name: "Soul Builders",
-  href: "https://www.linkedin.com/groups/30920002/",
+  href: SOUL_BUILDERS_LINKEDIN,
   badge: "LinkedIn group",
   tagline: "Share resources. Share wins. Build together.",
   summary:

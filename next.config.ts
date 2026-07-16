@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const SOUL_BUILDERS_LINKEDIN = "https://www.linkedin.com/groups/30920002/";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -10,12 +12,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/builders",
-        destination: "https://www.linkedin.com/groups/30920002/",
+        destination: SOUL_BUILDERS_LINKEDIN,
         permanent: false,
       },
       {
         source: "/soul-builders",
-        destination: "https://www.linkedin.com/groups/30920002/",
+        destination: SOUL_BUILDERS_LINKEDIN,
         permanent: false,
       },
       {
