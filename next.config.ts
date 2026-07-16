@@ -10,13 +10,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/builders",
-        destination: "https://soulbuilders.io",
-        permanent: true,
+        destination: "https://www.linkedin.com/groups/30920002/",
+        permanent: false,
       },
       {
         source: "/soul-builders",
-        destination: "https://soulbuilders.io",
-        permanent: true,
+        destination: "https://www.linkedin.com/groups/30920002/",
+        permanent: false,
       },
       {
         source: "/baltimore-tech-week",

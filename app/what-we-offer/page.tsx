@@ -10,14 +10,13 @@ import {
   PATHWAY_PICKER,
   SOUL_BUILDERS_PRODUCT,
   PATHWAYS_SUMMARY,
-  PATHWAYS_VS_BUILDERS,
   PRIMARY_CTA,
 } from "../components/constants";
 import { EventsIcon, CommunityIcon } from "../components/Icons";
 
 export const metadata: Metadata = {
   title: "SoulHause Events | Talks, workshops, and happy hours",
-  description: `Soul Sessions, Soul Workshops, Hause of Soul, Baltimore Tech Week, and Soul Builders. RSVP on Luma. Join ${MEMBER_COUNT} builders.`,
+  description: `Soul Sessions, Soul Workshops, Hause of Soul, Baltimore Tech Week, and the Soul Builders LinkedIn group. RSVP on Luma. Join ${MEMBER_COUNT} builders.`,
 };
 
 type FeatureProps = {
@@ -124,19 +123,19 @@ export default function WhatWeOffer() {
           />
 
           <Feature
-            cat="SoulHause product"
+            cat="Between events"
             title={<>{SOUL_BUILDERS_PRODUCT.name}</>}
-            body={`${SOUL_BUILDERS_PRODUCT.description} ${PATHWAYS_VS_BUILDERS}`}
+            body={SOUL_BUILDERS_PRODUCT.description}
             bullets={[
-              "For builders who create online and want to build together",
-              "Share projects and find collaborators in the ecosystem",
-              "Meet people shipping real work, not just networking",
-              "At soulbuilders.io, part of SoulHause.com",
+              "Share resources, tools, and lessons with other builders",
+              "Post wins and keep momentum between SoulHause events",
+              "Build together in a LinkedIn group until the platform is ready",
+              "Free to join. Part of the SoulHause community.",
             ]}
             icon={<CommunityIcon />}
-            badge="Build together"
+            badge={SOUL_BUILDERS_PRODUCT.badge}
             ctaHref={SOUL_BUILDERS_PRODUCT.href}
-            ctaLabel="Join Soul Builders"
+            ctaLabel="Join on LinkedIn"
           />
         </div>
       </section>

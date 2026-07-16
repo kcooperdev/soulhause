@@ -40,7 +40,7 @@ export default function About() {
             <p className="about-copy">{BRAND_STORY.hause}</p>
             <p className="about-copy">
               We run our own events: Soul Sessions, Soul Workshops, and Hause of Soul.
-              Baltimore Tech Week and Soul Builders grow from the same house when the
+              Baltimore Tech Week and the Soul Builders LinkedIn group grow from the same house when the
               community is ready for more. {PATHWAYS_VS_BUILDERS}
             </p>
           </div>

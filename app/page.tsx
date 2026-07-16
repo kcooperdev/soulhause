@@ -8,7 +8,6 @@ import { PathwayTabs } from "./components/PathwayTabs";
 import {
   JOIN_URL,
   FLAGSHIP_PRODUCT,
-  SOUL_BUILDERS_PRODUCT,
   NEXT_EVENT,
   PATHWAY_PICKER,
   PATHWAY_OFFERS,

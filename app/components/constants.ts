@@ -36,7 +36,7 @@ export const PATHWAYS_SUMMARY =
   "Talks, workshops, and tech happy hours. RSVP on Luma.";
 
 export const PATHWAYS_VS_BUILDERS =
-  "Pathways are in-person events on SoulHause. Soul Builders is the online network at soulbuilders.io. Show up first, build together between events.";
+  "Pathways are in-person events on SoulHause. Soul Builders is a LinkedIn group to share resources, wins, and build together between events.";
 
 export const PRIMARY_CTA = "RSVP on Luma";
 
@@ -147,13 +147,13 @@ export const FLAGSHIP_PRODUCT = {
 
 export const SOUL_BUILDERS_PRODUCT = {
   name: "Soul Builders",
-  href: "https://soulbuilders.io",
-  badge: "A SoulHause product",
-  tagline: "Build online. Build together.",
+  href: "https://www.linkedin.com/groups/30920002/",
+  badge: "LinkedIn group",
+  tagline: "Share resources. Share wins. Build together.",
   summary:
-    "For people who build online and want to build together. Find collaborators, share projects, and grow inside SoulHause.",
+    "A LinkedIn group for SoulHause builders to share resources, celebrate wins, and build together between events.",
   description:
-    "An online builder network where you post what you're working on, meet people shipping real work, and turn solo building into collective momentum.",
+    "Soul Builders lives on LinkedIn for now. Share what you're learning, post wins, swap resources, and stay connected until the platform earns enough traction to stand on its own.",
 } as const;
 
 export const STACK_LAYERS = [
@@ -161,23 +161,23 @@ export const STACK_LAYERS = [
     label: "Pathways",
     sub: "Sessions, Workshops, Happy Hour",
     tone: "orange",
-    href: "#pathways",
+    href: "/#pathways",
   },
   {
     label: "Community",
     sub: `${MEMBER_COUNT} members`,
     tone: "green",
-    href: "#pathways",
+    href: JOIN_URL,
   },
   {
     label: "Products",
     sub: "Built from SoulHause",
     tone: "gold",
-    href: "https://bmoretechweek.com",
+    href: FLAGSHIP_PRODUCT.href,
   },
   {
     label: "Soul Builders",
-    sub: "Build together",
+    sub: "LinkedIn group",
     tone: "ink",
     href: SOUL_BUILDERS_PRODUCT.href,
   },
