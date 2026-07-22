@@ -16,9 +16,9 @@ import {
 } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "About SoulHause | Cultural infrastructure for local impact",
+  title: "About SoulHause | Tech and culture for local impact",
   description:
-    "SoulHause is a community and economic development technology company. We create year-round systems that help organizers, creators, and local businesses activate culture and grow their impact.",
+    "SoulHause builds digital tools and citywide programs that help organizers, creators, and local businesses grow culture and impact.",
 };
 
 export default function About() {
@@ -57,7 +57,7 @@ export default function About() {
       <section className="sec sec-together">
         <div className="wrap together-block" data-reveal>
           <h2 className="h-section">
-            Year-round <em>systems.</em>
+            The work, <em>year round.</em>
           </h2>
           <p className="lede together-lede">
             <BrandText text={BRAND_STORY.together} /> Meet the work in{" "}
@@ -85,7 +85,7 @@ export default function About() {
         }
         sub={
           <BrandText
-            text={`Hause of Soul · our signature tech happy hour. Join ${MEMBER_COUNT} on Luma.`}
+            text={`Hause of Soul · our tech happy hour. Join ${MEMBER_COUNT} on Luma.`}
           />
         }
         primaryHref={HAUSE_OF_SOUL_LUMA_URL}

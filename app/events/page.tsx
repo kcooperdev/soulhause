@@ -80,8 +80,7 @@ export default function EventsPage() {
         }
         sub={
           <>
-            {NEXT_EVENT.date}. Our signature tech happy hour. Join{" "}
-            {MEMBER_COUNT} on Luma.
+            {NEXT_EVENT.date}. Our tech happy hour. Join {MEMBER_COUNT} on Luma.
           </>
         }
         primaryHref={HAUSE_OF_SOUL_LUMA_URL}

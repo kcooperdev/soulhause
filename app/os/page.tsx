@@ -65,7 +65,7 @@ export default function OsPage() {
             What members get
           </h2>
           <p className="lede os-body">
-            Concrete access for people building in Baltimore social tech — not
+            Concrete access for people building in Baltimore social tech, not
             another feed to scroll.
           </p>
           <div className="pillar-rail">

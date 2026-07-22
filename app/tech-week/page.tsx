@@ -41,10 +41,9 @@ export default function TechWeekPage() {
             <BrandText text={FLAGSHIP_PRODUCT.meta} />
           </p>
           <p className="tw-intro-lede">
-            {FLAGSHIP_PRODUCT.stageLede} Cultural infrastructure at the scale of
-            the city, powered by <BrandText text="SoulHause" />. Full schedule
-            and venues coming soon — RSVP for the info session to stay first in
-            line.
+            {FLAGSHIP_PRODUCT.stageLede} Powered by{" "}
+            <BrandText text="SoulHause" />. Schedule and venues coming soon.
+            RSVP for the info session to stay first in line.
           </p>
           <div className="tw-intro-actions">
             <a
