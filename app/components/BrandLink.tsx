@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
+import { BrandSpotlight } from "./BrandSpotlight";
 
 type Props = {
   variant?: "nav" | "footer";
@@ -33,10 +34,14 @@ export function BrandLink({ variant = "nav" }: Props) {
         aria-label="SoulHause home"
       >
         <Logo size={48} />
-        <span className="footer-wordmark">
-          <span className="nav-logo-soul">Soul</span>
-          <span className="nav-logo-hause">Hause</span>
-        </span>
+        <BrandSpotlight className="footer-wordmark" quiet>
+          <span className="nav-logo-soul brand-sunflow brand-sunflow--quiet">
+            Soul
+          </span>
+          <span className="nav-logo-hause brand-sunflow brand-sunflow--quiet">
+            Hause
+          </span>
+        </BrandSpotlight>
       </Link>
     );
   }
@@ -49,10 +54,14 @@ export function BrandLink({ variant = "nav" }: Props) {
       aria-label="SoulHause home"
     >
       <Logo size={60} />
-      <span className="nav-logo-text">
-        <span className="nav-logo-soul">Soul</span>
-        <span className="nav-logo-hause">Hause</span>
-      </span>
+      <BrandSpotlight className="nav-logo-text" quiet>
+        <span className="nav-logo-soul brand-sunflow brand-sunflow--quiet">
+          Soul
+        </span>
+        <span className="nav-logo-hause brand-sunflow brand-sunflow--quiet">
+          Hause
+        </span>
+      </BrandSpotlight>
     </Link>
   );
 }

@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Figtree, IBM_Plex_Mono, Newsreader, Syne } from "next/font/google";
+import { headers } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
 import Interactive from "./interactive";
 import { JoinGate } from "./components/JoinGate";
+import { ThemeBoot } from "./components/ThemeBoot";
 import { MEMBER_COUNT } from "./components/constants";
+import { PAGE_THEMES, type PageTheme } from "./components/theme";
 
 const display = Syne({
   variable: "--font-display",
@@ -55,17 +58,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const isProd = process.env.NODE_ENV === "production";
+  const headerStore = await headers();
+  const rawTheme = headerStore.get("x-soul-theme") ?? "home";
+  const theme: PageTheme = (PAGE_THEMES as readonly string[]).includes(rawTheme)
+    ? (rawTheme as PageTheme)
+    : "home";
 
   return (
     <html
       lang="en"
+      data-theme={theme}
+      data-scroll-behavior="smooth"
       className={`${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
-      <body>
+      {/* Extensions (e.g. ColorZilla) inject body attrs like cz-shortcut-listen before hydrate */}
+      <body suppressHydrationWarning>
+        <ThemeBoot />
         <div className="os-atmosphere" aria-hidden />
         <div className="site-shell">
           {isProd ? (

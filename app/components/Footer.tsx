@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { BrandLink } from "./BrandLink";
-import {
-  CONTACT_EMAIL,
-  SITE_TAGLINE,
-} from "./constants";
-import { pathwayHref } from "./pathway-nav";
+import { BrandText } from "./BrandSpotlight";
+import { CONTACT_EMAIL, SITE_TAGLINE } from "./constants";
 
 export function Footer() {
   return (
@@ -20,13 +17,18 @@ export function Footer() {
             <p className="footer-col-label">Explore</p>
             <ul>
               <li>
-                <Link href={pathwayHref("pathways")}>Events</Link>
+                <Link href="/events">Events</Link>
+              </li>
+              <li>
+                <Link href="/tech-week">Tech Week</Link>
+              </li>
+              <li>
+                <Link href="/os">
+                  <BrandText text="SoulHause OS" />
+                </Link>
               </li>
               <li>
                 <Link href="/about">About</Link>
-              </li>
-              <li>
-                <Link href="/#flagship">Tech Week</Link>
               </li>
               <li>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
@@ -36,7 +38,9 @@ export function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-copyright">© {new Date().getFullYear()} SoulHause</p>
+          <p className="footer-copyright">
+            © {new Date().getFullYear()} <BrandText text="SoulHause" />
+          </p>
         </div>
       </div>
     </footer>

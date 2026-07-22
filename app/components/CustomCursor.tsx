@@ -161,7 +161,8 @@ export function CustomCursor() {
     };
 
     raf = requestAnimationFrame(tick);
-    document.documentElement.classList.add("has-custom-cursor");
+    // Body only — never mutate <html> classList; React owns it (next/font).
+    document.body.classList.add("has-custom-cursor");
     root.dataset.visible = "false";
     root.dataset.mode = "default";
     root.dataset.down = "false";
@@ -181,7 +182,7 @@ export function CustomCursor() {
       window.removeEventListener("pointerup", onUp);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
-      document.documentElement.classList.remove("has-custom-cursor");
+      document.body.classList.remove("has-custom-cursor");
     };
   }, [active]);
 

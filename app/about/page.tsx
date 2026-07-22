@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { BrandText } from "../components/BrandSpotlight";
 import {
-  MEMBER_COUNT,
-  PRIMARY_CTA,
+  ABOUT_STORY,
   BRAND_STORY,
-  EVENTS_ARM,
-  HAUSE_OF_SOUL_LUMA_URL,
   FLAGSHIP_PRODUCT,
+  HAUSE_OF_SOUL_LUMA_URL,
+  MEMBER_COUNT,
+  OS_PRODUCT,
+  PRIMARY_CTA,
 } from "../components/constants";
 
 export const metadata: Metadata = {
@@ -26,10 +29,10 @@ export default function About() {
       <PageHero
         title={
           <>
-            A small house. <em>Lights on.</em>
+            {ABOUT_STORY.title} <em>{ABOUT_STORY.titleTurn}</em>
           </>
         }
-        lede={`SoulHause builds digital tools, cultural infrastructure, and ecosystem platforms for local communities and small businesses. ${MEMBER_COUNT} people strong.`}
+        lede={<BrandText text={ABOUT_STORY.lede} />}
       />
 
       <section className="sec sec-story">
@@ -56,22 +59,20 @@ export default function About() {
           <h2 className="h-section">
             Year-round <em>systems.</em>
           </h2>
-          <p className="lede together-lede">{BRAND_STORY.together}</p>
-          <p className="together-note">
-            {FLAGSHIP_PRODUCT.name} is our five-day citywide flagship. SoulHause
-            OS is coming soon.
-          </p>
-        </div>
-      </section>
-
-      <section className="sec sec-events-about" id="events">
-        <div className="wrap together-block" data-reveal>
-          <h2 className="h-section">
-            SoulHause <em>Events</em>
-          </h2>
           <p className="lede together-lede">
-            {EVENTS_ARM.summary} Three formats: Soul Sessions, Soul Workshops,
-            and Hause of Soul.
+            <BrandText text={BRAND_STORY.together} /> Meet the work in{" "}
+            <Link href="/events" className="inline-route">
+              <BrandText text="SoulHause Events" />
+            </Link>
+            , across{" "}
+            <Link href="/tech-week" className="inline-route">
+              {FLAGSHIP_PRODUCT.name}
+            </Link>
+            , and soon inside{" "}
+            <Link href="/os" className="inline-route">
+              <BrandText text={OS_PRODUCT.name} />
+            </Link>
+            .
           </p>
         </div>
       </section>
@@ -82,7 +83,11 @@ export default function About() {
             Come through the <em>door</em>
           </>
         }
-        sub={`Hause of Soul · one night in SoulHause Events. Join ${MEMBER_COUNT} on Luma.`}
+        sub={
+          <BrandText
+            text={`Hause of Soul · our signature tech happy hour. Join ${MEMBER_COUNT} on Luma.`}
+          />
+        }
         primaryHref={HAUSE_OF_SOUL_LUMA_URL}
         primaryLabel={PRIMARY_CTA}
       />

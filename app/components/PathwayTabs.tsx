@@ -42,8 +42,8 @@ export function PathwayTabs({ pathways }: { pathways: PathwayTab[] }) {
     if (id === activeId) return;
     setActiveId(id);
     setPanelKey((k) => k + 1);
-    if (pathname === "/") {
-      window.history.replaceState(null, "", `/#${id}`);
+    if (pathname === "/events" || pathname === "/") {
+      window.history.replaceState(null, "", `/events#${id}`);
     }
     if (opts?.focus) {
       const btn = tablistRef.current?.querySelector<HTMLButtonElement>(

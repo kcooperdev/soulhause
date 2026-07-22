@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { JOIN_GATE, HAUSE_OF_SOUL_LUMA_URL } from "./constants";
+import { BrandSpotlight, BrandText } from "./BrandSpotlight";
 
 export function JoinGate() {
   const [open, setOpen] = useState(false);
@@ -9,7 +10,9 @@ export function JoinGate() {
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest<HTMLAnchorElement>("[data-join-gate]");
+      const target = (e.target as HTMLElement).closest<HTMLAnchorElement>(
+        "[data-join-gate]",
+      );
       if (!target) return;
       e.preventDefault();
       setPendingUrl(target.href || HAUSE_OF_SOUL_LUMA_URL);
@@ -47,14 +50,16 @@ export function JoinGate() {
         >
           ×
         </button>
-        <p className="join-gate-brand" aria-label="SoulHause">
-          <span className="brand-soul">Soul</span>
-          <span className="brand-hause">Hause</span>
-        </p>
+        <BrandSpotlight as="p" className="join-gate-brand" aria-label="SoulHause" quiet>
+          <span className="brand-soul brand-sunflow brand-sunflow--quiet">Soul</span>
+          <span className="brand-hause brand-sunflow brand-sunflow--quiet">Hause</span>
+        </BrandSpotlight>
         <h2 id="join-gate-title" className="join-gate-title">
           {JOIN_GATE.headline}
         </h2>
-        <p className="join-gate-sub">{JOIN_GATE.sub}</p>
+        <p className="join-gate-sub">
+          <BrandText text={JOIN_GATE.sub} />
+        </p>
         <div className="join-gate-actions">
           <a
             href={pendingUrl}

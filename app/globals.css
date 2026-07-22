@@ -4,7 +4,7 @@
   /* ═══════════════════════════════════════════════════════════════════
      SoulHause color system · 60-30-10
      60% cool stone · 30% forest brand (UI accent) · 10% ember action (CTAs only)
-     Wordmark = single charcoal/ink (no Soul/Hause hue split).
+     Signature wordmark = logo sun-stripe flow (gold → terracotta → brick).
      No pure #000 / #FFF. Primary text ≥ 4.5:1 on canvas.
      Action ≠ success. Semantic colors = status only.
      ═══════════════════════════════════════════════════════════════════ */
@@ -133,13 +133,33 @@
   --night-lift: #1c2228;
   --void: #101418;
 
-  /* Wordmark: both halves same charcoal/ink (no green split) */
+  /* Wordmark fallback ink (non-sunflow contexts) */
   --brand-soul: var(--color-neutral-900);
   --brand-hause: var(--color-neutral-900);
   --brand-soul-on-dark: var(--color-neutral-on-dark);
   --brand-hause-on-dark: var(--color-neutral-on-dark);
   --brand-mark: var(--color-neutral-900);
   --brand-mark-on-dark: var(--color-neutral-on-dark);
+
+  /* Logo sun stripes → signature wordmark flow (sampled from /logo.png) */
+  --sun-flow-pale: #e8c56a;
+  --sun-flow-gold: #e5a832;
+  --sun-flow-amber: #e87840;
+  --sun-flow-terra: #d06638;
+  --sun-flow-brick: #b04a28;
+  --sun-flow-deep: #6f2e1e;
+  --brand-sunflow-gradient: linear-gradient(
+    105deg,
+    var(--sun-flow-brick) 0%,
+    var(--sun-flow-gold) 12%,
+    var(--sun-flow-pale) 22%,
+    var(--sun-flow-amber) 34%,
+    var(--sun-flow-terra) 48%,
+    var(--sun-flow-brick) 62%,
+    var(--sun-flow-deep) 76%,
+    var(--sun-flow-amber) 88%,
+    var(--sun-flow-brick) 100%
+  );
 
   --text: var(--color-neutral-900);
   --signal: var(--color-action-primary-default);
@@ -176,10 +196,10 @@
   --brand-teal-light: var(--house-green-light);
   --brand-teal-dark: var(--house-green-dark);
 
-  --sun-pale: color-mix(in oklab, var(--color-secondary) 70%, var(--color-neutral-50));
-  --sun-gold: var(--color-secondary);
-  --sun-orange: var(--color-action);
-  --sun-deep: var(--color-action-pressed);
+  --sun-pale: var(--sun-flow-pale);
+  --sun-gold: var(--sun-flow-gold);
+  --sun-orange: var(--sun-flow-amber);
+  --sun-deep: var(--sun-flow-deep);
 
   --canvas-deep: var(--night);
   --canvas: var(--bg);
@@ -240,6 +260,270 @@
   --leading-body: 1.65;
   --tracking-display: -0.04em;
   --tracking-label: 0.14em;
+
+  /* Page-level accent (active nav, emphasis) — overridden per html[data-theme] */
+  --theme-accent: var(--color-brand-primary-default);
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 12%, transparent);
+  --theme-accent-ink: var(--cta-ink);
+  --color-scheme: light;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Page themes · same house, different rooms
+   html[data-theme="home|events|tech-week|os|about"]
+   Shared type/spacing/nav chrome; canvas + accent shift per product.
+   ═══════════════════════════════════════════════════════════════════ */
+
+html[data-theme="home"] {
+  /* Quiet stone / linen — brand-neutral foyer */
+  --bg: #e9ebe7;
+  --surface-desk: #dde1db;
+  --surface-2: #cfd5ce;
+  --text: #151a18;
+  --ink: #151a18;
+  --ink-soft: #3d4642;
+  --muted: #4e5754;
+  --sand: var(--bg);
+  --canvas: var(--bg);
+  --canvas-mid: var(--surface-desk);
+  --theme-accent: #346b52;
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 11%, transparent);
+  --color-brand-primary-default: #346b52;
+  --color-brand: var(--color-brand-primary-default);
+  --color-brand-primary-soft: #4f8a6e;
+  --color-brand-soft: var(--color-brand-primary-soft);
+  --color-brand-primary-muted: color-mix(in oklab, var(--theme-accent) 12%, transparent);
+  --color-brand-muted: var(--color-brand-primary-muted);
+  --house-green: var(--theme-accent);
+  --line: color-mix(in oklab, var(--ink) 12%, transparent);
+  --line-soft: color-mix(in oklab, var(--ink) 7%, transparent);
+  --glass: color-mix(in oklab, var(--bg) 78%, transparent);
+  --glass-border: color-mix(in oklab, var(--ink) 10%, transparent);
+  --color-scheme: light;
+}
+
+html[data-theme="events"] {
+  /* Warmer sun / community — gold–ember */
+  --bg: #f0e8dc;
+  --surface-desk: #e6d9c8;
+  --surface-2: #d9c8b2;
+  --text: #1c1612;
+  --ink: #1c1612;
+  --ink-soft: #4a3c32;
+  --muted: #6a5748;
+  --sand: var(--bg);
+  --canvas: var(--bg);
+  --canvas-mid: var(--surface-desk);
+  --color-secondary-default: #c9963a;
+  --color-secondary: var(--color-secondary-default);
+  --color-action-primary-default: #b04a28;
+  --color-action: var(--color-action-primary-default);
+  --color-action-primary-hover: #c45a32;
+  --color-action-hover: var(--color-action-primary-hover);
+  --cta-fill: var(--color-action-primary-default);
+  --signal: var(--color-action-primary-default);
+  --ember: var(--color-action-primary-default);
+  --theme-accent: #c47a28;
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 14%, transparent);
+  --color-brand-primary-default: #a86b2a;
+  --color-brand: var(--color-brand-primary-default);
+  --color-brand-primary-soft: #c9963a;
+  --color-brand-soft: var(--color-brand-primary-soft);
+  --color-brand-primary-muted: color-mix(in oklab, var(--theme-accent) 14%, transparent);
+  --color-brand-muted: var(--color-brand-primary-muted);
+  --house-green: var(--theme-accent);
+  --surface-warm: color-mix(in oklab, var(--theme-accent) 10%, transparent);
+  --line: color-mix(in oklab, var(--ink) 11%, transparent);
+  --line-soft: color-mix(in oklab, var(--ink) 7%, transparent);
+  --glass: color-mix(in oklab, var(--bg) 80%, transparent);
+  --glass-border: color-mix(in oklab, var(--ink) 10%, transparent);
+  --color-scheme: light;
+}
+
+html[data-theme="tech-week"] {
+  /*
+   * Baltimore Tech Week — locked from BTW hero screenshot:
+   * charcoal #17171a · cream #FBF0D5 · teal #0FB0B8 · magenta #D3168A
+   */
+  color-scheme: dark;
+  --bg: #17171a;
+  --surface-desk: #1c1c20;
+  --surface-2: #242428;
+  --night: #121214;
+  --night-lift: #1c1c20;
+  --void: #0e0e10;
+  --text: #fbf0d5;
+  --ink: #fbf0d5;
+  --ink-soft: #e8dcc0;
+  --muted: #a89f8c;
+  --sand: var(--bg);
+  --canvas: var(--bg);
+  --canvas-mid: var(--surface-desk);
+  --canvas-deep: #0e0e10;
+  --paper: var(--surface-desk);
+  --paper-deep: var(--surface-2);
+  --on-dark: #fbf0d5;
+  --on-dark-muted: color-mix(in oklab, #fbf0d5 74%, transparent);
+  --on-dark-subtle: color-mix(in oklab, #fbf0d5 48%, transparent);
+  --color-neutral-on-dark: #fbf0d5;
+  --brand-soul: #fbf0d5;
+  --brand-hause: #fbf0d5;
+  --brand-mark: #fbf0d5;
+  --brand-mark-on-dark: #fbf0d5;
+  --brand-soul-on-dark: #fbf0d5;
+  --btw-teal: #0fb0b8;
+  --btw-magenta: #d3168a;
+  --btw-cream: #fbf0d5;
+  --btw-charcoal: #17171a;
+  --color-brand-primary-default: #0fb0b8;
+  --color-brand: var(--color-brand-primary-default);
+  --color-brand-primary-soft: #3cc4cb;
+  --color-brand-soft: var(--color-brand-primary-soft);
+  --color-brand-primary-hover: #24bcc4;
+  --color-brand-primary-pressed: #0a8f96;
+  --color-brand-primary-on-dark: #3cc4cb;
+  --color-brand-on-dark: #3cc4cb;
+  --color-brand-primary-muted: color-mix(in oklab, #0fb0b8 18%, transparent);
+  --color-brand-muted: var(--color-brand-primary-muted);
+  --color-secondary-default: #d3168a;
+  --color-secondary: var(--color-secondary-default);
+  --color-action-primary-default: #0fb0b8;
+  --color-action: var(--color-action-primary-default);
+  --color-action-primary-hover: #24bcc4;
+  --color-action-hover: var(--color-action-primary-hover);
+  --color-action-primary-pressed: #0a8f96;
+  --color-action-primary-ink: #121214;
+  --cta-fill: var(--color-action-primary-default);
+  --cta-ink: var(--color-action-primary-ink);
+  --signal: #d3168a;
+  --signal-bright: #e63fa0;
+  --signal-dim: #a8126d;
+  --theme-accent: #0fb0b8;
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 18%, transparent);
+  --theme-accent-ink: #121214;
+  --house-green: var(--theme-accent);
+  --house-green-light: #3cc4cb;
+  --house-green-dark: #0a8f96;
+  --house-green-subtle: var(--color-brand-primary-muted);
+  --house-green-border: color-mix(in oklab, var(--theme-accent) 40%, transparent);
+  --surface: color-mix(in oklab, var(--theme-accent) 10%, transparent);
+  --surface-raised: color-mix(in oklab, #fbf0d5 6%, transparent);
+  --surface-warm: color-mix(in oklab, #d3168a 10%, transparent);
+  --line: color-mix(in oklab, #fbf0d5 14%, transparent);
+  --line-soft: color-mix(in oklab, #fbf0d5 8%, transparent);
+  --border-dark: color-mix(in oklab, #fbf0d5 12%, transparent);
+  --border-dark-strong: color-mix(in oklab, #fbf0d5 22%, transparent);
+  --cream-rule: color-mix(in oklab, #fbf0d5 12%, transparent);
+  --cream-rule-strong: color-mix(in oklab, #fbf0d5 22%, transparent);
+  --glass: color-mix(in oklab, var(--bg) 72%, transparent);
+  --glass-border: color-mix(in oklab, #fbf0d5 14%, transparent);
+  --panel-bg: color-mix(in oklab, var(--surface-desk) 94%, transparent);
+  --color-scheme: dark;
+}
+
+html[data-theme="os"] {
+  /* Graphite Desk — product OS, dark by design */
+  color-scheme: dark;
+  --bg: #0b0d0f;
+  --surface-desk: #14181c;
+  --surface-2: #1c2228;
+  --night: #0b0d0f;
+  --night-lift: #161b21;
+  --void: #080a0c;
+  --text: #e6e9ec;
+  --ink: #e6e9ec;
+  --ink-soft: #b8c0c8;
+  --muted: #8a939c;
+  --sand: var(--bg);
+  --canvas: var(--bg);
+  --canvas-mid: var(--surface-desk);
+  --canvas-deep: #060708;
+  --paper: var(--surface-desk);
+  --paper-deep: var(--surface-2);
+  --on-dark: #e6e9ec;
+  --on-dark-muted: color-mix(in oklab, #e6e9ec 74%, transparent);
+  --on-dark-subtle: color-mix(in oklab, #e6e9ec 48%, transparent);
+  --color-neutral-on-dark: #e6e9ec;
+  --brand-soul: #e6e9ec;
+  --brand-hause: #e6e9ec;
+  --brand-mark: #e6e9ec;
+  --color-brand-primary-default: #7eb8a4;
+  --color-brand: var(--color-brand-primary-default);
+  --color-brand-primary-soft: #9ecfbe;
+  --color-brand-soft: var(--color-brand-primary-soft);
+  --color-brand-primary-hover: #93c7b4;
+  --color-brand-primary-pressed: #5f9a86;
+  --color-brand-primary-on-dark: #9ecfbe;
+  --color-brand-on-dark: #9ecfbe;
+  --color-brand-primary-muted: color-mix(in oklab, #7eb8a4 16%, transparent);
+  --color-brand-muted: var(--color-brand-primary-muted);
+  --color-secondary-default: #8a9aaa;
+  --color-secondary: var(--color-secondary-default);
+  --color-action-primary-default: #d4784a;
+  --color-action: var(--color-action-primary-default);
+  --color-action-primary-hover: #e08a5c;
+  --color-action-hover: var(--color-action-primary-hover);
+  --color-action-primary-ink: #0f1214;
+  --cta-fill: var(--color-action-primary-default);
+  --cta-ink: var(--color-action-primary-ink);
+  --signal: #7eb8a4;
+  --signal-bright: #9ecfbe;
+  --signal-dim: #5f9a86;
+  --theme-accent: #7eb8a4;
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 16%, transparent);
+  --theme-accent-ink: #0b0d0f;
+  --house-green: var(--theme-accent);
+  --house-green-light: #9ecfbe;
+  --house-green-dark: #5f9a86;
+  --house-green-subtle: var(--color-brand-primary-muted);
+  --house-green-border: color-mix(in oklab, var(--theme-accent) 36%, transparent);
+  --surface: color-mix(in oklab, var(--theme-accent) 10%, transparent);
+  --surface-raised: color-mix(in oklab, #e6e9ec 6%, transparent);
+  --surface-warm: color-mix(in oklab, #d4784a 8%, transparent);
+  --line: color-mix(in oklab, #e6e9ec 12%, transparent);
+  --line-soft: color-mix(in oklab, #e6e9ec 7%, transparent);
+  --border-dark: color-mix(in oklab, #e6e9ec 10%, transparent);
+  --border-dark-strong: color-mix(in oklab, #e6e9ec 18%, transparent);
+  --cream-rule: color-mix(in oklab, #e6e9ec 10%, transparent);
+  --cream-rule-strong: color-mix(in oklab, #e6e9ec 18%, transparent);
+  --glass: color-mix(in oklab, var(--bg) 72%, transparent);
+  --glass-border: color-mix(in oklab, #e6e9ec 12%, transparent);
+  --panel-bg: color-mix(in oklab, var(--surface-desk) 94%, transparent);
+  --color-scheme: dark;
+}
+
+html[data-theme="about"] {
+  /* Calmer sage / story */
+  --bg: #e6ebe6;
+  --surface-desk: #d8e0d8;
+  --surface-2: #c8d2c8;
+  --text: #142018;
+  --ink: #142018;
+  --ink-soft: #3a4a40;
+  --muted: #5a6b60;
+  --sand: var(--bg);
+  --canvas: var(--bg);
+  --canvas-mid: var(--surface-desk);
+  --color-brand-primary-default: #3d6b55;
+  --color-brand: var(--color-brand-primary-default);
+  --color-brand-primary-soft: #5a8a70;
+  --color-brand-soft: var(--color-brand-primary-soft);
+  --color-brand-primary-muted: color-mix(in oklab, #3d6b55 11%, transparent);
+  --color-brand-muted: var(--color-brand-primary-muted);
+  --color-action-primary-default: #8f5a3a;
+  --color-action: var(--color-action-primary-default);
+  --color-action-primary-hover: #a06848;
+  --color-action-hover: var(--color-action-primary-hover);
+  --cta-fill: var(--color-action-primary-default);
+  --theme-accent: #3d6b55;
+  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 12%, transparent);
+  --house-green: var(--theme-accent);
+  --surface: color-mix(in oklab, var(--theme-accent) 10%, transparent);
+  --line: color-mix(in oklab, var(--ink) 11%, transparent);
+  --line-soft: color-mix(in oklab, var(--ink) 6%, transparent);
+  --glass: color-mix(in oklab, var(--bg) 80%, transparent);
+  --glass-border: color-mix(in oklab, var(--ink) 10%, transparent);
+  --color-scheme: light;
 }
 
 @theme inline {
@@ -275,6 +559,7 @@ body {
   width: 100%;
   max-width: 100%;
   position: relative;
+  color-scheme: var(--color-scheme, light);
 }
 .site-shell {
   overflow-x: hidden;
@@ -1665,10 +1950,121 @@ footer a:hover {
   color: var(--brand-mark);
 }
 
-/* Wordmark — single ink (Soul + Hause) */
+/* Wordmark — ink fallback; signature moments use .brand-sunflow */
 .brand-soul,
 .brand-hause {
   color: var(--brand-mark);
+}
+
+/* ─── Brand spotlight (hover/focus) ────────────────────────────────────
+   Default = solid premium ink. Soft circular spot reveals sun-stripe
+   colors (gold → terracotta → brick) only under the pointer. */
+@property --spot-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.brand-spotlight {
+  --spot-x: 50%;
+  --spot-y: 50%;
+  --spot-opacity: 0;
+  --spot-size: 5.5rem;
+  --spot-ink: var(--brand-mark);
+  transition: --spot-opacity 340ms ease;
+}
+.brand-spotlight--quiet {
+  --spot-size: 3.25rem;
+}
+.brand-spotlight--inline {
+  --spot-size: 2.85rem;
+  display: inline;
+  color: inherit;
+}
+.brand-spotlight--inline .brand-sunflow {
+  color: inherit;
+}
+.hero-forge-brand.brand-spotlight,
+.brand-spotlight.hero-forge-brand {
+  --spot-size: 9rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.close-brand.brand-spotlight,
+.brand-spotlight.close-brand {
+  --spot-ink: var(--brand-mark-on-dark);
+}
+
+.brand-sunflow {
+  display: inline-block;
+  --spot-x: 50%;
+  --spot-y: 50%;
+  color: var(--spot-ink, var(--brand-mark));
+}
+.hero-forge-brand .brand-soul.brand-sunflow,
+.hero-forge-brand .brand-hause.brand-sunflow {
+  display: block;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.hero-forge-brand:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--sun-flow-gold) 50%, transparent);
+  outline-offset: 8px;
+  border-radius: 4px;
+}
+/* Nav / footer: quieter, slightly deeper stops for small type */
+.brand-sunflow--quiet {
+  --sun-flow-pale: #d4b055;
+  --sun-flow-gold: #d49a28;
+  --sun-flow-amber: #d06a38;
+  --sun-flow-terra: #b85a30;
+  --sun-flow-brick: #9a3f22;
+  --sun-flow-deep: #5c2618;
+}
+
+/* Spotlight active: ink radial over sun gradient, clipped to glyphs */
+.brand-spotlight.is-spotlit .brand-sunflow {
+  background-image:
+    radial-gradient(
+      circle var(--spot-size) at var(--spot-x) var(--spot-y),
+      color-mix(
+          in oklab,
+          var(--spot-ink) calc((1 - var(--spot-opacity)) * 100%),
+          transparent
+        )
+        0%,
+      color-mix(
+          in oklab,
+          var(--spot-ink) calc((1 - var(--spot-opacity)) * 100%),
+          transparent
+        )
+        18%,
+      color-mix(in oklab, var(--spot-ink) 55%, transparent) 48%,
+      var(--spot-ink) 72%
+    ),
+    var(--brand-sunflow-gradient);
+  background-size: 100% 100%, 140% 100%;
+  background-position: center, 30% 50%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.brand-spotlight.is-spotlit .brand-sunflow::selection {
+  color: var(--spot-ink);
+  -webkit-text-fill-color: var(--spot-ink);
+  background: color-mix(in oklab, var(--sun-flow-gold) 32%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-spotlight {
+    --spot-size: 6.5rem;
+  }
+  .brand-spotlight--inline,
+  .brand-spotlight--quiet {
+    --spot-size: 3.5rem;
+  }
 }
 
 /* ─── Nav links + SoulHause OS ───────────────────────────────────────── */
@@ -1684,7 +2080,8 @@ footer a:hover {
   letter-spacing: -0.025em;
   text-transform: none;
   text-decoration: none;
-  color: color-mix(in oklab, var(--text) 62%, var(--muted));
+  /* Rest muted; hover/active lean into page accent */
+  color: color-mix(in oklab, var(--theme-accent) 38%, var(--muted));
   opacity: 1;
   transition:
     color var(--duration-fast) var(--ease-out),
@@ -1702,17 +2099,17 @@ footer a:hover {
 .nav-menu-trigger:hover,
 .nav-menu-trigger.open {
   opacity: 1;
-  color: var(--text);
-  background: color-mix(in oklab, var(--color-brand) 10%, transparent);
+  color: var(--theme-accent);
+  background: var(--theme-accent-soft);
 }
 .nav-top-link.is-active {
   opacity: 1;
-  color: var(--color-brand);
-  background: color-mix(in oklab, var(--color-brand) 12%, transparent);
-  box-shadow: inset 0 -2px 0 0 var(--color-brand);
+  color: var(--theme-accent);
+  background: var(--theme-accent-soft);
+  box-shadow: inset 0 -2px 0 0 var(--theme-accent);
 }
 .nav-top-link:focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--color-brand) 45%, transparent);
+  outline: 2px solid color-mix(in oklab, var(--theme-accent) 55%, transparent);
   outline-offset: 2px;
 }
 
@@ -1888,7 +2285,7 @@ footer a:hover {
   border-radius: 2px;
   transition: background var(--duration-fast) var(--ease-out);
 }
-.nav-hamburger:hover .nav-hamburger-line { background: var(--color-brand-primary-default); }
+.nav-hamburger:hover .nav-hamburger-line { background: var(--theme-accent); }
 
 /* Mobile panel */
 .nav-mobile-panel {
@@ -5114,9 +5511,9 @@ footer a:hover {
   letter-spacing: -0.01em;
 }
 .nav-top-link.is-active {
-  color: var(--color-brand);
-  background: color-mix(in oklab, var(--color-brand) 12%, transparent);
-  box-shadow: inset 0 -2px 0 0 var(--color-brand);
+  color: var(--theme-accent);
+  background: var(--theme-accent-soft);
+  box-shadow: inset 0 -2px 0 0 var(--theme-accent);
 }
 
 /* Page hero: brand watermark + sage emphasis */
@@ -6348,70 +6745,167 @@ footer {
   padding: 1.25rem 24px 1.75rem;
 }
 
-/* Hero · brand first, calm air, no blobs */
-.hero-forge {
-  min-height: min(88svh, 820px);
+/* Nav · logo palette: sage links + warm sun accent (not rainbow) */
+.nav-top-link {
+  border-radius: 0.3rem;
+  padding: 0.45rem 0.7rem;
+}
+.nav-top-link .brand-spotlight--inline,
+.nav-top-link .brand-sunflow,
+.nav-mobile-link .brand-spotlight--inline,
+.nav-mobile-link .brand-sunflow {
+  color: inherit;
+}
+.nav-top-link .brand-spotlight.is-spotlit .brand-sunflow,
+.nav-mobile-link .brand-spotlight.is-spotlit .brand-sunflow {
+  /* Spotlight still reveals full sun-stripe gradient */
+  color: transparent;
+}
+.nav-mobile-link {
+  color: color-mix(in oklab, var(--theme-accent) 38%, var(--muted));
+}
+.nav-mobile-link:hover {
+  color: var(--theme-accent);
+}
+.nav-mobile-link.is-active {
+  color: var(--theme-accent);
+  font-weight: 650;
+  box-shadow: inset 3px 0 0 0 var(--theme-accent);
+  padding-left: 0.65rem;
+}
+
+/* Home · hero-only shell (no below-fold sections) */
+.page-home {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+.page-home .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/* Hero · solo full-viewport composition — stone/linen, no photo */
+.hero-forge--solo {
+  min-height: 100svh;
+  min-height: 100dvh;
   border-bottom: none;
   align-items: flex-end;
+  background: var(--bg);
 }
-.hero-forge-wash {
+.hero-forge-wash,
+.hero-forge-grain {
+  display: none !important;
+}
+.hero-forge-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background:
+    radial-gradient(
+      120% 80% at 12% 18%,
+      color-mix(in oklab, var(--color-brand-primary-default) 10%, transparent) 0%,
+      transparent 52%
+    ),
+    radial-gradient(
+      90% 70% at 88% 72%,
+      color-mix(in oklab, var(--sun-flow-gold) 7%, transparent) 0%,
+      transparent 48%
+    ),
     linear-gradient(
       165deg,
-      color-mix(in oklab, var(--color-brand-primary-default) 5%, transparent) 0%,
-      transparent 52%
+      color-mix(in oklab, var(--color-neutral-100) 88%, var(--bg)) 0%,
+      var(--bg) 42%,
+      color-mix(in oklab, var(--color-neutral-50) 92%, var(--color-secondary-default)) 100%
     );
+  animation: hero-canvas-settle 1.4s var(--ease-out) both;
 }
-.hero-forge-grain { display: none !important; }
-.hero-forge-inner {
-  padding: calc(var(--nav-height, 68px) + 56px) 24px clamp(64px, 9vw, 104px);
+.hero-forge-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in oklab, var(--color-neutral-900) 7%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 28%, #000 72%, transparent 100%);
+}
+.hero-forge--solo .hero-forge-inner {
+  padding: calc(var(--nav-height, 68px) + 48px) 24px clamp(48px, 8vw, 88px);
   max-width: 1120px;
+  width: 100%;
 }
 @media (min-width: 768px) {
-  .hero-forge-inner {
-    padding: calc(var(--nav-height, 68px) + 72px) 40px clamp(80px, 10vw, 120px);
+  .hero-forge--solo .hero-forge-inner {
+    padding: calc(var(--nav-height, 68px) + 64px) 40px clamp(72px, 9vw, 112px);
   }
 }
-.hero-forge-brand {
-  margin: 0 0 1.5rem;
-  font-size: clamp(72px, 13vw, 148px);
+.hero-forge--solo .hero-forge-brand {
+  margin: 0 0 1.35rem;
+  font-size: clamp(68px, 14vw, 156px);
   font-weight: 750;
   letter-spacing: -0.06em;
-  line-height: 0.9;
+  line-height: 0.88;
   max-width: 10ch;
-  animation: forge-rise 900ms var(--ease-out) both;
+  animation: forge-rise 1000ms var(--ease-out) both;
 }
-.hero-forge-lede {
-  margin: 0 0 2.25rem;
-  max-width: 22rem;
-  font-size: clamp(1.125rem, 1.8vw, 1.3rem);
+.hero-forge--solo .hero-forge-lede {
+  margin: 0 0 2.1rem;
+  max-width: 20.5rem;
+  font-size: clamp(1.1rem, 1.85vw, 1.28rem);
   font-weight: 450;
   line-height: 1.5;
   color: var(--ink-soft);
-  animation: forge-rise 900ms var(--ease-out) 90ms both;
+  animation: forge-rise 1000ms var(--ease-out) 100ms both;
 }
-.hero-forge-cta {
+.hero-forge--solo .hero-forge-cta {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.85rem;
-  animation: forge-rise 900ms var(--ease-out) 160ms both;
+  gap: 0.9rem;
+  animation: forge-rise 1000ms var(--ease-out) 180ms both;
 }
 .hero-forge-meta {
   margin: 0;
+  max-width: 22rem;
   font-family: var(--font-body), system-ui, sans-serif;
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 1.4;
+  line-height: 1.45;
   text-transform: none;
   color: var(--muted);
 }
+@keyframes hero-canvas-settle {
+  from {
+    opacity: 0.72;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
-  .hero-forge-brand,
-  .hero-forge-lede,
-  .hero-forge-cta {
+  .hero-forge--solo .hero-forge-brand,
+  .hero-forge--solo .hero-forge-lede,
+  .hero-forge--solo .hero-forge-cta {
     animation: none;
+  }
+  .hero-forge-canvas {
+    animation: none;
+  }
+}
+@media (max-width: 480px) {
+  .hero-forge--solo .hero-forge-brand {
+    font-size: clamp(60px, 18vw, 88px);
+  }
+  .hero-forge--solo .hero-forge-lede {
+    max-width: 18.5rem;
   }
 }
 
@@ -6735,5 +7229,390 @@ footer {
 .close-title em,
 .page-hero-title em {
   color: var(--color-brand-primary-default);
+}
+
+/* Home solo hero → quiet footer land */
+.hero-forge--solo + footer {
+  border-top: 1px solid var(--line-soft);
+}
+
+/* Home · secondary text path */
+.hero-forge-secondary {
+  margin: 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+.hero-forge-secondary:hover,
+.hero-forge-secondary:focus-visible {
+  color: var(--color-brand-primary-default);
+}
+
+/* Events · next-night in hero */
+.page-hero-next {
+  margin: 1.35rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.page-hero-next-link {
+  color: var(--color-brand-primary-default);
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.page-hero-next-link:hover,
+.page-hero-next-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+/* Page hero · CTA group (OS) */
+.page-hero-actions {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.page-hero-secondary {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+.page-hero-secondary:hover,
+.page-hero-secondary:focus-visible {
+  color: var(--theme-accent);
+}
+
+/* Close · secondary text link */
+.close-secondary {
+  margin-top: 1rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+.close-secondary:hover,
+.close-secondary:focus-visible {
+  color: var(--on-dark);
+}
+
+/* Nav · contextual mobile secondary + quiet Soon */
+.nav-mobile-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.nav-mobile-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.65rem 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.nav-mobile-secondary:hover,
+.nav-mobile-secondary:focus-visible {
+  color: var(--theme-accent);
+}
+.nav-mobile-soon {
+  margin-left: 0.55rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* About · company H1 needs room */
+html[data-theme="about"] .page-hero-title {
+  max-width: 18ch;
+}
+
+/* Tech Week · mural stage (full dark multiply wash, copy stays below) */
+.tw-mural {
+  position: relative;
+  width: 100%;
+  height: min(62svh, 520px);
+  height: min(62dvh, 520px);
+  overflow: clip;
+  background: var(--night);
+}
+@media (min-width: 768px) {
+  .tw-mural {
+    height: 100svh;
+    height: 100dvh;
+  }
+}
+.tw-mural-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  filter: saturate(0.9) contrast(1.1) brightness(0.62);
+}
+/*
+ * BTW hero overlay: deep charcoal multiply across the FULL mural
+ * (not a soft edge-only fade). Bottom dissolves into page charcoal.
+ */
+.tw-mural::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(18, 18, 20, 0.78);
+  mix-blend-mode: multiply;
+}
+.tw-mural::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 20, 0.45) 0%,
+    rgba(23, 23, 26, 0.35) 48%,
+    rgba(23, 23, 26, 0.82) 86%,
+    #17171a 100%
+  );
+}
+
+/* Tech Week · intro on charcoal surface (below mural) */
+.tw-intro {
+  background: var(--bg);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-soft);
+}
+.tw-intro-inner {
+  padding: clamp(40px, 7vw, 72px) 24px clamp(48px, 8vw, 88px);
+  max-width: 1120px;
+}
+@media (min-width: 768px) {
+  .tw-intro-inner {
+    padding: clamp(56px, 8vw, 96px) 40px clamp(64px, 9vw, 112px);
+  }
+}
+.tw-intro-title {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  max-width: 12ch;
+  color: var(--btw-cream);
+}
+.tw-intro-title em {
+  color: var(--btw-teal);
+  font-style: normal;
+}
+.tw-intro-meta {
+  margin: 0 0 1.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--btw-magenta);
+}
+.tw-intro-lede {
+  margin: 0 0 1.85rem;
+  max-width: 34rem;
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.tw-intro-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.95rem;
+}
+@media (min-width: 480px) {
+  .tw-intro-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+  }
+}
+/* Cream ghost secondary — matches BTW “Learn more” chrome */
+.tw-intro-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.7rem 1.35rem;
+  border: 1px solid var(--btw-cream);
+  border-radius: var(--radius-control);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--btw-cream);
+  text-decoration: none;
+  background: transparent;
+  transition:
+    color 160ms var(--ease-out),
+    background 160ms var(--ease-out),
+    border-color 160ms var(--ease-out);
+}
+.tw-intro-secondary:hover,
+.tw-intro-secondary:focus-visible {
+  color: var(--btw-cream);
+  background: color-mix(in oklab, var(--btw-cream) 10%, transparent);
+  border-color: var(--btw-cream);
+}
+
+/* Tech Week page chrome — nav active + close CTA ghost */
+html[data-theme="tech-week"] .nav-top-link.is-active {
+  color: var(--btw-teal);
+  background: color-mix(in oklab, var(--btw-teal) 16%, transparent);
+  box-shadow: inset 0 -2px 0 0 var(--btw-teal);
+}
+html[data-theme="tech-week"] .nav-cta {
+  background: var(--btw-teal);
+  color: var(--color-action-primary-ink);
+  border-color: var(--btw-teal);
+}
+html[data-theme="tech-week"] .nav-cta:hover {
+  background: var(--color-action-primary-hover);
+  border-color: var(--color-action-primary-hover);
+  color: var(--color-action-primary-ink);
+}
+html[data-theme="tech-week"] .sec-close {
+  background: var(--night);
+}
+html[data-theme="tech-week"] .close-title em {
+  color: var(--btw-teal);
+}
+html[data-theme="tech-week"] .close-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  margin-top: 1rem;
+  padding: 0.7rem 1.35rem;
+  border: 1px solid var(--btw-cream);
+  border-radius: var(--radius-control);
+  color: var(--btw-cream);
+  background: transparent;
+}
+html[data-theme="tech-week"] .close-secondary:hover,
+html[data-theme="tech-week"] .close-secondary:focus-visible {
+  color: var(--btw-cream);
+  background: color-mix(in oklab, var(--btw-cream) 10%, transparent);
+}
+
+/* OS coming-soon */
+.os-layout {
+  max-width: 38rem;
+}
+
+/* Dark OS · desk glow (steel/signal, not neon) */
+html[data-theme="os"] .os-atmosphere {
+  background:
+    radial-gradient(
+      90% 60% at 18% 0%,
+      color-mix(in oklab, var(--theme-accent) 9%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      70% 50% at 88% 100%,
+      color-mix(in oklab, var(--signal) 6%, transparent) 0%,
+      transparent 50%
+    ),
+    var(--bg);
+}
+html[data-theme="os"] .page-hero-eyebrow,
+html[data-theme="os"] .os-link:hover,
+html[data-theme="os"] .os-link:focus-visible {
+  color: var(--theme-accent);
+}
+html[data-theme="events"] .page-hero-wash {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--theme-accent) 8%, transparent) 0%,
+    transparent 70%
+  );
+}
+html[data-theme="about"] .page-hero-wash {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--theme-accent) 6%, transparent) 0%,
+    transparent 68%
+  );
+}
+.os-promise {
+  margin-bottom: 1.25rem;
+}
+.os-body {
+  margin-bottom: 2rem;
+}
+.os-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.os-link {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.os-link:hover,
+.os-link:focus-visible {
+  color: var(--color-brand-primary-default);
+}
+
+/* Contextual in-prose route links (About, etc.) */
+.inline-route {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-brand-primary-default) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 160ms var(--ease-out), text-decoration-color 160ms var(--ease-out);
+}
+.inline-route:hover,
+.inline-route:focus-visible {
+  color: var(--color-brand-primary-default);
+  text-decoration-color: var(--color-brand-primary-default);
+}
+
+/* Footer / nav wordmark spotlight wrappers keep layout */
+.nav-logo .brand-spotlight.nav-logo-text,
+.footer-brand .brand-spotlight.footer-wordmark {
+  display: inline-flex;
+  align-items: baseline;
 }
 

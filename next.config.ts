@@ -22,17 +22,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/baltimore-tech-week",
-        destination: "https://bmoretechweek.com",
+        destination: "/tech-week",
+        permanent: true,
+      },
+      {
+        source: "/soulhause-os",
+        destination: "/os",
         permanent: true,
       },
       {
         source: "/soul-labs",
-        destination: "/#pathway-2",
+        destination: "/events#pathway-2",
         permanent: true,
       },
       {
         source: "/what-we-offer",
-        destination: "/#pathways",
+        destination: "/events",
         permanent: false,
       },
       {

@@ -3,17 +3,22 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { CustomCursor } from "./components/CustomCursor";
+import { ThemeSync } from "./components/ThemeSync";
 
 /* ─── Reduced motion ─────────────────────────────────────────────────── */
 function useReducedMotion() {
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const apply = () => {
-      document.documentElement.classList.toggle("reduce-motion", mq.matches);
+      // Body only — never mutate <html> classList; React owns it (next/font).
+      document.body.classList.toggle("reduce-motion", mq.matches);
     };
     apply();
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      document.body.classList.remove("reduce-motion");
+    };
   }, []);
 }
 
@@ -104,5 +109,10 @@ export default function Interactive() {
   useScrollReveal();
   useParallax();
 
-  return <CustomCursor />;
+  return (
+    <>
+      <ThemeSync />
+      <CustomCursor />
+    </>
+  );
 }

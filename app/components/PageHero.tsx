@@ -1,10 +1,11 @@
 type PageHeroProps = {
   title: React.ReactNode;
-  lede: string;
+  lede: React.ReactNode;
   eyebrow?: string;
+  children?: React.ReactNode;
 };
 
-export function PageHero({ title, lede, eyebrow }: PageHeroProps) {
+export function PageHero({ title, lede, eyebrow, children }: PageHeroProps) {
   return (
     <header className="page-hero">
       <div className="page-hero-wash" aria-hidden="true" />
@@ -16,6 +17,7 @@ export function PageHero({ title, lede, eyebrow }: PageHeroProps) {
         {eyebrow ? <p className="page-hero-eyebrow mono">{eyebrow}</p> : null}
         <h1 className="page-hero-title">{title}</h1>
         <p className="lede">{lede}</p>
+        {children}
       </div>
     </header>
   );

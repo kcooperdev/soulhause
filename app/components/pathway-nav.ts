@@ -8,19 +8,24 @@ export function scrollToSection(id: string, behavior: ScrollBehavior = "smooth")
   return true;
 }
 
+/** Deep link into Events formats (or legacy home hashes). */
 export function pathwayHref(id: string) {
-  return `/#${id}`;
+  if (id === "pathways" || id === "events") return "/events";
+  if (id === "flagship" || id === "tech-week") return "/tech-week";
+  if (id.startsWith("pathway-")) return `/events#${id}`;
+  return `/events#${id}`;
 }
 
 export function navigateToPathway(
   id: string,
   pathname: string,
-  navigate: (href: string) => void
+  navigate: (href: string) => void,
 ) {
-  if (pathname === "/") {
+  const href = pathwayHref(id);
+  if (pathname === "/events" && id.startsWith("pathway-")) {
     scrollToSection(id);
-    window.history.replaceState(null, "", pathwayHref(id));
+    window.history.replaceState(null, "", href);
     return;
   }
-  navigate(pathwayHref(id));
+  navigate(href);
 }
