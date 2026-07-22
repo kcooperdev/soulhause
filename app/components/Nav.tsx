@@ -1,170 +1,29 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { BrandLink } from "./BrandLink";
-import { JOIN_URL, FLAGSHIP_PRODUCT, PATHWAY_PICKER, SOUL_BUILDERS_PRODUCT, PRIMARY_CTA } from "./constants";
-import { navigateToPathway, pathwayHref } from "./pathway-nav";
+import { HAUSE_OF_SOUL_LUMA_URL, PRIMARY_CTA } from "./constants";
+import { navigateToPathway } from "./pathway-nav";
 
-const NAV_MENUS = [
-  {
-    label: "Products",
-    items: [
-      { label: FLAGSHIP_PRODUCT.name, href: FLAGSHIP_PRODUCT.href, external: true },
-      { label: SOUL_BUILDERS_PRODUCT.name, href: SOUL_BUILDERS_PRODUCT.href, external: true },
-    ],
-  },
-  {
-    label: "Pathways",
-    items: [
-      ...PATHWAY_PICKER.map((pathway) => ({
-        label: pathway.shortLabel,
-        href: pathwayHref(pathway.id),
-      })),
-      { label: "All events", href: "/#pathways" },
-    ],
-  },
-  {
-    label: "About",
-    items: [
-      { label: "Mission", href: "/about" },
-    ],
-  },
-];
-
-function NavLink({
-  href,
-  label,
-  external,
-  onNavigate,
-}: {
-  href: string;
-  label: string;
-  external?: boolean;
-  onNavigate?: () => void;
-}) {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    onNavigate?.();
-
-    if (external || href.startsWith("mailto:")) return;
-
-    const match = href.match(/^\/#(.+)$/);
-    if (!match) return;
-
-    e.preventDefault();
-    const id = match[1];
-    if (id === "pathways") {
-      if (pathname === "/") {
-        navigateToPathway("pathways", pathname, () => router.push(href));
-      } else {
-        router.push(href);
-      }
-      return;
-    }
-
-    navigateToPathway(id, pathname, (target) => router.push(target));
-  };
-
-  const linkProps = external
-    ? { target: "_blank" as const, rel: "noopener noreferrer" }
-    : {};
-
-  if (external || href.startsWith("http")) {
-    return (
-      <a
-        href={href}
-        className="nav-dropdown-item"
-        role="menuitem"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => onNavigate?.()}
-      >
-        <span className="nav-dropdown-label">{label}</span>
-      </a>
-    );
-  }
-
+function OsComingSoon({ className = "" }: { className?: string }) {
   return (
-    <Link
-      href={href}
-      className="nav-dropdown-item"
-      role="menuitem"
-      onClick={handleClick}
-      {...linkProps}
+    <span
+      className={`nav-os ${className}`.trim()}
+      role="button"
+      tabIndex={0}
+      aria-disabled="true"
+      aria-label="SoulHause OS, coming soon"
+      title="SoulHause OS, coming soon"
     >
-      <span className="nav-dropdown-label">{label}</span>
-    </Link>
-  );
-}
-
-function DropdownGroup({
-  menu,
-  onNavigate,
-}: {
-  menu: (typeof NAV_MENUS)[0];
-  onNavigate?: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const show = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpen(true);
-  };
-  const hide = () => {
-    closeTimer.current = setTimeout(() => setOpen(false), 120);
-  };
-
-  useEffect(() => {
-    function onPointerDown(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", onPointerDown);
-    return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      if (closeTimer.current) clearTimeout(closeTimer.current);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className="nav-menu-group"
-      onMouseEnter={show}
-      onMouseLeave={hide}
-    >
-      <button
-        className={`nav-menu-trigger${open ? " open" : ""}`}
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-      >
-        {menu.label}
-      </button>
-      <div className={`nav-dropdown-panel${open ? " open" : ""}`} role="menu">
-        <div className="nav-dropdown-inner">
-          <div className="nav-dropdown-header">{menu.label}</div>
-          {menu.items.map((item) => (
-            <NavLink
-              key={item.label}
-              href={item.href}
-              label={item.label}
-              external={"external" in item ? item.external : undefined}
-              onNavigate={() => {
-                setOpen(false);
-                onNavigate?.();
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
+      <span className="nav-os-name">
+        <span className="nav-os-full">SoulHause OS</span>
+      </span>
+      <span className="nav-os-soon" aria-hidden="true">
+        Soon
+      </span>
+    </span>
   );
 }
 
@@ -172,13 +31,32 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const isAbout = pathname === "/about";
 
-  const handleMobilePath = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    const match = href.match(/^\/#(.+)$/);
-    if (!match) return;
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [mobileOpen]);
+
+  const goHomeSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    hash: string,
+  ) => {
     e.preventDefault();
     setMobileOpen(false);
-    navigateToPathway(match[1], pathname, (target) => router.push(target));
+    if (pathname === "/") {
+      navigateToPathway(hash, pathname, () => router.push(`/#${hash}`));
+    } else {
+      router.push(`/#${hash}`);
+    }
   };
 
   return (
@@ -187,17 +65,32 @@ export function Nav() {
         <BrandLink />
 
         <div className="nav-links">
-          {NAV_MENUS.map((menu) => (
-            <DropdownGroup key={menu.label} menu={menu} />
-          ))}
-          <Link href="/what-we-offer" className="nav-top-link">
-            Explore
+          <Link
+            href="/#pathways"
+            className="nav-top-link"
+            onClick={(e) => goHomeSection(e, "pathways")}
+          >
+            Events
           </Link>
+          <Link
+            href="/#flagship"
+            className="nav-top-link"
+            onClick={(e) => goHomeSection(e, "flagship")}
+          >
+            Tech Week
+          </Link>
+          <Link
+            href="/about"
+            className={`nav-top-link${isAbout ? " is-active" : ""}`}
+          >
+            About
+          </Link>
+          <OsComingSoon />
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div className="nav-actions">
           <a
-            href={JOIN_URL}
+            href={HAUSE_OF_SOUL_LUMA_URL}
             data-join-gate
             target="_blank"
             rel="noopener noreferrer"
@@ -206,9 +99,10 @@ export function Nav() {
             {PRIMARY_CTA}
           </a>
           <button
-            className="nav-hamburger"
+            type="button"
+            className={`nav-hamburger${mobileOpen ? " is-open" : ""}`}
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
             <span className="nav-hamburger-line" />
@@ -219,59 +113,41 @@ export function Nav() {
       </div>
 
       <div className={`nav-mobile-panel${mobileOpen ? " open" : ""}`}>
-        {NAV_MENUS.map((menu) => (
-          <div key={menu.label} className="nav-mobile-section">
-            <div className="nav-mobile-label">{menu.label}</div>
-            {menu.items.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="nav-mobile-link"
-                onClick={(e) => {
-                  if (item.href.startsWith("/#")) {
-                    handleMobilePath(e, item.href);
-                  } else {
-                    setMobileOpen(false);
-                  }
-                }}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        ))}
         <div className="nav-mobile-section">
-          <div className="nav-mobile-label">Products</div>
-          <a
-            href={FLAGSHIP_PRODUCT.href}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/#pathways"
             className="nav-mobile-link"
-            onClick={() => setMobileOpen(false)}
+            onClick={(e) => goHomeSection(e, "pathways")}
           >
-            {FLAGSHIP_PRODUCT.name} →
-          </a>
-          <a
-            href={SOUL_BUILDERS_PRODUCT.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-mobile-link"
-            onClick={() => setMobileOpen(false)}
-          >
-            {SOUL_BUILDERS_PRODUCT.name} →
-          </a>
-          <Link href="/what-we-offer" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
-            Explore
+            Events
           </Link>
+          <Link
+            href="/#flagship"
+            className="nav-mobile-link"
+            onClick={(e) => goHomeSection(e, "flagship")}
+          >
+            Tech Week
+          </Link>
+          <Link
+            href="/about"
+            className={`nav-mobile-link${isAbout ? " is-active" : ""}`}
+            onClick={() => setMobileOpen(false)}
+          >
+            About
+          </Link>
+          <div className="nav-mobile-os">
+            <OsComingSoon />
+          </div>
         </div>
-        <div style={{ paddingTop: 16, borderTop: "1px solid var(--line)" }}>
+        <div className="nav-mobile-cta">
           <a
-            href={JOIN_URL}
+            href={HAUSE_OF_SOUL_LUMA_URL}
             data-join-gate
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary"
             style={{ width: "100%", justifyContent: "center" }}
+            onClick={() => setMobileOpen(false)}
           >
             {PRIMARY_CTA} →
           </a>

@@ -5,15 +5,17 @@ import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import {
   MEMBER_COUNT,
-  PATHWAYS_VS_BUILDERS,
   PRIMARY_CTA,
   BRAND_STORY,
-  BRAND_PILLARS,
+  EVENTS_ARM,
+  HAUSE_OF_SOUL_LUMA_URL,
+  FLAGSHIP_PRODUCT,
 } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "About SoulHause | A tech community that feels like home",
-  description: `Soul is passion. Hause is home. SoulHause is a grassroots builder community with ${MEMBER_COUNT} members.`,
+  title: "About SoulHause | Cultural infrastructure for local impact",
+  description:
+    "SoulHause is a community and economic development technology company. We create year-round systems that help organizers, creators, and local businesses activate culture and grow their impact.",
 };
 
 export default function About() {
@@ -27,59 +29,62 @@ export default function About() {
             A small house. <em>Lights on.</em>
           </>
         }
-        lede={`${MEMBER_COUNT} builders at talks, workshops, and happy hours. ${BRAND_STORY.together}`}
+        lede={`SoulHause builds digital tools, cultural infrastructure, and ecosystem platforms for local communities and small businesses. ${MEMBER_COUNT} people strong.`}
       />
 
-      <section className="sec">
-        <div className="wrap">
-          <div className="about-intro">
-            <h2 className="h-section path-signature-head about-intro-head">
-              Soul + Hause = <em>home for builders.</em>
-            </h2>
-            <p className="about-copy">{BRAND_STORY.soul}</p>
-            <p className="about-copy">{BRAND_STORY.hause}</p>
-            <p className="about-copy">
-              We run our own events: Soul Sessions, Soul Workshops, and Hause of Soul.
-              Baltimore Tech Week and the Soul Builders LinkedIn group grow from the same house when the
-              community is ready for more. {PATHWAYS_VS_BUILDERS}
-            </p>
-          </div>
+      <section className="sec sec-story">
+        <div className="wrap story-grid">
+          <article className="story-cell" data-reveal>
+            <p className="eyebrow eyebrow--spaced">Soul</p>
+            <h2 className="story-heading">The passion behind the work</h2>
+            <p className="story-body">{BRAND_STORY.soul}</p>
+          </article>
+          <article
+            className="story-cell story-cell--offset"
+            data-reveal
+            style={{ ["--reveal-delay" as string]: "60ms" }}
+          >
+            <p className="eyebrow eyebrow--spaced">Hause</p>
+            <h2 className="story-heading">A place where people belong</h2>
+            <p className="story-body">{BRAND_STORY.hause}</p>
+          </article>
         </div>
       </section>
 
-      <section className="sec sec-alt">
-        <div className="wrap">
-          <div className="sec-head">
-            <div>
-              <p className="eyebrow eyebrow--spaced">Grassroots pillars</p>
-              <h2 className="h-section path-signature-head">
-                What we&apos;re <em>building.</em>
-              </h2>
-            </div>
-            <div>
-              <p className="lede">
-                A grassroots ecosystem. Not a platform pitch. A place people actually want to show up.
-              </p>
-            </div>
-          </div>
+      <section className="sec sec-together">
+        <div className="wrap together-block" data-reveal>
+          <h2 className="h-section">
+            Year-round <em>systems.</em>
+          </h2>
+          <p className="lede together-lede">{BRAND_STORY.together}</p>
+          <p className="together-note">
+            {FLAGSHIP_PRODUCT.name} is our five-day citywide flagship. SoulHause
+            OS is coming soon.
+          </p>
+        </div>
+      </section>
 
-          <div className="values">
-            {BRAND_PILLARS.map((v) => (
-              <article key={v.title} className="about-card">
-                <h3>{v.title}</h3>
-                <p>{v.body}</p>
-              </article>
-            ))}
-          </div>
+      <section className="sec sec-events-about" id="events">
+        <div className="wrap together-block" data-reveal>
+          <h2 className="h-section">
+            SoulHause <em>Events</em>
+          </h2>
+          <p className="lede together-lede">
+            {EVENTS_ARM.summary} Three formats: Soul Sessions, Soul Workshops,
+            and Hause of Soul.
+          </p>
         </div>
       </section>
 
       <PageCta
-        title="Come through the door"
-        sub={`Join ${MEMBER_COUNT} builders on Luma. RSVP to a talk, workshop, or happy hour.`}
+        title={
+          <>
+            Come through the <em>door</em>
+          </>
+        }
+        sub={`Hause of Soul · one night in SoulHause Events. Join ${MEMBER_COUNT} on Luma.`}
+        primaryHref={HAUSE_OF_SOUL_LUMA_URL}
         primaryLabel={PRIMARY_CTA}
-        secondaryHref="/#pathways"
-        secondaryLabel="See events"
       />
 
       <Footer />

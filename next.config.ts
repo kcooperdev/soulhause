@@ -31,6 +31,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/what-we-offer",
+        destination: "/#pathways",
+        permanent: false,
+      },
+      {
         source: "/membership",
         destination: "/",
         permanent: false,

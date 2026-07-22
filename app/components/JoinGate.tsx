@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { JOIN_GATE, JOIN_URL } from "./constants";
+import { JOIN_GATE, HAUSE_OF_SOUL_LUMA_URL } from "./constants";
 
 export function JoinGate() {
   const [open, setOpen] = useState(false);
-  const [pendingUrl, setPendingUrl] = useState(JOIN_URL);
+  const [pendingUrl, setPendingUrl] = useState(HAUSE_OF_SOUL_LUMA_URL);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest<HTMLAnchorElement>("[data-join-gate]");
       if (!target) return;
       e.preventDefault();
-      setPendingUrl(target.href || JOIN_URL);
+      setPendingUrl(target.href || HAUSE_OF_SOUL_LUMA_URL);
       setOpen(true);
     };
     const onKey = (e: KeyboardEvent) => {
@@ -47,16 +47,14 @@ export function JoinGate() {
         >
           ×
         </button>
-        <p className="join-gate-eyebrow">60 seconds on Luma</p>
+        <p className="join-gate-brand" aria-label="SoulHause">
+          <span className="brand-soul">Soul</span>
+          <span className="brand-hause">Hause</span>
+        </p>
         <h2 id="join-gate-title" className="join-gate-title">
           {JOIN_GATE.headline}
         </h2>
         <p className="join-gate-sub">{JOIN_GATE.sub}</p>
-        <ol className="join-gate-steps">
-          {JOIN_GATE.steps.map((step) => (
-            <li key={step}>{step}</li>
-          ))}
-        </ol>
         <div className="join-gate-actions">
           <a
             href={pendingUrl}
@@ -67,9 +65,6 @@ export function JoinGate() {
           >
             Continue on Luma <span className="arrow">→</span>
           </a>
-          <button type="button" className="btn btn-ghost" onClick={() => setOpen(false)}>
-            Not now
-          </button>
         </div>
       </div>
     </div>
