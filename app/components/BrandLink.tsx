@@ -49,19 +49,12 @@ export function BrandLink({ variant = "nav" }: Props) {
   return (
     <Link
       href="/"
-      className="nav-logo"
+      className="nav-logo nav-logo--mark"
       onClick={goHome}
       aria-label="SoulHause home"
     >
-      <Logo size={60} />
-      <BrandSpotlight className="nav-logo-text" quiet>
-        <span className="nav-logo-soul brand-sunflow brand-sunflow--quiet">
-          Soul
-        </span>
-        <span className="nav-logo-hause brand-sunflow brand-sunflow--quiet">
-          Hause
-        </span>
-      </BrandSpotlight>
+      {/* Intrinsic 64; CSS sizes display (compensates asset padding) */}
+      <Logo size={64} />
     </Link>
   );
 }

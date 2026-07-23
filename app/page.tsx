@@ -1,10 +1,8 @@
-import Link from "next/link";
 import { Nav } from "./components/Nav";
 import { BrandSpotlight } from "./components/BrandSpotlight";
+import { Logo } from "./components/Logo";
 import {
-  EXPLORE_EVENTS_CTA,
   HOME_BRAND_LINE,
-  HOME_LEDE,
   NEXT_EVENT,
   PRIMARY_CTA,
 } from "./components/constants";
@@ -14,7 +12,11 @@ function Hero() {
     <header className="hero-forge hero-forge--solo">
       <div className="hero-forge-canvas" aria-hidden="true" />
 
-      <div className="wrap hero-forge-inner">
+      <div className="hero-forge-inner">
+        <div className="hero-forge-emblem" aria-hidden="true">
+          <Logo size={96} />
+        </div>
+
         <BrandSpotlight
           as="h1"
           className="hero-forge-brand"
@@ -26,7 +28,6 @@ function Hero() {
         </BrandSpotlight>
 
         <p className="hero-forge-brand-line">{HOME_BRAND_LINE}</p>
-        <p className="hero-forge-lede">{HOME_LEDE}</p>
 
         <div className="hero-forge-cta">
           <a
@@ -41,9 +42,6 @@ function Hero() {
           <p className="hero-forge-meta">
             Next: {NEXT_EVENT.shortTitle} · {NEXT_EVENT.date}
           </p>
-          <Link href="/events" className="hero-forge-secondary">
-            {EXPLORE_EVENTS_CTA} <span className="arrow">→</span>
-          </Link>
         </div>
       </div>
     </header>

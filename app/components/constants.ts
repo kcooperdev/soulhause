@@ -14,8 +14,9 @@ export const PATHWAY_PICKER = [
     id: "pathway-1",
     label: "Soul Sessions",
     shortLabel: "Soul Sessions",
-    format: "Real founder journeys",
-    tagline: "Real founder journeys",
+    format: "Talk night",
+    tagline: "Founders telling it straight",
+    stub: "Talks",
     tone: "gold",
     metal: "gold",
   },
@@ -23,8 +24,9 @@ export const PATHWAY_PICKER = [
     id: "pathway-2",
     label: "Soul Workshops",
     shortLabel: "Soul Workshops",
-    format: "Hands on learning",
-    tagline: "Hands on learning you can use",
+    format: "Hands-on",
+    tagline: "Learn something you can use",
+    stub: "Workshops",
     tone: "bronze",
     metal: "bronze",
   },
@@ -32,8 +34,9 @@ export const PATHWAY_PICKER = [
     id: "pathway-3",
     label: "Hause of Soul: Tech Happy Hour",
     shortLabel: "Hause of Soul",
-    format: "Tech Happy Hour",
-    tagline: "Our tech happy hour",
+    format: "Happy hour",
+    tagline: "Drinks, intros, no agenda",
+    stub: "Happy hour",
     tone: "platinum",
     metal: "platinum",
   },
@@ -43,32 +46,28 @@ export const PATHWAY_PICKER = [
 export const EVENTS_ARM = {
   name: "SoulHause Events",
   summary:
-    "SoulHause Events is nights in the room for builders, founders, creatives, and technologists.",
-  together:
-    "Sessions, workshops, and happy hours that keep Baltimore social tech in the same rooms.",
+    "Baltimore nights for social tech: talks, workshops, and tech happy hour.",
+  together: "Pick a format. Show up. Meet people building here.",
 } as const;
 
 export const PRIMARY_CTA = "RSVP on Luma";
 export const EXPLORE_EVENTS_CTA = "Explore Events";
-export const EXPLORE_TECH_WEEK_CTA = "Explore the tech week";
+export const EXPLORE_TECH_WEEK_CTA = "bmoretechweek.com";
 export const RSVP_INFO_SESSION_CTA = "RSVP for the info session";
 export const FOLLOW_LUMA_CTA = "Follow on Luma";
 export const NOTIFY_ME_CTA = "Notify me";
 
 /** Short brand line for footer + shared surfaces. */
-export const SITE_TAGLINE =
-  "Tech for soul, community, and local growth.";
+export const SITE_TAGLINE = "tech for the soul.";
 
-/** Home hero: punchy brand line + one support sentence. */
+/** Home hero brand line. */
 export const HOME_BRAND_LINE = "tech for the soul.";
-export const HOME_LEDE =
-  "Tech for soul, community, and local growth.";
 
 export const BRAND_STORY = {
-  soul: "Soul is the drive. Organizers, creators, and builders who care about culture and place.",
-  hause: "Hause is German for house. A place people belong, and where local scenes take root.",
+  soul: "Soul is the drive: organizers, creators, and builders who care about culture and this city.",
+  hause: "Hause is German for house. We mean a local scene with roots, not a metaphor.",
   together:
-    "SoulHause builds digital tools and citywide programs that help organizers, creators, and local businesses grow culture and impact.",
+    "SoulHause builds digital tools and citywide programs so organizers, creators, and local businesses can grow culture and impact.",
 } as const;
 
 export const NEXT_EVENT = {
@@ -83,15 +82,15 @@ export const NEXT_EVENT = {
 export const PATHWAY_OFFERS = [
   {
     heading: "Soul Sessions",
-    body: "Real founder journeys. Builders and operators share the work as it unfolds: mistakes, pivots, and what actually landed.",
+    body: "Founders and operators tell it straight: what broke, what stuck, what they'd skip next time. Sit, listen, ask hard questions.",
   },
   {
     heading: "Soul Workshops",
-    body: "Hands on learning you can use. Leave with skills and work that help builders, founders, and local businesses grow.",
+    body: "Bring a laptop. Small group, real reps. Leave with something you can use Monday.",
   },
   {
     heading: "Hause of Soul",
-    body: "Our tech happy hour. Builders, founders, creatives, and technologists in one room.",
+    body: "Tech happy hour. Drinks, intros, no agenda. The easy way to meet the room.",
   },
 ] as const;
 
@@ -103,10 +102,11 @@ export const FLAGSHIP_PRODUCT = {
   badge: "Powered by SoulHause",
   tagline: "Five days across Baltimore, powered by SoulHause.",
   meta: "Five days · citywide · powered by SoulHause",
-  stageLede: "Not a conference hall. A week across the city.",
+  stageLede:
+    "A week of social tech across Baltimore venues, powered by SoulHause.",
   status: "Schedule and venues coming soon",
   closeSub:
-    "Schedule and venues are coming soon. RSVP for the info session to hear first, or explore Baltimore Tech Week.",
+    "Schedule and venues are coming soon. RSVP for the info session to hear first.",
 } as const;
 
 export const SOUL_BUILDERS_LINKEDIN =
@@ -121,7 +121,7 @@ export const SOUL_BUILDERS_PRODUCT = {
 
 export const JOIN_GATE = {
   headline: `RSVP for ${NEXT_EVENT.shortTitle}`,
-  sub: `Our tech happy hour. ${MEMBER_COUNT} already on Luma. Takes about a minute.`,
+  sub: `Tech happy hour · ${NEXT_EVENT.shortDate}. ${MEMBER_COUNT} on Luma. About a minute.`,
 } as const;
 
 /** SoulHause OS: member / online community (coming soon). */
@@ -133,40 +133,44 @@ export const OS_PRODUCT = {
   slug: "/os",
   status: "Coming soon",
   eyebrow: "Online community · Coming soon",
-  lede: "The member side of SoulHause. Perks, VIP access, and a house that stays open between nights out.",
-  promise: "Stay in the house when the lights go up.",
-  body: "SoulHause OS is for people already in the rooms. Members get closer to the nights that matter, partner perks across the city, and a place to stay connected all year. Same house as Events and Tech Week, just online.",
-  closeSub:
-    "Get notified when SoulHause OS launches. Until then, the rooms are live through Events.",
+  lede: "The member side of SoulHause. VIP access, city perks, and rooms that stay open between events.",
+  promise: "VIP access that lasts past the event night.",
+  body: "SoulHause OS is for people already showing up. Members get closer to the nights that matter, partner perks across the city, and a place to stay connected all year. Same crew as Events and Tech Week, just online.",
+  closeSub: "Get notified when SoulHause OS launches.",
   notifyHref: OS_NOTIFY_HREF,
 } as const;
 
-/** Member access pillars for SoulHause OS (coming soon). */
+/** Member access list for SoulHause OS (coming soon). */
 export const OS_ACCESS = [
   {
     title: "VIP event access",
+    chip: "VIP",
     body: "Member lists, early RSVPs, and invite-only nights before they hit the public calendar.",
   },
   {
-    title: "Community rooms",
-    body: "Spaces to trade notes, make intros, and keep the house warm between IRL nights.",
-  },
-  {
     title: "Local business perks",
+    chip: "Perks",
     body: "Offers from Baltimore shops, studios, and spots that show up for members.",
   },
   {
-    title: "Early drops",
-    body: "First word on programs, house releases, and city-week moments before they go wide.",
+    title: "Community rooms",
+    chip: "Rooms",
+    body: "Spaces to trade notes, make intros, and stay in touch between event nights.",
   },
   {
-    title: "Member-only moments",
-    body: "Private sessions, AMAs, and digital hangs for people inside the house.",
+    title: "Early drops",
+    chip: "Drops",
+    body: "First word on programs, member releases, and city-week moments before they go wide.",
+  },
+  {
+    title: "Member nights",
+    chip: "Nights",
+    body: "Private sessions, AMAs, and digital hangs reserved for members.",
   },
 ] as const;
 
 /** About: company story. */
 export const ABOUT_STORY = {
   title: "tech for the soul.",
-  lede: `Tech for soul, community, and local growth. ${MEMBER_COUNT} people strong.`,
+  lede: `${MEMBER_COUNT} people on Luma.`,
 } as const;

@@ -9,6 +9,8 @@ import {
 } from "react";
 
 const FADE_MS = 340;
+const TAP_HOLD_MS = 900;
+const TAP_STRONG = 1;
 const BRAND_RE = /SoulHause/gi;
 
 type SpotlightOwnProps<T extends ElementType> = {
@@ -30,9 +32,19 @@ function hasFinePointer() {
   return window.matchMedia("(pointer: fine)").matches;
 }
 
+/** Mobile / touch: solid ink only — no sun spotlight, breath, or tap reveal. */
+function isSunDisabled() {
+  return (
+    window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(hover: none)").matches ||
+    window.matchMedia("(pointer: coarse)").matches
+  );
+}
+
 /**
  * Soft circular sun-stripe spotlight over brand text.
  * Default paint stays solid ink; hover/focus reveals logo colors inside the spot.
+ * Desktop only: pointer-follow. Mobile stays solid text sitewide.
  */
 export function BrandSpotlight<T extends ElementType = "span">({
   as,
@@ -49,6 +61,9 @@ export function BrandSpotlight<T extends ElementType = "span">({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Mobile / coarse: leave solid ink — no listeners, no breath, no tap sun
+    if (isSunDisabled()) return;
 
     const root =
       (el.closest("a.nav-logo, a.footer-brand") as HTMLElement | null) ?? el;
@@ -75,21 +90,24 @@ export function BrandSpotlight<T extends ElementType = "span">({
       el.style.setProperty("--spot-opacity", String(value));
     };
 
-    const activate = (clientX?: number, clientY?: number) => {
+    const activate = (
+      clientX?: number,
+      clientY?: number,
+      strength: number = TAP_STRONG,
+    ) => {
       window.clearTimeout(leaveTimerRef.current);
       // Capture ink before glyphs go transparent via background-clip
       el.style.setProperty("--spot-ink", getComputedStyle(el).color);
       el.classList.add("is-spotlit");
       root.classList.add("is-spotlit");
 
-      if (prefersReducedMotion() || !hasFinePointer() || clientX == null) {
-        setCentered();
+      if (clientX != null && clientY != null && !prefersReducedMotion()) {
+        setLocalSpot(clientX, clientY);
       } else {
-        setLocalSpot(clientX, clientY!);
+        setCentered();
       }
 
-      // Next frame so opacity can transition from 0 → 1
-      requestAnimationFrame(() => setOpacity(1));
+      requestAnimationFrame(() => setOpacity(strength));
     };
 
     const deactivate = () => {
@@ -102,7 +120,7 @@ export function BrandSpotlight<T extends ElementType = "span">({
 
     const onPointerEnter = (e: PointerEvent) => {
       if (e.pointerType === "touch") return;
-      activate(e.clientX, e.clientY);
+      activate(e.clientX, e.clientY, TAP_STRONG);
     };
 
     const onPointerMove = (e: PointerEvent) => {
@@ -115,9 +133,17 @@ export function BrandSpotlight<T extends ElementType = "span">({
       });
     };
 
-    const onPointerLeave = () => deactivate();
+    const onPointerLeave = (e: PointerEvent) => {
+      if (e.pointerType === "touch") return;
+      deactivate();
+    };
 
-    const onFocus = () => activate();
+    const onFocus = () => {
+      window.clearTimeout(leaveTimerRef.current);
+      const strength = prefersReducedMotion() ? 0.72 : TAP_STRONG;
+      activate(undefined, undefined, strength);
+    };
+
     const onBlur = () => deactivate();
 
     root.addEventListener("pointerenter", onPointerEnter);
@@ -135,6 +161,7 @@ export function BrandSpotlight<T extends ElementType = "span">({
       root.removeEventListener("focus", onFocus);
       root.removeEventListener("blur", onBlur);
       root.classList.remove("is-spotlit");
+      el.classList.remove("is-spotlit", "is-breathing");
     };
   }, []);
 

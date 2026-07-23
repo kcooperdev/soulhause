@@ -41,9 +41,7 @@ export default function TechWeekPage() {
             <BrandText text={FLAGSHIP_PRODUCT.meta} />
           </p>
           <p className="tw-intro-lede">
-            {FLAGSHIP_PRODUCT.stageLede} Powered by{" "}
-            <BrandText text="SoulHause" />. Schedule and venues coming soon.
-            RSVP for the info session to stay first in line.
+            {FLAGSHIP_PRODUCT.stageLede} Schedule and venues coming soon.
           </p>
           <div className="tw-intro-actions">
             <a
@@ -76,9 +74,6 @@ export default function TechWeekPage() {
         primaryHref={FLAGSHIP_PRODUCT.lumaHref}
         primaryLabel={RSVP_INFO_SESSION_CTA}
         primaryJoinGate={false}
-        secondaryHref={FLAGSHIP_PRODUCT.href}
-        secondaryLabel={EXPLORE_TECH_WEEK_CTA}
-        secondaryExternal
       />
 
       <Footer />

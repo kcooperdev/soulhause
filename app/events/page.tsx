@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { PathwayHashScroll } from "../components/PathwayNav";
-import { PathwayTabs } from "../components/PathwayTabs";
+import { EventsFormats } from "../components/EventsFormats";
 import { BrandText } from "../components/BrandSpotlight";
 import {
   EVENTS_ARM,
@@ -21,13 +21,14 @@ export const metadata: Metadata = {
   description: EVENTS_ARM.summary,
 };
 
-const PATHWAYS = PATHWAY_PICKER.map((pathway, index) => ({
+const FORMATS = PATHWAY_PICKER.map((pathway, index) => ({
   id: pathway.id,
   label: pathway.shortLabel,
   format: pathway.format,
   metal: pathway.metal,
   body: PATHWAY_OFFERS[index].body,
   index: index + 1,
+  stub: pathway.stub,
 }));
 
 export default function EventsPage() {
@@ -44,31 +45,25 @@ export default function EventsPage() {
         }
         lede={<BrandText text={EVENTS_ARM.summary} />}
       >
-        <p className="page-hero-next">
-          Next up: {NEXT_EVENT.shortTitle} · {NEXT_EVENT.shortDate} ·{" "}
+        <div className="page-hero-actions">
           <a
             href={NEXT_EVENT.rsvpUrl}
             data-join-gate
             target="_blank"
             rel="noopener noreferrer"
-            className="page-hero-next-link"
+            className="btn btn-primary"
           >
-            RSVP <span className="arrow">→</span>
+            {PRIMARY_CTA} <span className="arrow">→</span>
           </a>
-        </p>
+          <p className="page-hero-next">
+            Next: {NEXT_EVENT.shortTitle} · {NEXT_EVENT.shortDate}
+          </p>
+        </div>
       </PageHero>
 
-      <section className="sec sec-pathways" id="formats">
+      <section className="sec sec-events-lineup" id="formats">
         <div className="wrap">
-          <div className="pathways-head" data-reveal>
-            <h2 className="h-section">
-              Three formats. <em>One house.</em>
-            </h2>
-            <p className="lede">{EVENTS_ARM.together}</p>
-          </div>
-          <div data-reveal style={{ ["--reveal-delay" as string]: "80ms" }}>
-            <PathwayTabs pathways={PATHWAYS} />
-          </div>
+          <EventsFormats formats={FORMATS} />
         </div>
       </section>
 
@@ -80,7 +75,7 @@ export default function EventsPage() {
         }
         sub={
           <>
-            {NEXT_EVENT.date}. Our tech happy hour. Join {MEMBER_COUNT} on Luma.
+            {NEXT_EVENT.date}. Tech happy hour. {MEMBER_COUNT} on Luma.
           </>
         }
         primaryHref={HAUSE_OF_SOUL_LUMA_URL}

@@ -5,7 +5,6 @@ import { Footer } from "../components/Footer";
 import { PageHero } from "../components/PageHero";
 import { BrandSpotlight, BrandText } from "../components/BrandSpotlight";
 import {
-  EXPLORE_EVENTS_CTA,
   NOTIFY_ME_CTA,
   OS_ACCESS,
   OS_PRODUCT,
@@ -33,9 +32,6 @@ export default function OsPage() {
           <a href={OS_PRODUCT.notifyHref} className="btn btn-primary">
             {NOTIFY_ME_CTA} <span className="arrow">→</span>
           </a>
-          <Link href="/events" className="page-hero-secondary">
-            {EXPLORE_EVENTS_CTA} <span className="arrow">→</span>
-          </Link>
         </div>
       </PageHero>
 
@@ -59,23 +55,36 @@ export default function OsPage() {
         </div>
       </section>
 
-      <section className="sec sec-pillars-open" aria-labelledby="os-access-title">
-        <div className="wrap" data-reveal>
-          <h2 id="os-access-title" className="h-section">
-            What members get
-          </h2>
-          <p className="lede os-body">
-            Concrete access for people building in Baltimore social tech, not
-            another feed to scroll.
-          </p>
-          <div className="pillar-rail">
-            {OS_ACCESS.map((item) => (
-              <div key={item.title} className="pillar-row">
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </div>
-            ))}
+      <section className="sec sec-os-access" aria-labelledby="os-access-title">
+        <div className="wrap os-access" data-reveal>
+          <div className="os-access-intro">
+            <p className="eyebrow eyebrow--spaced">Member access</p>
+            <h2 id="os-access-title" className="os-access-title">
+              What members get
+            </h2>
+            <p className="lede os-access-lede">
+              VIP nights, city perks, member rooms. Built for Baltimore social
+              tech, not another feed.
+            </p>
+            <ul className="os-access-chips" aria-label="Member perks at a glance">
+              {OS_ACCESS.map((item) => (
+                <li key={item.chip}>{item.chip}</li>
+              ))}
+            </ul>
           </div>
+          <ol className="os-access-list">
+            {OS_ACCESS.map((item, index) => (
+              <li key={item.title} className="os-access-item">
+                <span className="os-access-num" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="os-access-copy">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -86,7 +95,7 @@ export default function OsPage() {
             <span className="brand-hause brand-sunflow brand-sunflow--quiet">Hause</span>
           </BrandSpotlight>
           <h2 className="close-title">
-            Be first when the <em>door</em> opens
+            Be first when <em>OS</em> launches
           </h2>
           <p className="close-sub">
             <BrandText text={OS_PRODUCT.closeSub} />
@@ -94,9 +103,6 @@ export default function OsPage() {
           <a href={OS_PRODUCT.notifyHref} className="btn btn-primary">
             {NOTIFY_ME_CTA} <span className="arrow">→</span>
           </a>
-          <Link href="/events" className="close-secondary">
-            <BrandText text="SoulHause Events" /> <span className="arrow">→</span>
-          </Link>
         </div>
       </section>
 

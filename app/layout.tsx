@@ -37,16 +37,17 @@ const mono = IBM_Plex_Mono({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#E9EBE7",
 };
 
 export const metadata: Metadata = {
   title: "SoulHause | tech for the soul",
-  description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
+  description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
   metadataBase: new URL("https://soulhause.com"),
   openGraph: {
     title: "SoulHause | tech for the soul",
-    description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17.`,
+    description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17.`,
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SoulHause | tech for the soul",
-    description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17.`,
+    description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17.`,
   },
 };
 

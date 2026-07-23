@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "About SoulHause | tech for the soul",
   description:
-    "Tech for soul, community, and local growth. SoulHause builds digital tools and citywide programs for organizers, creators, and local businesses.",
+    "SoulHause builds digital tools and citywide programs for organizers, creators, and local businesses.",
 };
 
 export default function About() {
@@ -35,7 +35,7 @@ export default function About() {
         <div className="wrap story-grid">
           <article className="story-cell" data-reveal>
             <p className="eyebrow eyebrow--spaced">Soul</p>
-            <h2 className="story-heading">The passion behind the work</h2>
+            <h2 className="story-heading">Why we build</h2>
             <p className="story-body">{BRAND_STORY.soul}</p>
           </article>
           <article
@@ -44,7 +44,7 @@ export default function About() {
             style={{ ["--reveal-delay" as string]: "60ms" }}
           >
             <p className="eyebrow eyebrow--spaced">Hause</p>
-            <h2 className="story-heading">A place where people belong</h2>
+            <h2 className="story-heading">What Hause means</h2>
             <p className="story-body">{BRAND_STORY.hause}</p>
           </article>
         </div>
@@ -53,10 +53,10 @@ export default function About() {
       <section className="sec sec-together">
         <div className="wrap together-block" data-reveal>
           <h2 className="h-section">
-            The work, <em>year round.</em>
+            The work, <em>year-round</em>
           </h2>
           <p className="lede together-lede">
-            <BrandText text={BRAND_STORY.together} /> Meet the work in{" "}
+            <BrandText text={BRAND_STORY.together} /> See it in{" "}
             <Link href="/events" className="inline-route">
               <BrandText text="SoulHause Events" />
             </Link>
@@ -76,12 +76,12 @@ export default function About() {
       <PageCta
         title={
           <>
-            Come through the <em>door</em>
+            RSVP for <em>Hause of Soul</em>
           </>
         }
         sub={
           <BrandText
-            text={`Hause of Soul · our tech happy hour. Join ${MEMBER_COUNT} on Luma.`}
+            text={`Tech happy hour · Sep 17. Join ${MEMBER_COUNT} on Luma.`}
           />
         }
         primaryHref={HAUSE_OF_SOUL_LUMA_URL}
