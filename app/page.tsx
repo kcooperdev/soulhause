@@ -3,6 +3,7 @@ import { Nav } from "./components/Nav";
 import { BrandSpotlight } from "./components/BrandSpotlight";
 import {
   EXPLORE_EVENTS_CTA,
+  HOME_BRAND_LINE,
   HOME_LEDE,
   NEXT_EVENT,
   PRIMARY_CTA,
@@ -24,6 +25,7 @@ function Hero() {
           <span className="brand-hause brand-sunflow">Hause</span>
         </BrandSpotlight>
 
+        <p className="hero-forge-brand-line">{HOME_BRAND_LINE}</p>
         <p className="hero-forge-lede">{HOME_LEDE}</p>
 
         <div className="hero-forge-cta">

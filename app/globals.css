@@ -6855,10 +6855,21 @@ footer {
   max-width: 10ch;
   animation: forge-rise 1000ms var(--ease-out) both;
 }
+.hero-forge-brand-line {
+  margin: 0 0 0.55rem;
+  max-width: 22rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--ink);
+  animation: forge-rise 900ms var(--ease-out) 60ms both;
+}
 .hero-forge--solo .hero-forge-lede {
   margin: 0 0 2.1rem;
-  max-width: 20.5rem;
-  font-size: clamp(1.1rem, 1.85vw, 1.28rem);
+  max-width: 22rem;
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
   font-weight: 450;
   line-height: 1.5;
   color: var(--ink-soft);
@@ -6892,6 +6903,7 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-forge--solo .hero-forge-brand,
+  .hero-forge-brand-line,
   .hero-forge--solo .hero-forge-lede,
   .hero-forge--solo .hero-forge-cta {
     animation: none;

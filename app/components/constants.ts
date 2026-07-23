@@ -57,9 +57,10 @@ export const NOTIFY_ME_CTA = "Notify me";
 
 /** Short brand line for footer + shared surfaces. */
 export const SITE_TAGLINE =
-  "Tools and nights that help communities and small businesses grow.";
+  "Tech for culture, community, and local growth.";
 
-/** Homepage hero support. */
+/** Home hero: punchy brand line + one support sentence. */
+export const HOME_BRAND_LINE = "tech for the soul.";
 export const HOME_LEDE =
   "Tech for culture, community, and local growth.";
 
@@ -166,7 +167,6 @@ export const OS_ACCESS = [
 
 /** About: company story. */
 export const ABOUT_STORY = {
-  title: "Tech and culture for local impact.",
-  titleTurn: "Lights on.",
-  lede: `SoulHause builds digital tools and citywide programs for local culture. ${MEMBER_COUNT} people strong.`,
+  title: "tech for the soul.",
+  lede: `Tech for culture, community, and local growth. ${MEMBER_COUNT} people strong.`,
 } as const;

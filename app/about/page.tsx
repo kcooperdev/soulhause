@@ -16,9 +16,9 @@ import {
 } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "About SoulHause | Tech and culture for local impact",
+  title: "About SoulHause | tech for the soul",
   description:
-    "SoulHause builds digital tools and citywide programs that help organizers, creators, and local businesses grow culture and impact.",
+    "Tech for culture, community, and local growth. SoulHause builds digital tools and citywide programs for organizers, creators, and local businesses.",
 };
 
 export default function About() {
@@ -27,11 +27,7 @@ export default function About() {
       <Nav />
 
       <PageHero
-        title={
-          <>
-            {ABOUT_STORY.title} <em>{ABOUT_STORY.titleTurn}</em>
-          </>
-        }
+        title={ABOUT_STORY.title}
         lede={<BrandText text={ABOUT_STORY.lede} />}
       />
 

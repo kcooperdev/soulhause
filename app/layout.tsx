@@ -41,20 +41,20 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "SoulHause | Tech for culture and local growth",
-  description: `SoulHause builds digital tools and citywide programs for communities and small businesses. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
+  title: "SoulHause | tech for the soul",
+  description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
   metadataBase: new URL("https://soulhause.com"),
   openGraph: {
-    title: "SoulHause | Tech for culture and local growth",
-    description: `Digital tools and citywide programs for communities and small businesses. Next up: Hause of Soul · Sept 17.`,
+    title: "SoulHause | tech for the soul",
+    description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17.`,
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SoulHause | Tech for culture and local growth",
-    description: `Digital tools and citywide programs for communities and small businesses. Next up: Hause of Soul · Sept 17.`,
+    title: "SoulHause | tech for the soul",
+    description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17.`,
   },
 };
 
