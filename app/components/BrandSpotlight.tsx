@@ -9,7 +9,6 @@ import {
 } from "react";
 
 const FADE_MS = 340;
-const TAP_HOLD_MS = 900;
 const TAP_STRONG = 1;
 const BRAND_RE = /SoulHause/gi;
 

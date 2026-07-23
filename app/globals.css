@@ -2140,8 +2140,8 @@ footer a:hover {
   }
 }
 
-/* Touch / coarse / narrow: solid theme ink — no sun fill, breath, or hover sunflow */
-@media (hover: none), (pointer: coarse), (max-width: 900px) {
+/* Mobile / touch / narrow: solid theme ink — no sun fill, breath, or clip */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
   .brand-spotlight {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -2156,7 +2156,10 @@ footer a:hover {
   .brand-spotlight.is-spotlit .brand-sunflow,
   .brand-spotlight.is-breathing .brand-sunflow,
   .nav-top-link .brand-spotlight.is-spotlit .brand-sunflow,
-  .nav-mobile-link .brand-spotlight.is-spotlit .brand-sunflow {
+  .nav-mobile-link .brand-spotlight.is-spotlit .brand-sunflow,
+  .hero-forge-brand .brand-sunflow,
+  .hero-forge-brand.is-spotlit .brand-sunflow,
+  .hero-forge-brand.is-breathing .brand-sunflow {
     background: none !important;
     background-image: none !important;
     color: var(--spot-ink, var(--brand-mark)) !important;
@@ -2165,6 +2168,8 @@ footer a:hover {
     background-clip: unset !important;
   }
   .brand-spotlight--inline .brand-sunflow,
+  .brand-spotlight--inline.is-spotlit .brand-sunflow,
+  .brand-spotlight--inline.is-breathing .brand-sunflow,
   .nav-top-link .brand-sunflow,
   .nav-mobile-link .brand-sunflow,
   .nav-top-link .brand-spotlight.is-spotlit .brand-sunflow,
@@ -2178,6 +2183,12 @@ footer a:hover {
   .join-gate-brand .brand-sunflow {
     color: var(--brand-mark-on-dark, var(--spot-ink, #fff)) !important;
     -webkit-text-fill-color: var(--brand-mark-on-dark, var(--spot-ink, #fff)) !important;
+  }
+  .hero-forge-brand .brand-sunflow,
+  .hero-forge-brand.is-spotlit .brand-sunflow,
+  .hero-forge-brand.is-breathing .brand-sunflow {
+    color: var(--ink) !important;
+    -webkit-text-fill-color: var(--ink) !important;
   }
 }
 
@@ -6985,10 +6996,12 @@ footer {
 .nav-mobile-link .brand-sunflow {
   color: inherit;
 }
-.nav-top-link .brand-spotlight.is-spotlit .brand-sunflow,
-.nav-mobile-link .brand-spotlight.is-spotlit .brand-sunflow {
-  /* Spotlight still reveals full sun-stripe gradient */
-  color: transparent;
+@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+  .nav-top-link .brand-spotlight.is-spotlit .brand-sunflow,
+  .nav-mobile-link .brand-spotlight.is-spotlit .brand-sunflow {
+    /* Desktop only: spotlight reveals sun-stripe gradient */
+    color: transparent;
+  }
 }
 .nav-mobile-link {
   color: color-mix(in oklab, var(--theme-accent) 38%, var(--muted));
