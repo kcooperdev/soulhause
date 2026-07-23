@@ -57,12 +57,12 @@ export const NOTIFY_ME_CTA = "Notify me";
 
 /** Short brand line for footer + shared surfaces. */
 export const SITE_TAGLINE =
-  "Tech for culture, community, and local growth.";
+  "Tech for soul, community, and local growth.";
 
 /** Home hero: punchy brand line + one support sentence. */
 export const HOME_BRAND_LINE = "tech for the soul.";
 export const HOME_LEDE =
-  "Tech for culture, community, and local growth.";
+  "Tech for soul, community, and local growth.";
 
 export const BRAND_STORY = {
   soul: "Soul is the drive. Organizers, creators, and builders who care about culture and place.",
@@ -168,5 +168,5 @@ export const OS_ACCESS = [
 /** About: company story. */
 export const ABOUT_STORY = {
   title: "tech for the soul.",
-  lede: `Tech for culture, community, and local growth. ${MEMBER_COUNT} people strong.`,
+  lede: `Tech for soul, community, and local growth. ${MEMBER_COUNT} people strong.`,
 } as const;

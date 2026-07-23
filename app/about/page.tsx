@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "About SoulHause | tech for the soul",
   description:
-    "Tech for culture, community, and local growth. SoulHause builds digital tools and citywide programs for organizers, creators, and local businesses.",
+    "Tech for soul, community, and local growth. SoulHause builds digital tools and citywide programs for organizers, creators, and local businesses.",
 };
 
 export default function About() {

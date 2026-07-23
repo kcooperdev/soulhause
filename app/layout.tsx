@@ -42,11 +42,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "SoulHause | tech for the soul",
-  description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
+  description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
   metadataBase: new URL("https://soulhause.com"),
   openGraph: {
     title: "SoulHause | tech for the soul",
-    description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17.`,
+    description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17.`,
     url: "https://soulhause.com",
     siteName: "SoulHause",
     type: "website",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SoulHause | tech for the soul",
-    description: `Tech for culture, community, and local growth. Next up: Hause of Soul · Sept 17.`,
+    description: `Tech for soul, community, and local growth. Next up: Hause of Soul · Sept 17.`,
   },
 };
 
