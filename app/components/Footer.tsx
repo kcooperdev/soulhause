@@ -23,9 +23,10 @@ export function Footer() {
                 <Link href="/tech-week">Tech Week</Link>
               </li>
               <li>
-                <Link href="/os">
-                  <BrandText text="SoulHause OS" />
-                </Link>
+                <Link href="/studio">Studio</Link>
+              </li>
+              <li>
+                <Link href="/os">OS</Link>
               </li>
               <li>
                 <Link href="/about">About</Link>

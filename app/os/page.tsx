@@ -63,7 +63,7 @@ export default function OsPage() {
               What members get
             </h2>
             <p className="lede os-access-lede">
-              VIP nights, city perks, member rooms. Built for Baltimore social
+              VIP nights, local perks, member rooms. Built for Maryland social
               tech, not another feed.
             </p>
             <ul className="os-access-chips" aria-label="Member perks at a glance">

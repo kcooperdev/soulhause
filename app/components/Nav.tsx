@@ -4,7 +4,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLink } from "./BrandLink";
-import { BrandText } from "./BrandSpotlight";
 import {
   FLAGSHIP_PRODUCT,
   RSVP_INFO_SESSION_CTA,
@@ -12,12 +11,14 @@ import {
   NOTIFY_ME_CTA,
   OS_NOTIFY_HREF,
   PRIMARY_CTA,
+  STUDIO_NOTIFY_HREF,
 } from "./constants";
 
 const NAV_LINKS = [
   { href: "/events", label: "Events" },
   { href: "/tech-week", label: "Tech Week" },
-  { href: "/os", label: "SoulHause OS" },
+  { href: "/studio", label: "Studio" },
+  { href: "/os", label: "OS" },
   { href: "/about", label: "About" },
 ] as const;
 
@@ -45,6 +46,13 @@ function navCtaForPath(pathname: string | null): NavCta {
   if (path === "/os" || path.startsWith("/os/")) {
     return {
       href: OS_NOTIFY_HREF,
+      label: NOTIFY_ME_CTA,
+    };
+  }
+
+  if (path === "/studio" || path.startsWith("/studio/")) {
+    return {
+      href: STUDIO_NOTIFY_HREF,
       label: NOTIFY_ME_CTA,
     };
   }
@@ -162,11 +170,7 @@ export function Nav() {
                 href={link.href}
                 className={`nav-top-link${active ? " is-active" : ""}`}
               >
-                {link.label === "SoulHause OS" ? (
-                  <BrandText text="SoulHause OS" />
-                ) : (
-                  link.label
-                )}
+                {link.label}
               </Link>
             );
           })}
@@ -230,11 +234,7 @@ export function Nav() {
                 onClick={() => setMobileOpen(false)}
                 aria-current={active ? "page" : undefined}
               >
-                {link.label === "SoulHause OS" ? (
-                  <BrandText text="SoulHause OS" />
-                ) : (
-                  link.label
-                )}
+                {link.label}
                 {isOs ? <span className="nav-mobile-soon">Soon</span> : null}
               </Link>
             );

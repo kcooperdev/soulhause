@@ -46,7 +46,7 @@ export const PATHWAY_PICKER = [
 export const EVENTS_ARM = {
   name: "SoulHause Events",
   summary:
-    "Baltimore nights for social tech: talks, workshops, and tech happy hour.",
+    "Maryland nights for social tech: talks, workshops, and tech happy hour.",
   together: "Pick a format. Show up. Meet people building here.",
 } as const;
 
@@ -64,10 +64,10 @@ export const SITE_TAGLINE = "tech for the soul.";
 export const HOME_BRAND_LINE = "tech for the soul.";
 
 export const BRAND_STORY = {
-  soul: "Soul is the drive: organizers, creators, and builders who care about culture and this city.",
+  soul: "Soul is the drive: organizers, creators, and builders who care about culture across Maryland.",
   hause: "Hause is German for house. We mean a local scene with roots, not a metaphor.",
   together:
-    "SoulHause builds digital tools and citywide programs so organizers, creators, and local businesses can grow culture and impact.",
+    "SoulHause builds digital tools and statewide programs so organizers, creators, and local businesses can grow culture and impact.",
 } as const;
 
 export const NEXT_EVENT = {
@@ -100,10 +100,10 @@ export const FLAGSHIP_PRODUCT = {
   lumaHref: BTW_LUMA_URL,
   name: "Baltimore Tech Week",
   badge: "Powered by SoulHause",
-  tagline: "Five days across Baltimore, powered by SoulHause.",
-  meta: "Five days · citywide · powered by SoulHause",
+  tagline: "Five days across Maryland, powered by SoulHause.",
+  meta: "Five days · statewide · powered by SoulHause",
   stageLede:
-    "A week of social tech across Baltimore venues, powered by SoulHause.",
+    "A week of social tech across Maryland venues, powered by SoulHause.",
   status: "Schedule and venues coming soon",
   closeSub:
     "Schedule and venues are coming soon. RSVP for the info session to hear first.",
@@ -133,9 +133,9 @@ export const OS_PRODUCT = {
   slug: "/os",
   status: "Coming soon",
   eyebrow: "Online community · Coming soon",
-  lede: "The member side of SoulHause. VIP access, city perks, and rooms that stay open between events.",
+  lede: "The member side of SoulHause. VIP access, local perks, and rooms that stay open between events.",
   promise: "VIP access that lasts past the event night.",
-  body: "SoulHause OS is for people already showing up. Members get closer to the nights that matter, partner perks across the city, and a place to stay connected all year. Same crew as Events and Tech Week, just online.",
+  body: "SoulHause OS is for people already showing up. Members get closer to the nights that matter, partner perks across Maryland, and a place to stay connected all year. Same crew as Events and Tech Week, just online.",
   closeSub: "Get notified when SoulHause OS launches.",
   notifyHref: OS_NOTIFY_HREF,
 } as const;
@@ -150,7 +150,7 @@ export const OS_ACCESS = [
   {
     title: "Local business perks",
     chip: "Perks",
-    body: "Offers from Baltimore shops, studios, and spots that show up for members.",
+    body: "Offers from Maryland shops, studios, and spots that show up for members.",
   },
   {
     title: "Community rooms",
@@ -160,7 +160,7 @@ export const OS_ACCESS = [
   {
     title: "Early drops",
     chip: "Drops",
-    body: "First word on programs, member releases, and city-week moments before they go wide.",
+    body: "First word on programs, member releases, and tech-week moments before they go wide.",
   },
   {
     title: "Member nights",
@@ -174,3 +174,41 @@ export const ABOUT_STORY = {
   title: "tech for the soul.",
   lede: `${MEMBER_COUNT} people on Luma.`,
 } as const;
+
+/** SoulHause Studio: apps and tools shelf. */
+export const STUDIO_NOTIFY_HREF =
+  `mailto:${CONTACT_EMAIL}?subject=SoulHause%20Studio` as const;
+
+export const FILL_THE_ROOM_NOTIFY_HREF =
+  `mailto:${CONTACT_EMAIL}?subject=Fill%20the%20Room` as const;
+
+export const STUDIO_PRODUCT = {
+  name: "SoulHause Studio",
+  slug: "/studio",
+  eyebrow: "Apps & tools",
+  lede: "Apps and tools we build for local businesses and the community.",
+  shelfEyebrow: "On the shelf",
+  shelfTitle: "What we're building",
+  shelfLede:
+    "Small apps for Maryland businesses and the people around them. More land here as they get ready.",
+  openBayLabel: "Open bay",
+  openBayLine: "Room for the next tool.",
+  closeTitle: "Want first look?",
+  closeSub: "Get notified when the next Studio app opens for pilots.",
+  notifyHref: STUDIO_NOTIFY_HREF,
+} as const;
+
+export const STUDIO_APPS = [
+  {
+    id: "fill-the-room",
+    name: "Fill the Room",
+    line: "Help restaurants bring more people through the door.",
+    status: "Soon" as const,
+    tags: ["Hospitality", "Local", "Pilots"] as const,
+    ctaLabel: NOTIFY_ME_CTA,
+    ctaHref: FILL_THE_ROOM_NOTIFY_HREF,
+  },
+] as const;
+
+/** Reserved shelf slots — keeps the workbench feeling unfinished on purpose. */
+export const STUDIO_OPEN_BAYS = 2;
