@@ -21,7 +21,7 @@ export function PathwayHashScroll() {
         return;
       }
       if (pathname === "/" && id === "flagship") {
-        window.location.replace("/tech-week");
+        window.location.replace("/events");
         return;
       }
 

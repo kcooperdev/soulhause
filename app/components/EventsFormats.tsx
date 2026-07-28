@@ -145,7 +145,7 @@ export function EventsFormats({ formats }: { formats: EventsFormat[] }) {
             ref={tablistRef}
             className="events-format-tabs"
             role="tablist"
-            aria-label="SoulHause Events formats"
+            aria-label="Soul Events formats"
             onKeyDown={onTabKeyDown}
           >
             {formats.map((f) => {

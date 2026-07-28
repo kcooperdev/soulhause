@@ -1,8 +1,6 @@
 export const JOIN_URL = "https://luma.com/soulhause";
 /** Hause of Soul upcoming event */
 export const HAUSE_OF_SOUL_LUMA_URL = "https://luma.com/hj5hk5jf";
-/** Baltimore Tech Week on Luma */
-export const BTW_LUMA_URL = "https://luma.com/on6frsgw";
 export const CONTACT_EMAIL = "team@soulhause.com";
 
 export const MEMBER_COUNT = "1,100+";
@@ -42,9 +40,9 @@ export const PATHWAY_PICKER = [
   },
 ] as const;
 
-/** SoulHause Events: community programming. */
+/** Soul Events: community programming, by SoulHause. */
 export const EVENTS_ARM = {
-  name: "SoulHause Events",
+  name: "Soul Events",
   summary:
     "Maryland nights for social tech: talks, workshops, and tech happy hour.",
   together: "Pick a format. Show up. Meet people building here.",
@@ -52,8 +50,6 @@ export const EVENTS_ARM = {
 
 export const PRIMARY_CTA = "RSVP on Luma";
 export const EXPLORE_EVENTS_CTA = "Explore Events";
-export const EXPLORE_TECH_WEEK_CTA = "bmoretechweek.com";
-export const RSVP_INFO_SESSION_CTA = "RSVP for the info session";
 export const FOLLOW_LUMA_CTA = "Follow on Luma";
 export const NOTIFY_ME_CTA = "Notify me";
 
@@ -94,21 +90,6 @@ export const PATHWAY_OFFERS = [
   },
 ] as const;
 
-export const FLAGSHIP_PRODUCT = {
-  id: "baltimore-tech-week",
-  href: "https://bmoretechweek.com",
-  lumaHref: BTW_LUMA_URL,
-  name: "Baltimore Tech Week",
-  badge: "Powered by SoulHause",
-  tagline: "Five days across Maryland, powered by SoulHause.",
-  meta: "Five days · statewide · powered by SoulHause",
-  stageLede:
-    "A week of social tech across Maryland venues, powered by SoulHause.",
-  status: "Schedule and venues coming soon",
-  closeSub:
-    "Schedule and venues are coming soon. RSVP for the info session to hear first.",
-} as const;
-
 export const SOUL_BUILDERS_LINKEDIN =
   "https://www.linkedin.com/groups/30920002/" as const;
 
@@ -124,23 +105,23 @@ export const JOIN_GATE = {
   sub: `Tech happy hour · ${NEXT_EVENT.shortDate}. ${MEMBER_COUNT} on Luma. About a minute.`,
 } as const;
 
-/** SoulHause OS: member / online community (coming soon). */
+/** Soul OS: member / online community, by SoulHause (coming soon). */
 export const OS_NOTIFY_HREF =
-  `mailto:${CONTACT_EMAIL}?subject=SoulHause%20OS` as const;
+  `mailto:${CONTACT_EMAIL}?subject=Soul%20OS` as const;
 
 export const OS_PRODUCT = {
-  name: "SoulHause OS",
+  name: "Soul OS",
   slug: "/os",
   status: "Coming soon",
-  eyebrow: "Online community · Coming soon",
+  eyebrow: "Online community by SoulHause · Coming soon",
   lede: "The member side of SoulHause. VIP access, local perks, and rooms that stay open between events.",
   promise: "VIP access that lasts past the event night.",
-  body: "SoulHause OS is for people already showing up. Members get closer to the nights that matter, partner perks across Maryland, and a place to stay connected all year. Same crew as Events and Tech Week, just online.",
-  closeSub: "Get notified when SoulHause OS launches.",
+  body: "Soul OS is for people already showing up. Members get closer to the nights that matter, partner perks across Maryland, and a place to stay connected all year. Same crew as Events, just online.",
+  closeSub: "Get notified when Soul OS launches.",
   notifyHref: OS_NOTIFY_HREF,
 } as const;
 
-/** Member access list for SoulHause OS (coming soon). */
+/** Member access list for Soul OS (coming soon). */
 export const OS_ACCESS = [
   {
     title: "VIP event access",
@@ -160,7 +141,7 @@ export const OS_ACCESS = [
   {
     title: "Early drops",
     chip: "Drops",
-    body: "First word on programs, member releases, and tech-week moments before they go wide.",
+    body: "First word on programs and member releases before they go wide.",
   },
   {
     title: "Member nights",
@@ -175,17 +156,17 @@ export const ABOUT_STORY = {
   lede: `${MEMBER_COUNT} people on Luma.`,
 } as const;
 
-/** SoulHause Studio: apps and tools shelf. */
+/** Soul Studio: apps and tools shelf, by SoulHause. */
 export const STUDIO_NOTIFY_HREF =
-  `mailto:${CONTACT_EMAIL}?subject=SoulHause%20Studio` as const;
+  `mailto:${CONTACT_EMAIL}?subject=Soul%20Studio` as const;
 
 export const FILL_THE_ROOM_NOTIFY_HREF =
   `mailto:${CONTACT_EMAIL}?subject=Fill%20the%20Room` as const;
 
 export const STUDIO_PRODUCT = {
-  name: "SoulHause Studio",
+  name: "Soul Studio",
   slug: "/studio",
-  eyebrow: "Apps & tools",
+  eyebrow: "Apps & tools by SoulHause",
   lede: "Apps and tools we build for local businesses and the community.",
   shelfEyebrow: "On the shelf",
   shelfTitle: "What we're building",

@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLink } from "./BrandLink";
 import {
-  FLAGSHIP_PRODUCT,
-  RSVP_INFO_SESSION_CTA,
   HAUSE_OF_SOUL_LUMA_URL,
   NOTIFY_ME_CTA,
   OS_NOTIFY_HREF,
@@ -16,7 +14,6 @@ import {
 
 const NAV_LINKS = [
   { href: "/events", label: "Events" },
-  { href: "/tech-week", label: "Tech Week" },
   { href: "/studio", label: "Studio" },
   { href: "/os", label: "OS" },
   { href: "/about", label: "About" },
@@ -34,14 +31,6 @@ type NavCta = {
 
 function navCtaForPath(pathname: string | null): NavCta {
   const path = pathname ?? "/";
-
-  if (path === "/tech-week" || path.startsWith("/tech-week/")) {
-    return {
-      href: FLAGSHIP_PRODUCT.lumaHref,
-      label: RSVP_INFO_SESSION_CTA,
-      external: true,
-    };
-  }
 
   if (path === "/os" || path.startsWith("/os/")) {
     return {

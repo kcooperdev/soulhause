@@ -17,7 +17,7 @@ import {
 } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "SoulHause Events | Sessions, Workshops, Hause of Soul",
+  title: "Soul Events by SoulHause | Sessions, Workshops, Hause of Soul",
   description: EVENTS_ARM.summary,
 };
 
@@ -37,10 +37,10 @@ export default function EventsPage() {
       <Nav />
       <PathwayHashScroll />
       <PageHero
-        eyebrow="Events"
+        eyebrow="Events by SoulHause"
         title={
           <>
-            <BrandText text="SoulHause" /> <em>Events</em>
+            Soul <em>Events</em>
           </>
         }
         lede={<BrandText text={EVENTS_ARM.summary} />}

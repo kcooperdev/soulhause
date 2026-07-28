@@ -7,7 +7,7 @@ import { StudioShelf } from "../components/StudioShelf";
 import { NOTIFY_ME_CTA, STUDIO_PRODUCT } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "SoulHause Studio | Apps & tools",
+  title: "Soul Studio by SoulHause | Apps & tools",
   description: STUDIO_PRODUCT.lede,
 };
 
@@ -20,7 +20,7 @@ export default function StudioPage() {
         eyebrow={STUDIO_PRODUCT.eyebrow}
         title={
           <>
-            <BrandText text="SoulHause" /> Studio
+            Soul <em>Studio</em>
           </>
         }
         lede={<BrandText text={STUDIO_PRODUCT.lede} />}

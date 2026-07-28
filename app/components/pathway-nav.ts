@@ -11,7 +11,6 @@ export function scrollToSection(id: string, behavior: ScrollBehavior = "smooth")
 /** Deep link into Events formats (or legacy home hashes). */
 export function pathwayHref(id: string) {
   if (id === "pathways" || id === "events") return "/events";
-  if (id === "flagship" || id === "tech-week") return "/tech-week";
   if (id.startsWith("pathway-")) return `/events#${id}`;
   return `/events#${id}`;
 }

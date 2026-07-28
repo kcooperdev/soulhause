@@ -22,8 +22,13 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/baltimore-tech-week",
-        destination: "/tech-week",
-        permanent: true,
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/tech-week",
+        destination: "/",
+        permanent: false,
       },
       {
         source: "/soulhause-os",

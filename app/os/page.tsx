@@ -11,7 +11,7 @@ import {
 } from "../components/constants";
 
 export const metadata: Metadata = {
-  title: "SoulHause OS | Coming soon",
+  title: "Soul OS by SoulHause | Coming soon",
   description: OS_PRODUCT.lede,
 };
 
@@ -23,7 +23,7 @@ export default function OsPage() {
         eyebrow={OS_PRODUCT.eyebrow}
         title={
           <>
-            <BrandText text="SoulHause OS" />
+            Soul <em>OS</em>
           </>
         }
         lede={<BrandText text={OS_PRODUCT.lede} />}
@@ -45,8 +45,7 @@ export default function OsPage() {
           </p>
           <div className="os-links">
             <Link href="/events" className="os-link">
-              <BrandText text="SoulHause Events" />{" "}
-              <span className="arrow">→</span>
+              Soul Events <span className="arrow">→</span>
             </Link>
             <Link href="/about" className="os-link">
               About the company <span className="arrow">→</span>

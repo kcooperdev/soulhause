@@ -8,7 +8,6 @@ import { BrandText } from "../components/BrandSpotlight";
 import {
   ABOUT_STORY,
   BRAND_STORY,
-  FLAGSHIP_PRODUCT,
   HAUSE_OF_SOUL_LUMA_URL,
   MEMBER_COUNT,
   OS_PRODUCT,
@@ -58,11 +57,7 @@ export default function About() {
           <p className="lede together-lede">
             <BrandText text={BRAND_STORY.together} /> See it in{" "}
             <Link href="/events" className="inline-route">
-              <BrandText text="SoulHause Events" />
-            </Link>
-            , across{" "}
-            <Link href="/tech-week" className="inline-route">
-              {FLAGSHIP_PRODUCT.name}
+              Soul Events
             </Link>
             , and soon inside{" "}
             <Link href="/os" className="inline-route">

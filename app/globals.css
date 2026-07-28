@@ -306,7 +306,7 @@
 
 /* ═══════════════════════════════════════════════════════════════════
    Page themes · shared chrome, distinct canvas
-   html[data-theme="home|events|tech-week|os|about|studio"]
+   html[data-theme="home|events|os|about|studio"]
    Shared type/spacing/nav/buttons; canvas + accent shift per product.
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -374,87 +374,6 @@ html[data-theme="events"] {
   --glass: color-mix(in oklab, var(--bg) 80%, transparent);
   --glass-border: color-mix(in oklab, var(--ink) 10%, transparent);
   --color-scheme: light;
-}
-
-html[data-theme="tech-week"] {
-  /*
-   * Baltimore Tech Week — locked from BTW hero screenshot:
-   * charcoal #17171a · cream #FBF0D5 · teal #0FB0B8 · magenta #D3168A
-   */
-  color-scheme: dark;
-  --bg: #17171a;
-  --surface-desk: #1c1c20;
-  --surface-2: #242428;
-  --night: #121214;
-  --night-lift: #1c1c20;
-  --void: #0e0e10;
-  --text: #fbf0d5;
-  --ink: #fbf0d5;
-  --ink-soft: #e8dcc0;
-  --muted: #a89f8c;
-  --sand: var(--bg);
-  --canvas: var(--bg);
-  --canvas-mid: var(--surface-desk);
-  --canvas-deep: #0e0e10;
-  --paper: var(--surface-desk);
-  --paper-deep: var(--surface-2);
-  --on-dark: #fbf0d5;
-  --on-dark-muted: color-mix(in oklab, #fbf0d5 74%, transparent);
-  --on-dark-subtle: color-mix(in oklab, #fbf0d5 48%, transparent);
-  --color-neutral-on-dark: #fbf0d5;
-  --brand-soul: #fbf0d5;
-  --brand-hause: #fbf0d5;
-  --brand-mark: #fbf0d5;
-  --brand-mark-on-dark: #fbf0d5;
-  --brand-soul-on-dark: #fbf0d5;
-  --btw-teal: #0fb0b8;
-  --btw-magenta: #d3168a;
-  --btw-cream: #fbf0d5;
-  --btw-charcoal: #17171a;
-  --color-brand-primary-default: #0fb0b8;
-  --color-brand: var(--color-brand-primary-default);
-  --color-brand-primary-soft: #3cc4cb;
-  --color-brand-soft: var(--color-brand-primary-soft);
-  --color-brand-primary-hover: #24bcc4;
-  --color-brand-primary-pressed: #0a8f96;
-  --color-brand-primary-on-dark: #3cc4cb;
-  --color-brand-on-dark: #3cc4cb;
-  --color-brand-primary-muted: color-mix(in oklab, #0fb0b8 18%, transparent);
-  --color-brand-muted: var(--color-brand-primary-muted);
-  --color-secondary-default: #d3168a;
-  --color-secondary: var(--color-secondary-default);
-  --color-action-primary-default: #0fb0b8;
-  --color-action: var(--color-action-primary-default);
-  --color-action-primary-hover: #24bcc4;
-  --color-action-hover: var(--color-action-primary-hover);
-  --color-action-primary-pressed: #0a8f96;
-  --color-action-primary-ink: #121214;
-  --cta-fill: var(--color-action-primary-default);
-  --cta-ink: var(--color-action-primary-ink);
-  --signal: #d3168a;
-  --signal-bright: #e63fa0;
-  --signal-dim: #a8126d;
-  --theme-accent: #0fb0b8;
-  --theme-accent-soft: color-mix(in oklab, var(--theme-accent) 18%, transparent);
-  --theme-accent-ink: #121214;
-  --house-green: var(--theme-accent);
-  --house-green-light: #3cc4cb;
-  --house-green-dark: #0a8f96;
-  --house-green-subtle: var(--color-brand-primary-muted);
-  --house-green-border: color-mix(in oklab, var(--theme-accent) 40%, transparent);
-  --surface: color-mix(in oklab, var(--theme-accent) 10%, transparent);
-  --surface-raised: color-mix(in oklab, #fbf0d5 6%, transparent);
-  --surface-warm: color-mix(in oklab, #d3168a 10%, transparent);
-  --line: color-mix(in oklab, #fbf0d5 14%, transparent);
-  --line-soft: color-mix(in oklab, #fbf0d5 8%, transparent);
-  --border-dark: color-mix(in oklab, #fbf0d5 12%, transparent);
-  --border-dark-strong: color-mix(in oklab, #fbf0d5 22%, transparent);
-  --cream-rule: color-mix(in oklab, #fbf0d5 12%, transparent);
-  --cream-rule-strong: color-mix(in oklab, #fbf0d5 22%, transparent);
-  --glass: color-mix(in oklab, var(--bg) 72%, transparent);
-  --glass-border: color-mix(in oklab, #fbf0d5 14%, transparent);
-  --panel-bg: color-mix(in oklab, var(--surface-desk) 94%, transparent);
-  --color-scheme: dark;
 }
 
 html[data-theme="os"] {
@@ -2228,7 +2147,7 @@ footer a:hover {
   }
 }
 
-/* ─── Nav links + SoulHause OS ───────────────────────────────────────── */
+/* ─── Nav links + Soul OS ────────────────────────────────────────────── */
 .nav-menu-group { position: relative; }
 .nav-top-link,
 .nav-menu-trigger {
@@ -2276,7 +2195,7 @@ footer a:hover {
   outline-offset: 2px;
 }
 
-/* SoulHause OS — full name, whisper “Coming soon” on hover/focus */
+/* Soul OS — full name, whisper “Coming soon” on hover/focus */
 .nav-os {
   position: relative;
   display: inline-flex;
@@ -7652,168 +7571,6 @@ html[data-theme="about"] .page-hero-title {
   max-width: 18ch;
 }
 
-/* Tech Week · shorter rectangular mural (wide banner, copy below) */
-.tw-mural {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2.6 / 1;
-  height: auto;
-  max-height: min(28svh, 168px);
-  max-height: min(28dvh, 168px);
-  min-height: 0;
-  overflow: clip;
-  background: var(--night);
-}
-@media (min-width: 768px) {
-  .tw-mural {
-    aspect-ratio: 2.8 / 1;
-    max-height: min(34svh, 280px);
-    max-height: min(34dvh, 280px);
-  }
-}
-.tw-mural-img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-  filter: saturate(0.9) contrast(1.1) brightness(0.62);
-}
-/*
- * BTW hero overlay: deep charcoal multiply across the FULL mural
- * (not a soft edge-only fade). Bottom dissolves into page charcoal.
- */
-.tw-mural::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: rgba(18, 18, 20, 0.78);
-  mix-blend-mode: multiply;
-}
-.tw-mural::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 18, 20, 0.45) 0%,
-    rgba(23, 23, 26, 0.35) 48%,
-    rgba(23, 23, 26, 0.82) 86%,
-    #17171a 100%
-  );
-}
-
-/* Tech Week · intro on charcoal surface (below mural) */
-.tw-intro {
-  background: var(--bg);
-  color: var(--ink);
-  border-bottom: 1px solid var(--line-soft);
-}
-.tw-intro-inner {
-  padding: clamp(40px, 7vw, 72px) var(--compose-gutter) clamp(48px, 8vw, 88px);
-  max-width: var(--compose-wide);
-}
-@media (min-width: 768px) {
-  .tw-intro-inner {
-    padding: clamp(56px, 8vw, 96px) var(--compose-gutter-lg) clamp(64px, 9vw, 112px);
-  }
-}
-.tw-intro-title {
-  margin: 0 0 0.85rem;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(2.75rem, 7vw, 5rem);
-  font-weight: 750;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-  max-width: 12ch;
-  color: var(--btw-cream);
-}
-.tw-intro-title em {
-  color: var(--btw-teal);
-  font-style: normal;
-}
-.tw-intro-meta {
-  margin: 0 0 1.35rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--btw-magenta);
-}
-.tw-intro-lede {
-  margin: 0 0 1.85rem;
-  max-width: 34rem;
-  font-size: clamp(1.125rem, 2vw, 1.35rem);
-  font-weight: 500;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-.tw-intro-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.95rem;
-}
-@media (min-width: 480px) {
-  .tw-intro-actions {
-    flex-direction: row;
-    align-items: center;
-    gap: 1.25rem;
-  }
-}
-/* Quiet text secondary — does not compete with primary RSVP */
-.tw-intro-secondary {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--hit-target);
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 550;
-  letter-spacing: -0.01em;
-  color: var(--on-dark-muted);
-  text-decoration: none;
-  background: transparent;
-  transition: color 160ms var(--ease-out);
-}
-.tw-intro-secondary:hover,
-.tw-intro-secondary:focus-visible {
-  color: var(--btw-cream);
-  background: transparent;
-  border: none;
-}
-
-/* Tech Week page chrome — nav active + close CTA ghost */
-html[data-theme="tech-week"] .nav-top-link.is-active {
-  color: var(--btw-teal);
-  background: none;
-  box-shadow: inset 0 -2px 0 0 var(--btw-teal);
-}
-html[data-theme="tech-week"] .nav-cta {
-  background: var(--btw-teal);
-  color: var(--color-action-primary-ink);
-  border-color: var(--btw-teal);
-}
-html[data-theme="tech-week"] .nav-cta:hover {
-  background: var(--color-action-primary-hover);
-  border-color: var(--color-action-primary-hover);
-  color: var(--color-action-primary-ink);
-}
-html[data-theme="tech-week"] .sec-close {
-  background: var(--night);
-}
-html[data-theme="tech-week"] .close-title em {
-  color: var(--btw-teal);
-}
-
 /* OS coming-soon */
 .os-layout {
   max-width: 38rem;
@@ -8164,43 +7921,6 @@ html[data-theme="about"] .page-hero-wash {
     justify-content: center;
     min-height: var(--hit-target);
     align-self: center;
-  }
-
-  .tw-mural {
-    aspect-ratio: 2.55 / 1;
-    max-height: min(24svh, 148px);
-    max-height: min(24dvh, 148px);
-  }
-
-  .tw-mural-img {
-    object-position: center 32%;
-  }
-
-  .tw-intro-inner {
-    padding-inline: max(20px, env(safe-area-inset-left, 0px))
-      max(20px, env(safe-area-inset-right, 0px));
-  }
-
-  .tw-intro-title {
-    font-size: clamp(2.35rem, 11vw, 3.25rem);
-    max-width: 100%;
-  }
-
-  .tw-intro-actions {
-    width: 100%;
-    align-items: stretch;
-  }
-
-  .tw-intro-actions .btn {
-    width: 100%;
-    justify-content: center;
-    min-height: var(--hit-target);
-  }
-
-  .tw-intro-secondary {
-    width: auto;
-    justify-content: flex-start;
-    min-height: var(--hit-target);
   }
 
   .page-hero-inner {
