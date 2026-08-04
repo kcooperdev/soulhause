@@ -9,7 +9,6 @@ export function ThemeBoot() {
   if (path === "/events" || path.indexOf("/events/") === 0) theme = "events";
   else if (path === "/os" || path.indexOf("/os/") === 0) theme = "os";
   else if (path === "/about" || path.indexOf("/about/") === 0) theme = "about";
-  else if (path === "/studio" || path.indexOf("/studio/") === 0) theme = "studio";
   document.documentElement.dataset.theme = theme;
 })();
 `.trim();

@@ -6,7 +6,6 @@ function themeFromPath(pathname: string): string {
   if (path === "/events" || path.startsWith("/events/")) return "events";
   if (path === "/os" || path.startsWith("/os/")) return "os";
   if (path === "/about" || path.startsWith("/about/")) return "about";
-  if (path === "/studio" || path.startsWith("/studio/")) return "studio";
   return "home";
 }
 

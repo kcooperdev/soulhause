@@ -9,14 +9,12 @@ import {
   NOTIFY_ME_CTA,
   OS_NOTIFY_HREF,
   PRIMARY_CTA,
-  STUDIO_NOTIFY_HREF,
 } from "./constants";
 
 const NAV_LINKS = [
   { href: "/events", label: "Events" },
-  { href: "/studio", label: "Studio" },
-  { href: "/os", label: "OS" },
-  { href: "/about", label: "About" },
+  { href: "/events#pathway-2", label: "Workshops" },
+  { href: "/os", label: "Membership" },
 ] as const;
 
 const FOCUSABLE =
@@ -39,13 +37,6 @@ function navCtaForPath(pathname: string | null): NavCta {
     };
   }
 
-  if (path === "/studio" || path.startsWith("/studio/")) {
-    return {
-      href: STUDIO_NOTIFY_HREF,
-      label: NOTIFY_ME_CTA,
-    };
-  }
-
   return {
     href: HAUSE_OF_SOUL_LUMA_URL,
     label: PRIMARY_CTA,
@@ -54,8 +45,26 @@ function navCtaForPath(pathname: string | null): NavCta {
   };
 }
 
+function linkIsActive(
+  href: string,
+  pathname: string | null,
+  hash: string,
+): boolean {
+  const path = pathname ?? "/";
+  const [base, fragment] = href.split("#");
+
+  if (base === "/os") {
+    return path === "/os" || path.startsWith("/os/");
+  }
+  if (path !== base) return false;
+  if (fragment) return hash === fragment;
+  if (base === "/events") return hash !== "pathway-2";
+  return true;
+}
+
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hash, setHash] = useState("");
   const pathname = usePathname();
   const cta = navCtaForPath(pathname);
   const drawerId = useId();
@@ -65,6 +74,13 @@ export function Nav() {
 
   useEffect(() => {
     setMobileOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash.replace(/^#/, ""));
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
 
   useEffect(() => {
@@ -152,7 +168,7 @@ export function Nav() {
 
         <div className="nav-links">
           {NAV_LINKS.map((link) => {
-            const active = pathname === link.href;
+            const active = linkIsActive(link.href, pathname, hash);
             return (
               <Link
                 key={link.href}
@@ -213,8 +229,8 @@ export function Nav() {
 
         <div className="nav-mobile-section">
           {NAV_LINKS.map((link) => {
-            const active = pathname === link.href;
-            const isOs = link.href === "/os";
+            const active = linkIsActive(link.href, pathname, hash);
+            const isMembership = link.href === "/os";
             return (
               <Link
                 key={link.href}
@@ -224,7 +240,9 @@ export function Nav() {
                 aria-current={active ? "page" : undefined}
               >
                 {link.label}
-                {isOs ? <span className="nav-mobile-soon">Soon</span> : null}
+                {isMembership ? (
+                  <span className="nav-mobile-soon">Soon</span>
+                ) : null}
               </Link>
             );
           })}

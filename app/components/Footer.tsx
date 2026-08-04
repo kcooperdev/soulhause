@@ -20,13 +20,10 @@ export function Footer() {
                 <Link href="/events">Events</Link>
               </li>
               <li>
-                <Link href="/studio">Studio</Link>
+                <Link href="/events#pathway-2">Workshops</Link>
               </li>
               <li>
-                <Link href="/os">OS</Link>
-              </li>
-              <li>
-                <Link href="/about">About</Link>
+                <Link href="/os">Membership</Link>
               </li>
               <li>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>

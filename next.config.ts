@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/membership",
+        destination: "/os",
+        permanent: false,
+      },
+      {
+        source: "/studio",
         destination: "/",
         permanent: false,
       },
