@@ -1,15 +1,10 @@
 import Script from "next/script";
 
-/** beforeInteractive: set html[data-theme] from the URL before first paint. */
+/** beforeInteractive: one theme before first paint. */
 export function ThemeBoot() {
   const boot = `
 (function () {
-  var path = location.pathname.replace(/\\/+$/, "") || "/";
-  var theme = "home";
-  if (path === "/events" || path.indexOf("/events/") === 0) theme = "events";
-  else if (path === "/os" || path.indexOf("/os/") === 0) theme = "os";
-  else if (path === "/about" || path.indexOf("/about/") === 0) theme = "about";
-  document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.theme = "home";
 })();
 `.trim();
 

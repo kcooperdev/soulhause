@@ -5,15 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLink } from "./BrandLink";
 import {
+  FORMAT_PAGES,
+  FOLLOW_LUMA_CTA,
   HAUSE_OF_SOUL_LUMA_URL,
-  NOTIFY_ME_CTA,
-  OS_NOTIFY_HREF,
+  JOIN_URL,
   PRIMARY_CTA,
 } from "./constants";
 
 const NAV_LINKS = [
-  { href: "/events", label: "Events" },
-  { href: "/events#pathway-2", label: "Workshops" },
+  ...FORMAT_PAGES.map((f) => ({ href: f.slug, label: f.navLabel })),
   { href: "/os", label: "Membership" },
 ] as const;
 
@@ -30,10 +30,19 @@ type NavCta = {
 function navCtaForPath(pathname: string | null): NavCta {
   const path = pathname ?? "/";
 
-  if (path === "/os" || path.startsWith("/os/")) {
+  if (path === "/sessions" || path.startsWith("/sessions/")) {
     return {
-      href: OS_NOTIFY_HREF,
-      label: NOTIFY_ME_CTA,
+      href: JOIN_URL,
+      label: FOLLOW_LUMA_CTA,
+      external: true,
+    };
+  }
+
+  if (path === "/workshops" || path.startsWith("/workshops/")) {
+    return {
+      href: JOIN_URL,
+      label: FOLLOW_LUMA_CTA,
+      external: true,
     };
   }
 
@@ -45,26 +54,16 @@ function navCtaForPath(pathname: string | null): NavCta {
   };
 }
 
-function linkIsActive(
-  href: string,
-  pathname: string | null,
-  hash: string,
-): boolean {
+function linkIsActive(href: string, pathname: string | null): boolean {
   const path = pathname ?? "/";
-  const [base, fragment] = href.split("#");
-
-  if (base === "/os") {
+  if (href === "/os") {
     return path === "/os" || path.startsWith("/os/");
   }
-  if (path !== base) return false;
-  if (fragment) return hash === fragment;
-  if (base === "/events") return hash !== "pathway-2";
-  return true;
+  return path === href || path.startsWith(`${href}/`);
 }
 
 export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hash, setHash] = useState("");
   const pathname = usePathname();
   const cta = navCtaForPath(pathname);
   const drawerId = useId();
@@ -74,13 +73,6 @@ export function Nav() {
 
   useEffect(() => {
     setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    const syncHash = () => setHash(window.location.hash.replace(/^#/, ""));
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-    return () => window.removeEventListener("hashchange", syncHash);
   }, [pathname]);
 
   useEffect(() => {
@@ -125,7 +117,6 @@ export function Nav() {
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
 
-    // Move focus into the drawer after open paint
     const t = window.setTimeout(() => {
       closeRef.current?.focus();
     }, 0);
@@ -168,7 +159,7 @@ export function Nav() {
 
         <div className="nav-links">
           {NAV_LINKS.map((link) => {
-            const active = linkIsActive(link.href, pathname, hash);
+            const active = linkIsActive(link.href, pathname);
             return (
               <Link
                 key={link.href}
@@ -229,7 +220,7 @@ export function Nav() {
 
         <div className="nav-mobile-section">
           {NAV_LINKS.map((link) => {
-            const active = linkIsActive(link.href, pathname, hash);
+            const active = linkIsActive(link.href, pathname);
             const isMembership = link.href === "/os";
             return (
               <Link

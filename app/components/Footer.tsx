@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BrandLink } from "./BrandLink";
 import { BrandText } from "./BrandSpotlight";
-import { CONTACT_EMAIL, SITE_TAGLINE } from "./constants";
+import { CONTACT_EMAIL, FORMAT_PAGES, SITE_TAGLINE } from "./constants";
 
 export function Footer() {
   return (
@@ -16,12 +16,11 @@ export function Footer() {
           <div className="footer-col">
             <p className="footer-col-label">Explore</p>
             <ul>
-              <li>
-                <Link href="/events">Events</Link>
-              </li>
-              <li>
-                <Link href="/events#pathway-2">Workshops</Link>
-              </li>
+              {FORMAT_PAGES.map((page) => (
+                <li key={page.slug}>
+                  <Link href={page.slug}>{page.navLabel}</Link>
+                </li>
+              ))}
               <li>
                 <Link href="/os">Membership</Link>
               </li>

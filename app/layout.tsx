@@ -80,7 +80,12 @@ export default async function RootLayout({
       {/* Extensions (e.g. ColorZilla) inject body attrs like cz-shortcut-listen before hydrate */}
       <body suppressHydrationWarning>
         <ThemeBoot />
-        <div className="os-atmosphere" aria-hidden />
+        <div
+          className="site-atmosphere soul-canvas"
+          data-parallax="0.08"
+          data-parallax-fixed
+          aria-hidden="true"
+        />
         <div className="site-shell">
           {isProd ? (
             <noscript>

@@ -74,8 +74,13 @@ function useParallax() {
     let ticking = false;
 
     const update = () => {
+      const scrollY = window.scrollY;
       els.forEach((el) => {
         const speed = parseFloat(el.dataset.parallax ?? "0");
+        if (el.hasAttribute("data-parallax-fixed")) {
+          el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+          return;
+        }
         const rect = el.getBoundingClientRect();
         const centerOffset = rect.top + rect.height * 0.5 - window.innerHeight * 0.5;
         el.style.transform = `translate3d(0, ${centerOffset * speed}px, 0)`;

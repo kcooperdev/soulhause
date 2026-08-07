@@ -10,7 +10,7 @@ import {
 function Hero() {
   return (
     <header className="hero-forge hero-forge--solo">
-      <div className="hero-forge-canvas" aria-hidden="true" />
+      <div className="hero-forge-canvas soul-canvas" aria-hidden="true" />
 
       <div className="hero-forge-inner">
         <div className="hero-forge-emblem" aria-hidden="true">
@@ -50,7 +50,7 @@ function Hero() {
 
 export default function Home() {
   return (
-    <div className="page-home">
+    <div className="page-home page-flow">
       <Nav />
       <Hero />
     </div>

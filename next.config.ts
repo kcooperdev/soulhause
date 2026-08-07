@@ -37,12 +37,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/soul-labs",
-        destination: "/events#pathway-2",
+        destination: "/workshops",
         permanent: true,
       },
       {
         source: "/what-we-offer",
-        destination: "/events",
+        destination: "/hause-of-soul",
+        permanent: false,
+      },
+      {
+        source: "/events",
+        destination: "/hause-of-soul",
+        permanent: false,
+      },
+      {
+        source: "/events/:path*",
+        destination: "/hause-of-soul",
         permanent: false,
       },
       {
