@@ -119,7 +119,7 @@ export const FORMAT_PAGES = [
     format: "Happy hour",
     purpose: "Happy hour",
     whyLede:
-      "Tech happy hour. No drinks provided. Just intros and an easy way to meet Maryland builders.",
+      "Tech happy hour for Maryland builders. Intros, conversation, and an easy way into the scene.",
     story: {
       label: "Why we do this",
     },
@@ -140,7 +140,7 @@ export const FORMAT_PAGES = [
     closeHook: "Next one is Sep 17. RSVP on Luma if you want in.",
     metaTitle: "Hause of Soul by SoulHause | Tech happy hour",
     metaDescription:
-      "Hause of Soul: Maryland tech happy hour. No drinks provided. Intros and an easy way to meet the scene.",
+      "Hause of Soul: Maryland tech happy hour. Intros, conversation, and an easy way to meet the scene.",
     ctaHref: HAUSE_OF_SOUL_LUMA_URL,
     ctaLabel: PRIMARY_CTA,
     showNextEvent: true,
@@ -197,7 +197,7 @@ export const OS_PRODUCT = {
   moments: [
     {
       title: "Start at Hause of Soul",
-      body: "Tech happy hour. No drinks provided. Just intros.",
+      body: "Tech happy hour. Intros and an easy way into the scene.",
     },
     {
       title: "Go deeper",
