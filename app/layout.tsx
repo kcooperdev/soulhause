@@ -1,119 +1,65 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, IBM_Plex_Mono, Newsreader, Syne } from "next/font/google";
-import { headers } from "next/headers";
-import Script from "next/script";
+import { Barlow_Condensed, Public_Sans, Syne } from "next/font/google";
+import { ThemeSync } from "@/components/ThemeSync";
+import { brand } from "@/lib/brand";
+import { THEME_BOOT, THEME_LIGHT } from "@/lib/theme";
 import "./globals.css";
-import Interactive from "./interactive";
-import { JoinGate } from "./components/JoinGate";
-import { ThemeBoot } from "./components/ThemeBoot";
-import { MEMBER_COUNT } from "./components/constants";
-import { PAGE_THEMES, type PageTheme } from "./components/theme";
 
-const display = Syne({
+const publicSans = Public_Sans({
+  variable: "--font-public-sans",
+  subsets: ["latin"],
+});
+
+const barlow = Barlow_Condensed({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["600", "800"],
+});
+
+const syne = Syne({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
 });
 
-const body = Figtree({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const serif = Newsreader({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-const mono = IBM_Plex_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
+export const metadata: Metadata = {
+  title: `${brand.name} · ${brand.line}`,
+  description: "SoulHause events and a house directory. Tech for the soul.",
+  applicationName: brand.name,
+  appleWebApp: {
+    capable: true,
+    title: brand.name,
+    statusBarStyle: "default",
+  },
+  icons: {
+    icon: brand.logo,
+    apple: brand.logo,
+  },
+};
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+  themeColor: THEME_LIGHT,
+  colorScheme: "light dark",
   viewportFit: "cover",
-  themeColor: "#E9EBE7",
 };
 
-export const metadata: Metadata = {
-  title: "SoulHause | tech for the soul",
-  description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17. ${MEMBER_COUNT} people on Luma.`,
-  metadataBase: new URL("https://soulhause.com"),
-  openGraph: {
-    title: "SoulHause | tech for the soul",
-    description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17.`,
-    url: "https://soulhause.com",
-    siteName: "SoulHause",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SoulHause | tech for the soul",
-    description: `SoulHause · tech for the soul. Next up: Hause of Soul · Sept 17.`,
-  },
-};
-
-export default async function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  const isProd = process.env.NODE_ENV === "production";
-  const headerStore = await headers();
-  const rawTheme = headerStore.get("x-soul-theme") ?? "home";
-  const theme: PageTheme = (PAGE_THEMES as readonly string[]).includes(rawTheme)
-    ? (rawTheme as PageTheme)
-    : "home";
-
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme={theme}
-      data-scroll-behavior="smooth"
-      className={`${display.variable} ${body.variable} ${serif.variable} ${mono.variable}`}
+      data-theme="light"
       suppressHydrationWarning
+      className={`${publicSans.variable} ${barlow.variable} ${syne.variable} h-full antialiased`}
     >
-      {/* Extensions (e.g. ColorZilla) inject body attrs like cz-shortcut-listen before hydrate */}
-      <body suppressHydrationWarning>
-        <ThemeBoot />
-        <div
-          className="site-atmosphere soul-canvas"
-          data-parallax="0.08"
-          data-parallax-fixed
-          aria-hidden="true"
-        />
-        <div className="site-shell">
-          {isProd ? (
-            <noscript>
-              <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-KCKRKCGM"
-                height="0"
-                width="0"
-                style={{ display: "none", visibility: "hidden" }}
-              />
-            </noscript>
-          ) : null}
-          {children}
-        </div>
-        <JoinGate />
-        <Interactive />
-        {isProd ? (
-          <Script
-            id="gtm"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KCKRKCGM');`,
-            }}
-          />
-        ) : null}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
+      </head>
+      <body
+        className="h-full min-h-full bg-paper font-sans text-ink"
+        suppressHydrationWarning
+      >
+        <ThemeSync />
+        {children}
       </body>
     </html>
   );
