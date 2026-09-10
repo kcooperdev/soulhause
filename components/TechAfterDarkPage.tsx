@@ -47,7 +47,7 @@ function Rsvp({ className }: { className?: string }) {
       className={className}
       onClick={markNight}
     >
-      RSVP
+      Save a spot
     </a>
   );
 }

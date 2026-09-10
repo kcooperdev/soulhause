@@ -604,27 +604,7 @@ a.app-rail-item {
 }
 
 .menu-x {
-  position: relative;
   display: block;
-  width: 0.95rem;
-  height: 0.95rem;
-}
-
-.menu-x i {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1.6px;
-  background: currentColor;
-}
-
-.menu-x i:first-child {
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.menu-x i:last-child {
-  transform: translateY(-50%) rotate(-45deg);
 }
 
 .app-dash {
@@ -1765,7 +1745,6 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
   min-height: 2.15rem;
   padding: 0 0.85rem;
   border-radius: 0.35rem;
@@ -1793,11 +1772,12 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
 }
 
 .landing-nav-toggle {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  margin-left: 0.55rem;
-  min-height: 2.4rem;
+  margin-left: auto;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
   padding: 0 0.35rem;
   border: 0;
   background: transparent;
@@ -1814,12 +1794,8 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
 }
 
 .landing-nav-toggle.menu-close {
-  width: 2.4rem;
+  width: 2.5rem;
   padding: 0;
-}
-
-.landing-nav-links {
-  display: none;
 }
 
 .landing-nav-sheet {
@@ -1841,10 +1817,18 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
 }
 
 .landing-nav-sheet nav {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   gap: 0;
+}
+
+.landing-nav-sheet-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
 }
 
 .landing-nav-sheet a {
@@ -1893,11 +1877,13 @@ html:has(.landing-nav-sheet[data-open="true"]) .pwa-note {
 }
 
 @media (max-width: 52rem) {
+  .landing-nav-links,
   .landing-nav-rsvp {
     display: none;
   }
 
   .landing-nav-toggle {
+    display: inline-flex;
     margin-left: auto;
   }
 }

@@ -81,7 +81,7 @@ export function SiteNav() {
         rel="noopener noreferrer"
         onClick={rsvp}
       >
-        RSVP
+        Save a spot
       </a>
 
       <button
@@ -101,6 +101,14 @@ export function SiteNav() {
         data-open={open ? "true" : "false"}
       >
         <nav aria-label="Site">
+          <button
+            type="button"
+            className="menu-close landing-nav-sheet-close"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            <MenuClose />
+          </button>
           {links}
           <a
             className="landing-nav-sheet-rsvp"
@@ -112,7 +120,7 @@ export function SiteNav() {
               setOpen(false);
             }}
           >
-            RSVP
+            Save a spot
           </a>
         </nav>
       </div>
