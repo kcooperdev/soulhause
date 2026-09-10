@@ -7,6 +7,11 @@ type InstallEvent = Event & {
   prompt: () => Promise<void>;
 };
 
+type Tone = "house" | "offer";
+
+let deferred: InstallEvent | null = null;
+let watching = false;
+
 function isStandalone() {
   if (typeof window === "undefined") return true;
   return (
@@ -21,20 +26,33 @@ function isIos() {
   return /iPhone|iPad|iPod/i.test(window.navigator.userAgent);
 }
 
-export function InstallHome({ allowed }: { allowed: boolean }) {
+function watchInstall() {
+  if (watching || typeof window === "undefined") return;
+  watching = true;
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferred = event as InstallEvent;
+  });
+}
+
+export function InstallHome({ tone = "house" }: { tone?: Tone }) {
   const [open, setOpen] = useState(false);
   const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
 
   useEffect(() => {
-    if (!allowed || readInstallSeen() || isStandalone()) return;
+    watchInstall();
+    if (isStandalone() || readInstallSeen()) return;
     setOpen(true);
+    setInstallEvent(deferred);
     const onPrompt = (event: Event) => {
       event.preventDefault();
-      setInstallEvent(event as InstallEvent);
+      const next = event as InstallEvent;
+      deferred = next;
+      setInstallEvent(next);
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
     return () => window.removeEventListener("beforeinstallprompt", onPrompt);
-  }, [allowed]);
+  }, []);
 
   if (!open) return null;
 
@@ -46,30 +64,31 @@ export function InstallHome({ allowed }: { allowed: boolean }) {
   async function add() {
     if (installEvent) {
       await installEvent.prompt();
+      deferred = null;
     }
-    dismiss();
+    writeInstallSeen();
+    setOpen(false);
   }
 
+  const canPrompt = Boolean(installEvent);
+  const ios = isIos() && !canPrompt;
+
   return (
-    <aside
-      className="mt-8 rounded-2xl bg-white/8 px-4 py-4 text-left"
-      aria-label="Add to Home Screen"
-    >
-      <p className="text-sm leading-6 text-ink">
-        Keep SoulHause on your phone for the next event.
-      </p>
-      {isIos() && !installEvent ? (
-        <p className="mt-2 text-sm leading-6 text-muted">
-          Share, then Add to Home Screen.
+    <aside className="pwa-install" data-tone={tone} aria-label="Add to Home Screen">
+      <p>Keep the house on your phone.</p>
+      {ios ? <p className="pwa-install-how">Share, then Add to Home Screen.</p> : null}
+      {!ios && !canPrompt ? (
+        <p className="pwa-install-how">
+          In the browser menu, choose Add to Home Screen.
         </p>
       ) : null}
-      <div className="mt-3 flex gap-2">
-        {installEvent ? (
-          <button type="button" className="ctl ctl-save" onClick={add}>
+      <div className="pwa-install-act">
+        {canPrompt ? (
+          <button type="button" className="pwa-add" onClick={add}>
             Add to Home Screen
           </button>
         ) : null}
-        <button type="button" className="ctl" onClick={dismiss}>
+        <button type="button" className="pwa-skip" onClick={dismiss}>
           Not now
         </button>
       </div>

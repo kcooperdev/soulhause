@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { HauseFeed } from "@/components/HauseFeed";
+import { InstallHome } from "@/components/InstallHome";
 import { HouseAvatar } from "@/components/HouseAvatar";
 import { SocialIconLinks, SocialMarks } from "@/components/SocialIcons";
 import { events, roles } from "@/lib/events";
@@ -66,6 +67,7 @@ export function HouseRoster({
       <p className="roster-lede">
         Find people by field. Open a name. Connect on LinkedIn.
       </p>
+      <InstallHome tone="house" />
       <div className="roster-pills" role="tablist" aria-label="Fields">
         <button
           type="button"

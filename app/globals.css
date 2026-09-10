@@ -1874,7 +1874,7 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   max-width: min(94vw, 58rem);
   font-family: var(--font-display), var(--font-poster), Impact, sans-serif;
   width: 100%;
-  font-size: clamp(5rem, 13.5vw, 13rem);
+  font-size: clamp(2.85rem, 13vw, 12rem);
   font-weight: 800;
   letter-spacing: -0.062em;
   line-height: 0.86;
@@ -2383,6 +2383,80 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   color: var(--hero-muted);
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.pwa-install {
+  margin: 2rem auto 0;
+  max-width: 22rem;
+  text-align: center;
+}
+
+.pwa-install p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.pwa-install-how {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.pwa-install-act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.pwa-add,
+.pwa-skip {
+  min-height: 2.4rem;
+  padding: 0 0.85rem;
+  border: 0;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.pwa-add {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.pwa-skip {
+  background: transparent;
+  color: var(--muted);
+}
+
+.pwa-install[data-tone="offer"] {
+  margin-top: 1.75rem;
+  color: var(--hero-muted);
+}
+
+.pwa-install[data-tone="offer"] .pwa-install-how {
+  color: color-mix(in oklab, var(--hero-muted) 82%, transparent);
+}
+
+.pwa-install[data-tone="offer"] .pwa-add {
+  background: var(--hero-ink);
+  color: var(--hero-stone);
+}
+
+.pwa-install[data-tone="offer"] .pwa-skip {
+  color: var(--hero-muted);
+}
+
+.pwa-install[data-tone="house"] {
+  margin-left: 0;
+  text-align: left;
+}
+
+.pwa-install[data-tone="house"] .pwa-add {
+  min-height: 2.75rem;
 }
 
 @media (min-width: 52rem) {
@@ -3292,6 +3366,10 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   color: var(--ink);
 }
 
+.hero-invite-play svg {
+  display: block;
+}
+
 .hero-invite-play:disabled {
   opacity: 0.45;
 }
@@ -3551,6 +3629,71 @@ body.has-custom-cursor [role="button"] {
 
   .landing-hero-brand {
     max-width: min(92vw, 64rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-hero {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+    padding-left: max(0.9rem, env(safe-area-inset-left));
+    padding-right: max(0.9rem, env(safe-area-inset-right));
+  }
+
+  .landing-hero:has(.hero-invite) {
+    padding-bottom: calc(5.35rem + env(safe-area-inset-bottom));
+  }
+
+  .landing-hero-brand {
+    max-width: min(88vw, 20rem);
+    font-size: clamp(2.7rem, 15.5vw, 3.55rem);
+    letter-spacing: -0.05em;
+    line-height: 0.88;
+  }
+
+  .landing-hero-line {
+    margin-top: 0.65rem;
+    font-size: clamp(0.95rem, 3.8vw, 1.12rem);
+  }
+
+  .landing-hero .hero-invite {
+    gap: 0.7rem;
+    padding: 0.8rem max(1rem, env(safe-area-inset-right))
+      calc(1rem + env(safe-area-inset-bottom))
+      max(1rem, env(safe-area-inset-left));
+  }
+
+  .hero-invite-play {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .hero-invite-play svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-invite-kicker {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-invite-title,
+  .hero-invite-title-btn {
+    font-size: 0.86rem;
+  }
+
+  .hero-invite-hint {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .landing-hero-brand {
+    font-size: clamp(2.35rem, 13vw, 3.1rem);
+  }
+
+  .landing-hero-line {
+    margin-top: 0.5rem;
   }
 }
 

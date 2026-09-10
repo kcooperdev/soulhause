@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { InstallHome } from "@/components/InstallHome";
 import { techHause } from "@/lib/offerings";
 import { planCompare, plans } from "@/lib/plans";
 
@@ -77,6 +78,7 @@ export function TechHausePage() {
           Already in? Enter
         </Link>
       </p>
+      <InstallHome tone="offer" />
     </div>
   );
 }
