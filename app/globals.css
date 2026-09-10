@@ -1398,7 +1398,7 @@ a.app-rail-item {
 }
 
 .landing-hero:has(.hero-invite) {
-  padding-bottom: calc(3.25rem + env(safe-area-inset-bottom));
+  padding-bottom: calc(4.15rem + env(safe-area-inset-bottom));
 }
 
 .landing-hero--hause {
@@ -3256,8 +3256,8 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   gap: 0.45rem;
   width: 100%;
   margin-top: 0;
-  padding: 0.45rem max(1.15rem, env(safe-area-inset-right))
-    calc(0.45rem + env(safe-area-inset-bottom)) max(1.15rem, env(safe-area-inset-left));
+  padding: 0.7rem max(1.15rem, env(safe-area-inset-right))
+    calc(1.25rem + env(safe-area-inset-bottom)) max(1.15rem, env(safe-area-inset-left));
   overflow: hidden;
   border: 0;
   background: var(--hero-stone);
