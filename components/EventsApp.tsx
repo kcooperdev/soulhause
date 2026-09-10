@@ -224,15 +224,16 @@ function House() {
         </div>
         <nav className="app-rail-nav" aria-label="The house">
           {mainNav()}
-          <Link
-            href="/volunteer"
+          <button
+            type="button"
             className="app-dock-item"
-            onClick={() => setMenu(false)}
+            disabled
+            aria-disabled="true"
           >
             <span className="app-dock-label-rail">Volunteer</span>
             <span className="app-dock-label-phone">Volunteer</span>
-            <span className="app-dock-dot" aria-hidden />
-          </Link>
+            <span className="app-dock-soon">Opening soon</span>
+          </button>
           <button
             type="button"
             className="app-dock-item"

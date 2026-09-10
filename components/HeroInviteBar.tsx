@@ -8,7 +8,7 @@ export const HOUSE_INVITE_EMBED = "https://www.youtube.com/embed/SvlcpJX4Dn0";
 const VIDEO_ID = "SvlcpJX4Dn0";
 const START_SEC = 45;
 const END_SEC = 65;
-const CLIP = { videoId: VIDEO_ID, startSeconds: START_SEC };
+const CLIP = { videoId: VIDEO_ID, startSeconds: START_SEC, endSeconds: END_SEC };
 const FRAME_ID = "hero-invite-yt";
 const YT_API_SRC = "https://www.youtube.com/iframe_api";
 const REDUCE = "(prefers-reduced-motion: reduce)";
@@ -110,6 +110,7 @@ function inviteSrc() {
     autoplay: "0",
     mute: "0",
     start: String(START_SEC),
+    end: String(END_SEC),
   });
   if (typeof window !== "undefined") {
     params.set("origin", window.location.origin);
@@ -162,6 +163,16 @@ function clipTime(player: YTPlayer | null) {
   }
 }
 
+let clipHead = START_SEC;
+
+function inClip(t: number | null) {
+  return t != null && t >= START_SEC && t < END_SEC;
+}
+
+function rememberHead(t: number | null) {
+  if (inClip(t)) clipHead = t as number;
+}
+
 function playNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
   try {
     player?.unMute();
@@ -174,24 +185,21 @@ function playNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
     /* still try play */
   }
   const t = clipTime(player);
-  const midClip = t != null && t >= START_SEC && t < END_SEC;
+  const resume = inClip(t) ? (t as number) : inClip(clipHead) ? clipHead : START_SEC;
+  const alreadyThere = inClip(t);
   try {
-    if (midClip) {
-      player?.playVideo();
-    } else {
-      player?.loadVideoById?.(CLIP);
-      player?.seekTo?.(START_SEC, true);
-      player?.playVideo();
-    }
+    if (!alreadyThere) player?.seekTo?.(resume, true);
+    player?.playVideo();
   } catch {
-    postCommand(frame, midClip ? "playVideo" : "loadVideoById", midClip ? [] : [CLIP]);
+    if (!alreadyThere) postCommand(frame, "seekTo", [resume, true]);
+    postCommand(frame, "playVideo");
   }
   postCommand(frame, "unMute");
-  if (!midClip) postCommand(frame, "seekTo", [START_SEC, true]);
   postCommand(frame, "playVideo");
 }
 
 function pauseNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
+  rememberHead(clipTime(player));
   try {
     player?.pauseVideo();
   } catch {
@@ -200,13 +208,14 @@ function pauseNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
   postCommand(frame, "pauseVideo");
 }
 
-function loopClip(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
+function startClip(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
+  clipHead = START_SEC;
   try {
     player?.seekTo?.(START_SEC, true);
-    player?.playVideo();
+    player?.pauseVideo();
   } catch {
     postCommand(frame, "seekTo", [START_SEC, true]);
-    postCommand(frame, "playVideo");
+    postCommand(frame, "pauseVideo");
   }
 }
 
@@ -308,19 +317,23 @@ export function HeroInviteBar({
       }
 
       if (event.data === YT_ENDED) {
-        wantRef.current = "play";
-        loopClip(event.target, frame);
-        setPlaying(true);
+        wantRef.current = null;
+        startClip(event.target, frame);
+        setPlaying(false);
         return;
       }
 
       if (on) {
         try {
           const t = event.target.getCurrentTime?.() ?? 0;
-          if (t < START_SEC - 0.25) event.target.seekTo?.(START_SEC, true);
+          rememberHead(t);
+          if (t > 0.4 && t < START_SEC - 0.35) {
+            event.target.seekTo?.(inClip(clipHead) ? clipHead : START_SEC, true);
+          }
           if (t >= END_SEC) {
-            loopClip(event.target, frame);
-            setPlaying(true);
+            wantRef.current = null;
+            startClip(event.target, frame);
+            setPlaying(false);
             return;
           }
         } catch {
@@ -385,6 +398,7 @@ export function HeroInviteBar({
       sharedPlayer = null;
       playerRef.current = null;
       readyRef.current = false;
+      clipHead = START_SEC;
     };
   }, [src]);
 
@@ -398,10 +412,22 @@ export function HeroInviteBar({
       } catch {
         return;
       }
-      if (t >= END_SEC || t < START_SEC - 0.25) {
+      if (t >= END_SEC) {
         if (wantRef.current === "pause") return;
-        loopClip(player, liveFrame(frameRef.current, player));
+        wantRef.current = null;
+        startClip(player, liveFrame(frameRef.current, player));
+        setPlaying(false);
+        return;
       }
+      if (t > 0.4 && t < START_SEC - 0.35) {
+        try {
+          player?.seekTo?.(inClip(clipHead) ? clipHead : START_SEC, true);
+        } catch {
+          /* keep playing */
+        }
+        return;
+      }
+      rememberHead(t);
     }, 200);
     return () => window.clearInterval(clip);
   }, [playing]);

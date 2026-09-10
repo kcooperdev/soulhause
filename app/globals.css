@@ -2490,9 +2490,10 @@ html[data-theme="dark"] .landing-hero .brand-spotlight.is-spotlit .brand-sunflow
   font-size: 0.95rem;
 }
 
-.vol-form .ctl {
+.vol-form .ctl,
+.vol-done .ctl {
   width: 100%;
-  margin-top: 0.35rem;
+  margin-top: 1rem;
   border-radius: 0.4rem;
 }
 
