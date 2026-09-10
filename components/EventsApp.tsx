@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { HouseRoster, Me, ProfilePage } from "@/components/HausePeople";
+import { MenuClose } from "@/components/MenuClose";
 import { JoinFlow } from "@/components/JoinFlow";
 import { Logo } from "@/components/Logo";
 import { Splash } from "@/components/Splash";
@@ -123,7 +124,7 @@ function House() {
   }, []);
 
   useEffect(() => {
-    if (!menu || desk) return;
+    if (!menu) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenu(false);
     };
@@ -133,7 +134,7 @@ function House() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [menu, desk]);
+  }, [menu]);
 
   function toggleKeep(id: string) {
     setFollow((ids) =>
@@ -209,9 +210,19 @@ function House() {
         className="app-rail"
         aria-label="SoulHause"
         data-open={menu ? "true" : "false"}
-        inert={!desk && !menu ? true : undefined}
+        inert={!menu ? true : undefined}
       >
-        <BrandMark compact home className="app-rail-brand" />
+        <div className="app-rail-top">
+          <BrandMark compact home className="app-rail-brand" />
+          <button
+            type="button"
+            className="menu-close"
+            aria-label="Close menu"
+            onClick={() => setMenu(false)}
+          >
+            <MenuClose />
+          </button>
+        </div>
         <div className="app-rail-who">
           <p>{mine.name}</p>
           <p className="plan-tag" data-plan={planById(mine.planId).id}>
@@ -269,12 +280,13 @@ function House() {
         </div>
         <button
           type="button"
-          className="app-menu"
+          className={menu ? "app-menu menu-close" : "app-menu"}
           aria-expanded={menu}
           aria-controls="house-menu"
+          aria-label={menu ? "Close menu" : "Open menu"}
           onClick={() => setMenu((open) => !open)}
         >
-          {menu ? "Close" : "Menu"}
+          {menu ? <MenuClose /> : "Menu"}
         </button>
         <div className="app-mast-tools">
           {demoWalk ? (

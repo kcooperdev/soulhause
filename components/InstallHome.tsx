@@ -38,6 +38,7 @@ function watchInstall() {
 export function InstallHome({ tone = "house" }: { tone?: Tone }) {
   const [open, setOpen] = useState(false);
   const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
+  const [how, setHow] = useState(false);
 
   useEffect(() => {
     watchInstall();
@@ -65,29 +66,33 @@ export function InstallHome({ tone = "house" }: { tone?: Tone }) {
     if (installEvent) {
       await installEvent.prompt();
       deferred = null;
+      writeInstallSeen();
+      setOpen(false);
+      return;
     }
-    writeInstallSeen();
-    setOpen(false);
+    setHow(true);
   }
 
-  const canPrompt = Boolean(installEvent);
-  const ios = isIos() && !canPrompt;
-
   return (
-    <aside className="pwa-install" data-tone={tone} aria-label="Add to Home Screen">
-      <p>Keep the house on your phone.</p>
-      {ios ? <p className="pwa-install-how">Share, then Add to Home Screen.</p> : null}
-      {!ios && !canPrompt ? (
-        <p className="pwa-install-how">
-          In the browser menu, choose Add to Home Screen.
+    <aside
+      className="pwa-note"
+      data-tone={tone}
+      role="dialog"
+      aria-labelledby="pwa-note-title"
+      aria-describedby={how ? "pwa-note-how" : undefined}
+    >
+      <p id="pwa-note-title">Keep the house on your phone</p>
+      {how ? (
+        <p id="pwa-note-how" className="pwa-note-how">
+          {isIos()
+            ? "Tap Share, then Add to Home Screen."
+            : "Open the browser menu, then Add to Home Screen."}
         </p>
       ) : null}
-      <div className="pwa-install-act">
-        {canPrompt ? (
-          <button type="button" className="pwa-add" onClick={add}>
-            Add to Home Screen
-          </button>
-        ) : null}
+      <div className="pwa-note-act">
+        <button type="button" className="pwa-add" onClick={add}>
+          Add to Home Screen
+        </button>
         <button type="button" className="pwa-skip" onClick={dismiss}>
           Not now
         </button>

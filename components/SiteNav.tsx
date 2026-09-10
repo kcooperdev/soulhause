@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
+import { MenuClose } from "@/components/MenuClose";
 import { brand } from "@/lib/brand";
 import { siteLinks, techAfterDark } from "@/lib/offerings";
 import { readRsvp, writeRsvp } from "@/lib/prefs";
@@ -13,6 +14,7 @@ export function SiteNav() {
   const path = usePathname();
   const night = events[0];
   const onNight = path === "/tech-after-dark";
+  const onHome = path === "/";
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -24,8 +26,12 @@ export function SiteNav() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
   }, [open]);
 
   function rsvp() {
@@ -55,7 +61,13 @@ export function SiteNav() {
       data-open={open ? "true" : "false"}
     >
       <Link className="landing-nav-brand" href="/" aria-label={brand.name}>
-        <Logo size={44} />
+        <Logo size={72} />
+        {onHome ? null : (
+          <span className="landing-nav-wordmark">
+            <b>{brand.name}</b>
+            <i>{brand.line}</i>
+          </span>
+        )}
       </Link>
 
       <nav className="landing-nav-links" aria-label={brand.name}>
@@ -74,12 +86,13 @@ export function SiteNav() {
 
       <button
         type="button"
-        className="landing-nav-toggle"
+        className={open ? "landing-nav-toggle menu-close" : "landing-nav-toggle"}
         aria-expanded={open}
         aria-controls="site-menu"
+        aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((next) => !next)}
       >
-        {open ? "Close" : "Menu"}
+        {open ? <MenuClose /> : "Menu"}
       </button>
 
       <div

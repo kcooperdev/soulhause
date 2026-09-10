@@ -1,25 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { InstallHome } from "@/components/InstallHome";
 import { techHause } from "@/lib/offerings";
 import { planCompare, plans } from "@/lib/plans";
 
-function Cell({ on, back }: { on: boolean; back?: number }) {
-  return (
-    <div className="th-cell" data-on={on ? "true" : "false"}>
-      <span className="th-bar" aria-hidden />
-      {on && back ? <span className="th-back">${back}</span> : null}
-      <span className="sr-only">
-        {on ? (back ? `Yes, about $${back} back` : "Yes") : "No"}
-      </span>
-    </div>
-  );
-}
+type Tier = "free" | "paid";
 
 export function TechHausePage() {
+  const [tier, setTier] = useState<Tier>("free");
   const free = plans[0];
   const paid = plans[1];
+  const onPaid = tier === "paid";
+  const perks = onPaid
+    ? [
+        "Everything in Free",
+        ...planCompare.filter((row) => row.paid && !row.free).map((row) => row.perk),
+      ]
+    : planCompare.filter((row) => row.free).map((row) => row.perk);
 
   return (
     <div className="th">
@@ -33,43 +32,49 @@ export function TechHausePage() {
         <p className="th-what">{techHause.what}</p>
       </header>
 
-      <section className="th-compare" aria-label="Free versus Paid">
-        <div className="th-compare-head">
-          <p className="th-compare-axis">The stack</p>
-          <div className="th-head-plan" data-tier="free">
-            <p className="th-col-name">{free.name}</p>
-            <p className="th-col-price">
-              <sup>$</sup>
-              <b>{free.figure}</b>
-              <i>{free.unit}</i>
-            </p>
-          </div>
-          <div className="th-head-plan" data-tier="paid">
-            <p className="th-col-name">{paid.name}</p>
-            <p className="th-col-price">
-              <sup>$</sup>
-              <b>{paid.figure}</b>
-              <i>{paid.unit}</i>
-            </p>
-          </div>
+      <section className="th-pick" aria-label="Free versus Paid">
+        <div className="th-switch" data-on={tier}>
+          <span className="th-switch-thumb" aria-hidden />
+          <button
+            type="button"
+            aria-pressed={!onPaid}
+            onClick={() => setTier("free")}
+          >
+            {free.name}
+          </button>
+          <button
+            type="button"
+            aria-pressed={onPaid}
+            onClick={() => setTier("paid")}
+          >
+            {paid.name}
+          </button>
         </div>
 
-        <div className="th-viz" role="table">
-          {planCompare.map((row) => (
-            <div className="th-viz-row" role="row" key={row.perk}>
-              <p role="rowheader">{row.perk}</p>
-              <Cell on={row.free} />
-              <Cell on={row.paid} back={row.back} />
-            </div>
-          ))}
-        </div>
-
-        <div className="th-compare-act">
-          <span />
-          <Link className="th-join" href={techHause.enter}>
-            Start free
-          </Link>
-          <p className="th-col-soon">Not open</p>
+        <div key={tier} className="th-pick-body">
+          <h2 className="th-pack-name">{onPaid ? paid.name : free.name}</h2>
+          <p className="th-pack-price">
+            {onPaid ? (
+              <>
+                $25 <i>/ mo</i>
+              </>
+            ) : (
+              "$0"
+            )}
+          </p>
+          <p className="th-pack-line">{onPaid ? "The card." : "In the house."}</p>
+          <ul className="th-perks">
+            {perks.map((perk) => (
+              <li key={perk}>{perk}</li>
+            ))}
+          </ul>
+          {onPaid ? (
+            <p className="th-col-soon">Coming soon 2027</p>
+          ) : (
+            <Link className="th-join" href={techHause.enter}>
+              Start free
+            </Link>
+          )}
         </div>
       </section>
 
