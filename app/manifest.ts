@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: brand.name,
     short_name: brand.name,
-    description: "SoulHause events and a house directory. Tech for the soul.",
+    description: "SoulHause is a tech company. Tech for the soul, the people, and the future.",
     start_url: "/",
     display: "standalone",
     background_color: "#f3f1ec",

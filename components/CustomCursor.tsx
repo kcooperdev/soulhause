@@ -12,22 +12,20 @@ function HouseMark() {
   return (
     <svg
       className="cursor-hause-svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
+      viewBox="0 0 32 32"
+      width="32"
+      height="32"
       aria-hidden="true"
       focusable="false"
     >
-      <defs>
-        <g id="cursor-hause-geom">
-          <rect x="15.2" y="3.2" width="2.6" height="5.2" rx="0.35" />
-          <path d="M3.4 11.2 12 3.8l8.6 7.4H3.4Z" />
-          <path d="M5.2 10.6h13.6v9.2H5.2Z" />
-        </g>
-      </defs>
-      <use href="#cursor-hause-geom" className="cursor-hause-outline" />
-      <use href="#cursor-hause-geom" className="cursor-hause-fill" />
-      <path className="cursor-hause-door" d="M10.4 14.2h3.2v5.6h-3.2Z" />
+      <path
+        className="cursor-hause-fill"
+        d="M16 3.2 28.4 14.8H25v13.4H7V14.8H3.6L16 3.2Z"
+      />
+      <path
+        className="cursor-hause-chimney"
+        d="M21.6 6.4v5"
+      />
     </svg>
   );
 }

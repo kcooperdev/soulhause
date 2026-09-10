@@ -11,7 +11,9 @@ const FOLLOW = "soulhause-follow-v1";
 const INSTALL = "soulhause-install-seen-v1";
 const GOING = "soulhause-going-v1";
 const DEMO = "soulhause-demo-role-v1";
+const DEMO_WALK = "soulhause-demo-walk-v1";
 const SEEK = "soulhause-seek-ok-v1";
+const GUIDE = "soulhause-guide-v1";
 
 export type Going = {
   id: string;
@@ -207,6 +209,15 @@ export function writeDemoRole(role: DemoRole) {
   window.localStorage.setItem(DEMO, role);
 }
 
+export function isDemoWalk() {
+  return typeof window !== "undefined" && window.localStorage.getItem(DEMO_WALK) === "1";
+}
+
+export function writeDemoWalk(on: boolean) {
+  if (on) window.localStorage.setItem(DEMO_WALK, "1");
+  else window.localStorage.removeItem(DEMO_WALK);
+}
+
 export function readSeekConfirmed() {
   return (
     typeof window !== "undefined" &&
@@ -219,11 +230,22 @@ export function writeSeekConfirmed(on: boolean) {
   else window.localStorage.removeItem(SEEK);
 }
 
+export function readGuideDone() {
+  return typeof window !== "undefined" && window.localStorage.getItem(GUIDE) === "1";
+}
+
+export function writeGuideDone(on: boolean) {
+  if (on) window.localStorage.setItem(GUIDE, "1");
+  else window.localStorage.removeItem(GUIDE);
+}
+
 export function clearMemberAccount() {
   window.localStorage.removeItem(PROFILE);
   window.localStorage.removeItem(DEMO);
+  window.localStorage.removeItem(DEMO_WALK);
   window.localStorage.removeItem(FOLLOW);
   window.localStorage.removeItem(SEEK);
+  window.localStorage.removeItem(GUIDE);
 }
 
 export function readGuests(): Member[] {

@@ -11,6 +11,22 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "techafterdark.live" }],
+        destination: "https://soulhause.com/tech-after-dark",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.techafterdark.live" }],
+        destination: "https://soulhause.com/tech-after-dark",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -72,7 +72,7 @@ export function seedDemoFeed() {
     ]),
     makePost(byId.priya, "looking", "founders", "Looking to meet founders in healthcare / civic. Angel checks, not a spray.", base + 20),
     makePost(byId.riley, "looking", "ai", "Looking to meet people who love AI + civic hack nights.", base + 10),
-    makePost(byId.khalif, "resource", "collab", "Hause of Soul happy hour — rooms and a crew, not a pitch cage. Register on Luma.", base + 5),
+    makePost(byId.khalif, "resource", "collab", "Tech After Dark — rooms and a crew, not a pitch cage. Register on Luma.", base + 5),
   ].filter((item): item is FeedPost => Boolean(item));
   writeFeed(posts);
   return posts;
@@ -80,7 +80,7 @@ export function seedDemoFeed() {
 
 export function visibleFeed(posts: FeedPost[], looking: LookingId[], selfId?: string) {
   if (!looking.length) {
-    return posts.filter((post) => post.authorId === selfId).sort(byTime);
+    return [...posts].sort(byTime);
   }
   return posts
     .filter(

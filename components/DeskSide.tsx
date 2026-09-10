@@ -7,21 +7,15 @@ import type { Member } from "@/lib/members";
 export function DeskSide({
   screen,
   night,
-  live,
   mine,
   following,
-  hereCount,
-  boardCount,
-  onOpenHere,
+  houseCount,
 }: {
   screen: string;
   night: EventItem | undefined;
-  live: boolean;
   mine: Member;
   following: number;
-  hereCount: number;
-  boardCount: number;
-  onOpenHere: () => void;
+  houseCount: number;
 }) {
   const looking =
     mine.lookingIds
@@ -32,31 +26,23 @@ export function DeskSide({
   return (
     <aside className="app-dash" aria-label="Dashboard">
       <article className="dash-card">
-        <p className="kicker">Tonight</p>
+        <p className="kicker">Next night</p>
         {onEvents ? (
           <>
-            <p className="dash-title">Doors</p>
+            <p className="dash-title">{night ? night.date : "Soon"}</p>
             <p className="mt-2 text-sm leading-6 text-muted">
-              {live
-                ? "Doors are open."
-                : night
-                  ? `Who’s here opens at ${night.time}.`
-                  : "Who’s here opens when the night starts."}
+              {night
+                ? `${night.time} · ${night.venue}`
+                : "The next Tech After Dark lands on Luma when it’s ready."}
             </p>
           </>
         ) : (
           <>
             <p className="dash-title">
-              {night?.title.split(":")[0] ?? "Hause of Soul"}
+              {night?.title.split(":")[0] ?? "Tech After Dark"}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted">
               {night ? `${night.date} · ${night.time}` : "Next night soon"}
-              <br />
-              {live
-                ? "Doors are open."
-                : night
-                  ? `Who’s here opens at ${night.time}.`
-                  : "Who’s here opens when the night starts."}
             </p>
             {night ? (
               <a
@@ -70,23 +56,14 @@ export function DeskSide({
             ) : null}
           </>
         )}
-        {live ? (
-          <button type="button" className="ctl-quiet self-start" onClick={onOpenHere}>
-            Who’s here
-          </button>
-        ) : null}
       </article>
 
       <article className="dash-card">
-        <p className="kicker">Room</p>
+        <p className="kicker">House</p>
         <dl className="dash-stats">
           <div>
-            <dt>Checked in</dt>
-            <dd>{hereCount}</dd>
-          </div>
-          <div>
-            <dt>On the board</dt>
-            <dd>{boardCount}</dd>
+            <dt>In the house</dt>
+            <dd>{houseCount}</dd>
           </div>
           <div>
             <dt>Following</dt>
@@ -107,7 +84,7 @@ export function DeskSide({
           </p>
         ) : (
           <p className="mt-3 text-sm leading-6 text-muted">
-            Set what you’re looking for in The Hause.
+            Set what you’re looking for on Me.
           </p>
         )}
       </article>

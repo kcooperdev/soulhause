@@ -1,4 +1,5 @@
 import type { InterestId, LookingId, OfferId } from "@/lib/intents";
+import type { PlanId } from "@/lib/plans";
 
 export type Socials = {
   instagram?: string;
@@ -6,6 +7,23 @@ export type Socials = {
   github?: string;
   site?: string;
 };
+
+export type HouseFieldId =
+  | "ai"
+  | "cyber"
+  | "engineering"
+  | "founders"
+  | "career"
+  | "product";
+
+export const houseFields: { id: HouseFieldId; label: string }[] = [
+  { id: "ai", label: "AI" },
+  { id: "cyber", label: "Cyber" },
+  { id: "engineering", label: "Engineering" },
+  { id: "founders", label: "Founders" },
+  { id: "career", label: "Career change" },
+  { id: "product", label: "Product" },
+];
 
 export type Member = {
   id: string;
@@ -19,11 +37,13 @@ export type Member = {
   interests?: InterestId[];
   lookingIds?: LookingId[];
   offerIds?: OfferId[];
+  fields?: HouseFieldId[];
   offer?: string;
   looking?: string;
   socials?: Socials;
   matchPool?: boolean;
   photo?: string;
+  planId?: PlanId;
 };
 
 export const ADMIN_ID = "khalif";
@@ -39,6 +59,7 @@ export const houseMembers: Member[] = [
     link: "https://www.linkedin.com/in/kcooperdev",
     offerIds: ["intros", "mentoring"],
     lookingIds: ["collab", "founders", "ai"],
+    fields: ["founders", "ai", "product"],
     offer: "Intros, rooms, and a monthly happy hour",
     status: "approved",
     matchPool: true,
@@ -50,9 +71,10 @@ export const houseMembers: Member[] = [
     name: "Nia Brooks",
     role: "Transitioning",
     building: "Moving from hospitality ops into frontend",
-    city: "Lagos",
+    city: "Baltimore, MD",
     link: "https://www.linkedin.com/in/demo-nia-brooks",
     lookingIds: ["dev-job", "mentor"],
+    fields: ["career", "engineering"],
     looking: "A first developer role and a career-change mentor",
     status: "approved",
     interests: ["learning", "car"],
@@ -63,10 +85,11 @@ export const houseMembers: Member[] = [
     name: "Jordan Hale",
     role: "Cyber",
     building: "Detection work for mid-size orgs",
-    city: "London",
+    city: "Arlington, VA",
     link: "https://www.linkedin.com/in/demo-jordan-hale",
     offerIds: ["mentoring", "cyber-gov"],
     lookingIds: ["cyber-crew"],
+    fields: ["cyber"],
     offer: "Mentoring career-changers into cyber",
     status: "approved",
     matchPool: true,
@@ -78,10 +101,11 @@ export const houseMembers: Member[] = [
     name: "Sam Okonkwo",
     role: "Founder",
     building: "A scheduling tool for clinics",
-    city: "Accra",
+    city: "Baltimore, MD",
     link: "https://www.linkedin.com/in/demo-sam-okonkwo",
     lookingIds: ["investor", "dev-job", "founders"],
     offerIds: ["hiring-dev"],
+    fields: ["founders", "engineering"],
     looking: "Pre-seed investors",
     offer: "Hiring a first developer",
     status: "approved",
@@ -93,10 +117,11 @@ export const houseMembers: Member[] = [
     name: "Priya Shah",
     role: "Investor",
     building: "Angel checks into operators building with soul",
-    city: "Mumbai",
+    city: "Washington, DC",
     link: "https://www.linkedin.com/in/demo-priya-shah",
     offerIds: ["investing", "intros"],
     lookingIds: ["founders"],
+    fields: ["founders"],
     offer: "Introductions and a few angel checks",
     status: "approved",
     matchPool: true,
@@ -108,9 +133,10 @@ export const houseMembers: Member[] = [
     name: "Riley Chen",
     role: "Student",
     building: "CS, civic hack nights",
-    city: "Toronto",
+    city: "College Park, MD",
     link: "https://www.linkedin.com/in/demo-riley-chen",
     lookingIds: ["collab", "gov-role", "ai"],
+    fields: ["ai", "engineering"],
     looking: "A gov-tech internship or a collab",
     status: "approved",
     matchPool: true,

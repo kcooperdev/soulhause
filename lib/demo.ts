@@ -16,6 +16,8 @@ import {
   writeTaste,
   writeWent,
   writeSeekConfirmed,
+  writeDemoWalk,
+  clearMemberAccount,
   type DemoRole,
 } from "@/lib/prefs";
 
@@ -36,9 +38,9 @@ export function applyDemo(role: DemoRole) {
   }
 
   if (role === "admin") {
-    writeProfile({ ...admin, status: "approved" });
+    writeProfile({ ...admin, status: "approved", planId: "member" });
     writeTaste({ roles: ["Founder", "Builder"] });
-    writeFollow([MEMBER_ID, "sam"]);
+    writeFollow([]);
     writeRsvp([night]);
     writeWent([night]);
     writeGoing([
@@ -76,11 +78,11 @@ export function applyDemo(role: DemoRole) {
     return;
   }
 
-  const nia = { ...member, status: niaStatus };
+  const nia = { ...member, status: niaStatus, planId: "member" as const };
   upsertGuest(nia);
   writeProfile(nia);
   writeTaste({ roles: ["Transitioning", "Job seeker"] });
-  writeFollow([ADMIN_ID, "jordan"]);
+  writeFollow([]);
   writeRsvp([night]);
   writeWent([]);
   writeGoing([
@@ -96,4 +98,14 @@ export function applyDemo(role: DemoRole) {
   writeIntros([]);
   seedDemoCheckins(night, member.id);
   seedDemoFeed();
+}
+
+export function startClickthroughDemo(role: DemoRole = "admin") {
+  writeDemoWalk(true);
+  applyDemo(role);
+}
+
+export function startNewUserDemo() {
+  clearMemberAccount();
+  writeDemoWalk(true);
 }

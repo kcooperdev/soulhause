@@ -24,7 +24,8 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: `${brand.name} · ${brand.line}`,
-  description: "SoulHause events and a house directory. Tech for the soul.",
+  description:
+    "SoulHause is a tech company. Tech for the soul, the people, and the future.",
   applicationName: brand.name,
   appleWebApp: {
     capable: true,

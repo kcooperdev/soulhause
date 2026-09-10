@@ -2,22 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export const HOUSE_INVITE_WATCH = "https://www.youtube.com/watch?v=Gs069dndIYk";
-export const HOUSE_INVITE_EMBED = "https://www.youtube.com/embed/Gs069dndIYk";
+export const HOUSE_INVITE_WATCH = "https://www.youtube.com/watch?v=SvlcpJX4Dn0";
+export const HOUSE_INVITE_EMBED = "https://www.youtube.com/embed/SvlcpJX4Dn0";
 
-const VIDEO_ID = "Gs069dndIYk";
-const START_SEC = 50;
-const END_SEC = 90;
-const CLIP = { videoId: VIDEO_ID, startSeconds: START_SEC, endSeconds: END_SEC };
+const VIDEO_ID = "SvlcpJX4Dn0";
+const START_SEC = 45;
+const END_SEC = 65;
+const CLIP = { videoId: VIDEO_ID, startSeconds: START_SEC };
 const FRAME_ID = "hero-invite-yt";
 const YT_API_SRC = "https://www.youtube.com/iframe_api";
-const DESKTOP = "(min-width: 64rem)";
 const REDUCE = "(prefers-reduced-motion: reduce)";
 const YT_ENDED = 0;
 const YT_PLAYING = 1;
 const YT_PAUSED = 2;
 const YT_BUFFERING = 3;
-const LINE = "Join us for Hause of Soul Tech Happy Hour";
+const LINE = "People Everyday";
+const CREDIT = "Arrested Development";
 
 type ClipOpts = { videoId: string; startSeconds: number; endSeconds: number };
 
@@ -110,7 +110,6 @@ function inviteSrc() {
     autoplay: "0",
     mute: "0",
     start: String(START_SEC),
-    end: String(END_SEC),
   });
   if (typeof window !== "undefined") {
     params.set("origin", window.location.origin);
@@ -135,6 +134,14 @@ function PauseIcon() {
   );
 }
 
+function playerAttached(player: YTPlayer | null) {
+  try {
+    return Boolean(player?.getIframe?.()?.isConnected);
+  } catch {
+    return false;
+  }
+}
+
 function liveFrame(fallback: HTMLIFrameElement | null, player: YTPlayer | null) {
   try {
     const fromPlayer = player?.getIframe?.();
@@ -146,12 +153,12 @@ function liveFrame(fallback: HTMLIFrameElement | null, player: YTPlayer | null) 
   return document.querySelector<HTMLIFrameElement>(`#${FRAME_ID}, .hero-invite iframe`);
 }
 
-function inChorus(player: YTPlayer | null) {
+function clipTime(player: YTPlayer | null) {
   try {
     const t = player?.getCurrentTime?.();
-    return typeof t === "number" && t >= START_SEC && t < END_SEC;
+    return typeof t === "number" ? t : null;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -166,22 +173,21 @@ function playNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
   } catch {
     /* still try play */
   }
+  const t = clipTime(player);
+  const midClip = t != null && t >= START_SEC && t < END_SEC;
   try {
-    const state = player?.getPlayerState?.();
-    if (state === YT_ENDED || state === -1 || state === 5 || !inChorus(player)) {
+    if (midClip) {
+      player?.playVideo();
+    } else {
       player?.loadVideoById?.(CLIP);
       player?.seekTo?.(START_SEC, true);
-    } else {
       player?.playVideo();
     }
   } catch {
-    try {
-      player?.playVideo();
-    } catch {
-      /* postMessage fallback */
-    }
+    postCommand(frame, midClip ? "playVideo" : "loadVideoById", midClip ? [] : [CLIP]);
   }
   postCommand(frame, "unMute");
+  if (!midClip) postCommand(frame, "seekTo", [START_SEC, true]);
   postCommand(frame, "playVideo");
 }
 
@@ -191,28 +197,17 @@ function pauseNow(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
   } catch {
     /* postMessage fallback */
   }
-  try {
-    if (player?.getPlayerState?.() === YT_BUFFERING) {
-      player.cueVideoById?.(CLIP);
-    }
-  } catch {
-    /* pauseVideo may still land */
-  }
   postCommand(frame, "pauseVideo");
 }
 
-function stopChorus(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
+function loopClip(player: YTPlayer | null, frame: HTMLIFrameElement | null) {
   try {
-    player?.pauseVideo();
+    player?.seekTo?.(START_SEC, true);
+    player?.playVideo();
   } catch {
-    /* ignore */
+    postCommand(frame, "seekTo", [START_SEC, true]);
+    postCommand(frame, "playVideo");
   }
-  try {
-    player?.cueVideoById?.(CLIP);
-  } catch {
-    /* ignore */
-  }
-  postCommand(frame, "pauseVideo");
 }
 
 const live = {
@@ -226,13 +221,13 @@ function isOn(state: number | undefined) {
   return state === YT_PLAYING || state === YT_BUFFERING;
 }
 
-function postCommand(frame: HTMLIFrameElement | null, func: string) {
+function postCommand(frame: HTMLIFrameElement | null, func: string, args: unknown[] = []) {
   const win = frame?.contentWindow;
   if (!win) return;
   const payload = JSON.stringify({
     event: "command",
     func,
-    args: [],
+    args,
     id: FRAME_ID,
     channel: "widget",
   });
@@ -244,7 +239,7 @@ function postCommand(frame: HTMLIFrameElement | null, func: string) {
   win.postMessage(payload, "*");
 }
 
-/** Desktop-only Hause of Soul invite — official YouTube embed, no hosted audio. */
+/** Official Arrested Development — People Everyday embed. No hosted audio. */
 export function HeroInviteBar({
   rsvpHref,
   onRsvp,
@@ -256,7 +251,6 @@ export function HeroInviteBar({
   const playerRef = useRef<YTPlayer | null>(null);
   const readyRef = useRef(false);
   const wantRef = useRef<"play" | "pause" | null>(null);
-  const [desktop, setDesktop] = useState(false);
   const [reduce, setReduce] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -264,24 +258,16 @@ export function HeroInviteBar({
   const [src, setSrc] = useState("");
 
   useEffect(() => {
-    const wide = window.matchMedia(DESKTOP);
     const motion = window.matchMedia(REDUCE);
-    const sync = () => {
-      setDesktop(wide.matches);
-      setReduce(motion.matches);
-    };
+    const sync = () => setReduce(motion.matches);
     sync();
     setSrc(inviteSrc());
-    wide.addEventListener("change", sync);
     motion.addEventListener("change", sync);
-    return () => {
-      wide.removeEventListener("change", sync);
-      motion.removeEventListener("change", sync);
-    };
+    return () => motion.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
-    if (!desktop || !src) return;
+    if (!src) return;
     const host = frameRef.current;
     if (!host) return;
 
@@ -296,6 +282,11 @@ export function HeroInviteBar({
       } catch {
         /* ignore */
       }
+      try {
+        target.cueVideoById?.(CLIP);
+      } catch {
+        /* first play still loads 0:45–1:05 */
+      }
       if (wantRef.current === "play") playNow(target, liveFrame(host, target));
       if (wantRef.current === "pause") pauseNow(target, liveFrame(host, target));
     };
@@ -305,51 +296,69 @@ export function HeroInviteBar({
       playerRef.current = event.target;
       sharedPlayer = event.target;
       const frame = liveFrame(frameRef.current, event.target);
+      const on = isOn(event.data);
+
       if (wantRef.current === "pause") {
-        if (isOn(event.data)) pauseNow(event.target, frame);
+        if (on) pauseNow(event.target, frame);
         setPlaying(false);
         if (event.data === YT_PAUSED || event.data === YT_ENDED || event.data === 5) {
           wantRef.current = null;
         }
         return;
       }
+
       if (event.data === YT_ENDED) {
-        wantRef.current = null;
-        setPlaying(false);
-        try {
-          event.target.cueVideoById?.(CLIP);
-        } catch {
-          /* next play() reloads 0:50–1:30 */
-        }
+        wantRef.current = "play";
+        loopClip(event.target, frame);
+        setPlaying(true);
         return;
       }
-      const on = isOn(event.data);
+
       if (on) {
         try {
           const t = event.target.getCurrentTime?.() ?? 0;
-          if (t < START_SEC) event.target.seekTo?.(START_SEC, true);
+          if (t < START_SEC - 0.25) event.target.seekTo?.(START_SEC, true);
+          if (t >= END_SEC) {
+            loopClip(event.target, frame);
+            setPlaying(true);
+            return;
+          }
         } catch {
-          /* start=50 on the embed / loadVideoById still applies */
+          /* start/end still enforced by the poll */
         }
-      }
-      if (wantRef.current === "play" && on) wantRef.current = null;
-      setPlaying(on);
-      if (on) {
+        wantRef.current = null;
+        setPlaying(true);
         try {
           setMuted(event.target.isMuted());
         } catch {
           setMuted(false);
         }
+        return;
       }
+
+      if (wantRef.current === "play") {
+        setPlaying(true);
+        return;
+      }
+
+      setPlaying(false);
     };
 
     loadYouTubeApi().then((YT) => {
       const frame = frameRef.current;
       if (!frame) return;
       const existing = sharedPlayer ?? YT.get?.(FRAME_ID);
-      if (existing) {
+      if (existing && playerAttached(existing)) {
         markReady(existing);
         return;
+      }
+      if (existing) {
+        try {
+          existing.destroy?.();
+        } catch {
+          /* rebuild against the live iframe */
+        }
+        sharedPlayer = null;
       }
       sharedPlayer = new YT.Player(frame.id || frame, {
         events: {
@@ -359,27 +368,28 @@ export function HeroInviteBar({
       });
       playerRef.current = sharedPlayer;
     });
-  }, [desktop, src]);
+
+    return () => {
+      wantRef.current = "pause";
+      const player = playerRef.current ?? sharedPlayer;
+      try {
+        player?.pauseVideo();
+      } catch {
+        /* leaving the homepage */
+      }
+      try {
+        player?.destroy?.();
+      } catch {
+        /* iframe already gone */
+      }
+      sharedPlayer = null;
+      playerRef.current = null;
+      readyRef.current = false;
+    };
+  }, [src]);
 
   useEffect(() => {
-    if (!desktop) return;
-    const hero = document.querySelector(".landing-hero");
-    if (!hero) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) return;
-        wantRef.current = "pause";
-        pauseNow(playerRef.current, liveFrame(frameRef.current, playerRef.current));
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(hero);
-    return () => io.disconnect();
-  }, [desktop]);
-
-  useEffect(() => {
-    if (!desktop || !playing) return;
+    if (!playing) return;
     const clip = window.setInterval(() => {
       const player = playerRef.current ?? sharedPlayer;
       let t = 0;
@@ -388,22 +398,13 @@ export function HeroInviteBar({
       } catch {
         return;
       }
-      if (t >= END_SEC) {
-        wantRef.current = null;
-        setPlaying(false);
-        stopChorus(player, liveFrame(frameRef.current, player));
+      if (t >= END_SEC || t < START_SEC - 0.25) {
+        if (wantRef.current === "pause") return;
+        loopClip(player, liveFrame(frameRef.current, player));
       }
     }, 200);
     return () => window.clearInterval(clip);
-  }, [desktop, playing]);
-
-  function syncPlaying(player: YTPlayer | null) {
-    try {
-      setPlaying(isOn(player?.getPlayerState?.()));
-    } catch {
-      /* onStateChange still updates */
-    }
-  }
+  }, [playing]);
 
   function togglePlay() {
     const player = playerRef.current ?? sharedPlayer;
@@ -412,26 +413,20 @@ export function HeroInviteBar({
       wantRef.current = "pause";
       setPlaying(false);
       pauseNow(player, frame);
-      window.setTimeout(() => {
-        if (wantRef.current === "pause") setPlaying(false);
-        else syncPlaying(player);
-      }, 80);
       return;
     }
     wantRef.current = "play";
+    setPlaying(true);
     playNow(player, frame);
-    window.setTimeout(() => syncPlaying(player), 80);
-    window.setTimeout(() => syncPlaying(player), 400);
   }
 
   function hear() {
     wantRef.current = "play";
+    setPlaying(true);
     const player = playerRef.current;
     const frame = liveFrame(frameRef.current, player);
     playNow(player, frame);
   }
-
-  if (!desktop) return null;
 
   const needSound = playing && muted;
 
@@ -439,7 +434,7 @@ export function HeroInviteBar({
     <div
       className="hero-invite"
       role="region"
-      aria-label="Hause of Soul invite"
+      aria-label="People Everyday, Arrested Development"
       data-watch={HOUSE_INVITE_WATCH}
       data-yt-ready={ready ? "true" : "false"}
       data-yt-playing={playing ? "true" : "false"}
@@ -448,7 +443,7 @@ export function HeroInviteBar({
         ref={frameRef}
         id={FRAME_ID}
         className="hero-invite-frame"
-        title="Hause of Soul Tech Happy Hour"
+        title="People Everyday — Arrested Development"
         src={src || undefined}
         allow="autoplay; encrypted-media"
         tabIndex={-1}
@@ -458,9 +453,8 @@ export function HeroInviteBar({
       <button
         type="button"
         className="hero-invite-play"
-        aria-label={playing ? "Pause invite" : "Play Hause of Soul invite"}
+        aria-label={playing ? "Pause People Everyday" : "Play People Everyday"}
         aria-pressed={playing}
-        disabled={!ready}
         onClick={togglePlay}
       >
         {playing ? <PauseIcon /> : <PlayIcon />}
@@ -487,11 +481,15 @@ export function HeroInviteBar({
       <div className="hero-invite-copy">
         {needSound ? (
           <button type="button" className="hero-invite-title-btn" onClick={hear}>
+            <span className="hero-invite-kicker">{CREDIT}</span>
             <span className="hero-invite-title">{LINE}</span>
             <span className="hero-invite-hint">Tap for sound</span>
           </button>
         ) : (
-          <p className="hero-invite-title">{LINE}</p>
+          <>
+            <p className="hero-invite-kicker">{CREDIT}</p>
+            <p className="hero-invite-title">{LINE}</p>
+          </>
         )}
       </div>
 

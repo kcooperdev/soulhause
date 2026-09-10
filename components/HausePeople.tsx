@@ -19,12 +19,15 @@ import {
 import {
   ADMIN_ID,
   connectHref,
+  houseFields,
   houseMembers,
   normalizeHandle,
   normalizeLinkedIn,
   socialLinks,
+  type HouseFieldId,
   type Member,
 } from "@/lib/members";
+import { planById, planLabel } from "@/lib/plans";
 import {
   readGoing,
   readIntents,
@@ -38,10 +41,70 @@ import {
   writeProfile,
   writeSeekConfirmed,
   readSeekConfirmed,
+  isDemoWalk,
   type Intro,
   type Pulse,
 } from "@/lib/prefs";
-import { eventCheckins, type CheckIn } from "@/lib/presence";
+
+export function HouseRoster({
+  mine,
+  onOpen,
+}: {
+  mine: Member;
+  onOpen: (id: string) => void;
+}) {
+  const [field, setField] = useState<HouseFieldId | null>(null);
+  const people = [mine, ...houseMembers].filter(
+    (member, index, list) => list.findIndex((item) => item.id === member.id) === index,
+  );
+  const shown = field
+    ? people.filter((member) => member.fields?.includes(field))
+    : people;
+
+  return (
+    <div className="roster">
+      <p className="roster-lede">
+        Find people by field. Open a name. Connect on LinkedIn.
+      </p>
+      <div className="roster-pills" role="tablist" aria-label="Fields">
+        <button
+          type="button"
+          className="chip"
+          aria-pressed={!field}
+          onClick={() => setField(null)}
+        >
+          All
+        </button>
+        {houseFields.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className="chip"
+            aria-pressed={field === item.id}
+            onClick={() => setField(field === item.id ? null : item.id)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      {shown.length === 0 ? (
+        <p className="roster-empty">Nobody in this field yet.</p>
+      ) : (
+        <ul className="member-grid">
+          {shown.map((person) => (
+            <li key={person.id}>
+              <MemberCell
+                member={person}
+                isYou={person.id === mine.id}
+                onOpen={() => onOpen(person.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export function Directory({
   mine,
@@ -69,7 +132,13 @@ export function Directory({
         <SeekSheet
           initial={mine.lookingIds ?? []}
           allowCancel={confirmed}
-          onCancel={() => setEditingSeek(false)}
+          onCancel={() => {
+            if (!confirmed) {
+              writeSeekConfirmed(true);
+              setConfirmed(true);
+            }
+            setEditingSeek(false);
+          }}
           onSave={(ids) => {
             onSeek(ids);
             writeSeekConfirmed(true);
@@ -154,13 +223,12 @@ function SeekSheet({
           onSave(picks);
         }}
       >
-        <p className="kicker">Before The Hause</p>
+        <p className="kicker">The board</p>
         <h2 id="seek-title" className="font-poster mt-2 text-[2rem] leading-[0.9] font-extrabold uppercase">
-          What are you looking for?
+          What should we show you?
         </h2>
         <p className="mt-3 text-sm leading-6 text-muted">
-          Tap a few pills. Posts in those wavelengths show on The Hause. Saved
-          to your profile.
+          Tap a few. Jobs, mentors, crews in those wavelengths show first. You can change this later.
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
           {lookingChips.map((chip) => (
@@ -182,11 +250,9 @@ function SeekSheet({
         >
           See the board
         </button>
-        {allowCancel ? (
-          <button type="button" className="ctl-quiet mt-2 w-full" onClick={onCancel}>
-            Cancel
-          </button>
-        ) : null}
+        <button type="button" className="ctl-quiet mt-2 w-full" onClick={onCancel}>
+          {allowCancel ? "Cancel" : "Skip for now"}
+        </button>
       </form>
     </div>
   );
@@ -202,6 +268,7 @@ function MemberCell({
   onOpen: () => void;
 }) {
   const tag = isYou ? "You" : member.id === ADMIN_ID ? "Host" : null;
+  const fields = houseFields.filter((item) => member.fields?.includes(item.id));
 
   return (
     <button type="button" onClick={onOpen} className="member-cell w-full">
@@ -210,6 +277,11 @@ function MemberCell({
       <span className="member-cell-name">{member.name}</span>
       <span className="member-cell-role">{member.role}</span>
       <span className="member-cell-city">{member.city}</span>
+      {fields.length ? (
+        <span className="member-cell-fields">
+          {fields.map((item) => item.label).join(" · ")}
+        </span>
+      ) : null}
       <SocialMarks links={socialLinks(member)} />
     </button>
   );
@@ -221,20 +293,21 @@ export function Me({
   onProfile,
   onOpen,
   forceForm,
+  onSignOut,
 }: {
   mine: Member | null;
   follow: string[];
   onProfile: (member: Member) => void;
   onOpen: (id: string) => void;
   forceForm?: boolean;
+  onSignOut?: () => void;
 }) {
   const [editing, setEditing] = useState(!mine || Boolean(forceForm));
   const kept = [
     ...(mine && follow.includes(mine.id) ? [mine] : []),
     ...houseMembers.filter((member) => follow.includes(member.id)),
   ].filter(
-    (member, index, list) =>
-      list.findIndex((item) => item.id === member.id) === index,
+    (member, index, list) => list.findIndex((item) => item.id === member.id) === index,
   );
 
   if (!mine || editing) {
@@ -268,6 +341,7 @@ export function Me({
       onEdit={() => setEditing(true)}
       keptPeople={kept}
       onOpenKept={onOpen}
+      onSignOut={onSignOut}
     />
   );
 }
@@ -281,6 +355,7 @@ export function ProfilePage({
   onBack,
   keptPeople,
   onOpenKept,
+  onSignOut,
 }: {
   member: Member;
   mine: Member | null;
@@ -290,6 +365,7 @@ export function ProfilePage({
   onBack?: () => void;
   keptPeople?: Member[];
   onOpenKept?: (id: string) => void;
+  onSignOut?: () => void;
 }) {
   const isYou = mine?.id === member.id;
   const links = socialLinks(member);
@@ -317,6 +393,9 @@ export function ProfilePage({
         <h1 className="font-poster mt-2 text-[2.35rem] leading-[0.9] font-extrabold uppercase">
           {member.name}
         </h1>
+        <p className="plan-tag" data-plan={planById(member.planId).id}>
+          {planLabel(member.planId)}
+        </p>
         <p className="mt-3 text-[15px] leading-6 text-muted">
           {member.role}
           {member.id === ADMIN_ID ? " · host" : ""}
@@ -372,6 +451,11 @@ export function ProfilePage({
             Edit profile
           </button>
         )}
+        {isYou && onSignOut && (
+          <button type="button" className="ctl-quiet" onClick={onSignOut}>
+            Sign out
+          </button>
+        )}
       </div>
 
       {!isYou && (
@@ -392,7 +476,7 @@ export function ProfilePage({
           </p>
           {keptPeople.length === 0 ? (
             <p className="mt-4 text-sm leading-6 text-muted">
-              Open someone from Who’s here, then Follow.
+              Open someone from Tech Hause, then Follow.
             </p>
           ) : (
             <ul className="member-grid mt-5">
@@ -534,22 +618,23 @@ export function JoinForm({
   }
 
   function saveMember() {
-    const linked = normalizeLinkedIn(link);
-    if (!linked) {
+    const demo = isDemoWalk();
+    const linked = normalizeLinkedIn(link) || (demo ? "https://www.linkedin.com/in/demo" : "");
+    if (!demo && !linked) {
       setError("A LinkedIn URL is required.");
       return false;
     }
-    if (!name.trim() || !city.trim()) {
+    if (!demo && (!name.trim() || !city.trim())) {
       setError("Name and city are required.");
       return false;
     }
     const member: Member = {
       id: initial?.id ?? "you",
-      name: name.trim(),
-      role: role.trim(),
+      name: name.trim() || "Demo",
+      role: role.trim() || "Builder",
       building: building.trim() || "In the Hause",
-      city: city.trim(),
-      link: linked,
+      city: city.trim() || "Laurel",
+      link: linked || "https://www.linkedin.com/in/demo",
       interests: initial?.interests ?? readIntents(),
       offerIds,
       lookingIds,
@@ -576,7 +661,7 @@ export function JoinForm({
         event.preventDefault();
         if (signup && step === 1) {
           const linked = normalizeLinkedIn(link);
-          if (!name.trim() || !city.trim() || !linked) {
+          if (!isDemoWalk() && (!name.trim() || !city.trim() || !linked)) {
             setError("Name, city, and LinkedIn get you in.");
             return;
           }
@@ -663,7 +748,7 @@ export function JoinForm({
         required
         value={city}
         onChange={(event) => setCity(event.target.value)}
-        placeholder="Lagos, London, Laurel…"
+        placeholder="Laurel, MD"
         className="field"
       />
       <input
@@ -791,7 +876,7 @@ export function JoinForm({
   );
 }
 
-export function Insights({ checkins = [] }: { checkins?: CheckIn[] }) {
+export function Insights() {
   const [copied, setCopied] = useState(false);
   const [rsvp, setRsvp] = useState<string[]>([]);
   const [going, setGoing] = useState<ReturnType<typeof readGoing>>([]);
@@ -810,17 +895,10 @@ export function Insights({ checkins = [] }: { checkins?: CheckIn[] }) {
   }, []);
   const night = events[0];
   const pulse: Pulse[] = pulses.filter((item) => item.eventId === night?.id);
-  const here = night ? eventCheckins(night.id, checkins) : [];
-  const onBoard = here.filter((item) => item.visibility === "board");
-  const offBoard = here.filter((item) => item.visibility !== "board");
 
   const goingHere = going.filter((person) => person.eventId === night?.id);
-  const guestCount = Math.max(goingHere.length, rsvp.length, houseMembers.length);
-  const people = [mine, ...houseMembers].filter(
-    (member, index, list): member is Member =>
-      Boolean(member) &&
-      list.findIndex((item) => item?.id === member?.id) === index,
-  );
+  const guestCount = Math.max(goingHere.length, rsvp.length, mine ? 1 : 0);
+  const people = mine ? [mine] : [];
 
   const transitioning = people.filter(
     (member) => member.role === "Transitioning",
@@ -871,8 +949,7 @@ export function Insights({ checkins = [] }: { checkins?: CheckIn[] }) {
       <dl className="mt-8 grid grid-cols-2 gap-3">
         <Stat label="RSVPs" value={rsvp.length} />
         <Stat label="I’ll be there" value={goingHere.length} />
-        <Stat label="Checked in" value={here.length} />
-        <Stat label="On the board" value={onBoard.length} />
+        <Stat label="In the house" value={people.length} />
       </dl>
 
       <section className="panel mt-8 px-4 py-4">
@@ -886,21 +963,6 @@ export function Insights({ checkins = [] }: { checkins?: CheckIn[] }) {
           {copied ? "Copied" : "Copy pitch"}
         </button>
       </section>
-
-      {offBoard.length > 0 && (
-        <section className="mt-8">
-          <p className="kicker">Not on the board</p>
-          <ul className="mt-3 space-y-2">
-            {offBoard.map((item) => (
-              <li key={item.memberId} className="text-sm leading-6">
-                <span className="font-semibold">{item.name}. </span>
-                {item.visibility === "private" ? "Private check-in." : "Hosts only."}{" "}
-                {item.line}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
 
       {intros.length > 0 && (
         <section className="mt-8">

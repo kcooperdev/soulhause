@@ -67,7 +67,7 @@ export const roles = roleGroups.flatMap((group) => group.roles);
 export const events: EventItem[] = [
   {
     id: "hause-of-soul",
-    title: "Hause of Soul: Tech Happy Hour",
+    title: "Tech After Dark: (Happy Hour Edition)",
     host: "SoulHause Events",
     roleFit: roles.map((role) => role.id),
     price: "Free",
@@ -76,7 +76,7 @@ export const events: EventItem[] = [
     city: "Laurel, MD",
     venue: "Miss Toya’s Southern Kitchen",
     image: "/hause-of-soul.png",
-    imageAlt: "Hause of Soul house and sunset mark",
+    imageAlt: "Tech After Dark house and sunset mark",
     registerUrl: "https://luma.com/hj5hk5jf",
     icebreaker:
       "What’s bringing you into this room — a job, a company, or a second career?",

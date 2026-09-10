@@ -1,92 +1,51 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { DeskSide } from "@/components/DeskSide";
-import { EventPoster } from "@/components/EventPoster";
-import { Directory, Insights, JoinForm, Me, ProfilePage } from "@/components/HausePeople";
+import { HouseRoster, Me, ProfilePage } from "@/components/HausePeople";
+import { JoinFlow } from "@/components/JoinFlow";
 import { Logo } from "@/components/Logo";
-import { PresencePanel } from "@/components/Presence";
 import { Splash } from "@/components/Splash";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { brand } from "@/lib/brand";
-import { doorsAreOpen, events } from "@/lib/events";
 import { ADMIN_ID, memberById, type Member } from "@/lib/members";
-import {
-  checkInFromMember,
-  eventCheckins,
-  leaveCheckIn,
-  readCheckins,
-  seedDemoCheckins,
-  writeCheckins,
-  type CheckIn,
-} from "@/lib/presence";
 import { readTheme, type Theme } from "@/lib/theme";
 import {
-  clearMemberAccount,
   readFollow,
   readProfile,
-  readRsvp,
   writeFollow,
-  writeProfile,
-  writeRsvp,
+  clearMemberAccount,
 } from "@/lib/prefs";
-import {
-  hasEnteredThisVisit,
-  hasSeenHeroThisVisit,
-  markEntered,
-  markHeroSeen,
-} from "@/lib/visit";
+import { startClickthroughDemo, startNewUserDemo } from "@/lib/demo";
+import { isDemoWalk, readDemoRole, type DemoRole } from "@/lib/prefs";
+import { planLabel, planById } from "@/lib/plans";
+import { hasEnteredThisVisit, markEntered, markHeroSeen } from "@/lib/visit";
 
-const LandingHero = dynamic(() =>
-  import("@/components/DesktopHero").then((mod) => ({ default: mod.LandingHero })),
-);
+type Screen = "hause" | "me";
 
-type Screen = "nights" | "here" | "hause" | "me" | "hosts";
-
-const joinPad = {
-  paddingTop: "max(1.5rem, env(safe-area-inset-top))",
-  paddingBottom: "max(2rem, env(safe-area-inset-bottom))",
-  paddingLeft: "max(1.35rem, env(safe-area-inset-left), env(safe-area-inset-right))",
-  paddingRight: "max(1.35rem, env(safe-area-inset-left), env(safe-area-inset-right))",
-} as const;
-
-export function EventsApp() {
+export function EventsApp({ skipGate = false }: { skipGate?: boolean }) {
   const [ready, setReady] = useState(false);
-  const [splash, setSplash] = useState(true);
-  const [hero, setHero] = useState(true);
-  const [hasAccount, setHasAccount] = useState(false);
+  const [splash, setSplash] = useState(!skipGate);
 
   useEffect(() => {
-    setHasAccount(Boolean(readProfile()));
-    setSplash(!hasEnteredThisVisit());
-    setHero(!hasSeenHeroThisVisit());
+    if (skipGate) {
+      markEntered();
+      markHeroSeen();
+      setSplash(false);
+    } else {
+      setSplash(!hasEnteredThisVisit());
+    }
     setReady(true);
-  }, []);
+  }, [skipGate]);
 
   if (!ready || splash) {
     return (
       <Splash
         onEnter={() => {
           markEntered();
-          setSplash(false);
-          setHero(true);
-        }}
-      />
-    );
-  }
-
-  if (hero) {
-    return (
-      <LandingHero
-        hasAccount={hasAccount}
-        onReset={() => {
-          clearMemberAccount();
-          setHasAccount(false);
-        }}
-        onContinue={() => {
           markHeroSeen();
-          setHero(false);
+          setSplash(false);
         }}
       />
     );
@@ -96,62 +55,52 @@ export function EventsApp() {
 }
 
 function House() {
-  const [screen, setScreen] = useState<Screen>("nights");
-  const [rsvp, setRsvp] = useState<string[]>([]);
+  const router = useRouter();
+  const [screen, setScreen] = useState<Screen>("hause");
   const [mine, setMine] = useState<Member | null>(null);
   const [follow, setFollow] = useState<string[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
   const [editingMe, setEditingMe] = useState(false);
   const [hydrated, setHydrated] = useState(false);
-  const [checkins, setCheckins] = useState<CheckIn[]>([]);
   const [theme, setTheme] = useState<Theme>("light");
+  const [demoWalk, setDemoWalk] = useState(false);
+  const [joinStart, setJoinStart] = useState<"path" | "name">("path");
+  const [menu, setMenu] = useState(false);
+  const [desk, setDesk] = useState(false);
 
   function reload() {
-    setRsvp(readRsvp());
     setMine(readProfile());
     setFollow(readFollow());
   }
 
   useEffect(() => {
-    reload();
-    const night = events[0]?.id;
-    const profile = readProfile();
-    let here = readCheckins();
-    if (night && profile && !here.some((item) => item.eventId === night)) {
-      here = seedDemoCheckins(night, profile.id);
+    const params = new URLSearchParams(window.location.search);
+    const demo = params.get("demo");
+    if (demo === "new") {
+      startNewUserDemo();
+      setJoinStart("name");
+    } else if (demo === "existing" || demo === "1" || (demo !== "new" && isDemoWalk() && readProfile())) {
+      startClickthroughDemo(readDemoRole() ?? "member");
     }
-    setCheckins(here);
+    reload();
+    setDemoWalk(isDemoWalk());
     setHydrated(true);
     setTheme(readTheme());
   }, []);
 
   useEffect(() => {
-    if (hydrated) writeRsvp(rsvp);
-  }, [rsvp, hydrated]);
-
-  useEffect(() => {
     if (hydrated) writeFollow(follow);
   }, [follow, hydrated]);
 
-  useEffect(() => {
-    if (hydrated) writeCheckins(checkins);
-  }, [checkins, hydrated]);
-
-  function markRsvp(id: string) {
-    setRsvp((ids) => (ids.includes(id) ? ids : [...ids, id]));
-  }
-
   const isHost = mine?.id === ADMIN_ID;
   const opened = openId ? memberById(openId, mine) : null;
-  const night = events[0];
-  const live = night ? doorsAreOpen(night) : false;
-  const here = night ? eventCheckins(night.id, checkins) : [];
   const mast = pageMast(screen, opened?.name);
 
-  function go(next: Screen) {
+  function go(next: Screen, keepMenu = false) {
     setScreen(next);
     setOpenId(null);
     setEditingMe(false);
+    if (!keepMenu) setMenu(false);
     window.scrollTo(0, 0);
     document.querySelector(".app-body")?.scrollTo(0, 0);
   }
@@ -163,10 +112,28 @@ function House() {
   }, [hydrated, mine?.id, screen, openId]);
 
   useEffect(() => {
-    if (!hydrated) return;
-    if (screen === "here" && !live) go("nights");
-    if (screen === "hosts" && !isHost) go("nights");
-  }, [hydrated, screen, live, isHost]);
+    const mq = window.matchMedia("(min-width: 64rem)");
+    const apply = () => {
+      setDesk(mq.matches);
+      if (mq.matches) setMenu(false);
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    if (!menu || desk) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenu(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menu, desk]);
 
   function toggleKeep(id: string) {
     setFollow((ids) =>
@@ -178,117 +145,152 @@ function House() {
     return <div className="min-h-full" />;
   }
 
+  function enterDemo(role: DemoRole = "admin") {
+    startClickthroughDemo(role);
+    reload();
+    setDemoWalk(true);
+    setScreen("hause");
+    setOpenId(null);
+  }
+
+  function signOut() {
+    clearMemberAccount();
+    setDemoWalk(false);
+    setMine(null);
+    router.push("/");
+  }
+
   if (!mine) {
     return (
-      <div
-        className="join-desk mx-auto flex min-h-full max-w-xl flex-col"
-        style={joinPad}
-      >
-        <header className="flex items-center justify-between gap-4 pb-2">
-          <BrandMark compact />
-          <ThemeToggle theme={theme} onTheme={setTheme} />
-        </header>
-        <p className="kicker mt-8">New here</p>
-        <h1 className="font-poster mt-2 text-[2.4rem] leading-[0.9] font-extrabold uppercase">
-          Join the Hause
-        </h1>
-        <p className="mt-3 max-w-sm text-[15px] leading-6 text-muted">
-          Two short steps. Then Events, The Hause, and Me from there.
-        </p>
-        <JoinForm
-          onSave={(member) => {
-            setMine(member);
-            setScreen("nights");
-          }}
-        />
-      </div>
+      <JoinFlow
+        brand={<BrandMark compact home />}
+        start={joinStart}
+        demo={demoWalk}
+        onDemoNew={() => {
+          startNewUserDemo();
+          setDemoWalk(true);
+          setJoinStart("name");
+          setMine(null);
+        }}
+        onDemoExisting={() => enterDemo("member")}
+        onSave={(member) => {
+          setMine(member);
+          setScreen("hause");
+        }}
+      />
     );
   }
 
   function mainNav() {
     return (
       <>
-        <DockItem id="nights" on={screen === "nights"} onClick={() => go("nights")}>
-          Events
-        </DockItem>
-        {live ? (
-          <DockItem
-            id="here"
-            on={screen === "here"}
-            onClick={() => go("here")}
-            dock="Here"
-          >
-            Who’s here
-          </DockItem>
-        ) : null}
         <DockItem id="hause" on={screen === "hause"} onClick={() => go("hause")}>
-          The Hause
+          Directory
         </DockItem>
         <DockItem id="me" on={screen === "me"} onClick={() => go("me")}>
-          Me
+          Profile
         </DockItem>
       </>
     );
   }
 
   return (
-    <div className="app-shell">
-      <aside className="app-rail" aria-label="SoulHause">
-        <button
-          type="button"
-          onClick={() => go("nights")}
-          className="app-rail-brand text-left"
-          aria-label="SoulHause Events"
-        >
-          <BrandMark compact />
-        </button>
+    <div className="app-shell" data-menu={menu ? "true" : "false"}>
+      <button
+        type="button"
+        className="app-veil"
+        data-open={menu ? "true" : "false"}
+        aria-label="Close menu"
+        tabIndex={menu ? 0 : -1}
+        onClick={() => setMenu(false)}
+      />
+      <aside
+        id="house-menu"
+        className="app-rail"
+        aria-label="SoulHause"
+        data-open={menu ? "true" : "false"}
+        inert={!desk && !menu ? true : undefined}
+      >
+        <BrandMark compact home className="app-rail-brand" />
         <div className="app-rail-who">
           <p>{mine.name}</p>
+          <p className="plan-tag" data-plan={planById(mine.planId).id}>
+            {planLabel(mine.planId)}
+          </p>
           <p className="mt-1 text-sm text-muted">
             {mine.role}
             {isHost ? " · host" : ""}
           </p>
         </div>
-        <nav className="app-rail-nav">{mainNav()}</nav>
-        {isHost && (
+        <nav className="app-rail-nav" aria-label="The house">
+          {mainNav()}
+          <Link
+            href="/volunteer"
+            className="app-dock-item"
+            onClick={() => setMenu(false)}
+          >
+            <span className="app-dock-label-rail">Volunteer</span>
+            <span className="app-dock-label-phone">Volunteer</span>
+            <span className="app-dock-dot" aria-hidden />
+          </Link>
           <button
             type="button"
-            className="app-rail-item"
-            aria-current={screen === "hosts" ? "page" : undefined}
-            onClick={() => go("hosts")}
+            className="app-dock-item"
+            disabled
+            aria-disabled="true"
           >
-            Insights
-            <span className="app-dock-dot" aria-hidden />
+            <span className="app-dock-label-rail">Perks</span>
+            <span className="app-dock-label-phone">Perks</span>
+            <span className="app-dock-soon">Coming soon</span>
           </button>
-        )}
+        </nav>
+        {demoWalk ? (
+          <p className="demo-flag">
+            Demo
+            <button
+              type="button"
+              onClick={() => enterDemo(isHost ? "member" : "admin")}
+            >
+              {isHost ? "As member" : "As host"}
+            </button>
+          </p>
+        ) : null}
+        <button type="button" className="app-rail-item" onClick={() => { setMenu(false); signOut(); }}>
+          Sign out
+        </button>
       </aside>
 
       <header className="app-mast">
-        <button
-          type="button"
-          onClick={() => go("nights")}
-          className="app-mast-brand text-left"
-          aria-label="SoulHause Events"
-        >
-          <BrandMark compact />
-        </button>
+        <BrandMark compact home className="app-mast-brand" />
         <div className="app-mast-page">
           <p className="kicker">{mast.kicker}</p>
           <h1>{mast.title}</h1>
         </div>
+        <button
+          type="button"
+          className="app-menu"
+          aria-expanded={menu}
+          aria-controls="house-menu"
+          onClick={() => setMenu((open) => !open)}
+        >
+          {menu ? "Close" : "Menu"}
+        </button>
         <div className="app-mast-tools">
+          {demoWalk ? (
+            <p className="demo-flag">
+              Demo
+              <button
+                type="button"
+                onClick={() => enterDemo(isHost ? "member" : "admin")}
+              >
+                {isHost ? "As member" : "As host"}
+              </button>
+            </p>
+          ) : null}
           <ThemeToggle theme={theme} onTheme={setTheme} />
-          {isHost && (
-            <button
-              type="button"
-              className={`min-h-10 text-sm font-semibold ${
-                screen === "hosts" ? "text-ink" : "text-muted"
-              }`}
-              onClick={() => go("hosts")}
-            >
-              Insights
-            </button>
-          )}
+          <button type="button" className="app-mast-extra min-h-10 text-sm font-semibold text-muted" onClick={signOut}>
+            Sign out
+          </button>
         </div>
         <div className="app-mast-desk">
           <ThemeToggle theme={theme} onTheme={setTheme} />
@@ -313,43 +315,9 @@ function House() {
                 : undefined
             }
           />
-        ) : screen === "here" && night && live ? (
-          <PresencePanel
-            eventId={night.id}
-            eventTitle={night.title}
-            mine={mine}
-            isHost={isHost}
-            checkins={checkins}
-            follow={follow}
-            onSave={(draft) => {
-              setCheckins((list) => {
-                const next = checkInFromMember(night.id, mine, draft);
-                return [
-                  ...list.filter(
-                    (item) =>
-                      !(item.eventId === next.eventId && item.memberId === next.memberId),
-                  ),
-                  next,
-                ];
-              });
-            }}
-            onLeave={() => {
-              setCheckins((list) => leaveCheckIn(night.id, mine.id, list));
-            }}
-            onKeep={toggleKeep}
-            onOpen={setOpenId}
-          />
         ) : screen === "hause" ? (
-          <Directory
-            mine={mine}
-            onJoin={() => go("me")}
-            onSeek={(ids) => {
-              const next = { ...mine, lookingIds: ids };
-              writeProfile(next);
-              setMine(next);
-            }}
-          />
-        ) : screen === "me" ? (
+          <HouseRoster mine={mine} onOpen={setOpenId} />
+        ) : (
           <Me
             key={editingMe ? "edit" : "view"}
             forceForm={editingMe}
@@ -361,127 +329,42 @@ function House() {
               setScreen("me");
             }}
             onOpen={setOpenId}
+            onSignOut={signOut}
           />
-        ) : screen === "hosts" && isHost ? (
-          <Insights checkins={checkins} />
-        ) : (
-          <EventsPanel
-            rsvp={rsvp}
-            onRsvp={markRsvp}
-            live={live}
-            onOpenHere={() => go("here")}
-          />
-        )}
-      </div>
-
-      <DeskSide
-        screen={opened ? "profile" : screen}
-        night={night}
-        live={live}
-        mine={mine}
-        following={follow.length}
-        hereCount={here.length}
-        boardCount={here.filter((item) => item.visibility === "board").length}
-        onOpenHere={() => go("here")}
-      />
-
-      <nav className="app-dock" aria-label="SoulHause">
-        <div className="app-dock-inner">{mainNav()}</div>
-      </nav>
-    </div>
-  );
-}
-
-
-function EventsPanel({
-  onRsvp,
-  live,
-  onOpenHere,
-}: {
-  rsvp: string[];
-  onRsvp: (id: string) => void;
-  live?: boolean;
-  onOpenHere?: () => void;
-}) {
-  const event = events[0];
-
-  if (!event) {
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center text-center">
-        <h1 className="font-poster text-4xl font-extrabold uppercase">
-          Events soon
-        </h1>
-        <p className="mt-3 max-w-sm text-sm leading-6 text-muted">
-          More SoulHause events land on Luma when they’re ready.
-        </p>
-        <a
-          className="ctl ctl-save mt-6"
-          href={brand.luma}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open calendar
-        </a>
-      </div>
-    );
-  }
-
-  return (
-    <div className="events-stage flex flex-1 flex-col">
-      <div className="mx-auto w-full max-w-md text-center">
-        <p className="kicker">Next event</p>
-        <EventPoster event={event} />
-        <a
-          className="ctl ctl-save mt-7 h-12 w-full text-[0.92rem]"
-          href={event.registerUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => onRsvp(event.id)}
-        >
-          Register on Luma
-        </a>
-        {live ? (
-          <button
-            type="button"
-            className="ctl ctl-secondary mt-3 h-12 w-full"
-            onClick={onOpenHere}
-          >
-            Who’s here
-          </button>
-        ) : (
-          <p className="mt-5 text-sm leading-6 text-muted">
-            Who’s here opens at {event.time} when the night starts.
-          </p>
         )}
       </div>
     </div>
   );
 }
+
 
 function pageMast(screen: Screen, opened?: string) {
-  if (opened) return { kicker: "In the Hause", title: opened };
-  if (screen === "here") return { kicker: "Tonight", title: "Who’s here" };
-  if (screen === "hause") return { kicker: "Board", title: "The Hause" };
-  if (screen === "me") return { kicker: "You", title: "Me" };
-  if (screen === "hosts") return { kicker: "Host", title: "Insights" };
-  return { kicker: "House", title: "Events" };
+  if (opened) return { kicker: "In the house", title: opened };
+  if (screen === "me") return { kicker: "You", title: "Profile" };
+  return { kicker: "The house", title: "Directory" };
 }
 
-function BrandMark({ compact }: { compact?: boolean }) {
+function BrandMark({
+  compact,
+  home,
+  className,
+}: {
+  compact?: boolean;
+  home?: boolean;
+  className?: string;
+}) {
+  const mark = <Logo size={compact ? 40 : 52} decorative={home} />;
+
+  if (!home) return mark;
+
   return (
-    <div className="flex items-center gap-3">
-      <Logo size={compact ? 40 : 52} round={false} />
-      <div>
-        <p className="font-poster text-[1.65rem] leading-none font-extrabold tracking-tight uppercase">
-          {brand.name}
-        </p>
-        {!compact && (
-          <p className="mt-1 text-xs tracking-[0.14em] text-ink/75 uppercase">
-            {brand.line}
-          </p>
-        )}
-      </div>
-    </div>
+    <Link
+      href="/"
+      className={`${className ?? ""} inline-flex text-ink no-underline`.trim()}
+      aria-label={brand.name}
+    >
+      {mark}
+    </Link>
   );
 }
 

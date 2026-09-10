@@ -58,8 +58,8 @@ export function PresencePanel({
       </h1>
       <p className="mt-2 text-sm leading-6 text-muted">
         {boardCount
-          ? `${boardCount} on the board for ${eventTitle}.`
-          : "Check in when you arrive. The board stays empty until someone does."}
+          ? `${boardCount} visible for ${eventTitle}.`
+          : "Check in when you arrive. The room stays empty until someone does."}
       </p>
 
       {editing ? (
