@@ -1,11 +1,6 @@
-import { techAfterDark } from "@/lib/offerings";
-import { events } from "@/lib/events";
-
-const night = events[0];
-
 export const nightStory = {
-  line: techAfterDark.line,
-  lede: techAfterDark.what,
+  line: "A tech-infused experience.",
+  lede: "A curated room. Experimental formats. No pitch. No slide deck.",
   trapsTitle: "Most tech events aren’t worth the drive.",
   traps: [
     "The Recruiter Trap — you go expecting builders, you leave dodging pitches",
@@ -37,7 +32,7 @@ export const nightStory = {
     },
   ],
   contrast:
-    "A conference charges you to sit and watch panels. A lukewarm mixer costs you time and gas. Tech After Dark is the room — after work, at happy hour, open to anyone in tech.",
+    "A conference charges you to sit and watch panels. A lukewarm mixer costs you time and gas. TechFolx is the room — after work, at happy hour, open to anyone in tech.",
   whoTitle: "Is this for you?",
   whoLead: "If any of these is you, come. If it isn’t, this isn’t your night.",
   who: [
@@ -55,9 +50,9 @@ export const nightStory = {
     },
   ],
   hostKicker: "From the host",
-  host: "A decade in tech — founder, engineer, community builder. But before tech, I worked in theater and hospitality. I learned there that a great experience is built — produced, felt, remembered. A few months ago I was sitting at a restaurant thinking about all of it, and I knew exactly what I wanted to make. Tech After Dark is the after-work I always wanted — a happy hour full of people in tech, not a badge and a business card.",
+  host: "A decade in tech — founder, engineer, community builder. Before that, theater and hospitality. A great experience is built — produced, felt, remembered. TechFolx is that: a tech-infused experience, not a badge and a business card.",
   hostName: "Khalif",
-  hostRole: "Founder, Tech After Dark",
+  hostRole: "Founder, TechFolx",
   dealLead: "You were going to get a drink after work anyway. This is the version where the room is worth it.",
   walkTitle: "What you walk into",
   walk: [
@@ -69,11 +64,7 @@ export const nightStory = {
   faqs: [
     {
       q: "What is this?",
-      a: "An after-work happy hour for people in tech. Not a conference, not a meetup with a program, not a pitch night. You show up, the room is full of people in the work, and that’s the night.",
-    },
-    {
-      q: "Is this a mixer?",
-      a: "It’s a happy hour. Nobody’s running a slide deck. If someone starts pitching, that’s not the night.",
+      a: "TechFolx is a tech-infused experience. Produced like theater and hospitality — not a conference, not a meetup with a program, not a pitch night. The room is designed. The night is the product.",
     },
     {
       q: "Who should come?",
@@ -81,17 +72,15 @@ export const nightStory = {
     },
     {
       q: "Do I need to know anyone?",
-      a: "No. It’s an open room. Come as you are. Talk to people, or don’t. There’s no host walking you around.",
+      a: "No. Come as you are. The night is produced so you don’t have to work the room. Talk if you want. Watch if you don’t.",
     },
     {
-      q: "When and where?",
-      a: night
-        ? `${night.date} at ${night.time}. ${night.venue}, ${night.city}. Check Luma for the next one.`
-        : "After work, once a month. Check Luma for the next night.",
+      q: "How do I get in?",
+      a: "Save a spot on Luma when a night is up. This site is the house, not the calendar.",
     },
     {
       q: "What actually happens?",
-      a: "Doors at 6:00 PM. Grab a drink if you want one. Talk shop, or don’t. Some nights there’s a short talk from someone shipping real work — no panels, no slides. Wraps by 10.",
+      a: "You walk into a room that was built for the night — people in tech, a format, a feeling. Some nights a short piece from someone shipping real work. No panels. No decks. Drinks if you want them. The experience is the point.",
     },
     {
       q: "Is there a cost?",
@@ -99,7 +88,7 @@ export const nightStory = {
     },
     {
       q: "What if I can’t make it?",
-      a: "Skip it. It comes back. Update your RSVP if you already registered so we have a sense of the room.",
+      a: "Skip it. Another night will land. Update your RSVP if you already registered so we have a sense of the room.",
     },
   ],
   closeTitle: "Don’t find out about it after.",

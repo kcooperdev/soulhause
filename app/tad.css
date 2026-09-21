@@ -1,16 +1,20 @@
-/* Tech After Dark — tokens and utilities from techafterdark.live */
+/* TechFolx — tokens from the house / sunset mark */
 .tad {
-  --tad-ink: #05040a;
-  --tad-deep: #0b0917;
-  --tad-violet: #7b5ea7;
-  --tad-violet-hi: #a07dd4;
-  --tad-amber: #e8a838;
-  --tad-cream: #f0ebe1;
-  --tad-muted: rgba(240, 235, 225, 0.4);
-  --tad-faint: rgba(240, 235, 225, 0.12);
+  --tad-ink: #080808;
+  --tad-deep: #121410;
+  --tad-violet: #6b9a88;
+  --tad-violet-hi: #88b5a4;
+  --tad-amber: #f4be3c;
+  --tad-cream: #f3f0e8;
+  --tad-muted: rgba(243, 240, 232, 0.4);
+  --tad-faint: rgba(243, 240, 232, 0.12);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--tad-cream);
   font-family: var(--font-jakarta), sans-serif;
+}
+
+.tad .font-brand {
+  font-family: var(--font-display), sans-serif;
 }
 
 .tad .font-display {
@@ -38,88 +42,88 @@
 }
 
 .tad .text-cream {
-  color: #f0ebe1;
+  color: #f3f0e8;
 }
 .tad .text-cream\/90 {
-  color: rgb(240 235 225 / 0.9);
+  color: rgb(243 240 232 / 0.9);
 }
 .tad .text-cream\/80 {
-  color: rgb(240 235 225 / 0.8);
+  color: rgb(243 240 232 / 0.8);
 }
 .tad .text-cream\/75 {
-  color: rgb(240 235 225 / 0.75);
+  color: rgb(243 240 232 / 0.75);
 }
 .tad .text-cream\/70 {
-  color: rgb(240 235 225 / 0.7);
+  color: rgb(243 240 232 / 0.7);
 }
 .tad .text-cream\/65 {
-  color: rgb(240 235 225 / 0.65);
+  color: rgb(243 240 232 / 0.65);
 }
 
 .tad .text-amber {
-  color: #e8a838;
+  color: #f4be3c;
 }
 .tad .text-amber\/70 {
-  color: rgb(232 168 56 / 0.7);
+  color: rgb(244 190 60 / 0.7);
 }
 .tad .text-violet-hi {
-  color: #a07dd4;
+  color: #88b5a4;
 }
 
 .tad .bg-ink {
-  background-color: #05040a;
+  background-color: #080808;
 }
 .tad .bg-deep {
-  background-color: #0b0917;
+  background-color: #121410;
 }
 .tad .bg-deep\/50 {
-  background-color: rgb(11 9 23 / 0.5);
+  background-color: rgb(18 20 16 / 0.5);
 }
 .tad .bg-amber {
-  background-color: #e8a838;
+  background-color: #f4be3c;
 }
 .tad .bg-amber\/\[0\.02\] {
-  background-color: rgb(232 168 56 / 0.02);
+  background-color: rgb(244 190 60 / 0.02);
 }
 .tad .bg-cream\/15 {
-  background-color: rgb(240 235 225 / 0.15);
+  background-color: rgb(243 240 232 / 0.15);
 }
 .tad .bg-cream\/20 {
-  background-color: rgb(240 235 225 / 0.2);
+  background-color: rgb(243 240 232 / 0.2);
 }
 
 .tad .border-cream-faint,
 .tad .divide-cream-faint > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(240, 235, 225, 0.12);
+  border-color: rgba(243, 240, 232, 0.12);
 }
 .tad .border-cream\/20 {
-  border-color: rgb(240 235 225 / 0.2);
+  border-color: rgb(243 240 232 / 0.2);
 }
 .tad .border-cream\/15 {
-  border-color: rgb(240 235 225 / 0.15);
+  border-color: rgb(243 240 232 / 0.15);
 }
 .tad .divide-cream\/10 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(240 235 225 / 0.1);
+  border-color: rgb(243 240 232 / 0.1);
 }
 .tad .border-amber\/25 {
-  border-color: rgb(232 168 56 / 0.25);
+  border-color: rgb(238 125 80 / 0.25);
 }
 
 .tad .hover\:bg-deep:hover {
-  background-color: #0b0917;
+  background-color: #121410;
 }
 .tad .hover\:bg-deep\/50:hover {
-  background-color: rgb(11 9 23 / 0.5);
+  background-color: rgb(18 20 16 / 0.5);
 }
 .tad .hover\:text-amber:hover,
 .tad .group:hover .group-hover\:text-amber {
-  color: #e8a838;
+  color: #f4be3c;
 }
 .tad .hover\:border-violet\/40:hover {
-  border-color: rgb(123 94 167 / 0.4);
+  border-color: rgb(107 154 136 / 0.4);
 }
 .tad .hover\:border-violet\/30:hover {
-  border-color: rgb(123 94 167 / 0.3);
+  border-color: rgb(107 154 136 / 0.3);
 }
 
 .bg-gradient-scene {
@@ -128,10 +132,10 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(123, 94, 167, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(232, 168, 56, 0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 30% at 10% 90%, rgba(123, 94, 167, 0.06) 0%, transparent 55%),
-    #05040a;
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(107, 154, 136, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(238, 125, 80, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 10% 90%, rgba(244, 190, 60, 0.08) 0%, transparent 55%),
+    #080808;
 }
 
 .skyline-wrap {
@@ -147,7 +151,7 @@
 .side-label {
   position: fixed;
   z-index: 5;
-  color: rgba(240, 235, 225, 0.12);
+  color: rgba(243, 240, 232, 0.12);
   font-size: 0.55rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -240,9 +244,15 @@
   gap: 10px;
   padding: 0.875rem 1.5rem;
   border-radius: 3px;
-  background: linear-gradient(135deg, #edb840 0%, #f5d070 50%, #edb840 100%);
+  background: linear-gradient(
+    180deg,
+    #f4d878 0%,
+    #f4be3c 28%,
+    #ee7d50 62%,
+    #cc5d33 100%
+  );
   background-size: 200% 200%;
-  color: #05040a;
+  color: #080808;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-decoration: none;
@@ -273,7 +283,7 @@
 
 .cta-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgb(232 168 56 / 0.3);
+  box-shadow: 0 12px 40px rgb(238 125 80 / 0.32);
 }
 
 .cta-underline {
@@ -298,7 +308,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: #e8a838;
+  background: #f4be3c;
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

@@ -16,14 +16,19 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "techafterdark.live" }],
-        destination: "https://soulhause.com/tech-after-dark",
+        destination: "https://soulhause.com/",
         permanent: true,
       },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.techafterdark.live" }],
-        destination: "https://soulhause.com/tech-after-dark",
+        destination: "https://soulhause.com/",
         permanent: true,
+      },
+      {
+        source: "/work",
+        destination: "/",
+        permanent: false,
       },
     ];
   },

@@ -85,8 +85,8 @@ export function NightAtmosphere() {
           </g>
         </svg>
       </div>
-      <span className="night-side night-side-left">Tech After Dark · After Hours</span>
-      <span className="night-side night-side-right">After Hours · Tech & AI</span>
+      <span className="night-side night-side-left">TechFolx · The room</span>
+      <span className="night-side night-side-right">The room · The point</span>
     </>
   );
 }

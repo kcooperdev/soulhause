@@ -3,18 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Logo } from "@/components/Logo";
 import { MenuClose } from "@/components/MenuClose";
 import { brand } from "@/lib/brand";
-import { siteLinks, techAfterDark } from "@/lib/offerings";
-import { readRsvp, writeRsvp } from "@/lib/prefs";
-import { events } from "@/lib/events";
+import { contact, siteLinks } from "@/lib/offerings";
 
 export function SiteNav() {
   const path = usePathname();
-  const night = events[0];
-  const onNight = path === "/tech-after-dark";
-  const onHome = path === "/";
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -34,12 +28,6 @@ export function SiteNav() {
     };
   }, [open]);
 
-  function rsvp() {
-    if (!night) return;
-    const already = readRsvp();
-    if (!already.includes(night.id)) writeRsvp([...already, night.id]);
-  }
-
   const links = (
     <>
       {siteLinks.map((item) => (
@@ -55,34 +43,35 @@ export function SiteNav() {
     </>
   );
 
+  const rsvp = (
+    <a
+      className="landing-nav-rsvp"
+      href={contact.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => setOpen(false)}
+    >
+      {contact.name}
+    </a>
+  );
+
   return (
     <header
-      className={onNight ? "landing-nav landing-nav--bare" : "landing-nav"}
+      className="landing-nav"
       data-open={open ? "true" : "false"}
     >
       <Link className="landing-nav-brand" href="/" aria-label={brand.name}>
-        <Logo size={72} />
-        {onHome ? null : (
-          <span className="landing-nav-wordmark">
-            <b>{brand.name}</b>
-            <i>{brand.line}</i>
-          </span>
-        )}
+        <span className="landing-nav-wordmark">
+          <b>{brand.name}</b>
+          <i>{brand.line}</i>
+        </span>
       </Link>
 
       <nav className="landing-nav-links" aria-label={brand.name}>
         {links}
       </nav>
 
-      <a
-        className="landing-nav-rsvp"
-        href={techAfterDark.rsvp}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={rsvp}
-      >
-        Save a spot
-      </a>
+      {rsvp}
 
       <button
         type="button"
@@ -112,15 +101,12 @@ export function SiteNav() {
           {links}
           <a
             className="landing-nav-sheet-rsvp"
-            href={techAfterDark.rsvp}
+            href={contact.href}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
-              rsvp();
-              setOpen(false);
-            }}
+            onClick={() => setOpen(false)}
           >
-            Save a spot
+            {contact.name}
           </a>
         </nav>
       </div>

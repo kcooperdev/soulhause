@@ -1,0 +1,463 @@
+.landing-hero--house:has(.folx-scroll) {
+  display: contents;
+}
+
+html:has(.folx-scroll),
+html:has(.folx-scroll) body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  background: #080808 !important;
+}
+
+.folx-scroll {
+  color: #f4f4f4;
+  font-family: var(--font-dm-sans), var(--font-public-sans), sans-serif;
+}
+
+.folx-scroll section {
+  position: relative;
+  height: 100vh;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.folx-scroll .anim-text-container {
+  z-index: 2;
+  overflow: hidden;
+}
+
+.folx-scroll .hero {
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+.folx-scroll .copy-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 1.25rem;
+  text-align: center;
+}
+
+.folx-scroll .hero .copy-container {
+  height: 100%;
+  min-height: 0;
+  background: #080808;
+}
+
+.folx-scroll .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2.25rem, 5vh, 3.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folx-scroll .word,
+  .folx-scroll .word > span {
+    opacity: 1;
+  }
+
+  .folx-scroll .word {
+    --grey: 0;
+    background: transparent;
+  }
+
+  .folx-scroll .scroll-cue {
+    animation: none;
+  }
+}
+
+.folx-scroll .hero h1,
+.folx-scroll .cta h2 {
+  max-width: 12ch;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.folx-scroll .cta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.folx-scroll .hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.45rem;
+  border-radius: 999px;
+  background: #f4be3c;
+  color: #080808;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.folx-scroll .hero-cta:hover {
+  transform: translateY(-2px);
+  background: #f4d878;
+}
+
+.folx-scroll .hero-cta:focus-visible {
+  outline: 2px solid #f4be3c;
+  outline-offset: 3px;
+}
+
+.folx-scroll .hero-frame {
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(2.75rem, 8vh, 5.5rem);
+  padding: 6rem 2rem 3rem;
+}
+
+.folx-scroll .hero-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.75rem, 4.5vh, 2.75rem);
+  width: 100%;
+}
+
+.folx-scroll .scroll-cue {
+  color: color-mix(in oklab, #f4f4f4 46%, transparent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  animation: folx-cue 2.4s ease-in-out infinite;
+}
+
+.folx-scroll .scroll-cue:hover,
+.folx-scroll .scroll-cue:focus-visible {
+  color: #f4be3c;
+}
+
+@keyframes folx-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+}
+
+.folx-scroll .icon-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.2vw, 2.4rem);
+  width: 100%;
+  overflow: visible;
+}
+
+.folx-scroll .icon-card {
+  position: relative;
+  display: flex;
+  flex: 0 1 7.25rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  max-width: 7.25rem;
+  width: 100%;
+  background: none;
+  color: #080808;
+}
+
+.folx-scroll .icon-card-inner {
+  display: grid;
+  place-items: center;
+  width: clamp(4.5rem, 11vw, 6.25rem);
+  height: clamp(4.5rem, 11vw, 6.25rem);
+  border-radius: 22px;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.22);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.folx-scroll .icon-card:hover .icon-card-inner,
+.folx-scroll .icon-card:focus-within .icon-card-inner {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 16px 32px rgb(0 0 0 / 0.3);
+}
+
+.folx-scroll .icon-card:focus {
+  outline: none;
+}
+
+.folx-scroll .icon-card:focus-visible .icon-card-inner {
+  outline: 2px solid #f4f4f4;
+  outline-offset: 3px;
+}
+
+.folx-scroll .icon-label {
+  margin: 0;
+  max-width: 100%;
+  color: color-mix(in oklab, #f4f4f4 78%, transparent);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.folx-scroll .icon-card:hover .icon-label,
+.folx-scroll .icon-card:focus-within .icon-label {
+  color: #f4f4f4;
+  transform: translateY(-1px);
+}
+
+.folx-scroll .icon-card svg {
+  display: block;
+  width: 46%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  overflow: visible;
+  fill: #080808;
+}
+
+.folx-scroll .icon-card .cut {
+  fill: currentColor;
+}
+
+.folx-scroll .icon-card .lock-shackle {
+  fill: none;
+  stroke: #080808;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.folx-scroll .icon-card .health-pulse {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.folx-scroll .icon-card[data-tone="ai"] .icon-card-inner {
+  background: #7c6cff;
+  color: #7c6cff;
+}
+
+.folx-scroll .icon-card[data-tone="cyber"] .icon-card-inner {
+  background: #f4be3c;
+  color: #f4be3c;
+}
+
+.folx-scroll .icon-card[data-tone="ux"] .icon-card-inner {
+  background: #ff7a18;
+  color: #ff7a18;
+}
+
+.folx-scroll .icon-card[data-tone="health"] .icon-card-inner {
+  background: #d98993;
+  color: #d98993;
+}
+
+.folx-scroll .icon-card[data-tone="cloud"] .icon-card-inner {
+  background: #8eb4d4;
+  color: #8eb4d4;
+}
+
+.folx-scroll .cta .copy-container {
+  flex-direction: column;
+  gap: 1.5rem;
+  background: #080808;
+}
+
+.folx-scroll .anim-text-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.folx-scroll .anim-text-container .copy-container {
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 4.25rem 7vw 2.5rem;
+  text-align: left;
+}
+
+.folx-scroll .anim-text {
+  width: min(44rem, 100%);
+  text-align: left;
+}
+
+.folx-scroll .anim-text p {
+  margin: 0 0 1.5rem;
+  color: #f4f4f4;
+  font-family: var(--font-dm-sans), var(--font-public-sans), sans-serif;
+  font-size: clamp(1.12rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 2.05;
+}
+
+.folx-scroll .anim-text p:last-child {
+  margin-bottom: 0;
+}
+
+.folx-scroll .word {
+  --grey: 1;
+  --accent: 0;
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  margin: 0.14em 0.06em;
+  padding: 0.12em 0.22em;
+  border-radius: 0.55em;
+  background: rgb(255 255 255 / calc(0.16 * var(--grey)));
+  opacity: 0;
+  vertical-align: baseline;
+}
+
+.folx-scroll .word > span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  opacity: 0;
+}
+
+.folx-scroll .word-entry {
+  padding: 0.12em 0;
+  background: transparent;
+}
+
+.folx-scroll .word-entry > span {
+  display: inline;
+}
+
+.folx-scroll .entry-name {
+  display: inline-block;
+  padding: 0.12em 0.22em;
+  border-radius: 0.55em;
+  background: rgb(255 255 255 / calc(0.16 * var(--grey)));
+}
+
+.folx-scroll .phonetic {
+  margin-left: 0.28em;
+  color: #f4f4f4;
+  font-size: 0.78em;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.folx-scroll .keyword-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 0.18em 0.1em;
+  padding: 0.16em 0.5em;
+  border-radius: 0.55em;
+  background: transparent;
+  vertical-align: baseline;
+}
+
+.folx-scroll .keyword-wrapper::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--accent);
+  pointer-events: none;
+}
+
+.folx-scroll .keyword-wrapper.community::before {
+  background: #7c6cff;
+}
+
+.folx-scroll .keyword-wrapper.social-energy::before {
+  background: #e879f9;
+}
+
+.folx-scroll .keyword-wrapper.connection::before {
+  background: #c8ff3d;
+}
+
+.folx-scroll .keyword-wrapper.relationships::before {
+  background: #88c459;
+}
+
+.folx-scroll .keyword-wrapper.momentum::before {
+  background: #f4be3c;
+}
+
+.folx-scroll .keyword {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  color: #fff;
+}
+
+.folx-scroll .keyword-wrapper.connection .keyword,
+.folx-scroll .keyword-wrapper.relationships .keyword,
+.folx-scroll .keyword-wrapper.momentum .keyword {
+  color: #080808;
+}
+
+@media (max-width: 720px) {
+  .folx-scroll section {
+    padding: 0.85rem;
+  }
+
+  .folx-scroll .copy-container {
+    padding: 1.15rem;
+  }
+
+  .folx-scroll .hero-frame {
+    padding: 5rem 1rem 2rem;
+    gap: 2.25rem;
+  }
+
+  .folx-scroll .hero-copy {
+    gap: 1.75rem;
+  }
+
+  .folx-scroll .hero-foot {
+    gap: 1.5rem;
+  }
+
+  .folx-scroll .icon-row {
+    gap: 1.1rem 1.35rem;
+  }
+
+  .folx-scroll .icon-card {
+    flex-basis: 30%;
+    max-width: 6.5rem;
+  }
+
+  .folx-scroll .icon-card-inner {
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 18px;
+  }
+
+  .folx-scroll .anim-text p {
+    font-size: clamp(1.02rem, 4.2vw, 1.22rem);
+    line-height: 2;
+  }
+}

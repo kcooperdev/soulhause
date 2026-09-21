@@ -29,11 +29,11 @@ export function DeskSide({
         <p className="kicker">Next night</p>
         {onEvents ? (
           <>
-            <p className="dash-title">{night ? night.date : "Soon"}</p>
+            <p className="dash-title">{night ? "The night" : "Soon"}</p>
             <p className="mt-2 text-sm leading-6 text-muted">
               {night
-                ? `${night.time} · ${night.venue}`
-                : "The next Tech After Dark lands on Luma when it’s ready."}
+                ? "Save a spot on Luma."
+                : "The next night lands on Luma when it’s ready."}
             </p>
           </>
         ) : (
@@ -42,7 +42,7 @@ export function DeskSide({
               {night?.title.split(":")[0] ?? "Tech After Dark"}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted">
-              {night ? `${night.date} · ${night.time}` : "Next night soon"}
+              {night ? "Save a spot on Luma." : "Next night soon"}
             </p>
             {night ? (
               <a

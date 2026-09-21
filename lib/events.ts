@@ -68,19 +68,19 @@ export const events: EventItem[] = [
   {
     id: "hause-of-soul",
     title: "Tech After Dark: (Happy Hour Edition)",
-    host: "SoulHause Events",
+    host: "TechFolx",
     roleFit: roles.map((role) => role.id),
     price: "Free",
-    date: "Sep 17",
-    time: "6:00 PM",
-    city: "Laurel, MD",
-    venue: "Miss Toya’s Southern Kitchen",
+    date: "",
+    time: "",
+    city: "",
+    venue: "",
     image: "/hause-of-soul.png",
     imageAlt: "Tech After Dark house and sunset mark",
     registerUrl: "https://luma.com/hj5hk5jf",
     icebreaker:
       "What’s bringing you into this room — a job, a company, or a second career?",
-    startsAt: "2026-09-17T18:00:00-04:00",
+    startsAt: "",
   },
 ];
 

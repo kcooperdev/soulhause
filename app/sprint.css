@@ -1,0 +1,1165 @@
+/* The Sprint — cinematic, high contrast, condensed. Scoped to .sprint. */
+.sprint {
+  --sp-black: #050505;
+  --sp-deep: #0b0b0d;
+  --sp-card: #101012;
+  --sp-white: #ffffff;
+  --sp-paper: #f2efe8;
+  --sp-mute: rgb(242 239 232 / 0.6);
+  --sp-dim: rgb(242 239 232 / 0.38);
+  --sp-faint: rgb(242 239 232 / 0.13);
+  --sp-hair: rgb(242 239 232 / 0.08);
+  --sp-flare: #ff4a1c;
+  --sp-flare-hi: #ff7a4d;
+  --sp-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --sp-pad: clamp(1.15rem, 5vw, 5rem);
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  background: var(--sp-black);
+  color: var(--sp-paper);
+  font-family: var(--font-public-sans), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+.sprint ::selection {
+  background: var(--sp-flare);
+  color: var(--sp-black);
+}
+
+/* ---------- shared type ---------- */
+
+.sprint-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.35rem;
+  color: var(--sp-flare);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.sprint-kicker::before {
+  content: "";
+  width: 1.9rem;
+  height: 2px;
+  background: var(--sp-flare);
+}
+
+.sprint-h2 {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(2.75rem, 8.5vw, 7rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.sprint-lede {
+  margin: 1.5rem 0 0;
+  max-width: 46ch;
+  color: var(--sp-mute);
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  line-height: 1.65;
+}
+
+.sprint-num {
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--sp-dim);
+}
+
+.sprint-sublabel {
+  margin: 0 0 1.5rem;
+  color: var(--sp-flare);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.sprint-note {
+  margin: 2rem 0 0;
+  color: var(--sp-dim);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  line-height: 1.7;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- hero ---------- */
+
+.sprint-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding: clamp(5.5rem, 13vw, 8rem) var(--sp-pad) clamp(1.75rem, 4vw, 3rem);
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+}
+
+.sprint-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: #08080a;
+  will-change: transform;
+  animation: sprintShudder 0.5s cubic-bezier(0.3, 0.9, 0.4, 1) both 0.79s;
+}
+
+.sprint-hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: grayscale(0.12) contrast(1.04) saturate(0.95);
+  transform: scale(1.06);
+  transition:
+    opacity 1.6s var(--sp-ease),
+    transform 12s linear;
+}
+
+.sprint-hero-video[data-ready="true"] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Lane-track stand-in — reads as the track when the film isn't loaded yet. */
+.sprint-hero-track {
+  position: absolute;
+  inset: -20% -30%;
+  background:
+    repeating-linear-gradient(
+      101deg,
+      transparent 0 6.5rem,
+      rgb(242 239 232 / 0.05) 6.5rem 6.6rem,
+      transparent 6.6rem 13rem
+    ),
+    radial-gradient(ellipse 60% 50% at 20% 90%, rgb(255 74 28 / 0.22), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 85% 10%, rgb(242 239 232 / 0.07), transparent 65%),
+    linear-gradient(160deg, #131316 0%, #08080a 55%, #050505 100%);
+  animation: sprintLane 22s linear infinite;
+}
+
+/* The footage is the point. Darkening is local, not global: a shallow band
+   for the nav, a pool behind the lockup, a vignette at the edges, and only a
+   whisper of wash across the middle of the frame. */
+.sprint-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(5 5 5 / 0.72) 0%, rgb(5 5 5 / 0.3) 7%, transparent 15%),
+    linear-gradient(
+      0deg,
+      var(--sp-black) 0%,
+      rgb(5 5 5 / 0.78) 5%,
+      rgb(5 5 5 / 0.32) 15%,
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse 46% 30% at 50% 47%,
+      rgb(5 5 5 / 0.46) 0%,
+      rgb(5 5 5 / 0.2) 55%,
+      transparent 78%
+    ),
+    radial-gradient(ellipse 74% 70% at 50% 50%, transparent 58%, rgb(5 5 5 / 0.5) 100%),
+    rgb(5 5 5 / 0.1);
+  animation: sprintFlash 0.5s linear both 0.79s;
+}
+
+.sprint-hero-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image: radial-gradient(circle at 1px 1px, rgb(242 239 232 / 0.11) 1px, transparent 0);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+.sprint-hero-inner {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+
+.sprint-hero-kicker {
+  animation: sprintFade 0.8s var(--sp-ease) both 0.1s;
+}
+
+/* ---------- the stamp ---------- */
+
+.sprint-title {
+  margin: 0;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-weight: 400;
+  line-height: 0.78;
+  text-transform: uppercase;
+  transform-origin: 50% 55%;
+  will-change: transform, filter;
+  animation: sprintSlam 0.95s cubic-bezier(0.87, 0.02, 0.32, 1) both 0.2s;
+}
+
+.sprint-word {
+  display: block;
+}
+
+.sprint-word--the {
+  margin-bottom: 0.2em;
+  color: var(--sp-paper);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.35rem, 3.6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+}
+
+.sprint-word--main {
+  font-size: min(56vw, 74vh);
+  letter-spacing: -0.025em;
+  text-indent: -0.025em;
+}
+
+.sprint-hero-beat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem 1.5rem;
+  margin-top: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.sprint-entry {
+  margin: 0;
+  padding: 0.5rem 1.1rem 0.55rem;
+  background: var(--sp-flare);
+  color: var(--sp-black);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: sprintMark 0.36s cubic-bezier(0.7, 0, 0.2, 1) both 1.18s;
+}
+
+.sprint-hero-lede {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--sp-paper);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  animation: sprintFade 0.8s var(--sp-ease) both 1.34s;
+}
+
+.sprint-hero-foot {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  animation: sprintFade 0.9s var(--sp-ease) both 1.5s;
+}
+
+.sprint-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--sp-mute);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.sprint-hero-meta li {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+/* Trailing separator, so a wrapped line never opens on a stray dot. */
+.sprint-hero-meta li:not(:last-child)::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: var(--sp-flare);
+}
+
+/* ---------- buttons ---------- */
+
+.sprint-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.85rem;
+  background: var(--sp-paper);
+  color: var(--sp-black);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.35s var(--sp-ease),
+    color 0.35s var(--sp-ease),
+    transform 0.35s var(--sp-ease);
+}
+
+.sprint-cta:hover {
+  background: var(--sp-flare);
+  color: var(--sp-black);
+  transform: translateY(-2px);
+}
+
+.sprint-cta .arrow {
+  transition: transform 0.35s var(--sp-ease);
+}
+
+.sprint-cta:hover .arrow {
+  transform: translateX(5px);
+}
+
+.sprint-cta--ghost {
+  background: transparent;
+  color: var(--sp-paper);
+  box-shadow: inset 0 0 0 1px rgb(242 239 232 / 0.28);
+}
+
+.sprint-cta--ghost:hover {
+  background: transparent;
+  color: var(--sp-flare);
+  box-shadow: inset 0 0 0 1px var(--sp-flare);
+}
+
+.sprint-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.sprint .sprint-cta:focus-visible,
+.sprint-footer a:focus-visible {
+  outline: 2px solid var(--sp-flare);
+  outline-offset: 4px;
+}
+
+/* ---------- ticker ---------- */
+
+.sprint-ticker {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border-top: 1px solid var(--sp-hair);
+  border-bottom: 1px solid var(--sp-hair);
+  background: var(--sp-deep);
+  padding: 0.85rem 0;
+  user-select: none;
+}
+
+.sprint-ticker-row {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: sprintMarquee 26s linear infinite;
+}
+
+.sprint-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  color: var(--sp-paper);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sprint-ticker-item::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--sp-flare);
+  transform: rotate(45deg);
+}
+
+/* ---------- sections ---------- */
+
+.sprint-section {
+  position: relative;
+  padding: clamp(5.5rem, 14vw, 12rem) var(--sp-pad);
+  border-top: 1px solid var(--sp-hair);
+  scroll-margin-top: 5rem;
+}
+
+.sprint-section > * {
+  max-width: 82rem;
+  margin-inline: auto;
+}
+
+.sprint-section--flat {
+  border-top: 0;
+}
+
+.sprint-head {
+  margin-bottom: clamp(3rem, 7vw, 5.5rem);
+}
+
+/* ---------- baltimore + the brief ---------- */
+
+.sprint-sectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 2.25rem;
+  margin: 0;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) 0;
+  list-style: none;
+  border-block: 1px solid var(--sp-hair);
+}
+
+.sprint-sector {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  color: var(--sp-paper);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.6rem, 4.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: color 0.35s var(--sp-ease);
+}
+
+.sprint-sector::after {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  background: var(--sp-flare);
+  transform: rotate(45deg);
+}
+
+.sprint-sector:last-child::after {
+  content: none;
+}
+
+.sprint-sector:hover {
+  color: var(--sp-flare);
+}
+
+.sprint-brief-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.sprint-brief-foot .sprint-note {
+  max-width: 34ch;
+  margin: 0;
+}
+
+.sprint-stats {
+  display: flex;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  margin: 0;
+}
+
+.sprint-stat dd {
+  margin: 0;
+}
+
+.sprint-stat b {
+  display: block;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+.sprint-stat span {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--sp-dim);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- how it works ---------- */
+
+.sprint-steps {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--sp-hair);
+  border-block: 1px solid var(--sp-hair);
+}
+
+.sprint-step {
+  position: relative;
+  display: grid;
+  gap: 0.9rem 2.5rem;
+  padding: clamp(1.85rem, 3.5vw, 3rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  background: var(--sp-black);
+  transition: background 0.4s var(--sp-ease);
+}
+
+.sprint-step:hover {
+  background: var(--sp-card);
+}
+
+.sprint-step-day {
+  color: var(--sp-flare);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.sprint-step h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.sprint-step p {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--sp-mute);
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.sprint-rules {
+  display: grid;
+  gap: 0;
+  max-width: 62rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sprint-rules li {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--sp-hair);
+  color: var(--sp-mute);
+  font-size: clamp(0.95rem, 1.3vw, 1.04rem);
+  line-height: 1.6;
+}
+
+.sprint-rules li:last-child {
+  border-bottom: 1px solid var(--sp-hair);
+}
+
+.sprint-rules li::before {
+  content: "—";
+  flex: none;
+  color: var(--sp-flare);
+}
+
+/* ---------- the vote ---------- */
+
+.sprint-ballot {
+  display: grid;
+  gap: 1px;
+  background: var(--sp-hair);
+  border: 1px solid var(--sp-hair);
+}
+
+.sprint-category {
+  position: relative;
+  padding: clamp(1.85rem, 3.5vw, 2.75rem) clamp(1.35rem, 2.5vw, 2.25rem);
+  background: var(--sp-black);
+  transition: background 0.4s var(--sp-ease);
+}
+
+.sprint-category::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--sp-flare);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--sp-ease);
+}
+
+.sprint-category:hover {
+  background: var(--sp-card);
+}
+
+.sprint-category:hover::before {
+  transform: scaleX(1);
+}
+
+.sprint-category h3 {
+  margin: 1.35rem 0 0.9rem;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.sprint-category p {
+  margin: 0;
+  color: var(--sp-mute);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.sprint-tally {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--sp-card);
+  border-left: 2px solid var(--sp-flare);
+}
+
+.sprint-tally b {
+  display: block;
+  margin-bottom: 0.85rem;
+  color: var(--sp-flare);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.sprint-tally p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--sp-paper);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.65;
+}
+
+/* ---------- the money ---------- */
+
+.sprint-price {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.sprint-price-figure {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-size: clamp(5rem, 17vw, 12rem);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+}
+
+.sprint-price-figure span {
+  color: var(--sp-flare);
+}
+
+.sprint-splits {
+  display: grid;
+  gap: 1px;
+  background: var(--sp-hair);
+  border: 1px solid var(--sp-hair);
+  margin: 0;
+}
+
+.sprint-split {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem clamp(1.1rem, 2vw, 1.75rem);
+  background: var(--sp-black);
+}
+
+.sprint-split dt {
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sp-dim);
+}
+
+.sprint-split dd {
+  margin: 0;
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sprint-example {
+  margin: 1.5rem 0 0;
+  padding: 1.35rem clamp(1.1rem, 2vw, 1.75rem);
+  background: var(--sp-card);
+  border-left: 2px solid var(--sp-flare);
+  color: var(--sp-paper);
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.sprint-example b {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--sp-flare);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.sprint-fine {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sprint-fine li {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--sp-hair);
+  color: var(--sp-mute);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.sprint-fine li::before {
+  content: "—";
+  color: var(--sp-flare);
+}
+
+/* The other two doors in — one line each, no cards. */
+.sprint-doors-block {
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.sprint-doors {
+  display: grid;
+  margin: 0;
+}
+
+.sprint-door {
+  display: grid;
+  gap: 0.5rem 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--sp-hair);
+}
+
+.sprint-door:last-child {
+  border-bottom: 1px solid var(--sp-hair);
+}
+
+.sprint-door dt {
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.sprint-door dd {
+  margin: 0;
+  max-width: 56ch;
+  color: var(--sp-mute);
+  font-size: clamp(0.98rem, 1.4vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.sprint-doors-block .sprint-ctas {
+  justify-content: flex-start;
+  margin-top: 2.25rem;
+}
+
+/* ---------- coming ---------- */
+
+.sprint-coming {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 100% at 50% 100%, rgb(255 74 28 / 0.16), transparent 65%),
+    var(--sp-black);
+}
+
+.sprint-coming > * {
+  position: relative;
+}
+
+.sprint-coming .sprint-kicker {
+  justify-content: center;
+}
+
+.sprint-date {
+  margin: 0;
+  font-family: var(--font-sprint-display), sans-serif;
+  font-size: clamp(3rem, 13vw, 10rem);
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sprint-coming .sprint-lede {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sprint-record {
+  max-width: 54ch;
+  color: var(--sp-dim);
+  font-size: clamp(0.95rem, 1.3vw, 1.04rem);
+}
+
+.sprint-coming .sprint-ctas {
+  margin-top: 2.75rem;
+}
+
+.sprint-coming .sprint-note {
+  text-align: center;
+}
+
+/* ---------- footer ---------- */
+
+.sprint-footer {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--sp-pad) clamp(2.5rem, 5vw, 3.5rem);
+  border-top: 1px solid var(--sp-hair);
+  background: var(--sp-deep);
+}
+
+.sprint-footer-inner {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+}
+
+.sprint-footer-mark b {
+  display: block;
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.sprint-footer-mark i {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--sp-mute);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.sprint-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+}
+
+.sprint-footer nav a {
+  color: var(--sp-mute);
+  font-family: var(--font-sprint-condensed), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s var(--sp-ease);
+}
+
+.sprint-footer nav a:hover {
+  color: var(--sp-flare);
+}
+
+.sprint-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--sp-hair);
+  list-style: none;
+  color: var(--sp-dim);
+  font-family: var(--font-sprint-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---------- reveal ---------- */
+
+.sprint-rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s var(--sp-ease),
+    transform 0.85s var(--sp-ease);
+}
+
+.sprint-rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.sprint-rv-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s var(--sp-ease),
+    transform 0.7s var(--sp-ease);
+}
+
+.sprint-rv-stagger.is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+.sprint-rv-stagger.is-in > *:nth-child(2) {
+  transition-delay: 70ms;
+}
+.sprint-rv-stagger.is-in > *:nth-child(3) {
+  transition-delay: 140ms;
+}
+.sprint-rv-stagger.is-in > *:nth-child(4) {
+  transition-delay: 210ms;
+}
+.sprint-rv-stagger.is-in > *:nth-child(5) {
+  transition-delay: 280ms;
+}
+
+/* ---------- keyframes ---------- */
+
+/* The stamp: rushes in from beyond the frame, punches past its mark,
+   rebounds, settles. */
+@keyframes sprintSlam {
+  0% {
+    opacity: 0;
+    transform: scale(2.85);
+    filter: blur(20px);
+  }
+  40% {
+    opacity: 1;
+  }
+  64% {
+    transform: scale(0.94);
+    filter: blur(0);
+    animation-timing-function: cubic-bezier(0.3, 1.4, 0.5, 1);
+  }
+  78% {
+    transform: scale(1.035);
+  }
+  90% {
+    transform: scale(0.988);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* The frame takes the hit a beat after the stamp lands. */
+@keyframes sprintShudder {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  14% {
+    transform: translate3d(0, 7px, 0) scale(1.014);
+  }
+  30% {
+    transform: translate3d(-5px, -4px, 0) scale(1.01);
+  }
+  48% {
+    transform: translate3d(4px, 2px, 0) scale(1.006);
+  }
+  68% {
+    transform: translate3d(-2px, -1px, 0) scale(1.003);
+  }
+  84% {
+    transform: translate3d(1px, 1px, 0) scale(1.001);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Scrim thins for two frames on impact — reads as a flash on the film. */
+@keyframes sprintFlash {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.62;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* The $25 badge: its own hard mark, not a fade. */
+@keyframes sprintMark {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  62% {
+    opacity: 1;
+    transform: scale(0.965);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sprintFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sprintLane {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-13rem, 0, 0);
+  }
+}
+
+@keyframes sprintMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ---------- breakpoints ---------- */
+
+@media (min-width: 40rem) {
+  .sprint-ballot {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sprint-step {
+    grid-template-columns: 9rem 1fr;
+  }
+
+  .sprint-door {
+    grid-template-columns: 14rem 1fr;
+    align-items: baseline;
+  }
+}
+
+@media (min-width: 64rem) {
+  .sprint-ballot {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sprint-price {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sprint-head--split {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .sprint-head--split .sprint-lede {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprint-title,
+  .sprint-entry,
+  .sprint-hero-lede,
+  .sprint-hero-foot,
+  .sprint-hero-kicker,
+  .sprint-hero-media,
+  .sprint-hero-scrim,
+  .sprint-hero-track,
+  .sprint-ticker-row {
+    animation: none;
+  }
+
+  .sprint-title {
+    filter: none;
+    transform: none;
+  }
+
+  .sprint-hero-video {
+    transition: opacity 0.4s linear;
+    transform: none;
+  }
+
+  .sprint-rv,
+  .sprint-rv-stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { HouseRoster, Me, ProfilePage } from "@/components/HausePeople";
 import { MenuClose } from "@/components/MenuClose";
 import { JoinFlow } from "@/components/JoinFlow";
-import { Logo } from "@/components/Logo";
 import { Splash } from "@/components/Splash";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { brand } from "@/lib/brand";
@@ -208,7 +207,7 @@ function House() {
       <aside
         id="house-menu"
         className="app-rail"
-        aria-label="SoulHause"
+        aria-label="TechFolx"
         data-open={menu ? "true" : "false"}
         inert={!menu ? true : undefined}
       >
@@ -366,7 +365,11 @@ function BrandMark({
   home?: boolean;
   className?: string;
 }) {
-  const mark = <Logo size={compact ? 40 : 52} decorative={home} />;
+  const mark = (
+    <span className={compact ? "text-lg font-bold tracking-tight" : "text-xl font-bold tracking-tight"}>
+      {brand.name}
+    </span>
+  );
 
   if (!home) return mark;
 

@@ -3,11 +3,12 @@
 import { useEffect, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { CustomCursor } from "@/components/CustomCursor";
-import { NightAtmosphere } from "@/components/NightAtmosphere";
 import { SiteNav } from "@/components/SiteNav";
+import { brand } from "@/lib/brand";
 
-function useMarketingPage(night: boolean) {
+function useMarketingPage(enabled: boolean, night: boolean) {
   useEffect(() => {
+    if (!enabled) return;
     document.body.classList.add("is-landing-hero");
     document.body.classList.toggle("is-night", night);
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -22,28 +23,33 @@ function useMarketingPage(night: boolean) {
       document.body.classList.remove("is-landing-hero");
       document.body.classList.remove("is-night");
     };
-  }, [night]);
+  }, [enabled, night]);
 }
 
 export function MarketingShell({ children }: { children: ReactNode }) {
   const path = usePathname();
-  const night = path === "/tech-after-dark";
+  const house =
+    path === "/" || path === "/tech-after-dark" || path === "/about";
   const hause = path === "/tech-hause";
-  useMarketingPage(night);
+  const sprint = path === "/the-sprint";
+  useMarketingPage(!house, false);
+
+  if (house) {
+    return children;
+  }
 
   return (
     <main
       className={
-        night
-          ? "landing-hero landing-hero--night"
-          : hause
-            ? "landing-hero landing-hero--hause"
+        hause
+          ? "landing-hero landing-hero--hause"
+          : sprint
+            ? "landing-hero landing-hero--sprint"
             : "landing-hero"
       }
-      aria-label="SoulHause"
+      aria-label={brand.name}
     >
       <div className="landing-hero-canvas" aria-hidden="true" />
-      {night ? <NightAtmosphere /> : null}
       <SiteNav />
       {children}
       <CustomCursor />

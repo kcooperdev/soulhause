@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, Public_Sans, Syne } from "next/font/google";
+import Script from "next/script";
+import { Barlow_Condensed, DM_Sans, Public_Sans, Syne } from "next/font/google";
 import { ThemeSync } from "@/components/ThemeSync";
 import { brand } from "@/lib/brand";
 import { THEME_BOOT, THEME_LIGHT } from "@/lib/theme";
@@ -16,6 +17,12 @@ const barlow = Barlow_Condensed({
   weight: ["600", "800"],
 });
 
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
 const syne = Syne({
   variable: "--font-display",
   subsets: ["latin"],
@@ -24,17 +31,12 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: `${brand.name} · ${brand.line}`,
-  description:
-    "SoulHause is a tech company. Tech for the soul, the people, and the future.",
+  description: brand.position,
   applicationName: brand.name,
   appleWebApp: {
     capable: true,
     title: brand.name,
     statusBarStyle: "default",
-  },
-  icons: {
-    icon: brand.logo,
-    apple: brand.logo,
   },
 };
 
@@ -50,10 +52,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="light"
       suppressHydrationWarning
-      className={`${publicSans.variable} ${barlow.variable} ${syne.variable} h-full antialiased`}
+      className={`${publicSans.variable} ${barlow.variable} ${syne.variable} ${dmSans.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
+        <Script src="/folx-reveal.js?v=scrub1" strategy="beforeInteractive" />
       </head>
       <body
         className="h-full min-h-full bg-paper font-sans text-ink"

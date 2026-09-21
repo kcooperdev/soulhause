@@ -1,0 +1,347 @@
+.landing-hero--house {
+  padding: 0;
+  min-height: 100dvh;
+  --hero-stone: #080808;
+  --hero-ink: #f3efe6;
+  --hero-rsvp: #f4be3c;
+  --hero-rsvp-ink: #080808;
+  --ink: #f3efe6;
+  --paper: #080808;
+  --muted: color-mix(in oklab, #f3efe6 70%, transparent);
+  color-scheme: dark;
+  background: #080808;
+}
+
+html:has(.landing-hero--house),
+html:has(.landing-hero--house) body,
+html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
+  background: #080808 !important;
+  color: #f3efe6;
+}
+
+.landing-hero--house .landing-hero-canvas {
+  display: none;
+}
+
+.gold-name {
+  position: fixed;
+  top: max(1.15rem, env(safe-area-inset-top));
+  left: max(1.25rem, env(safe-area-inset-left));
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: #f4be3c;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.gold-name a {
+  display: block;
+  color: inherit;
+}
+
+.gold-name a:focus-visible,
+.gold-go:focus-visible,
+.gold-sound:focus-visible {
+  outline: 2px solid #f4be3c;
+  outline-offset: 4px;
+}
+
+.gold-sound {
+  position: fixed;
+  top: max(0.85rem, env(safe-area-inset-top));
+  right: max(0.85rem, env(safe-area-inset-right));
+  z-index: 20;
+  margin: 0;
+  min-height: 44px;
+  padding: 0.35rem 0.55rem;
+  border: 0;
+  background: none;
+  color: color-mix(in oklab, #f4be3c 78%, #f3efe6);
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.gold-sound[aria-pressed="true"] {
+  color: #f4be3c;
+}
+
+.gold-mark {
+  display: block;
+  width: 1.2rem;
+  height: 1.38rem;
+}
+
+.reveal-pin {
+  height: 400vh;
+}
+
+.reveal-stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5.5rem 1.5rem 2rem;
+}
+
+.reveal-copy {
+  width: min(36rem, 100%);
+  text-align: center;
+}
+
+.reveal-copy p {
+  margin: 0 0 1.35rem;
+  color: #f3efe6;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.45rem, 4.6vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.22;
+}
+
+.reveal-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.word {
+  --bg: 1;
+  --txt: 0;
+  position: relative;
+  display: inline-block;
+  margin: 0.08em 0.06em;
+  padding: 0.06em 0.16em;
+  border-radius: 0.42em;
+  background: rgb(200 196 187 / calc(var(--bg) * 0.55));
+  opacity: 0;
+  vertical-align: baseline;
+  will-change: opacity;
+}
+
+.word > span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  opacity: var(--txt);
+}
+
+.keyword-wrapper {
+  margin: 0.1em 0.12em;
+  padding: 0.12em 0.28em;
+  background: transparent;
+}
+
+.keyword {
+  position: relative;
+  z-index: 1;
+}
+
+.keyword::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 124%;
+  height: 138%;
+  transform: translate(-50%, -50%);
+  opacity: var(--bg);
+  pointer-events: none;
+}
+
+.word[data-kind="ai"] .keyword::before {
+  background: #f4be3c;
+  border-radius: 50%;
+}
+
+.word[data-kind="ai"] .keyword {
+  color: #080808;
+}
+
+.word[data-kind="cyber"] {
+  padding: 0.16em 0.42em;
+}
+
+.word[data-kind="cyber"] .keyword::before {
+  width: 132%;
+  height: 160%;
+  background: #6b9a88;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.word[data-kind="cyber"] .keyword {
+  color: #141311;
+}
+
+.word[data-kind="biotech"] {
+  padding: 0.14em 0.38em;
+}
+
+.word[data-kind="biotech"] .keyword::before {
+  width: 128%;
+  height: 150%;
+  background: #cc5d33;
+  border-radius: 70% 40% 60% 50% / 50% 60% 40% 70%;
+}
+
+.word[data-kind="biotech"] .keyword {
+  color: #f4f0e6;
+}
+
+.word[data-kind="ux"] .keyword::before {
+  background: #ee7d50;
+  border-radius: 0.32em;
+}
+
+.word[data-kind="ux"] .keyword {
+  color: #141311;
+}
+
+.reveal-stage[data-reduce="true"] .word {
+  opacity: 1;
+  background: transparent;
+  --bg: 0;
+  --txt: 1;
+}
+
+@media (min-width: 720px) {
+  .reveal-copy {
+    width: min(44rem, 100%);
+  }
+}
+
+.gold-body {
+  position: relative;
+  z-index: 6;
+  width: min(40rem, calc(100% - 2.6rem));
+  margin: 0 auto;
+  padding: 0 0 5.5rem;
+}
+
+.gold-about {
+  padding-top: 5.5rem;
+}
+
+.gold-kicker {
+  margin: 0 0 0.7rem;
+  color: #6b9a88;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.gold-title {
+  margin: 0 0 1.2rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.gold-lead {
+  margin: 0 0 1.25rem;
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.65;
+}
+
+.gold-field {
+  display: grid;
+  gap: 1.35rem;
+  margin: 2.2rem 0 2.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.gold-field li {
+  padding-left: 0.15rem;
+}
+
+.gold-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  margin-bottom: 0.45rem;
+  padding: 0.22rem 0.7rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.gold-field li[data-kind="ai"] .gold-chip {
+  background: #f4be3c;
+  color: #080808;
+  border-radius: 999px;
+}
+
+.gold-field li[data-kind="cyber"] .gold-chip {
+  background: #6b9a88;
+  color: #141311;
+  clip-path: polygon(12% 0%, 88% 0%, 100% 50%, 88% 100%, 12% 100%, 0% 50%);
+}
+
+.gold-field li[data-kind="biotech"] .gold-chip {
+  background: #cc5d33;
+  color: #f4f0e6;
+  border-radius: 70% 40% 60% 50% / 50% 60% 40% 70%;
+}
+
+.gold-field li[data-kind="ux"] .gold-chip {
+  background: #ee7d50;
+  color: #141311;
+  border-radius: 0.28rem;
+}
+
+.gold-field p {
+  margin: 0;
+  color: color-mix(in oklab, #f3efe6 68%, transparent);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.gold-end {
+  margin: 1.75rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.gold-go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.6rem;
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  background: #f4be3c;
+  color: #080808;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.gold-go:hover {
+  background: #f4d878;
+}

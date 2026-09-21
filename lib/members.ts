@@ -54,7 +54,7 @@ export const houseMembers: Member[] = [
     id: ADMIN_ID,
     name: "Khalif Cooper",
     role: "Founder",
-    building: "SoulHause — rooms and tools with soul",
+    building: "TechFolx — rooms and tools with soul",
     city: "Laurel, MD",
     link: "https://www.linkedin.com/in/kcooperdev",
     offerIds: ["intros", "mentoring"],
