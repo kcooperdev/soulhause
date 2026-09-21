@@ -1,17 +1,16 @@
 "use client";
 
-import { BrandLockup } from "@/components/FolxMark";
 import { FolxIcons } from "@/components/FolxIcons";
+import { HouseNav } from "@/components/HouseNav";
 import { RoomSound } from "@/components/RoomSound";
 import { folx } from "@/lib/folx";
-import { contact } from "@/lib/offerings";
 
 const PHRASES = [
-  { key: "social-energy", words: ["social", "energy"] },
-  { key: "community", words: ["community"] },
-  { key: "connection", words: ["connection"] },
-  { key: "relationships", words: ["relationships"] },
-  { key: "momentum", words: ["momentum"] },
+  { key: "social-energy", words: ["spatial", "flow"] },
+  { key: "community", words: ["interaction"] },
+  { key: "connection", words: ["discovery"] },
+  { key: "relationships", words: ["learning"] },
+  { key: "momentum", words: ["technology"] },
 ] as const;
 
 type Keyword = (typeof PHRASES)[number]["key"];
@@ -70,8 +69,9 @@ function tokenize(line: string): Piece[] {
 export function TechAfterDarkPage() {
   return (
     <>
-      <BrandLockup />
-      <RoomSound />
+      <HouseNav>
+        <RoomSound />
+      </HouseNav>
       <main className="folx-scroll" aria-label="TechFolx">
         <section className="hero">
           <div className="copy-container hero-frame">
@@ -80,9 +80,7 @@ export function TechAfterDarkPage() {
               <div className="cta-stack">
                 <a
                   className="hero-cta"
-                  href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/experiences"
                   aria-label={folx.ctaAria}
                 >
                   {folx.cta}
@@ -91,9 +89,6 @@ export function TechAfterDarkPage() {
             </div>
             <div className="hero-foot">
               <FolxIcons />
-              <a className="scroll-cue" href="#about">
-                {folx.scroll}
-              </a>
             </div>
           </div>
         </section>
@@ -111,7 +106,7 @@ export function TechAfterDarkPage() {
                     key={line}
                     aria-label={
                       line.includes("TechFolx")
-                        ? line.replace("TechFolx", "TechFolx, pronounced tech folk,")
+                        ? line.replace("TechFolx", "TechFolx, pronounced tech folks,")
                         : line
                     }
                   >
@@ -156,9 +151,7 @@ export function TechAfterDarkPage() {
             <div className="cta-stack">
               <a
                 className="hero-cta"
-                href={contact.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/experiences"
                 aria-label={folx.ctaAria}
               >
                 {folx.cta}

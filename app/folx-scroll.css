@@ -29,10 +29,10 @@ html:has(.folx-scroll) body {
 }
 
 .folx-scroll .hero {
-  height: 100dvh;
+  height: auto;
   min-height: 100dvh;
-  max-height: 100dvh;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
 }
 
 .folx-scroll .copy-container {
@@ -47,8 +47,8 @@ html:has(.folx-scroll) body {
 }
 
 .folx-scroll .hero .copy-container {
-  height: 100%;
-  min-height: 0;
+  height: auto;
+  min-height: 100dvh;
   background: #080808;
 }
 
@@ -56,7 +56,7 @@ html:has(.folx-scroll) body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(2.25rem, 5vh, 3.25rem);
+  gap: clamp(2.6rem, 5vh, 3.5rem);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -69,18 +69,14 @@ html:has(.folx-scroll) body {
     --grey: 0;
     background: transparent;
   }
-
-  .folx-scroll .scroll-cue {
-    animation: none;
-  }
 }
 
 .folx-scroll .hero h1,
 .folx-scroll .cta h2 {
-  max-width: 12ch;
+  max-width: min(12ch, 100%);
   color: #f4f4f4;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(2.6rem, 7vw, 5.6rem);
+  font-size: clamp(2.35rem, 6.2vw, 5.2rem);
   font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 0.98;
@@ -120,44 +116,59 @@ html:has(.folx-scroll) body {
 }
 
 .folx-scroll .hero-frame {
+  box-sizing: border-box;
   flex-direction: column;
-  justify-content: center;
-  gap: clamp(2.75rem, 8vh, 5.5rem);
-  padding: 6rem 2rem 3rem;
+  justify-content: flex-start;
+  gap: clamp(2rem, 4vh, 3.25rem);
+  padding: 9.25rem 2rem 2.75rem;
 }
 
 .folx-scroll .hero-foot {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.75rem, 4.5vh, 2.75rem);
   width: 100%;
 }
 
-.folx-scroll .scroll-cue {
-  color: color-mix(in oklab, #f4f4f4 46%, transparent);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-decoration: none;
-  text-transform: uppercase;
-  animation: folx-cue 2.4s ease-in-out infinite;
+.folx-scroll .icon-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.folx-scroll .scroll-cue:hover,
-.folx-scroll .scroll-cue:focus-visible {
+.folx-scroll .icon-cue {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0 0 0.35rem;
   color: #f4be3c;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transform: rotate(-2deg);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
-@keyframes folx-cue {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.55;
-  }
-  50% {
-    transform: translateY(5px);
-    opacity: 1;
+.folx-scroll .crayon-arrow {
+  display: block;
+  width: 3.1rem;
+  height: auto;
+  margin-top: 0.05rem;
+  overflow: visible;
+}
+
+.folx-scroll .icon-stage:has(.icon-row[data-fan="true"]) .icon-cue {
+  opacity: 0;
+}
+
+@media (max-width: 720px) {
+  .folx-scroll .icon-cue {
+    display: flex;
   }
 }
 
@@ -228,6 +239,15 @@ html:has(.folx-scroll) body {
   transform: translateY(-1px);
 }
 
+@media (min-width: 1101px) {
+  .folx-scroll .icon-card-fan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+  }
+}
+
 .folx-scroll .icon-card svg {
   display: block;
   width: 46%;
@@ -296,7 +316,7 @@ html:has(.folx-scroll) body {
   align-items: center;
   justify-content: center;
   background: transparent;
-  padding: 4.25rem 7vw 2.5rem;
+  padding: 18vh 7vw 4vh;
   text-align: left;
 }
 
@@ -419,6 +439,114 @@ html:has(.folx-scroll) body {
   color: #080808;
 }
 
+@media (max-width: 1100px) {
+  .folx-scroll .hero h1 {
+    font-size: clamp(2.2rem, 5.6vw, 3.8rem);
+  }
+
+  .folx-scroll .hero-frame {
+    padding-top: 2.75rem;
+    gap: 2.25rem;
+  }
+
+  .folx-scroll .icon-row {
+    position: relative;
+    display: block;
+    width: min(100%, 28rem);
+    height: 5.4rem;
+    margin-inline: auto;
+    gap: 0;
+    cursor: pointer;
+    transition: height 0.45s ease, width 0.45s ease;
+  }
+
+  .folx-scroll .icon-card {
+    position: absolute;
+    top: 0.2rem;
+    left: 50%;
+    flex: none;
+    width: 4.6rem;
+    max-width: none;
+    margin-left: -2.3rem;
+    gap: 0.45rem;
+  }
+
+  .folx-scroll .icon-card-fan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    translate: 0 0;
+    transition: translate 0.45s ease, rotate 0.45s ease;
+  }
+
+  .folx-scroll .icon-card:nth-child(1) { z-index: 1; }
+  .folx-scroll .icon-card:nth-child(2) { z-index: 2; }
+  .folx-scroll .icon-card:nth-child(3) { z-index: 3; }
+  .folx-scroll .icon-card:nth-child(4) { z-index: 4; }
+  .folx-scroll .icon-card:nth-child(5) { z-index: 5; }
+
+  .folx-scroll .icon-card:nth-child(1) .icon-card-fan { rotate: -13deg; }
+  .folx-scroll .icon-card:nth-child(2) .icon-card-fan { rotate: -6deg; }
+  .folx-scroll .icon-card:nth-child(3) .icon-card-fan { rotate: 1deg; }
+  .folx-scroll .icon-card:nth-child(4) .icon-card-fan { rotate: 7deg; }
+  .folx-scroll .icon-card:nth-child(5) .icon-card-fan { rotate: 0deg; }
+
+  .folx-scroll .icon-card-inner {
+    width: 4.15rem;
+    height: 4.15rem;
+    border-radius: 16px;
+  }
+
+  .folx-scroll .icon-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-label,
+  .folx-scroll .icon-row:focus-within .icon-label {
+    opacity: 1;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"],
+  .folx-scroll .icon-row:focus-within {
+    height: 8.75rem;
+    width: 100%;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(1) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(1) .icon-card-fan {
+    translate: -10.4rem 0.35rem;
+    rotate: -11deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(2) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(2) .icon-card-fan {
+    translate: -5.2rem 0.1rem;
+    rotate: -5deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(3) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(3) .icon-card-fan {
+    translate: 0 -0.15rem;
+    rotate: 0deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(4) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(4) .icon-card-fan {
+    translate: 5.2rem 0.1rem;
+    rotate: 5deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(5) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(5) .icon-card-fan {
+    translate: 10.4rem 0.35rem;
+    rotate: 11deg;
+  }
+}
+
 @media (max-width: 720px) {
   .folx-scroll section {
     padding: 0.85rem;
@@ -429,31 +557,66 @@ html:has(.folx-scroll) body {
   }
 
   .folx-scroll .hero-frame {
-    padding: 5rem 1rem 2rem;
-    gap: 2.25rem;
-  }
-
-  .folx-scroll .hero-copy {
+    padding: 2.25rem 1rem 2rem;
     gap: 1.75rem;
   }
 
-  .folx-scroll .hero-foot {
-    gap: 1.5rem;
-  }
-
-  .folx-scroll .icon-row {
-    gap: 1.1rem 1.35rem;
+  .folx-scroll .hero-copy {
+    gap: 1.85rem;
   }
 
   .folx-scroll .icon-card {
-    flex-basis: 30%;
-    max-width: 6.5rem;
+    width: 3.9rem;
+    margin-left: -1.95rem;
   }
 
   .folx-scroll .icon-card-inner {
-    width: 4.4rem;
-    height: 4.4rem;
-    border-radius: 18px;
+    width: 3.45rem;
+    height: 3.45rem;
+    border-radius: 13px;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"],
+  .folx-scroll .icon-row:focus-within {
+    width: 100%;
+    height: 8.25rem;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(1) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(1) .icon-card-fan {
+    translate: -7.4rem 0.45rem;
+    rotate: -14deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(2) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(2) .icon-card-fan {
+    translate: -3.7rem 0.12rem;
+    rotate: -7deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(3) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(3) .icon-card-fan {
+    translate: 0 -0.12rem;
+    rotate: 0deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(4) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(4) .icon-card-fan {
+    translate: 3.7rem 0.12rem;
+    rotate: 7deg;
+  }
+
+  .folx-scroll .icon-row[data-fan="true"] .icon-card:nth-child(5) .icon-card-fan,
+  .folx-scroll .icon-row:focus-within .icon-card:nth-child(5) .icon-card-fan {
+    translate: 7.4rem 0.45rem;
+    rotate: 14deg;
+  }
+
+  .folx-scroll .anim-text-container .copy-container {
+    box-sizing: border-box;
+    align-items: flex-start;
+    height: 100%;
+    padding: 30vh 1.15rem 2rem;
   }
 
   .folx-scroll .anim-text p {

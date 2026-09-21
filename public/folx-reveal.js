@@ -33,7 +33,7 @@
       var span = word.querySelector("span");
       var shown = local > 0.02;
       var pill = local < 0.86 ? 1 : 1 - (local - 0.86) / 0.14;
-      var text = local < 0.86 ? 0 : (local - 0.86) / 0.14;
+      var text = Math.max(0, Math.min(1, (local - 0.02) / 0.1));
       word.style.opacity = shown ? "1" : "0";
       word.style.setProperty("--grey", keyword ? "0" : String(Math.max(0, Math.min(1, pill))));
       word.style.setProperty("--accent", keyword ? String(Math.max(0, Math.min(1, local))) : "0");
@@ -55,18 +55,6 @@
       lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
-
-    var cards = document.querySelectorAll(".folx-scroll .icon-card");
-    if (cards.length) {
-      gsap.from(cards, {
-        y: 24,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.08,
-        ease: "power3.out",
-        delay: 0.1,
-      });
-    }
 
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

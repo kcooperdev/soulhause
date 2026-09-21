@@ -58,7 +58,7 @@ html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
   position: fixed;
   top: max(0.85rem, env(safe-area-inset-top));
   right: max(0.85rem, env(safe-area-inset-right));
-  z-index: 20;
+  z-index: 40;
   margin: 0;
   min-height: 44px;
   padding: 0.35rem 0.55rem;
@@ -82,6 +82,184 @@ html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
   display: block;
   width: 1.2rem;
   height: 1.38rem;
+}
+
+.house-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  min-height: 4.25rem;
+  padding: max(0.85rem, env(safe-area-inset-top)) 8.5rem 0.75rem
+    max(1.25rem, env(safe-area-inset-left));
+  pointer-events: none;
+}
+
+.house-nav-mark,
+.house-nav-links a {
+  pointer-events: auto;
+}
+
+.house-nav-mark {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  color: #f4be3c;
+  text-decoration: none;
+}
+
+.house-nav-mark:focus-visible,
+.house-nav-links a:focus-visible {
+  outline: 2px solid #f4be3c;
+  outline-offset: 4px;
+}
+
+.house-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.35rem;
+}
+
+.house-nav-links a {
+  color: color-mix(in oklab, #f3efe6 70%, transparent);
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.house-nav-links a:hover,
+.house-nav-links a[aria-current="page"] {
+  color: #f4be3c;
+}
+
+html:has(.house-page),
+html:has(.house-page) body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: #080808 !important;
+  color: #f3efe6;
+}
+
+.house-page {
+  min-height: 100dvh;
+  background: #080808;
+  color: #f3efe6;
+}
+
+.gold-points {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gold-points li {
+  padding: 0.75rem 0;
+  border-top: 1px solid color-mix(in oklab, #f3efe6 16%, transparent);
+  font-size: 1.02rem;
+}
+
+.exp-table {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.exp-table th,
+.exp-table td {
+  padding: 1rem 0.85rem 1rem 0;
+  border-bottom: 1px solid color-mix(in oklab, #f3efe6 16%, transparent);
+  vertical-align: top;
+}
+
+.exp-table thead th {
+  color: #f4be3c;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.exp-table tbody th {
+  width: 38%;
+  padding-right: 1.25rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.exp-table td {
+  color: color-mix(in oklab, #f3efe6 78%, transparent);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .exp-table,
+  .exp-table tbody,
+  .exp-table tr,
+  .exp-table th,
+  .exp-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .exp-table thead {
+    display: none;
+  }
+
+  .exp-table tr {
+    padding: 1rem 0;
+    border-bottom: 1px solid color-mix(in oklab, #f3efe6 16%, transparent);
+  }
+
+  .exp-table tbody th,
+  .exp-table td {
+    padding: 0.2rem 0;
+    border: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .house-nav {
+    position: relative;
+    justify-content: space-between;
+    padding-right: max(0.85rem, env(safe-area-inset-right));
+  }
+
+  .house-nav .gold-sound {
+    position: static;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .house-nav {
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    padding-right: max(0.85rem, env(safe-area-inset-right));
+  }
+
+  .house-nav-links {
+    gap: 0.45rem 0.85rem;
+  }
+
+  .house-nav-links a {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 .reveal-pin {

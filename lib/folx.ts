@@ -1,28 +1,28 @@
 export const folx = {
   name: "TechFolx",
-  line: "mixer, network, learn",
-  hero: "Meet the room.",
-  cta: "Get on the list",
-  ctaAria: "Get on the list",
+  line: "Where interaction meets space.",
+  hero: "Tech that moves people.",
+  cta: "Join the experience",
+  ctaAria: "Join the experience",
   scroll: "Scroll",
-  close: "Come through.",
-  phonetic: "tek fōk",
+  close: "Step inside.",
+  phonetic: "tek fōks",
   reveal: [
-    "TechFolx is where tech, community, and real social energy come together. It’s a space built for connection, where the vibe makes networking feel natural, not transactional.",
-    "People show up, talk tech, share ideas, and leave with new relationships that actually matter. It’s tech, but with people at the center and momentum in the room.",
+    "TechFolx creates tech-infused immersive experiences that blend interaction, spatial flow, and sensory design. It is a physical space built for discovery.",
+    "We design how people move, discover, and engage with technology inside physical spaces. Learning is the point of the experience.",
   ],
   revealSections: [
     [
-      "TechFolx is where tech, community, and real social energy come together. It’s a space built for connection, where the vibe makes networking feel natural, not transactional.",
-      "People show up, talk tech, share ideas, and leave with new relationships that actually matter. It’s tech, but with people at the center and momentum in the room.",
+      "TechFolx creates tech-infused immersive experiences that blend interaction, spatial flow, and sensory design. It is a physical space built for discovery.",
+      "We design how people move, discover, and engage with technology inside physical spaces. Learning is the point of the experience.",
     ],
   ],
   manifesto:
-    "It’s tech, but with people at the center and momentum in the room.",
+    "TechFolx transforms physical spaces into interactive, tech-driven experiences that teach, engage, and immerse people.",
   night:
-    "Show up. Meet someone. Leave having learned something.",
+    "We design how people move, discover, and engage with technology inside physical spaces.",
   leave:
-    "You leave with a new connection and something you actually used.",
+    "You leave knowing something you actually used.",
   field: [
     {
       kind: "ai" as const,

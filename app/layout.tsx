@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
-        <Script src="/folx-reveal.js?v=scrub1" strategy="beforeInteractive" />
+        <Script src="/folx-reveal.js?v=scrub4" strategy="beforeInteractive" />
       </head>
       <body
         className="h-full min-h-full bg-paper font-sans text-ink"

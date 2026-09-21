@@ -1,29 +1,50 @@
 export const brand = {
   name: "TechFolx",
-  line: "building together",
-  sell: "Tech, social, and community in one house. We learn, have fun, build, and grow together.",
+  line: "Where interaction meets space.",
+  sell: "TechFolx transforms physical spaces into interactive, tech-driven experiences that teach, engage, and immerse people.",
   position:
-    "TechFolx is a tech community — a real room to learn, have fun, build, and grow together. Not a conference. Not a mixer. Get on the list.",
-  words: ["tech", "social", "community", "build"] as const,
+    "TechFolx creates tech-infused immersive experiences that blend interaction, spatial flow, and sensory design.",
+  lede: "We design how people move, discover, and engage with technology inside physical spaces.",
+  words: ["interaction", "immersion", "flow", "discovery", "learning"] as const,
   site: "https://soulhause.com",
   luma: "https://luma.com/soulhause",
   email: "hello@soulhause.com",
   logo: "/soulhause-logo.png",
 } as const;
 
-export const brandLineFull = "building together";
+export const brandLineFull = "Where interaction meets space";
 
 export const brandPillars = [
   {
-    name: "The house",
-    line: "Tech, social, and community in one room.",
+    id: "installations",
+    name: "Immersive Tech Installations",
+    line: "Technology people can touch, watch, and trigger.",
+    points: [
+      "Interactive screens",
+      "Projection mapping",
+      "Sensor-based experiences",
+      "Data-driven visuals",
+    ],
   },
   {
-    name: "The night",
-    line: "Learn, have fun, and show up for each other.",
+    id: "spatial",
+    name: "Spatial Experience Design",
+    line: "How a person moves through a room is part of the design.",
+    points: [
+      "Flow mapping",
+      "Discovery moments",
+      "Sensory storytelling",
+      "Tech-enhanced pathways",
+    ],
   },
   {
-    name: "The build",
-    line: "We grow by making things together.",
+    id: "learning",
+    name: "Tech-Driven Learning Environments",
+    line: "Experiences that teach by letting people interact.",
+    points: [
+      "Hands-on tech labs",
+      "Interactive educational exhibits",
+      "Digital-physical hybrid learning",
+    ],
   },
 ] as const;

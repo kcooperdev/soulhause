@@ -29,7 +29,12 @@ function useMarketingPage(enabled: boolean, night: boolean) {
 export function MarketingShell({ children }: { children: ReactNode }) {
   const path = usePathname();
   const house =
-    path === "/" || path === "/tech-after-dark" || path === "/about";
+    path === "/" ||
+    path === "/about" ||
+    path === "/experiences" ||
+    path === "/spatial" ||
+    path === "/learning" ||
+    path === "/tech-after-dark";
   const hause = path === "/tech-hause";
   const sprint = path === "/the-sprint";
   useMarketingPage(!house, false);

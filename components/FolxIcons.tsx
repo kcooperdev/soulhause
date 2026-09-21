@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { folx } from "@/lib/folx";
 
 function Shape({ children, label }: { children: React.ReactNode; label: string }) {
@@ -10,8 +13,43 @@ function Shape({ children, label }: { children: React.ReactNode; label: string }
 }
 
 export function FolxIcons() {
+  const [fan, setFan] = useState(false);
+
+  const openFan = () => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) setFan(true);
+  };
+  const closeFan = () => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) setFan(false);
+  };
+
   return (
-    <div className="icon-row">
+    <div className="icon-stage">
+      <p className="icon-cue">
+        <span>tap</span>
+        <svg className="crayon-arrow" viewBox="0 0 88 70" aria-hidden="true">
+          <g
+            fill="none"
+            stroke="#f4be3c"
+            strokeWidth="7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M68 8C54 16 44 32 38 54" />
+            <path d="M38 54 18 40" />
+            <path d="M38 54 56 42" />
+          </g>
+        </svg>
+      </p>
+      <div
+        className="icon-row"
+        data-fan={fan ? "true" : "false"}
+        onMouseEnter={openFan}
+        onMouseLeave={closeFan}
+        onClick={() => {
+          if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+          setFan((open) => !open);
+        }}
+      >
       {folx.field.map((item) => (
         <article
           key={item.kind}
@@ -20,6 +58,7 @@ export function FolxIcons() {
           tabIndex={0}
           aria-label={item.name}
         >
+          <div className="icon-card-fan">
           <div className="icon-card-inner">
             {item.kind === "ai" ? (
               <Shape label="AI">
@@ -71,8 +110,10 @@ export function FolxIcons() {
             ) : null}
           </div>
           <p className="icon-label">{item.name}</p>
+          </div>
         </article>
       ))}
+      </div>
     </div>
   );
 }
