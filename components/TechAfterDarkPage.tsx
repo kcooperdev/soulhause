@@ -80,7 +80,7 @@ export function TechAfterDarkPage() {
               <div className="cta-stack">
                 <a
                   className="hero-cta"
-                  href="/experiences"
+                  href="https://luma.com/tech-after-dark?period=past"
                   aria-label={folx.ctaAria}
                 >
                   {folx.cta}
@@ -151,7 +151,7 @@ export function TechAfterDarkPage() {
             <div className="cta-stack">
               <a
                 className="hero-cta"
-                href="/experiences"
+                href="https://luma.com/tech-after-dark?period=past"
                 aria-label={folx.ctaAria}
               >
                 {folx.cta}
