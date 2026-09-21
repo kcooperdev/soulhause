@@ -72,6 +72,7 @@ html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
   line-height: 1;
   text-transform: uppercase;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .gold-sound[aria-pressed="true"] {
