@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { FolxIcons } from "@/components/FolxIcons";
 import { HouseNav } from "@/components/HouseNav";
 import { RoomSound } from "@/components/RoomSound";
@@ -67,6 +68,25 @@ function tokenize(line: string): Piece[] {
 }
 
 export function TechAfterDarkPage() {
+  useEffect(() => {
+    const boot = () => {
+      const start = (
+        window as Window & { bootFolxReveal?: () => void }
+      ).bootFolxReveal;
+      start?.();
+    };
+    const ready = document.querySelector('script[data-folx-reveal]');
+    if (ready) {
+      boot();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "/folx-reveal.js?v=scrub5";
+    script.dataset.folxReveal = "true";
+    script.onload = boot;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <>
       <HouseNav>

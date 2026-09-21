@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Barlow_Condensed, DM_Sans, Public_Sans, Syne } from "next/font/google";
 import { ThemeSync } from "@/components/ThemeSync";
 import { brand } from "@/lib/brand";
@@ -56,7 +55,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
-        <Script src="/folx-reveal.js?v=scrub4" strategy="beforeInteractive" />
       </head>
       <body
         className="h-full min-h-full bg-paper font-sans text-ink"

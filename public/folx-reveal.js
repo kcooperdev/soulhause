@@ -1,4 +1,4 @@
-(function bootFolxReveal() {
+window.bootFolxReveal = function bootFolxReveal() {
   if (window.__folxReveal) return;
   window.__folxReveal = true;
 
@@ -114,4 +114,4 @@
       return load("/vendor/lenis.min.js");
     })
     .then(wait);
-})();
+};
