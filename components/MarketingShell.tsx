@@ -31,7 +31,8 @@ export function MarketingShell({ children }: { children: ReactNode }) {
   const house =
     path === "/" ||
     path === "/about" ||
-    path === "/tech-after-dark";
+    path === "/tech-after-dark" ||
+    path === "/offer";
   const hause = path === "/tech-hause";
   const sprint = path === "/the-sprint";
   useMarketingPage(!house, false);

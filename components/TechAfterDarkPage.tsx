@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { FolxIcons } from "@/components/FolxIcons";
 import { HouseNav } from "@/components/HouseNav";
 import { RoomSound } from "@/components/RoomSound";
@@ -98,13 +99,9 @@ export function TechAfterDarkPage() {
             <div className="hero-copy">
               <h1>{folx.hero}</h1>
               <div className="cta-stack">
-                <a
-                  className="hero-cta"
-                  href="https://luma.com/tech-after-dark?period=past"
-                  aria-label={folx.ctaAria}
-                >
+                <Link className="hero-cta" href="/offer" aria-label={folx.ctaAria}>
                   {folx.cta}
-                </a>
+                </Link>
               </div>
             </div>
             <div className="hero-foot">
@@ -169,13 +166,9 @@ export function TechAfterDarkPage() {
           <div className="copy-container">
             <h2>{folx.close}</h2>
             <div className="cta-stack">
-              <a
-                className="hero-cta"
-                href="https://luma.com/tech-after-dark?period=past"
-                aria-label={folx.ctaAria}
-              >
+              <Link className="hero-cta" href="/offer" aria-label={folx.ctaAria}>
                 {folx.cta}
-              </a>
+              </Link>
             </div>
           </div>
         </section>
