@@ -171,7 +171,7 @@ export function OfferPath({ side }: { side: Side }) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const sceneRef = useRef<HTMLElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const receiptRef = useRef<HTMLElement>(null);
+  const receiptRef = useRef<HTMLDivElement>(null);
   const pressedRef = useRef<HTMLAnchorElement | null>(null);
   const focusedRef = useRef(false);
 
