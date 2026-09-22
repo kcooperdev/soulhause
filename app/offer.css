@@ -10,6 +10,10 @@ html:has(.offer-path) {
   overflow-y: scroll !important;
 }
 
+html:has(.offer-path) .house-nav {
+  position: fixed;
+}
+
 html:has(.offer-path) body {
   overflow: visible !important;
 }
@@ -528,6 +532,16 @@ html:has(.offer-path) body {
   }
 }
 
+@keyframes path-arrow-bounce-up {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 .folx-scroll.offer-path .path-skip {
   margin: 0;
   padding: 0;
@@ -1008,8 +1022,68 @@ html:has(.offer-path) body {
   }
 
   .folx-scroll.offer-path .path-pin-scroll .path-drink {
-    width: min(78vw, 20rem);
+    width: min(62vw, 15rem);
     height: auto;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-scene-sticky,
+  .folx-scroll.offer-path .path-pin-scroll .path-scene-sticky.is-held {
+    height: 100svh;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-top: max(3.5rem, calc(env(safe-area-inset-top) + 2.6rem));
+  }
+
+  .folx-scroll.offer-path[data-side="spectator"] .path-pin-scroll .path-frame {
+    height: min(42svh, 18rem);
+  }
+
+  .folx-scroll.offer-path .path-slip,
+  .folx-scroll.offer-path .path-pane {
+    width: min(20.5rem, calc(100% - 1.5rem));
+  }
+
+  .folx-scroll.offer-path .path-slip {
+    padding: 1.15rem 1.05rem 1.2rem;
+  }
+
+  .folx-scroll.offer-path .path-pane {
+    padding: 1.05rem 1rem 1.1rem;
+  }
+
+  .folx-scroll.offer-path .path-slip h1,
+  .folx-scroll.offer-path .path-pane h1 {
+    font-size: 1.35rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .folx-scroll.offer-path .path-slip-kicker {
+    margin-bottom: 0.55rem;
+  }
+
+  .folx-scroll.offer-path .path-receipt-in .path-price {
+    margin-top: 0.7rem;
+  }
+
+  .folx-scroll.offer-path .path-receipt-in .path-line-slot,
+  .folx-scroll.offer-path .path-receipt-in .path-when {
+    margin-top: 0.75rem;
+  }
+
+  .folx-scroll.offer-path .path-receipt-in .cta-stack {
+    margin-top: 0.9rem;
+  }
+
+  .folx-scroll.offer-path .path-line strong {
+    font-size: 1.08rem;
+  }
+
+  .folx-scroll.offer-path .path-scroll-arrow {
+    animation-name: path-arrow-bounce-up;
+  }
+
+  .folx-scroll.offer-path .path-scroll-arrow svg {
+    transform: rotate(180deg);
   }
 }
 

@@ -176,6 +176,11 @@ export function OfferPath({ side }: { side: Side }) {
   const focusedRef = useRef(false);
 
   useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const scene = sceneRef.current;
     const sticky = stickyRef.current;
     const receipt = receiptRef.current;
