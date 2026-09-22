@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const FILM_ID = "zE7PKRjrid4";
 const HEARD = 80;
 const START_AT = 80;
 const END_AT = 105;
-const CALENDAR = "https://luma.com/techfolx";
-
 type Phase = "film" | "black" | "still";
+type Side = "experience" | "spectator";
 
 type FilmPlayer = {
   playVideo: () => void;
@@ -111,8 +111,13 @@ export function OfferPage() {
   const onRef = useRef(false);
   const endedRef = useRef(false);
   const watchRef = useRef(0);
+  const router = useRouter();
   const [on, setOn] = useState(false);
   const [phase, setPhase] = useState<Phase>("film");
+
+  function choose(side: Side) {
+    router.push(side === "experience" ? "/offer/experience" : "/offer/spectator");
+  }
 
   function ramp(to: number) {
     const player = playerRef.current;
@@ -241,8 +246,8 @@ export function OfferPage() {
             src="/offer-pills.png"
             alt="Two open hands. A red pill in the left hand and a blue pill in the right."
           />
-          <button type="button" className="offer-hit offer-hit--red" aria-label="Experience" onClick={() => window.location.assign(CALENDAR)} />
-          <button type="button" className="offer-hit offer-hit--blue" aria-label="Spectator" onClick={() => window.location.assign(CALENDAR)} />
+          <button type="button" className="offer-hit offer-hit--red" aria-label="Experience" onClick={() => choose("experience")} />
+          <button type="button" className="offer-hit offer-hit--blue" aria-label="Spectator" onClick={() => choose("spectator")} />
           <PillCue word="experience" />
           <PillCue word="spectator" />
         </div>

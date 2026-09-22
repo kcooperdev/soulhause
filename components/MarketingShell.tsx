@@ -32,7 +32,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
     path === "/" ||
     path === "/about" ||
     path === "/tech-after-dark" ||
-    path === "/offer";
+    path.startsWith("/offer");
   const hause = path === "/tech-hause";
   const sprint = path === "/the-sprint";
   useMarketingPage(!house, false);

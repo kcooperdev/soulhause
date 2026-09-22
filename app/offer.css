@@ -5,6 +5,15 @@ html:has(.offer-page) body {
   overflow: hidden !important;
 }
 
+html:has(.offer-path) {
+  overflow-x: clip !important;
+  overflow-y: scroll !important;
+}
+
+html:has(.offer-path) body {
+  overflow: visible !important;
+}
+
 .offer-page {
   position: fixed;
   inset: 0;
@@ -259,6 +268,996 @@ html:has(.offer-page) body {
 @media (hover: none), (max-aspect-ratio: 3/2) {
   .offer-cue {
     opacity: 1;
+  }
+}
+
+.folx-scroll.offer-path,
+.folx-scroll.offer-path .hero-cta,
+.folx-scroll.offer-path .path-price span,
+.folx-scroll.offer-path .path-lede,
+.folx-scroll.offer-path .path-detail,
+.folx-scroll.offer-path .path-list p,
+.folx-scroll.offer-path .path-ways a {
+  font-family: var(--font-display), sans-serif;
+}
+
+.folx-scroll.offer-path[data-side="experience"] .path-scene-sticky {
+  background:
+    radial-gradient(ellipse at 74% 48%, rgba(70, 255, 130, 0.2), transparent 46%),
+    #080808;
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-scene-sticky {
+  background:
+    radial-gradient(ellipse at 74% 48%, rgba(160, 80, 255, 0.32), transparent 46%),
+    #080808;
+}
+
+.folx-scroll.offer-path .path-scene-sticky {
+  --move: 0;
+  --p: 0;
+  --fade: 0;
+  --ice: clamp(0, var(--p) / 0.18, 1);
+  --iceb: clamp(0, (var(--p) - 0.08) / 0.16, 1);
+  --pour: clamp(0, (var(--p) - 0.22) / 0.16, 1);
+  --lime: clamp(0, (var(--p) - 0.42) / 0.14, 1);
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  height: 100dvh;
+  padding: 5.25rem clamp(1.25rem, 4vw, 4rem) 1.5rem;
+}
+
+.folx-scroll.offer-path .path-script {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.folx-scroll.offer-path .path-stage {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.folx-scroll.offer-path .path-stage {
+  position: relative;
+  display: grid;
+  justify-items: end;
+  align-items: center;
+  min-height: 0;
+  height: 100%;
+}
+
+.folx-scroll.offer-path .path-neon {
+  width: auto;
+  max-width: 100%;
+  height: min(86dvh, 100%);
+  object-fit: contain;
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-neon {
+  filter: drop-shadow(0 0 calc(4px + var(--move) * 14px) #b388ff);
+}
+
+.folx-scroll.offer-path[data-side="experience"] .path-neon {
+  filter: drop-shadow(0 0 calc(4px + var(--p) * 18px) #39ff7a);
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-pin-scroll .path-stage {
+  transform: none;
+  overflow: visible;
+  width: min(72vw, 24rem);
+  height: auto;
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-pin-scroll .path-frame {
+  overflow: hidden;
+  width: 100%;
+  height: min(68dvh, 34rem);
+  mask-image: radial-gradient(closest-side, #000 68%, transparent 100%);
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-figure {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center 42%;
+  transform-origin: 50% 18%;
+  transform: translate3d(0, calc((1 - var(--walk, 0)) * 28%), 0)
+    scale(calc(0.72 + var(--walk, 0) * 0.28 + var(--zoom, 0) * 1.85));
+  animation: path-figure-live 5.4s ease-in-out infinite;
+}
+
+@keyframes path-figure-live {
+  0%,
+  100% {
+    filter: brightness(1) drop-shadow(0 0 12px rgba(160, 90, 255, 0.28));
+  }
+  50% {
+    filter: brightness(1.12) drop-shadow(0 0 26px rgba(180, 110, 255, 0.55));
+  }
+}
+
+.folx-scroll.offer-path[data-side="experience"] .path-stage {
+  transform: none;
+}
+
+.folx-scroll.offer-path section.path-scene,
+.folx-scroll.offer-path section.path-receipt-scroll {
+  height: auto;
+  padding: 0;
+  overflow: visible;
+}
+
+.folx-scroll.offer-path .path-pin-scroll {
+  position: relative;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-scene-sticky {
+  --cue: 1;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
+  place-items: center;
+  z-index: 5;
+  width: 100%;
+  padding: 0 0 0.35rem;
+}
+
+.folx-scroll.offer-path[data-side="experience"] .path-pin-scroll .path-scene-sticky {
+  background:
+    radial-gradient(ellipse at 50% 48%, rgba(70, 255, 130, 0.24), transparent 48%),
+    #080808;
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-pin-scroll .path-scene-sticky {
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(160, 80, 255, 0.32), transparent 48%),
+    #080808;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-scene-sticky.is-held {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-scene-sticky.is-parked {
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100dvh;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-stage,
+.folx-scroll.offer-path .path-pin-scroll .path-receipt-in {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-stage {
+  justify-items: center;
+  width: min(100%, 36rem);
+  height: auto;
+  opacity: calc(1 - var(--fade));
+  z-index: 1;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-receipt-in {
+  position: relative;
+  top: auto;
+  align-self: center;
+  z-index: 2;
+  width: min(40rem, calc(100% - 2.5rem));
+  height: auto;
+  max-height: 100%;
+  margin: 0;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+  opacity: var(--fade);
+  pointer-events: none;
+}
+
+.folx-scroll.offer-path .path-receipt-in .path-place {
+  font-size: 1.35rem;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-scene-sticky[data-swapped="true"] .path-receipt-in {
+  pointer-events: auto;
+}
+
+.folx-scroll.offer-path .path-pin-foot {
+  grid-column: 1;
+  grid-row: 2;
+  z-index: 6;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 1.25rem;
+  width: 100%;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.folx-scroll.offer-path .path-object {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.folx-scroll.offer-path .path-scroll-cue {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  margin: 0;
+  color: rgba(244, 244, 244, 0.92);
+  opacity: var(--cue);
+  pointer-events: none;
+  translate: -50% 0;
+}
+
+.folx-scroll.offer-path[data-side="experience"] .path-scroll-cue {
+  top: 82%;
+  bottom: auto;
+}
+
+.folx-scroll.offer-path[data-side="spectator"] .path-scroll-cue {
+  top: calc(100% + 0.15rem);
+}
+
+.folx-scroll.offer-path .path-scroll-arrow {
+  display: block;
+  animation: path-arrow-bounce 1.15s ease-in-out infinite;
+}
+
+@keyframes path-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.folx-scroll.offer-path .path-skip {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(244, 244, 244, 0.86);
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.folx-scroll.offer-path .path-skip {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.folx-scroll.offer-path .path-scene-sticky[data-swapped="true"] .path-scroll-cue,
+.folx-scroll.offer-path .path-scene-sticky[data-swapped="true"] .path-skip {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.folx-scroll.offer-path .path-pin-foot .path-ways {
+  margin: 0;
+  justify-content: center;
+}
+
+.folx-scroll.offer-path .path-kind {
+  margin-right: 0.65rem;
+  color: #f4f4f4;
+}
+
+.folx-scroll.offer-path .path-receipt-in .path-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin: 1.35rem 0 0;
+}
+
+.folx-scroll.offer-path .path-line-slot {
+  min-height: 3.6rem;
+}
+
+.folx-scroll.offer-path .path-line {
+  display: none;
+  margin: 0;
+  max-width: 36rem;
+}
+
+.folx-scroll.offer-path .path-line.is-on {
+  display: block;
+}
+
+.folx-scroll.offer-path .path-line strong,
+.folx-scroll.offer-path .path-line span {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+}
+
+.folx-scroll.offer-path .path-line strong {
+  color: #f4f4f4;
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  letter-spacing: -0.04em;
+}
+
+.folx-scroll.offer-path .path-line span {
+  margin-top: 0.3rem;
+  color: rgba(244, 244, 244, 0.9);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.folx-scroll.offer-path .path-pin-scroll .path-drink {
+  position: relative;
+  width: min(70vw, 22rem, 54dvh);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.folx-scroll.offer-path .path-shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.folx-scroll.offer-path .path-shot-ice {
+  opacity: calc(var(--ice) * (1 - max(0, var(--pour) - 0.35) / 0.65));
+  transform: translate3d(0, calc((1 - var(--ice)) * -46%), 0);
+}
+
+.folx-scroll.offer-path .path-shot-pour {
+  opacity: 1;
+  clip-path: inset(calc(71% - var(--pour) * 26%) 26% 28% 26%);
+}
+
+.folx-scroll.offer-path .path-shot-lime {
+  opacity: var(--lime);
+  transform: translate3d(0, calc((1 - var(--lime)) * -34%), 0)
+    rotate(calc((1 - var(--lime)) * 14deg));
+  transform-origin: 75% 25%;
+}
+
+.folx-scroll.offer-path .path-drink::after {
+  content: "";
+  position: absolute;
+  inset: 22% 24% 20%;
+  background: linear-gradient(
+    118deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+  animation: path-sheen 5.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes path-sheen {
+  0%,
+  100% {
+    transform: translateX(-14%);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateX(14%);
+    opacity: 0.55;
+  }
+}
+
+.folx-scroll.offer-path .path-receipt-sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  height: 100dvh;
+  overflow: hidden;
+  padding: 5rem clamp(1.25rem, 4vw, 3rem) 1.25rem;
+  background: #080808;
+}
+
+.folx-scroll.offer-path .path-receipt-sticky h1 {
+  max-width: 16ch;
+  margin: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed rgba(244, 244, 244, 0.45);
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.folx-scroll.offer-path .path-receipt-in h1:focus {
+  outline: none;
+}
+
+.folx-scroll.offer-path .path-slip,
+.folx-scroll.offer-path .path-pane {
+  width: min(23rem, 100%);
+}
+
+.folx-scroll.offer-path .path-slip {
+  position: relative;
+  margin: 0.15rem 0;
+  padding: 2rem 1.65rem 2.2rem;
+  color: #1c1a16;
+  background: linear-gradient(#f7f4ee, #efe8da) center / 100% calc(100% - 18px) no-repeat;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
+}
+
+.folx-scroll.offer-path .path-slip::before,
+.folx-scroll.offer-path .path-slip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: #f7f4ee;
+  pointer-events: none;
+}
+
+.folx-scroll.offer-path .path-slip::before {
+  top: -1px;
+  clip-path: polygon(
+    0% 100%, 2% 0%, 4% 100%, 6% 0%, 8% 100%, 10% 0%, 12% 100%, 14% 0%, 16% 100%, 18% 0%,
+    20% 100%, 22% 0%, 24% 100%, 26% 0%, 28% 100%, 30% 0%, 32% 100%, 34% 0%, 36% 100%, 38% 0%,
+    40% 100%, 42% 0%, 44% 100%, 46% 0%, 48% 100%, 50% 0%, 52% 100%, 54% 0%, 56% 100%, 58% 0%,
+    60% 100%, 62% 0%, 64% 100%, 66% 0%, 68% 100%, 70% 0%, 72% 100%, 74% 0%, 76% 100%, 78% 0%,
+    80% 100%, 82% 0%, 84% 100%, 86% 0%, 88% 100%, 90% 0%, 92% 100%, 94% 0%, 96% 100%, 98% 0%,
+    100% 100%
+  );
+}
+
+.folx-scroll.offer-path .path-slip::after {
+  bottom: -1px;
+  background: #efe8da;
+  clip-path: polygon(
+    0% 0%, 2% 100%, 4% 0%, 6% 100%, 8% 0%, 10% 100%, 12% 0%, 14% 100%, 16% 0%, 18% 100%,
+    20% 0%, 22% 100%, 24% 0%, 26% 100%, 28% 0%, 30% 100%, 32% 0%, 34% 100%, 36% 0%, 38% 100%,
+    40% 0%, 42% 100%, 44% 0%, 46% 100%, 48% 0%, 50% 100%, 52% 0%, 54% 100%, 56% 0%, 58% 100%,
+    60% 0%, 62% 100%, 64% 0%, 66% 100%, 68% 0%, 70% 100%, 72% 0%, 74% 100%, 76% 0%, 78% 100%,
+    80% 0%, 82% 100%, 84% 0%, 86% 100%, 88% 0%, 90% 100%, 92% 0%, 94% 100%, 96% 0%, 98% 100%,
+    100% 0%
+  );
+}
+
+.folx-scroll.offer-path .path-slip-kicker {
+  margin: 0.35rem 0 1rem;
+  color: #1c1a16;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.folx-scroll.offer-path .path-slip h1,
+.folx-scroll.offer-path .path-slip .path-kind,
+.folx-scroll.offer-path .path-slip .path-price,
+.folx-scroll.offer-path .path-slip .path-line strong,
+.folx-scroll.offer-path .path-slip .path-line span,
+.folx-scroll.offer-path .path-slip .path-when {
+  color: #1c1a16;
+}
+
+.folx-scroll.offer-path .path-slip h1 {
+  max-width: none;
+  font-size: clamp(1.45rem, 4vw, 1.85rem);
+  border-bottom-color: rgba(28, 26, 22, 0.4);
+}
+
+.folx-scroll.offer-path .path-slip .path-line span {
+  color: rgba(28, 26, 22, 0.78);
+}
+
+.folx-scroll.offer-path .path-pane {
+  position: relative;
+  padding: 1.9rem 1.6rem 2rem;
+  border: 9px solid #101014;
+  color: #f4f4f4;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.16), transparent 24%, transparent 70%, rgba(255, 255, 255, 0.05)),
+    linear-gradient(180deg, rgba(16, 8, 28, 0.92), rgba(8, 4, 16, 0.94));
+  box-shadow:
+    inset 0 0 0 1px rgba(198, 156, 255, 0.92),
+    inset 0 0 42px rgba(88, 24, 170, 0.28),
+    0 18px 36px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.folx-scroll.offer-path .path-pane::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/offer-spectator-real.png") center 40% / cover;
+  opacity: 0.34;
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, #000 0%, transparent 24%, transparent 76%, #000 100%);
+}
+
+.folx-scroll.offer-path .path-pane > * {
+  position: relative;
+  z-index: 1;
+}
+
+.folx-scroll.offer-path .path-pane h1 {
+  max-width: none;
+  font-size: clamp(1.5rem, 4vw, 1.95rem);
+  border-bottom-color: rgba(244, 244, 244, 0.45);
+}
+
+.folx-scroll.offer-path .path-pane .path-price,
+.folx-scroll.offer-path .path-pane .path-kind {
+  color: #f4f4f4;
+}
+
+.folx-scroll.offer-path .path-receipt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: min(36rem, 100%);
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(244, 244, 244, 0.45);
+}
+
+.folx-scroll.offer-path .path-receipt p {
+  margin: 0;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.45;
+}
+
+.folx-scroll.offer-path .path-receipt-line {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.82em;
+  font-weight: 500;
+}
+
+.folx-scroll.offer-path .path-receipt .path-price .word > span {
+  color: #f4be3c;
+}
+
+.folx-scroll.offer-path .path-receipt-in .path-line-slot {
+  margin-top: 1.55rem;
+}
+
+.folx-scroll.offer-path .path-receipt-in .path-when {
+  margin-top: 1.85rem;
+}
+
+.folx-scroll.offer-path .path-receipt-in .cta-stack {
+  margin: 2rem 0 0.35rem;
+}
+
+.folx-scroll.offer-path .path-drink {
+  width: auto;
+  max-width: 100%;
+  height: min(78dvh, 34rem);
+  overflow: visible;
+}
+
+.folx-scroll.offer-path .path-glass,
+.folx-scroll.offer-path .path-ice,
+.folx-scroll.offer-path .path-meniscus,
+.folx-scroll.offer-path .path-citrus {
+  fill: none;
+  stroke: #c6ff4d;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.folx-scroll.offer-path .path-liquor {
+  fill: rgba(140, 255, 70, 0.38);
+  stroke: none;
+}
+
+.folx-scroll.offer-path .path-pour {
+  transform: scaleY(var(--pour));
+  transform-origin: 220px 400px;
+  transform-box: view-box;
+}
+
+.folx-scroll.offer-path .path-ice-a {
+  transform: translateY(calc((1 - var(--ice)) * -120px)) rotate(calc((1 - var(--ice)) * -14deg));
+  transform-origin: 194px 220px;
+  opacity: clamp(0, var(--ice) * 2.4, 1);
+}
+
+.folx-scroll.offer-path .path-ice-b {
+  transform: translateY(calc((1 - var(--iceb)) * -150px)) rotate(calc((1 - var(--iceb)) * 18deg));
+  transform-origin: 242px 258px;
+  opacity: clamp(0, var(--iceb) * 2.4, 1);
+}
+
+.folx-scroll.offer-path .path-citrus {
+  transform: translate(calc((1 - var(--lime)) * 56px), calc((1 - var(--lime)) * -110px))
+    rotate(calc((1 - var(--lime)) * 26deg));
+  transform-origin: 318px 118px;
+  transform-box: view-box;
+  opacity: clamp(0, var(--lime) * 3, 1);
+}
+
+.folx-scroll.offer-path .path-script {
+  position: relative;
+  min-height: 16rem;
+}
+
+.folx-scroll.offer-path .path-lines {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.folx-scroll.offer-path .path-scene-sticky[data-revealed="true"] .path-lines {
+  opacity: 1;
+  transform: none;
+}
+
+.folx-scroll.offer-path .path-beat {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  width: min(22rem, 100%);
+}
+
+.folx-scroll.offer-path .path-beat.is-on {
+  display: flex;
+}
+
+.folx-scroll.offer-path .path-beat h1,
+.folx-scroll.offer-path .path-beat h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.96;
+}
+
+.folx-scroll.offer-path .path-beat p {
+  margin: 0;
+  max-width: 28ch;
+  color: rgba(244, 244, 244, 0.9);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .folx-scroll.offer-path .path-scene-sticky {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 46dvh) auto;
+    align-content: center;
+  }
+
+  .folx-scroll.offer-path .path-stage,
+  .folx-scroll.offer-path .path-script {
+    grid-column: 1;
+  }
+
+  .folx-scroll.offer-path .path-stage {
+    grid-row: 1;
+  }
+
+  .folx-scroll.offer-path .path-script {
+    grid-row: 2;
+  }
+
+  .folx-scroll.offer-path .path-neon {
+    width: min(100%, 22rem);
+    height: 44dvh;
+  }
+
+  .folx-scroll.offer-path[data-side="spectator"] .path-stage {
+    transform: translate3d(0, calc((1 - var(--move)) * 22vh), 0)
+      scale(calc(1.18 - var(--move) * 0.18));
+  }
+
+  .folx-scroll.offer-path[data-side="experience"] .path-stage {
+    transform: none;
+  }
+
+  .folx-scroll.offer-path .path-drink {
+    width: auto;
+    height: min(42dvh, 18rem);
+  }
+
+  .folx-scroll.offer-path .path-beat h1,
+  .folx-scroll.offer-path .path-beat h2 {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-scene-sticky {
+    grid-template-rows: 1fr auto;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-stage {
+    transform: none;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-drink {
+    width: min(78vw, 20rem);
+    height: auto;
+  }
+}
+
+.folx-scroll.offer-path .anim-text,
+.folx-scroll.offer-path .path-beat p,
+.folx-scroll.offer-path .word,
+.folx-scroll.offer-path .word > span {
+  font-family: var(--font-display), sans-serif;
+}
+
+.folx-scroll .path-scarcity {
+  margin: 0;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.folx-scroll .path-price {
+  margin: 0;
+  color: #f4be3c;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.folx-scroll .offer-path .hero h1 {
+  max-width: 14ch;
+}
+
+.folx-scroll .path-lede,
+.folx-scroll .path-detail {
+  max-width: 36rem;
+  margin: 0;
+  color: #f4f4f4;
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.45;
+}
+
+.folx-scroll .path-when,
+.folx-scroll .path-place {
+  margin: 0;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.folx-scroll .path-when {
+  font-size: 1rem;
+}
+
+.folx-scroll .path-place {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.folx-scroll section.path-included {
+  height: auto;
+  min-height: 100dvh;
+  overflow: visible;
+}
+
+.folx-scroll .path-story {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vh, 3.25rem);
+  width: min(44rem, 100%);
+  text-align: left;
+}
+
+.folx-scroll .path-story h2,
+.folx-scroll .path-close h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.35rem, 6.2vw, 5.2rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.folx-scroll .path-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.6rem, 3.5vh, 2.4rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.folx-scroll .path-list h3 {
+  margin: 0 0 0.3rem;
+  color: #f4f4f4;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.folx-scroll .path-list p {
+  margin: 0;
+  color: rgba(244, 244, 244, 0.9);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  line-height: 1.45;
+}
+
+.folx-scroll.offer-path section.path-close {
+  display: flex;
+  height: 100dvh;
+  min-height: 100dvh;
+}
+
+.folx-scroll .path-close .copy-container {
+  flex-direction: column;
+  gap: clamp(1.4rem, 3vh, 2.2rem);
+}
+
+.folx-scroll .path-ways {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.4rem 1.25rem;
+  margin: 1.25rem 0 0;
+}
+
+.folx-scroll .path-ways a {
+  color: rgba(244, 244, 244, 0.86);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folx-scroll.offer-path .path-scene,
+  .folx-scroll.offer-path .path-receipt-scroll {
+    height: auto !important;
+  }
+
+  .folx-scroll.offer-path .path-receipt-sticky {
+    position: static;
+    height: auto;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-stage {
+    opacity: 0.22;
+  }
+
+  .folx-scroll.offer-path .path-receipt-in,
+  .folx-scroll.offer-path .path-receipt-in .cta-stack {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .folx-scroll.offer-path .path-line {
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+
+  .folx-scroll.offer-path .path-scroll-cue,
+  .folx-scroll.offer-path .path-skip {
+    display: none;
+  }
+
+  .folx-scroll.offer-path .path-scroll-arrow,
+  .folx-scroll.offer-path .path-drink::after,
+  .folx-scroll.offer-path .path-pin-scroll .path-figure {
+    animation: none;
+  }
+
+  .folx-scroll.offer-path .path-scene-sticky {
+    position: static;
+    height: auto;
+    display: block;
+    --p: 1;
+  }
+
+  .folx-scroll.offer-path .path-beat {
+    display: flex;
+    margin-bottom: 2.75rem;
+  }
+
+  .folx-scroll.offer-path .path-stage {
+    transform: none;
+  }
+
+  .folx-scroll.offer-path .path-lines {
+    opacity: 1;
+    transform: none;
+  }
+
+  .folx-scroll.offer-path .path-story-scroll {
+    height: auto !important;
+  }
+
+  .folx-scroll.offer-path .path-story-sticky {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll {
+    height: auto !important;
+    min-height: 100dvh;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-scene-sticky {
+    position: relative;
+    display: grid;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .folx-scroll.offer-path .path-pin-scroll .path-receipt-in {
+    opacity: 1;
+    overflow: visible;
+    max-height: none;
+    pointer-events: auto;
+  }
+
+  .folx-scroll.offer-path .path-beat {
+    display: block;
+  }
+}
+
+.folx-scroll .path-ways a:hover {
+  color: #f4f4f4;
+}
+
+.folx-scroll .path-ways a:focus-visible,
+.folx-scroll .offer-path .hero-cta:focus-visible {
+  outline: 2px solid #f4be3c;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folx-scroll.offer-path.path-can-reveal .path-reveal,
+  .folx-scroll.offer-path.path-can-reveal .path-list .path-line {
+    opacity: 1;
+    transition: none;
   }
 }
 
