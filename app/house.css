@@ -236,8 +236,19 @@ html:has(.house-page) body {
 @media (max-width: 1100px) {
   .house-nav {
     position: relative;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.4rem 1rem;
     padding-right: max(0.85rem, env(safe-area-inset-right));
+  }
+
+  .house-nav-mark {
+    margin-right: auto;
+  }
+
+  .house-nav-links {
+    flex: 1 0 100%;
+    order: 3;
   }
 
   .house-nav .gold-sound {
@@ -247,12 +258,6 @@ html:has(.house-page) body {
 }
 
 @media (max-width: 900px) {
-  .house-nav {
-    flex-wrap: wrap;
-    gap: 0.65rem 1rem;
-    padding-right: max(0.85rem, env(safe-area-inset-right));
-  }
-
   .house-nav-links {
     gap: 0.45rem 0.85rem;
   }
@@ -260,24 +265,6 @@ html:has(.house-page) body {
   .house-nav-links a {
     font-size: 0.62rem;
     letter-spacing: 0.08em;
-  }
-}
-
-@media (max-width: 520px) {
-  .house-nav {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: 0.75rem;
-    row-gap: 0.15rem;
-  }
-
-  .house-nav-links {
-    grid-column: 1 / -1;
-  }
-
-  .house-nav .gold-sound {
-    justify-self: end;
   }
 }
 

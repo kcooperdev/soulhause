@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { FolxIcons } from "@/components/FolxIcons";
 import { HouseNav } from "@/components/HouseNav";
 import { RoomSound } from "@/components/RoomSound";
@@ -101,9 +100,15 @@ export function TechAfterDarkPage() {
             <div className="hero-copy">
               <h1>{folx.hero}</h1>
               <div className="cta-stack">
-                <Link className="hero-cta" href="/offer" aria-label={folx.ctaAria}>
+                <a
+                  className="hero-cta"
+                  href={folx.calendar}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={folx.ctaAria}
+                >
                   {folx.cta}
-                </Link>
+                </a>
               </div>
             </div>
             <div className="hero-foot">
@@ -168,9 +173,15 @@ export function TechAfterDarkPage() {
           <div className="copy-container">
             <h2>{folx.close}</h2>
             <div className="cta-stack">
-              <Link className="hero-cta" href="/offer" aria-label={folx.ctaAria}>
+              <a
+                className="hero-cta"
+                href={folx.calendar}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={folx.ctaAria}
+              >
                 {folx.cta}
-              </Link>
+              </a>
             </div>
           </div>
         </section>

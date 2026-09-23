@@ -4,6 +4,7 @@ export const folx = {
   hero: "Tech that moves people.",
   cta: "Join the experience",
   ctaAria: "Join the experience",
+  calendar: "https://luma.com/techfolx",
   scroll: "Scroll",
   close: "Step inside.",
   phonetic: "tek fōks",
