@@ -91,13 +91,31 @@ html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
   right: 0;
   left: 0;
   z-index: 30;
-  display: flex;
+  display: grid;
+  grid-template-areas: "mark links sound";
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1.75rem;
+  column-gap: 1.5rem;
   min-height: 4.25rem;
-  padding: max(0.85rem, env(safe-area-inset-top)) 8.5rem 0.75rem
+  padding: max(0.85rem, env(safe-area-inset-top))
+    max(1.25rem, env(safe-area-inset-right)) 0.75rem
     max(1.25rem, env(safe-area-inset-left));
   pointer-events: none;
+}
+
+.house-nav-mark {
+  grid-area: mark;
+}
+
+.house-nav-links {
+  grid-area: links;
+}
+
+.house-nav .gold-sound {
+  position: static;
+  grid-area: sound;
+  justify-self: end;
+  pointer-events: auto;
 }
 
 .house-nav-mark,
@@ -123,7 +141,9 @@ html[data-theme="dark"] body.is-landing-hero:has(.landing-hero--house) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem 1.35rem;
+  justify-content: center;
+  gap: 0.35rem 1.75rem;
+  pointer-events: none;
 }
 
 .house-nav-links a {
@@ -236,30 +256,20 @@ html:has(.house-page) body {
 @media (max-width: 1100px) {
   .house-nav {
     position: relative;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.4rem 1rem;
-    padding-right: max(0.85rem, env(safe-area-inset-right));
-  }
-
-  .house-nav-mark {
-    margin-right: auto;
-  }
-
-  .house-nav-links {
-    flex: 1 0 100%;
-    order: 3;
-  }
-
-  .house-nav .gold-sound {
-    position: static;
-    pointer-events: auto;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
+  .house-nav {
+    grid-template-areas:
+      "mark . sound"
+      "links links links";
+    row-gap: 0.55rem;
+  }
+
   .house-nav-links {
-    gap: 0.45rem 0.85rem;
+    justify-content: center;
+    gap: 0.45rem 1.1rem;
   }
 
   .house-nav-links a {
