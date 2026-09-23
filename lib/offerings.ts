@@ -153,6 +153,11 @@ export const volunteer = {
   line: "Check-in. Set up. Break down.",
 } as const;
 
+export const techWeek = {
+  name: "Tech Week",
+  href: "https://www.bmoretechweek.com/",
+} as const;
+
 export const navOfferings = [techAfterDark] as const;
 
 export const siteLinks = [

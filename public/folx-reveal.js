@@ -76,7 +76,7 @@ window.bootFolxReveal = function bootFolxReveal() {
         pinSpacing: true,
         anticipatePin: 1,
         start: "top top",
-        end: "+=260%",
+        end: "+=420%",
         scrub: true,
         onUpdate: function (self) {
           applyProgress(words, self.progress);

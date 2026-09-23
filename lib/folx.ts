@@ -8,13 +8,15 @@ export const folx = {
   close: "Step inside.",
   phonetic: "tek fōks",
   reveal: [
-    "TechFolx creates tech-infused immersive experiences that blend interaction, spatial flow, and sensory design. It is a physical space built for discovery.",
-    "We design how people move, discover, and engage with technology inside physical spaces. Learning is the point of the experience.",
+    "We don't just bring people in tech together. We help build the future of Baltimore.",
+    "TechFolx is a community platform dedicated to connecting the people, ideas, and opportunities shaping our city's future in tech. Through experiences like Tech After Dark, Baltimore Tech Week, and other ecosystem-building initiatives, we create meaningful connections that fuel innovation, strengthen communities, and inspire long-term growth.",
+    "Because the future of Baltimore will be built by people in tech who choose to build it together.",
   ],
   revealSections: [
     [
-      "TechFolx creates tech-infused immersive experiences that blend interaction, spatial flow, and sensory design. It is a physical space built for discovery.",
-      "We design how people move, discover, and engage with technology inside physical spaces. Learning is the point of the experience.",
+      "We don't just bring people in tech together. We help build the future of Baltimore.",
+      "TechFolx is a community platform dedicated to connecting the people, ideas, and opportunities shaping our city's future in tech. Through experiences like Tech After Dark, Baltimore Tech Week, and other ecosystem-building initiatives, we create meaningful connections that fuel innovation, strengthen communities, and inspire long-term growth.",
+      "Because the future of Baltimore will be built by people in tech who choose to build it together.",
     ],
   ],
   manifesto:

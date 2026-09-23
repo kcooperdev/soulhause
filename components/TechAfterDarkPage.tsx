@@ -8,11 +8,13 @@ import { RoomSound } from "@/components/RoomSound";
 import { folx } from "@/lib/folx";
 
 const PHRASES = [
-  { key: "social-energy", words: ["spatial", "flow"] },
-  { key: "community", words: ["interaction"] },
-  { key: "connection", words: ["discovery"] },
-  { key: "relationships", words: ["learning"] },
-  { key: "momentum", words: ["technology"] },
+  { key: "social-energy", words: ["people", "in", "tech", "together"] },
+  { key: "social-energy", words: ["build", "it", "together"] },
+  { key: "momentum", words: ["future", "of", "baltimore"] },
+  { key: "relationships", words: ["baltimore", "tech", "week"] },
+  { key: "connection", words: ["tech", "after", "dark"] },
+  { key: "community", words: ["community"] },
+  { key: "momentum", words: ["tech"] },
 ] as const;
 
 type Keyword = (typeof PHRASES)[number]["key"];
@@ -82,7 +84,7 @@ export function TechAfterDarkPage() {
       return;
     }
     const script = document.createElement("script");
-    script.src = "/folx-reveal.js?v=scrub5";
+    script.src = "/folx-reveal.js?v=scrub6";
     script.dataset.folxReveal = "true";
     script.onload = boot;
     document.body.appendChild(script);
