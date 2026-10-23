@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import { ResourceList } from "@/components/ResourceList";
-import { brand } from "@/lib/brand";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Resources · ${brand.name}`,
-  description:
-    "Tech resources for the Baltimore community, and the organizations that provide that support.",
-};
+export const metadata = pageMeta({
+  title: "Resources",
+  description: "Tools, programs, and organizations that support the Baltimore tech community.",
+  path: "/resources",
+});
 
 export default function ResourcesPage() {
   return (

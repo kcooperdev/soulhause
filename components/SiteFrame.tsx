@@ -2,17 +2,30 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { brand, nav } from "@/lib/brand";
 import { nextNight } from "@/lib/content";
 
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
+  const barRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setOpen(false);
   }, [path]);
+
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar) return;
+    const apply = () => {
+      document.documentElement.style.setProperty("--bar", `${bar.getBoundingClientRect().height}px`);
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(bar);
+    return () => observer.disconnect();
+  }, []);
 
   const links = (
     <ul className="nav-list">
@@ -35,7 +48,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
       <a className="skip" href="#content">
         Skip to content
       </a>
-      <header className="topbar">
+      <header className="topbar" ref={barRef}>
         <Link className="brand" href="/" aria-label={brand.name}>
           <strong>{brand.short}</strong>
         </Link>

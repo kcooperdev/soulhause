@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
 import { JobList } from "@/components/JobList";
-import { brand } from "@/lib/brand";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Jobs · ${brand.name}`,
-  description: "Job listings for the Baltimore tech community.",
-};
+export const metadata = pageMeta({
+  title: "Jobs",
+  description: "Job openings shared with the Baltimore tech community by BMore Tech Nights.",
+  path: "/jobs",
+});
 
 export default function JobsPage() {
   return (

@@ -2,12 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { EmailSignup } from "@/components/EmailSignup";
 import { NextNight } from "@/components/NextNight";
-import { brand } from "@/lib/brand";
 import { core, nextNight } from "@/lib/content";
+import { homeDescription, homeTitle } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: `${brand.name} · Tech mixer`,
-  description: brand.position,
+  title: { absolute: homeTitle },
+  description: homeDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "BMore Tech Nights",
+    title: homeTitle,
+    description: homeDescription,
+    url: "/",
+    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "BMore Tech Nights logo" }],
+  },
+  twitter: {
+    card: "summary",
+    title: homeTitle,
+    description: homeDescription,
+    images: ["/icon-512.png"],
+  },
 };
 
 const start = [
@@ -45,13 +61,13 @@ const takePart = [
     href: "/vend",
     tone: "#ff4d3a",
     title: "Vend",
-    copy: "A vendor spot is $50 per event.",
+    copy: "Sign up yourself. $50 per event.",
   },
   {
     href: "/sponsor",
     tone: "#17a85a",
     title: "Sponsor",
-    copy: "Support one night, or three or six.",
+    copy: "Sign a package yourself. From $300.",
   },
 ];
 
@@ -67,7 +83,7 @@ export default function Home() {
         <div className="pills">
           <span>Based in Baltimore</span>
           <span>Founded in 2026</span>
-          <span>12K+ professionals</span>
+          <span>1200+ professionals</span>
         </div>
       </section>
 

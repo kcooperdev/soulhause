@@ -1,4 +1,4 @@
-const CACHE = "bmore-tech-nights-v4";
+const CACHE = "bmore-tech-nights-v5";
 const SHELL = ["/", "/events", "/jobs", "/resources", "/vend", "/sponsor", "/partner", "/about", "/privacy", "/conduct"];
 
 self.addEventListener("install", (event) => {

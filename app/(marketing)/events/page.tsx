@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
 import { NextNight } from "@/components/NextNight";
 import { nextNight } from "@/lib/content";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Events · BMore Tech Nights`,
-  description: "The Offer is November 4, 2026 at 6pm at Nola Seafood & Spirits.",
-};
+export const metadata = pageMeta({
+  title: "Events",
+  description:
+    "The Offer is November 4, 2026 at 6pm at Nola Seafood & Spirits in Baltimore. Choose Experience or Spectator and get tickets.",
+  path: "/events",
+});
 
 export default function EventsPage() {
   return (

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { InquiryForm } from "@/components/InquiryForm";
 import { brand } from "@/lib/brand";
 import { core, faqs } from "@/lib/content";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `About · ${brand.name}`,
-  description: brand.position,
-};
+export const metadata = pageMeta({
+  title: "About",
+  description:
+    "BMore Tech Nights is a Baltimore tech mixer founded in 2026 for 1200+ professionals. General admission is free.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -28,7 +29,7 @@ export default function AboutPage() {
         </p>
         <h2>The year</h2>
         <p>
-          We are based in Baltimore. BMore Tech Nights was founded in 2026, and more than 12,000 professionals are part of this community. We plan six events a year. General admission is always free. Dates are on the calendar.
+          We are based in Baltimore. BMore Tech Nights was founded in 2026, and 1200+ professionals are part of this community. We plan six events a year. General admission is always free. Dates are on the calendar.
         </p>
         <div className="actions">
           <Link className="btn green" href="/partner">
@@ -59,16 +60,6 @@ export default function AboutPage() {
           </details>
         ))}
       </section>
-      <InquiryForm
-        id="contact-form"
-        legend="Contact the team"
-        submitLabel="Send a note"
-        fields={[
-          { name: "name", label: "Name", required: true },
-          { name: "email", label: "Email", type: "email", required: true },
-          { name: "message", label: "Message", type: "textarea", required: true },
-        ]}
-      />
     </div>
   );
 }

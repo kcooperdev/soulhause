@@ -1,5 +1,6 @@
 import { brand } from "@/lib/brand";
 import { nextNight } from "@/lib/content";
+import { eventJsonLd } from "@/lib/seo";
 
 export function NextNight({
   showTickets = false,
@@ -39,8 +40,13 @@ export function NextNight({
     ["Where", nextNight.place],
   ].filter(([, value]) => value);
 
+  const event = eventJsonLd();
+
   return (
     <section className="panel" id="next" aria-labelledby="next-title">
+      {event ? (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(event) }} />
+      ) : null}
       <p className="kicker">Next event</p>
       <Title id="next-title" className="h1">
         {nextNight.name}

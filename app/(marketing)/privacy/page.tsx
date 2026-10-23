@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { brand } from "@/lib/brand";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Privacy · ${brand.name}`,
-  description: "How BMore Tech Nights handles information from this site.",
-};
+export const metadata = pageMeta({
+  title: "Privacy",
+  description: "How BMore Tech Nights handles information you type on this site.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
@@ -23,14 +23,15 @@ export default function PrivacyPage() {
         <p>Some forms ask for details that can identify you:</p>
         <ul className="plain-list">
           <li>Email signup: first name and email address, plus a consent checkbox.</li>
-          <li>Vendor, sponsor, and community partner forms: your name, email, organization, and the answers you type about your work.</li>
-          <li>The contact form on the About page: your name, email, and message.</li>
+          <li>Vendor application: business type, business name, what you will bring, your name, email, an optional link, team size, a night, and a signature you draw.</li>
+          <li>Sponsorship form: package, number of events, organization, your name, email, an optional link, and an optional listing line. Community Sponsor and Event Partner also include a signature you draw. Presenting stops at booking a call.</li>
+          <li>Community partner form: the kind of group, its name, your name, email, who the group gathers, an optional link, and a checkbox that you will share the night.</li>
         </ul>
         <p>
           Those forms are not connected to an email list or an inbox. Until they are, what you type stays in your browser. We do not receive it, store it, or email you because of it.
         </p>
         <p>
-          When a form is connected, we will use what you send only for that form. A signup is for notices about upcoming nights. An application or inquiry is so we can reply about vending, sponsorship, a community partnership, or your message. We do not sell personal information.
+          When a form is connected, we will use what you send only for that form. A signup is for notices about upcoming nights. An application is so we can reply about vending, sponsorship, or a community partnership. We do not sell personal information.
         </p>
 
         <h2>Log data</h2>
@@ -43,7 +44,7 @@ export default function PrivacyPage() {
 
         <h2>Communications</h2>
         <p>
-          We email you about upcoming nights only if you join the list and check the consent box. That list is not connected yet, so this site is not sending those emails. Details from a vendor, sponsor, partner, or contact form are not added to a newsletter.
+          We email you about upcoming nights only if you join the list and check the consent box. That list is not connected yet, so this site is not sending those emails. Details from a vendor, sponsor, or partner form are not added to a newsletter.
         </p>
         <p>
           You can ask to leave the list once it exists. Until then, there is no list to leave.
@@ -71,9 +72,7 @@ export default function PrivacyPage() {
         </p>
 
         <h2>Contact</h2>
-        <p>
-          Questions about this policy can go through the contact form on the <Link href="/about">About</Link> page. That form is not connected yet, so a message typed there is not delivered.
-        </p>
+        <p>This site does not take messages. At an event, find someone from BMore Tech Nights.</p>
       </article>
     </div>
   );

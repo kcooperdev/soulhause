@@ -54,13 +54,21 @@ export const tickets = {
   },
 };
 
+export const vendorRules = [
+  "$50 for one event.",
+  "Up to two people from your team.",
+  "You bring your own setup. A table and power are not included.",
+  "Be ready by the start time on the event page.",
+  "Recruiting and large brand activations are sponsorship.",
+  "This page does not take payment.",
+] as const;
+
 export const vendorOffer = {
   price: "$50 per event",
   confirmed: [
-    "We review vendors for fit with the people in the room.",
-    "An application does not hold a spot.",
-    "If we approve you, we’ll send payment and setup instructions.",
-    "We may ask for a short call. You don’t need one before you apply.",
+    "You sign up yourself. There is no vendor call.",
+    "The fee is $50 for one event.",
+    "A signature on this page does not charge you or hold a spot until the form can file it.",
     "Corporate recruiting and larger brand activations belong under sponsorship.",
   ],
   unconfirmed: [
@@ -100,7 +108,7 @@ export const sponsorTiers = [
     benefits: [
       "Community Sponsor benefits",
       "One dedicated sponsor spotlight post",
-      "A place for approved materials in a shared partner area",
+      "A place for materials in a shared partner area",
       "Two VIP tickets",
     ],
   },
@@ -116,7 +124,7 @@ export const sponsorTiers = [
       "“Presented by” placement on the event page and the main promotional graphic",
       "An optional welcome of up to two minutes",
       "Four VIP tickets total (this replaces the two tickets at the Event Partner level)",
-      "One activation table only when the venue layout allows it and we agree in advance",
+      "One activation table when the venue has room for it",
     ],
   },
 ];
@@ -186,15 +194,15 @@ export const faqs = [
   },
   {
     q: "How do I apply to vend?",
-    a: "Use the form on the Vend page. We review for fit. Applying does not reserve a spot. Vendor spots are $50 per event, and how many we can take depends on the room.",
+    a: "Open the Vend page and sign. No call and no approval. The fee is $50 for one event. This page does not take payment.",
   },
   {
     q: "What does the $50 vendor fee include?",
-    a: "The $50 is the fee to vend at one event after you’re approved. Table, chairs, setup times, how many people are included, and refund terms are not set as a standing policy yet. We’ll send those with your approval.",
+    a: "The fee is $50 for one event. Up to two people from your team can work the spot. You bring your own setup. A table and power are not included. Be ready by the start time on the event page. This page does not take payment.",
   },
   {
     q: "Can my organization sponsor one or multiple events?",
-    a: "Yes. Community, Event Partner, and Presenting packages can cover one, three, or six events, if that inventory is still open. A written agreement comes before payment.",
+    a: "Yes. Community Sponsor and Event Partner sign on the Sponsor page for one, three, or six events. Presenting books a short call first, then signs after the welcome and the table are placed. This page does not take payment.",
   },
   {
     q: "Are events held at restaurants or coworking spaces?",
@@ -202,7 +210,7 @@ export const faqs = [
   },
   {
     q: "How can I ask about accessibility or accommodations?",
-    a: "Write to us from the About page. Age rules, step-free access, and other access details will be published with each event when we know them. We don’t have one rule that covers every venue.",
+    a: "Age rules, step-free access, and other access details are published with each event when we know them. We don’t have one rule that covers every venue.",
   },
 ];
 

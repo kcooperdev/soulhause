@@ -6,6 +6,7 @@ export const brand = {
     "BMore Tech Nights is a tech mixer that brings professionals together to connect, explore technology, and build relationships through interactive experiences.",
   site: "https://www.bmoretechnights.com",
   calendar: "https://luma.com/bmore-tech-nights",
+  presentingCall: "",
 } as const;
 
 export const nav = [

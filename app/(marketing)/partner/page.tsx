@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { InquiryForm } from "@/components/InquiryForm";
-import { brand } from "@/lib/brand";
+import { PartnerApplication } from "@/components/PartnerApplication";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Community Partner · ${brand.name}`,
-  description:
-    "Community partner is free for Baltimore groups that already bring people together.",
-};
+export const metadata = pageMeta({
+  title: "Community Partner",
+  description: "Community partner is free for Baltimore groups that already bring people together.",
+  path: "/partner",
+});
 
 const gets = [
   "It is free. There is no partner fee.",
@@ -32,7 +31,7 @@ export default function PartnerPage() {
           If you already gather people in Baltimore, community partner is free. A meetup, a school, a nonprofit, a student group, a workforce program, an accelerator. Your circle trusts you. We want them in the room.
         </p>
         <a className="btn green" href="#partner-form">
-          Apply to partner
+          Join
         </a>
       </header>
 
@@ -60,29 +59,7 @@ export default function PartnerPage() {
         <Link href="/sponsor">See sponsor packages</Link>.
       </p>
 
-      <InquiryForm
-        id="partner-form"
-        legend="Community partner application"
-        submitLabel="Apply to partner"
-        fields={[
-          { name: "name", label: "Contact name", required: true },
-          { name: "org", label: "Group or organization", required: true },
-          { name: "email", label: "Email", type: "email", required: true },
-          { name: "site", label: "Website or social link", type: "url" },
-          {
-            name: "who",
-            label: "Who you already gather",
-            type: "textarea",
-            required: true,
-          },
-          {
-            name: "share",
-            label: "How you’ll share the night",
-            type: "textarea",
-            required: true,
-          },
-        ]}
-      />
+      <PartnerApplication />
     </div>
   );
 }

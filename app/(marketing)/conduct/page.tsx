@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { brand } from "@/lib/brand";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: `Code of conduct · ${brand.name}`,
-  description: "How we expect people to treat each other at BMore Tech Nights.",
-};
+export const metadata = pageMeta({
+  title: "Code of conduct",
+  description: "How we expect people to treat each other at a BMore Tech Nights mixer.",
+  path: "/conduct",
+});
 
 export default function ConductPage() {
   return (
@@ -46,12 +45,12 @@ export default function ConductPage() {
           Follow the venue’s rules. Do not damage the space or anyone’s setup. Vendors and sponsors stay within the spot we agreed. Do not pitch, recruit, or hand out materials in a way we did not agree to.
         </p>
         <p>
-          If you are sick, stay home. Accessibility needs differ by venue. Ask us ahead of a night and we will tell you what that room can and cannot do.
+          If you are sick, stay home. Accessibility needs differ by venue. Age rules, step-free access, and other access details are published with each event when we know them.
         </p>
 
         <h2>How to tell us</h2>
         <p>
-          At the event, find someone from BMore Tech Nights and say what happened. You can also write through the contact form on the <Link href="/about">About</Link> page. That form is not connected yet, so during an event the sure path is to tell an organizer in the room.
+          At the event, find someone from BMore Tech Nights and say what happened.
         </p>
         <p>
           We will listen, and we will act on what we can check. Asking someone to leave is a step we will take when the conduct above is broken.
