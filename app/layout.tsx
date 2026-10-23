@@ -1,19 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, DM_Sans, Public_Sans, Syne } from "next/font/google";
-import { ThemeSync } from "@/components/ThemeSync";
+import { Barlow_Condensed, DM_Sans } from "next/font/google";
+import { PwaRegister } from "@/components/PwaRegister";
 import { brand } from "@/lib/brand";
-import { THEME_BOOT, THEME_LIGHT } from "@/lib/theme";
 import "./globals.css";
-
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
-  subsets: ["latin"],
-});
 
 const barlow = Barlow_Condensed({
   variable: "--font-barlow",
   subsets: ["latin"],
-  weight: ["600", "800"],
+  weight: ["600", "700", "800"],
 });
 
 const dmSans = DM_Sans({
@@ -22,45 +16,34 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
-const syne = Syne({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-});
-
 export const metadata: Metadata = {
-  title: `${brand.name} · ${brand.line}`,
+  title: {
+    default: brand.name,
+    template: `%s`,
+  },
   description: brand.position,
   applicationName: brand.name,
   appleWebApp: {
     capable: true,
     title: brand.name,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
   },
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: THEME_LIGHT,
-  colorScheme: "light dark",
+  themeColor: "#141414",
+  colorScheme: "light",
   viewportFit: "cover",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      data-theme="light"
-      suppressHydrationWarning
-      className={`${publicSans.variable} ${barlow.variable} ${syne.variable} ${dmSans.variable} h-full antialiased`}
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT }} />
-      </head>
-      <body
-        className="h-full min-h-full bg-paper font-sans text-ink"
-        suppressHydrationWarning
-      >
-        <ThemeSync />
+    <html lang="en" className={`${barlow.variable} ${dmSans.variable}`}>
+      <body>
+        <PwaRegister />
         {children}
       </body>
     </html>
