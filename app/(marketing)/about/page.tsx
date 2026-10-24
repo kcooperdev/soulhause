@@ -48,7 +48,7 @@ export default function AboutPage() {
         <p>
           <Link href="/conduct">Code of conduct</Link>
           {" · "}
-          <Link href="/privacy">Privacy</Link>
+          <Link href="/privacy">Privacy Policy</Link>
         </p>
       </section>
       <section className="panel" aria-labelledby="faq-title">

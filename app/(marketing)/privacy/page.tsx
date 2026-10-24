@@ -2,7 +2,7 @@ import { brand } from "@/lib/brand";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
-  title: "Privacy",
+  title: "Privacy Policy",
   description: "How BMore Tech Nights handles information you type on this site.",
   path: "/privacy",
 });
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <div className="page">
       <article className="panel prose">
         <p className="kicker">Privacy</p>
-        <h1>Privacy policy</h1>
+        <h1>Privacy Policy</h1>
         <p>Last updated: October 23, 2026.</p>
         <p>
           BMore Tech Nights (“we”, “us”) operates{" "}

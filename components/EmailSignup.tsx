@@ -13,10 +13,7 @@ export function EmailSignup() {
       </label>
       <label className="check" htmlFor="consent">
         <input id="consent" name="consent" type="checkbox" disabled />
-        <span>
-          We can email you about upcoming BMore Tech Nights. Read the{" "}
-          <a href="/privacy">privacy note</a>.
-        </span>
+        <span>We can email you about upcoming BMore Tech Nights.</span>
       </label>
       <button className="btn" type="button" disabled>
         Join the list

@@ -44,10 +44,6 @@
   top: 1rem;
 }
 
-.topbar {
-  display: none;
-}
-
 .frame {
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
@@ -65,6 +61,17 @@
   padding: 1.25rem 1rem 1.5rem;
   border-right: 3px solid var(--ink);
   background: var(--yellow);
+}
+
+.side-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.menu-toggle {
+  display: none;
 }
 
 .brand {
@@ -653,10 +660,6 @@ details p {
   gap: 0.7rem;
 }
 
-.menu-btn {
-  display: none;
-}
-
 :focus-visible {
   outline: 3px solid var(--blue);
   outline-offset: 3px;
@@ -677,74 +680,61 @@ details p {
 }
 
 @media (max-width: 800px) {
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.65rem;
-    padding-top: max(0.65rem, env(safe-area-inset-top));
-    padding-left: max(0.65rem, env(safe-area-inset-left));
-    padding-right: max(0.65rem, env(safe-area-inset-right));
-    border-bottom: 3px solid var(--ink);
-    background: var(--yellow);
-  }
-
-  .menu-btn,
-  .topbar .find {
-    display: inline-flex;
-    flex: 0 1 auto;
-    margin: 0;
-    min-height: 44px;
-    box-shadow: 3px 3px 0 var(--ink);
-  }
-
-  .topbar .find {
-    padding: 0.45rem 0.75rem;
-    font-size: 1rem;
-  }
-
-  .menu-btn {
-    padding: 0.45rem 0.75rem;
-    border: 3px solid var(--ink);
-    border-radius: 12px;
-    background: #fff;
-    font-weight: 800;
-  }
-
   .frame {
     display: block;
   }
 
   .side {
-    display: none;
     position: static;
     height: auto;
     overflow: visible;
     border-right: 0;
     border-bottom: 3px solid var(--ink);
+    padding-top: max(1.25rem, env(safe-area-inset-top));
   }
 
-  .side.open {
-    display: flex;
-    position: fixed;
-    z-index: 30;
-    top: var(--bar, 4.5rem);
-    left: 0;
-    right: 0;
-    width: auto;
-    height: auto;
-    max-height: calc(100dvh - var(--bar, 4.5rem));
-    overflow: auto;
-    border-right: 0;
-    border-bottom: 3px solid var(--ink);
+  .menu-toggle {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.45rem 0.75rem;
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 3px 3px 0 var(--ink);
+    color: var(--ink);
+    font-weight: 800;
   }
 
-  .side .find {
+  .side.is-closed {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .side.is-closed .side-head {
+    flex: 1 1 auto;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .side.is-closed .brand span,
+  .side.is-closed nav {
     display: none;
+  }
+
+  .side.is-closed .brand strong {
+    font-size: 1.15rem;
+  }
+
+  .side.is-closed .find {
+    flex: 0 0 auto;
+    min-height: 44px;
+    margin-top: 0;
+    padding: 0.45rem 0.75rem;
+    box-shadow: 3px 3px 0 var(--ink);
   }
 
   h1,
