@@ -6,17 +6,18 @@ const paths = ["/", "/events", "/events/submit", "/jobs", "/resources", "/faq", 
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date("2026-10-28");
-  const staticEntries = paths.map((path) => ({
+
+  const staticEntries: MetadataRoute.Sitemap = paths.map((path) => ({
     url: `${brand.site}${path === "/" ? "" : path}`,
     lastModified,
-    changeFrequency: (path === "/" || path === "/events" ? "weekly" : "monthly") as const,
+    changeFrequency: path === "/" || path === "/events" ? "weekly" : "monthly",
     priority: path === "/" ? 1 : path === "/events" ? 0.9 : 0.6,
   }));
 
-  const eventEntries = sceneEvents.map((event) => ({
+  const eventEntries: MetadataRoute.Sitemap = sceneEvents.map((event) => ({
     url: `${brand.site}/events/${event.id}`,
     lastModified,
-    changeFrequency: "weekly" as const,
+    changeFrequency: "weekly",
     priority: 0.7,
   }));
 

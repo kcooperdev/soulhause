@@ -4,7 +4,7 @@ export const brand = {
   line: "Events, jobs, and tech resources in one place.",
   position:
     "BMore Tech Scene is one stop for the tech community: events to attend, and resources to learn AI, cybersecurity, and more.",
-  site: "https://www.bmoretechnights.com",
+  site: "https://www.bmoretechscene.com",
   calendar: "https://luma.com/bmore-tech-nights",
 } as const;
 
