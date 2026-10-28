@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="public/btn-logo.png" alt="BTN wordmark" width="148" />
+  <img src="public/btn-logo.png" alt="BMore Tech Scene wordmark" width="148" />
 </p>
 
-<h1 align="center">Bmore Tech Nights</h1>
+<h1 align="center">BMore Tech Scene</h1>
 
 <p align="center">
-  A tech mixer that brings professionals together to connect, explore technology, and build relationships through interactive experiences.
+  Events, jobs, and resources for the local tech community.
 </p>
 
 <p align="center">
@@ -19,9 +19,9 @@
 
 ## Why it exists
 
-BMore Tech Nights is a tech mixer. People come to meet other professionals. Interactive experiences are how the night feels different from a usual introduction.
+BMore Tech Scene is a resource place. People come to find events, jobs, and resources that serve the local tech community.
 
-The public site covers the next event, free admission and a $20 VIP upgrade, vending, sponsorship, and community resources. It can be installed on a phone or desktop.
+The public site covers the calendar, openings when postings are real, and verified resources. It can be installed on a phone or desktop.
 
 Built with Next.js, React, TypeScript, and Tailwind CSS.
 

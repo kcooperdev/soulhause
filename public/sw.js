@@ -1,5 +1,5 @@
-const CACHE = "bmore-tech-nights-v5";
-const SHELL = ["/", "/events", "/jobs", "/resources", "/vend", "/sponsor", "/partner", "/about", "/privacy", "/conduct"];
+const CACHE = "bmore-tech-scene-v1";
+const SHELL = ["/", "/events", "/jobs", "/resources", "/about", "/privacy", "/conduct"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

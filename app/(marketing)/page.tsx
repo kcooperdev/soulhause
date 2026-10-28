@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EmailSignup } from "@/components/EmailSignup";
 import { core } from "@/lib/content";
 import { homeDescription, homeTitle } from "@/lib/seo";
 
@@ -11,11 +10,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "BMore Tech Nights",
+    siteName: "BMore Tech Scene",
     title: homeTitle,
     description: homeDescription,
     url: "/",
-    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "BMore Tech Nights logo" }],
+    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: "BMore Tech Scene logo" }],
   },
   twitter: {
     card: "summary",
@@ -29,19 +28,31 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <p className="kicker">BMore Tech Nights</p>
-        <h1>Meet people. Experience tech. Make connections.</h1>
+        <p className="kicker">BMore Tech Scene</p>
+        <h1>Events. Jobs. Resources.</h1>
         <p className="lede">
-          Connect with professionals across tech, business, and creative fields in a social setting shaped by hands-on activities and immersive experiences.
+          One stop for the tech community: events to attend, and resources to learn AI, cybersecurity, and more.
         </p>
         <div className="pills">
-          <span>Based in Baltimore</span>
-          <span>Founded in 2026</span>
-          <span>1200+ professionals</span>
+          <span>Events</span>
+          <span>Jobs</span>
+          <span>Resources</span>
+        </div>
+        <div className="actions">
+          <Link className="btn blue" href="/events">
+            See events
+          </Link>
+          <Link className="btn green" href="/jobs">
+            Browse jobs
+          </Link>
+          <Link className="btn coral" href="/resources">
+            Find resources
+          </Link>
+          <Link className="btn white" href="/events/submit">
+            Submit an event
+          </Link>
         </div>
       </section>
-
-      <EmailSignup />
 
       <footer className="foot">
         <span>{core}</span>

@@ -5,9 +5,9 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
     name: brand.name,
-    short_name: "BMore Tech",
+    short_name: "BTS",
     description:
-      "Baltimore tech mixer founded in 2026. Meet professionals and come to the next night.",
+      "Events, jobs, and resources for the local tech community.",
     start_url: "/",
     scope: "/",
     display: "standalone",

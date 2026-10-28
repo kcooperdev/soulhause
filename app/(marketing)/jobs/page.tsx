@@ -3,7 +3,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Jobs",
-  description: "Job openings shared with the Baltimore tech community by BMore Tech Nights.",
+  description: "Job openings shared with the local tech community on BMore Tech Scene.",
   path: "/jobs",
 });
 
@@ -14,7 +14,7 @@ export default function JobsPage() {
         <p className="kicker">Jobs</p>
         <h1>Find a role.</h1>
         <p className="lede">
-          Openings for people in and around Baltimore tech. We add a job when the posting is real.
+          Openings for people in and around tech. We add a job when the posting is real.
         </p>
       </header>
       <JobList />

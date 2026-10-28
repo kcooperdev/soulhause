@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { nav } from "@/lib/brand";
-import { nextNight } from "@/lib/content";
+import { NavIcon } from "@/components/NavIcon";
 
 export function SiteFrame({ children }: { children: React.ReactNode }) {
   const path = usePathname();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const lastPath = useRef(path);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
         <aside className={open ? "side" : "side is-closed"}>
           <div className="side-head">
             <Link className="brand" href="/">
-              <strong>BMore Tech Nights</strong>
-              <span>Tech mixer</span>
+              <strong>BMore Tech Scene</strong>
+              <span>Events · Jobs · Resources</span>
             </Link>
             <button
               className="menu-toggle"
@@ -46,7 +46,7 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
                 return (
                   <li key={item.href}>
                     <Link href={item.href} aria-current={current ? "page" : undefined}>
-                      <span className="swatch" style={{ ["--tone" as string]: item.tone }} />
+                      <NavIcon href={item.href} tone={item.tone} />
                       {item.label}
                     </Link>
                   </li>
@@ -54,9 +54,6 @@ export function SiteFrame({ children }: { children: React.ReactNode }) {
               })}
             </ul>
           </nav>
-          <a className="find" href={nextNight.registrationUrl}>
-            Subscribe
-          </a>
         </aside>
         <div className="stage" id="content">
           {children}

@@ -51,7 +51,7 @@ export function ResourceList({ items = resources }: { items?: Resource[] }) {
         <section className="panel">
           <h2>Nothing verified to list yet</h2>
           <p>
-            Each card will name the resource or organization, say what it offers, and link out. Paid sponsor listings will be marked separately from recommendations we write ourselves.
+            Each card will name the resource or organization, say what it offers, and link out.
           </p>
           <p>We won’t add an organization or program until that link is real. Job openings live on the Jobs page.</p>
         </section>
@@ -61,7 +61,6 @@ export function ResourceList({ items = resources }: { items?: Resource[] }) {
             <article className="card quiet" key={item.href}>
               <p className="kicker">
                 {item.category}
-                {item.sponsored ? " · Sponsor listing" : ""}
               </p>
               <h2>{item.name}</h2>
               <p>{item.description}</p>

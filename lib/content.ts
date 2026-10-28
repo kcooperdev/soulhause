@@ -1,143 +1,111 @@
 import { brand } from "@/lib/brand";
 
 export const core =
-  "BMore Tech Nights is a tech mixer that brings professionals together to connect, explore technology, and build relationships through interactive experiences.";
+  "BMore Tech Scene is one stop for the tech community: events to attend, and resources to learn AI, cybersecurity, and more.";
 
-/** Published details only. Leave a field blank if it is not confirmed. */
-export const nextNight = {
-  published: true,
-  name: "The Offer",
-  date: "November 4, 2026",
-  time: "6pm",
-  venue: "Nola Seafood & Spirits",
-  place: "36 E Cross St, Baltimore",
-  description:
-    "You choose a path. Experience steps into the hands-on moment and includes the offer drink. Spectator watches that experience from the outside.",
-  interactive: [] as string[],
-  registrationUrl: "https://luma.com/k7k9pcqz",
-  paths: [
-    {
-      name: "Experience",
-      detail: "Step into the hands-on moment. Includes the offer drink.",
-    },
-    {
-      name: "Spectator",
-      detail: "Watch the experience from the outside.",
-    },
-  ],
-  voucher: {
-    eligibleDrinks: "",
-    nonalcoholic: "",
-    venueRestrictions: "",
-    checkoutFees: "",
-  },
+export type SceneEvent = {
+  id: string;
+  name: string;
+  /** Hosting company or organizer */
+  company: string;
+  /** Local calendar date as YYYY-MM-DD */
+  startsOn: string;
+  time: string;
+  place: string;
+  /** External RSVP / ticket page */
+  href: string;
+  /** Short blurb for calendar modal and list previews */
+  detail: string;
+  /** Cover image under /public */
+  image: string;
+  /** Longer copy for the on-site detail page */
+  body: string;
 };
 
-export const tickets = {
-  general: {
-    name: "General admission",
-    price: "Free",
-    includes: [
-      "Admission",
-      "The night’s main programming",
-      "Time to meet other professionals",
-      "The core interactive experiences we set up for that event",
-    ],
-  },
-  vip: {
-    name: "VIP",
-    price: "$20",
-    includes: [
-      "Everything in general admission",
-      "One eligible drink voucher",
-    ],
-  },
-};
-
-export const vendorRules = [
-  "$50 for one event.",
-  "Up to two people from your team.",
-  "You bring your own setup. A table and power are not included.",
-  "Be ready by the start time on the event page.",
-  "Recruiting and large brand activations are sponsorship.",
-  "This page does not take payment.",
-] as const;
-
-export const vendorOffer = {
-  price: "$50 per event",
-  confirmed: [
-    "You sign up yourself. There is no vendor call.",
-    "The fee is $50 for one event.",
-    "A signature on this page does not charge you or hold a spot until the form can file it.",
-    "Corporate recruiting and larger brand activations belong under sponsorship.",
-  ],
-  unconfirmed: [
-    "Whether a table and chair are provided",
-    "Setup and breakdown times",
-    "How many people from your team are included",
-    "Payment deadline",
-    "Cancellation and refund terms",
-    "Product restrictions",
-  ],
-};
-
-export type SponsorTierId = "community" | "partner" | "presenting";
-
-export const sponsorTiers = [
+/**
+ * Published tech events only.
+ * Add one after the link, date, and place are real.
+ * Submitted events will fill this list once the form is connected.
+ * Remove with: npm run remove-event -- <event-id>
+ */
+export const sceneEvents: SceneEvent[] = [
   {
-    id: "community" as const,
-    name: "Community Sponsor",
-    one: 300,
-    three: 850,
-    six: 1600,
-    availability: "Up to two per event",
-    benefits: [
-      "Logo and link on the sponsored event page",
-      "Inclusion in one grouped sponsor social post",
-      "Logo on shared event signage",
-      "A verbal thank-you during the event",
-    ],
+    id: "lovable-office-hours",
+    name: "Lovable Office Hours",
+    company: "Lovable",
+    startsOn: "2026-10-29",
+    time: "12:00pm",
+    place: "Virtual",
+    href: "https://luma.com/qfg5fdk4",
+    detail: "Live virtual office hours to get unstuck building with Lovable — Q&A, troubleshooting, and practical tips.",
+    image: "/events/lovable-office-hours.jpg",
+    body: "Building with Lovable and need a hand? Join a live, virtual office hours session with questions, blockers, and works in progress. Whether you’re stuck on a bug, unsure how to prompt for what you have in mind, or looking for ideas to take your build further, ambassadors are there to help. For anyone building with Lovable, from first-timers to seasoned builders. Expect live Q&A, hands-on troubleshooting, and practical tips. Bring a project, a question, or your curiosity.",
   },
   {
-    id: "partner" as const,
-    name: "Event Partner",
-    one: 500,
-    three: 1400,
-    six: 2700,
-    availability: "One per event",
-    benefits: [
-      "Community Sponsor benefits",
-      "One dedicated sponsor spotlight post",
-      "A place for materials in a shared partner area",
-      "Two VIP tickets",
-    ],
+    id: "the-offer",
+    name: "The Offer: An Immersive Tech Experience",
+    company: "Bmore Tech Nights",
+    startsOn: "2026-11-04",
+    time: "6:00pm",
+    place: "Nola Seafood & Spirits, 36 E Cross St, Baltimore",
+    href: "https://luma.com/k7k9pcqz",
+    detail: "A choice-driven immersive tech night in Baltimore — step inside the experience or watch from the outside.",
+    image: "/events/the-offer.jpg",
+    body: "The Offer is a new kind of tech experience in Baltimore, built around one decision: will you step inside the moment, or watch from the outside? On November 4th you’ll enter a space that blends nightlife, immersion, and hands-on tech interaction. This isn’t a panel, a networking mixer, or a traditional meetup. It’s a cinematic, choice-driven night where your path shapes what you learn and how deeply you participate. Choose Experience for a guided interactive path, or Spectator to take in the atmosphere from outside the threshold. For tech professionals, creators, builders, and the curious.",
   },
   {
-    id: "presenting" as const,
-    name: "Presenting Sponsor",
-    one: 1000,
-    three: 2800,
-    six: 5400,
-    availability: "One per event",
-    benefits: [
-      "Event Partner benefits",
-      "“Presented by” placement on the event page and the main promotional graphic",
-      "An optional welcome of up to two minutes",
-      "Four VIP tickets total (this replaces the two tickets at the Event Partner level)",
-      "One activation table when the venue has room for it",
-    ],
+    id: "bmore-ai-challenge",
+    name: "The BMORE AI Challenge",
+    company: "BMORENews.com",
+    startsOn: "2026-11-11",
+    time: "11:00am",
+    place: "Thurgood Marshall Amenity Center, 1315 Division Street, Baltimore",
+    href: "https://www.eventbrite.com/e/the-bmore-ai-challenge-tickets-2003263628439",
+    detail: "Free community challenge exploring AI for education, healthcare, nonprofits, and business — bring a problem, build a solution.",
+    image: "/events/bmore-ai-challenge.png",
+    body: "Beloved Community Services Corporation, STEM CITY USA, and BMORENews.com present the BMORE AI Challenge, a free interactive community event on how AI can help people strengthen organizations, grow businesses, and serve communities. Wednesday, November 11, 2026, 11 a.m.–2 p.m. at the Justice Thurgood Marshall Amenity Center. Moderated by Doni Glover across education, healthcare, nonprofits, and entrepreneurs, with AI facilitators rotating among groups. Ask questions, explore practical tools, develop ideas, then share solutions after a snack break. For educators, healthcare professionals, nonprofit leaders, entrepreneurs, veterans, and community members — no prior AI experience needed. Bring a laptop or phone if you have one. Admission is free; refreshments provided.",
+  },
+  {
+    id: "human-side-ai",
+    name: "The Human Side of AI",
+    company: "The AI Collective",
+    startsOn: "2026-11-11",
+    time: "6:00pm",
+    place: "Baltimore, MD",
+    href: "https://luma.com/human-side-ai",
+    detail: "A Baltimore mixer for technologists, creatives, and the AI-curious — real conversation, no technical expertise required.",
+    image: "/events/human-side-ai.jpg",
+    body: "AI is changing how we work, create, build, and connect. Behind every new tool and breakthrough are people. The Human Side of AI is a Baltimore mixer bringing together technologists, creatives, entrepreneurs, professionals, and the AI-curious for an evening of conversation and connection. No technical expertise required. Space is limited and registration may require host approval. The AI Collective is a global non-profit building the human layer for the AI era across forums worldwide.",
+  },
+  {
+    id: "bmore-tech-trek-ai",
+    name: "B’more Tech Trek [AI]",
+    company: "Tyler Roper",
+    startsOn: "2026-11-14",
+    time: "10:00am",
+    place: "The Backyard, 131 S Schroeder St, Baltimore",
+    href: "https://luma.com/ckqpi03q",
+    detail: "A walking tour of Baltimore for people who’d rather talk tech and AI on foot — Fells Point loop, then lunch.",
+    image: "/events/bmore-tech-trek.jpg",
+    body: "Originally founded in Washington D.C., the AI Walk lands in Baltimore as B’More Tech Trek. It’s a walking tour of Charm City for people who’d rather talk tech, AI, and the future on foot than from a stuffy networking event. Start at The Backyard, walk to Fells Point, and loop back for lunch via Inner Harbor and Harbor East. Built for founders, marketers, investors, engineers, and product people — you don’t need a tech job to join. Wear comfortable shoes and dress for November on the water. Registration may require host approval.",
+  },
+  {
+    id: "industry-spotlight-sports-tech",
+    name: "Industry Spotlight on Sports and Technology",
+    company: "UpSurge Baltimore",
+    startsOn: "2026-11-17",
+    time: "5:00pm",
+    place: "Spark-Flex, 621 East Pratt Street, Baltimore",
+    href: "https://events.blackthorn.io/en/KbOkKk6/g/K6RWFzv502/industry-spotlight-on-sports-and-technology-6a2cPC2mKBCM/overview",
+    detail: "Fireside chat with Orioles VP Sig Mejdal on sports analytics, tech, and opportunity beyond the locker room.",
+    image: "/events/sports-tech-spotlight.jpg",
+    body: "From pro stadiums to youth fields, technology keeps changing how we experience sports. Join UpSurge Baltimore at Spark Flex in the Inner Harbor for an industry spotlight on professional sports, tech, and opportunities beyond the locker room. Sig Mejdal, VP and assistant general manager of the Baltimore Orioles and a recognized sports analytics leader, sits for a fireside chat with Peter Stournaras of T. Rowe Price. Expect insight from Mejdal’s engineering and NASA background through decades at the forefront of baseball’s science-enabled changes — plus time to connect with others working at the intersection of athletics and innovation. Runs 5:00pm–8:00pm ET.",
   },
 ];
 
-export const sponsorLimits = [
-  "A speaking slot or a panel is not included.",
-  "A dedicated email blast is not included.",
-  "We don’t promise impressions, leads, or sales.",
-  "Industry exclusivity is not included.",
-  "Attendee contact details are not included.",
-  "A physical table is not guaranteed at every venue.",
-  "A six-event presenting sponsor holds the presenting slot for all six contracted nights. We won’t sell a second presenting right for those nights.",
-];
+export function getSceneEvent(id: string) {
+  return sceneEvents.find((event) => event.id === id);
+}
 
 export const resourceCategories = [
   "Learn & Build",
@@ -173,51 +141,35 @@ export const jobs: Job[] = [];
 
 export const faqs = [
   {
-    q: "What is BMore Tech Nights?",
+    q: "What is BMore Tech Scene?",
     a: core,
   },
   {
     q: "Who is it for?",
-    a: "People across technology, business, creative work, and fields next to tech. The room is for meeting other professionals, not for sitting through a program.",
+    a: "People in and around tech: builders, designers, founders, students, and anyone looking for the next event, role, or resource.",
   },
   {
-    q: "Is general admission free?",
-    a: "Yes. General admission is always free.",
+    q: "What will I find here?",
+    a: "A calendar of tech events, job openings when we have a real posting, and resources that help people in the local tech community.",
   },
   {
-    q: "What is included with VIP?",
-    a: "VIP is $20. It includes general admission and one eligible drink voucher. Which drinks qualify, including a nonalcoholic option, plus any venue rules or checkout fees, will be listed on that night’s event page.",
+    q: "How do I browse events?",
+    a: "Open Events and switch between Calendar and List. Calendar is the default. Click a day to open that day’s events, then open Details for the full listing.",
   },
   {
-    q: "Do I need to work in tech?",
-    a: "No. Come if you want to meet people and spend time around technology. A job title is not the ticket.",
+    q: "Can I submit an event?",
+    a: "Yes. Open Submit an event from the Events page. It is self-service for tech events only. There is no approval. Listings outside tech get removed. The form is not connected yet, so nothing is filed until it is.",
   },
   {
-    q: "How do I apply to vend?",
-    a: "Open the Vend page and sign. No call and no approval. The fee is $50 for one event. This page does not take payment.",
-  },
-  {
-    q: "What does the $50 vendor fee include?",
-    a: "The fee is $50 for one event. Up to two people from your team can work the spot. You bring your own setup. A table and power are not included. Be ready by the start time on the event page. This page does not take payment.",
-  },
-  {
-    q: "Can my organization sponsor one or multiple events?",
-    a: "Yes. Community Sponsor and Event Partner sign on the Sponsor page for one, three, or six events. Presenting books a short call first, then signs after the welcome and the table are placed. This page does not take payment.",
-  },
-  {
-    q: "Are events held at restaurants or coworking spaces?",
-    a: "The venue can change. Follow the calendar on Luma for the date and the room once that night is booked.",
-  },
-  {
-    q: "How can I ask about accessibility or accommodations?",
-    a: "Age rules, step-free access, and other access details are published with each event when we know them. We don’t have one rule that covers every venue.",
+    q: "Is this a mixer or a conference?",
+    a: "This site is a resource place. The Events page shows tech gatherings when they are published. Individual events set their own format.",
   },
 ];
 
 export const photoSlots = [
-  "Photo placeholder. Add a real photo from a BMore Tech Nights event.",
+  "Photo placeholder. Add a real photo from the local tech community.",
   "Photo placeholder. Caption goes here when the photo is real.",
-  "Photo placeholder. We won’t use stock photos as if they were our nights.",
+  "Photo placeholder. We won’t use stock photos as if they were ours.",
 ];
 
 export { brand };
